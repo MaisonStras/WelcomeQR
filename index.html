@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>WelcomeQR — Livret d'accueil QR personnalisé</title>
+  <meta name="description" content="Livret d'accueil QR personnalisé (FR/EN inclus). ES/IT/DE en option. Livraison 24–48h.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <meta property="og:title" content="WelcomeQR — Livret d'accueil QR personnalisé">
+  <meta property="og:description" content="Livret d’accueil FR/EN inclus (ES/IT/DE en option), QR, PDF, page privée. Test 24h gratuit.">
+  <meta property="og:type" content="website">
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- HEADER -->
+    <header class="site-header">
+      <div class="brand">
+        <div class="logo">WQ</div>
+        <div>
+          <h1 class="brand-title">WelcomeQR</h1>
+          <div class="brand-sub">Livret d’accueil QR — personnalisé & multilingue</div>
+        </div>
+      </div>
+
+      <nav class="top-nav">
+        <a href="#offres" class="nav-link">Offres</a>
+        <a href="#demo" class="nav-link">Démo</a>
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#b2b" class="nav-link">B2B</a>
+        <a href="#faq" class="nav-link">FAQ</a>
+        <button id="cta-test" class="btn btn-primary">Démarrer le test 24h</button>
+        <a class="btn btn-whatsapp" href="https://wa.me/33600000000?text=Bonjour%20je%20veux%20un%20livret" target="_blank" rel="noopener">WhatsApp</a>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero card">
+      <div class="hero-left">
+        <div class="label">OFFRE LANCEMENT — Garantie 14 jours</div>
+        <h2>Un livret d’accueil QR <strong>vraiment personnalisé</strong></h2>
+        <p class="lead">Page FR/EN incluse — ES / IT / DE en option. QR A5 imprimable, PDF, et page mobile privée (noindex si demandé). Livraison 24–48h.</p>
+
+        <div class="hero-ctas">
+          <button id="hero-start" class="btn btn-primary">Démarrer le test 24h</button>
+          <a href="#offres" class="btn btn-outline">Voir les offres</a>
+        </div>
+
+        <div class="hero-features">
+          <span class="pill">Design unique</span>
+          <span class="pill">Modifs sous 24h</span>
+          <span class="pill">Support WhatsApp</span>
+        </div>
+      </div>
+
+      <aside class="hero-right">
+        <div class="qr-preview">
+          <img id="qr-sample" src="https://api.qrserver.com/v1/create-qr-code/?size=90x90&data=https%3A%2F%2Fexample.com%2Fdemo" alt="QR demo">
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="small">One-shot</div>
+            <div class="big">dès 49 €</div>
+          </div>
+          <div class="stat">
+            <div class="small">Care</div>
+            <div class="big">14 €/mois</div>
+          </div>
+        </div>
+        <div class="muted">FR/EN inclus — ES/IT/DE en option</div>
+      </aside>
+    </section>
+
+    <!-- DEMO -->
+    <section id="demo" class="card section">
+      <div class="demo-left">
+        <h3>Voir la démo</h3>
+        <p class="muted">Cliquez pour ouvrir un exemple réel de livret — mobile + QR.</p>
+        <div class="demo-ctas">
+          <a id="demo-link" class="btn btn-primary" href="./demo.html" target="_blank" rel="noopener">Ouvrir la démo</a>
+          <button id="demo-open-modal" class="btn btn-outline">Démarrer mon test 24h</button>
+        </div>
+      </div>
+
+      <div class="demo-right">
+        <img id="demo-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https%3A%2F%2Fexample.com%2Fdemo" alt="QR demo">
+        <div class="muted-sm" id="demo-url-text">demo: ./demo.html</div>
+      </div>
+    </section>
+
+    <!-- OFFRES -->
+    <section id="offres" class="section">
+      <h3>Nos offres</h3>
+      <div class="grid-3">
+        <div class="card plan">
+          <h4>Starter</h4>
+          <div class="price">49 €</div>
+          <ul>
+            <li>Page FR/EN (ES/IT/DE en option)</li>
+            <li>QR A5 printable</li>
+            <li>7 jours retouches</li>
+            <li>Livraison 24–48h</li>
+          </ul>
+          <div class="plan-cta">
+            <button class="btn btn-primary commander" data-pack="Starter">Commander Starter</button>
+          </div>
+        </div>
+
+        <div class="card plan">
+          <h4>Pro</h4>
+          <div class="price">89 €</div>
+          <ul>
+            <li>Starter + PDF A5 premium</li>
+            <li>Checklist turnover</li>
+            <li>Mini optimisation annonce</li>
+          </ul>
+          <div class="plan-cta">
+            <button class="btn btn-primary commander" data-pack="Pro">Commander Pro</button>
+          </div>
+        </div>
+
+        <div class="card plan">
+          <h4>Care</h4>
+          <div class="price">14 €/mois</div>
+          <ul>
+            <li>Hébergement & mises à jour</li>
+            <li>Modifs sous 24h</li>
+            <li>Analytics QR</li>
+            <li>Support prioritaire</li>
+          </ul>
+          <div class="plan-cta">
+            <button class="btn btn-primary commander" data-pack="Care">Souscrire Care</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES COMPLÉMENTAIRES PAYANTS -->
+    <section id="services" class="section card">
+      <h3>Services complémentaires (payants)</h3>
+      <div class="services-grid">
+        <div class="service card">
+          <strong>White-label / Domaine perso</strong>
+          <p class="muted">Page livrée sur votre domaine ou sous-domaine, intégration logo & couleurs. <strong>29 € (one-shot)</strong></p>
+        </div>
+
+        <div class="service card">
+          <strong>Langue supplémentaire (ES/IT/DE)</strong>
+          <p class="muted">Traductions humaines adaptées (15 €/langue one-shot ou +2 €/mois/langue avec Care)</p>
+        </div>
+
+        <div class="service card">
+          <strong>Guide imprimable A5</strong>
+          <p class="muted">Guide papier livré prêt à imprimer — 19 € / logement</p>
+        </div>
+
+        <div class="service card">
+          <strong>Import CSV / Onboarding lot</strong>
+          <p class="muted">On reprend votre tableur et on crée les pages (1 €/logement — option manuelle / inclus dans Enterprise)</p>
+        </div>
+
+        <div class="service card">
+          <strong>SLA prioritaire</strong>
+          <p class="muted">SLA 24h pour mises à jour et support (option pour B2B — +3 €/logement/mois)</p>
+        </div>
+
+        <div class="service card">
+          <strong>Service Managed</strong>
+          <p class="muted">Nous gérons toutes les mises à jour et la relation propriétaire (+2 €/logement/mois)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- B2B / CONCIERGERIE -->
+    <section id="b2b" class="section">
+      <h3>Conciergeries & gestionnaires — Packs volume</h3>
+      <div class="b2b-grid card">
+        <div>
+          <p class="muted">Déploiement multi-biens avec branding. On propose un pilote (1 page) livré en 24h pour valider le process avant déploiement.</p>
+
+          <div class="grid-3" style="margin-top:12px;">
+            <div class="card small">
+              <strong>Starter</strong>
+              <p class="muted">29 € / logement (setup initial : page + QR + FR/EN)</p>
+            </div>
+            <div class="card small">
+              <strong>Care</strong>
+              <p class="muted">6 € / logement / mois (hébergement + modifs 24h + analytics)</p>
+            </div>
+            <div class="card small">
+              <strong>Enterprise</strong>
+              <p class="muted">Sur devis — volume, intégrations PMS, SLA 12h</p>
+            </div>
+          </div>
+
+          <div class="included" style="margin-top:12px;">
+            <strong>Inclus :</strong>
+            <ul class="muted">
+              <li>Page QR personnalisée par logement</li>
+              <li>Livraison test 24h (1 logement)</li>
+              <li>Tableur de suivi (URL, QR, dernière mise à jour)</li>
+            </ul>
+          </div>
+
+          <div class="options" style="margin-top:12px;">
+            <strong>Options payantes (B2B) :</strong>
+            <ul class="muted">
+              <li>White-label / domaine perso — 29 € (one-shot)</li>
+              <li>Langue追加 (ES/IT/DE) — 15 € / langue (one-shot) ou +2 € / mois / langue avec Care</li>
+              <li>Guide imprimable premium A5 — 19 € / logement</li>
+              <li>Import CSV / onboarding lot — 1 € / logement (ou devis pour gros volumes)</li>
+              <li>SLA prioritaire (24h) — +3 €/logement/mois</li>
+              <li>Service Managed — +2 €/logement/mois</li>
+            </ul>
+          </div>
+        </div>
+
+        <aside>
+          <div style="text-align:center;margin-top:12px;">
+            <button id="cta-devis" class="btn btn-primary">Demander un devis</button>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- FAQ (accordéon) -->
+    <section id="faq" class="section card">
+      <h3>FAQ — Questions fréquentes</h3>
+      <div class="faq">
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">La page est-elle indexée ?</button>
+          <div class="faq-answer"><p class="muted">Par défaut non (noindex) pour la confidentialité. On peut activer l'indexation si souhaité.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">Comment modifier une info ?</button>
+          <div class="faq-answer"><p class="muted">Par WhatsApp : mise à jour sous 24h. Retouches gratuites 7 jours après livraison.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">Que contient le guide imprimable ?</button>
+          <div class="faq-answer"><p class="muted">Wi-Fi, urgences, accès, règles, plan, photos, recommandations locales.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">Puis-je résilier Care ?</button>
+          <div class="faq-answer"><p class="muted">Oui, résiliation possible à tout moment. Pour B2B, préavis standard 30 jours.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">Traductions ?</button>
+          <div class="faq-answer"><p class="muted">FR/EN inclus ; ES/IT/DE en option — traduction humaine et adaptation locale.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials" class="section">
+      <h3>Ils ont testé</h3>
+      <div class="grid-3">
+        <div class="card testimonial">
+          <div class="stars">★★★★★</div>
+          <p class="quote">« Mon livret personnalisé a fait forte impression — moins d’appels et plus d’autonomie pour mes voyageurs. »</p>
+          <div class="author"><img src="https://i.pravatar.cc/60?img=1" alt="Pauline"><span><strong>Pauline</strong>, hôte Airbnb, Lyon</span></div>
+        </div>
+
+        <div class="card testimonial">
+          <div class="stars">★★★★★</div>
+          <p class="quote">« Livraison en 24h — très pro. Mes clients utilisent le QR dès l’arrivée. »</p>
+          <div class="author"><img src="https://i.pravatar.cc/60?img=2" alt="Karim"><span><strong>Karim</strong>, hôte Booking, Marseille</span></div>
+        </div>
+
+        <div class="card testimonial">
+          <div class="stars">★★★★☆</div>
+          <p class="quote">« Gain de temps énorme — pratique quand on gère plusieurs biens. »</p>
+          <div class="author"><img src="https://i.pravatar.cc/60?img=3" alt="Julie"><span><strong>Julie</strong>, conciergerie, Paris</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODAL FORMULAIRE -->
+    <div id="modal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="modal-title">
+      <div class="modal-content">
+        <div class="modal-left">
+          <div class="modal-header">
+            <h4 id="modal-title">Démarrer votre livret — Test 24h</h4>
+            <button id="modal-close" class="btn btn-outline" aria-label="Fermer">✕</button>
+          </div>
+
+          <form id="lead-form" method="POST" action="https://formspree.io/f/xdkdvdgz" class="form">
+            <input type="hidden" name="_subject" value="Nouvelle demande — WelcomeQR">
+            <input type="hidden" name="_language" value="fr">
+
+            <label for="name">Nom & prénom</label>
+            <input id="name" name="name" required placeholder="Ex : Pauline Durand">
+
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required placeholder="contact@exemple.com">
+
+            <label for="phone">WhatsApp / Tel</label>
+            <input id="phone" name="phone" placeholder="+33 6 12 34 56 78">
+
+            <label for="listing">Lien annonce (Airbnb, Booking, site)</label>
+            <input id="listing" name="listing" type="url" placeholder="https://www.airbnb.fr/rooms/XXXX" required>
+
+            <label for="pack">Pack souhaité</label>
+            <select id="pack" name="pack">
+              <option>Starter — 49 €</option>
+              <option>Pro — 89 €</option>
+              <option>Care — 14 €/mois</option>
+            </select>
+
+            <label>Langues supplémentaires (optionnel)</label>
+            <div class="langs">
+              <label><input type="checkbox" name="lang_es" value="ES"> ES</label>
+              <label><input type="checkbox" name="lang_it" value="IT"> IT</label>
+              <label><input type="checkbox" name="lang_de" value="DE"> DE</label>
+            </div>
+            <div class="muted-sm">FR/EN inclus par défaut.</div>
+
+            <label for="notes">Notes / consignes (optionnel)</label>
+            <textarea id="notes" name="notes" rows="3" placeholder="Infos Wi-Fi, règles..."></textarea>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary">Envoyer & lancer le test</button>
+              <a id="mailto-fallback" class="btn btn-outline" href="#">Envoyer par email</a>
+            </div>
+
+            <div id="form-msg" class="muted-sm" aria-live="polite"></div>
+          </form>
+        </div>
+
+        <aside class="modal-right">
+          <div class="qr-card">
+            <div class="qr-title">Aperçu QR</div>
+            <img id="qr-inline" src="https://api.qrserver.com/v1/create-qr-code/?size=110x110&data=https%3A%2F%2Fexample.com%2Fdemo" alt="QR preview" width="110" height="110">
+            <div class="muted-sm">Le QR utilisera l'URL saisie dans le champ "Lien annonce".</div>
+          </div>
+
+          <div class="modal-note">
+            <strong>Pourquoi personnalisé ?</strong>
+            <p class="muted">Une page adaptée aux couleurs & photos augmente la confiance du voyageur et réduit les questions répétées.</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="muted-sm">© <span id="year"></span> WelcomeQR — Tous droits réservés</div>
+    </footer>
+  </div>
+
+  <!-- SCRIPT -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+      // --- CONFIG (MODIFIE ICI) ---
+      const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xdkdvdgz'; // <-- remplace par ton endpoint Formspree
+      const DEMO_URL = './demo.html'; // <-- remplace si tu veux une autre URL de demo
+
+      // utility
+      const $ = (sel, ctx=document) => ctx.querySelector(sel);
+      const $$ = (sel, ctx=document) => Array.from(ctx.querySelectorAll(sel));
+
+      // set demo QR (dynamic)
+      const demoLink = $('#demo-link');
+      const demoQR = $('#demo-qr');
+      const demoUrlText = $('#demo-url-text');
+      if (demoLink) demoLink.href = DEMO_URL;
+      if (demoQR) demoQR.src = `https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=${encodeURIComponent(DEMO_URL)}`;
+      if (demoUrlText) demoUrlText.textContent = `demo: ${DEMO_URL}`;
+
+      // year
+      const yearEl = $('#year'); if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+      // modal controls
+      const modal = $('#modal');
+      const modalClose = $('#modal-close');
+      const openButtons = [].concat($$('.commander'), [$('#cta-test'), $('#hero-start'), $('#demo-open-modal'), $('#cta-devis')]).filter(Boolean);
+      const form = $('#lead-form');
+
+      if (form && FORMSPREE_ENDPOINT) form.action = FORMSPREE_ENDPOINT; // set Formspree endpoint
+
+      function openModal(preselectPack){
+        if(!modal) return;
+        modal.classList.add('active');
+        modal.style.display = 'flex';
+        modal.setAttribute('aria-hidden','false');
+        // preselect pack
+        if(preselectPack){
+          const packSelect = $('#pack');
+          if(packSelect){
+            const opt = Array.from(packSelect.options).find(o => o.textContent.trim().toLowerCase().startsWith(preselectPack.toLowerCase()));
+            if(opt) packSelect.value = opt.textContent.trim();
+          }
+        }
+        setTimeout(()=> { const name = $('#name'); if(name) name.focus(); }, 60);
+      }
+      function closeModal(){
+        if(!modal) return;
+        modal.classList.remove('active');
+        modal.style.display = 'none';
+        modal.setAttribute('aria-hidden','true');
+      }
+
+      openButtons.forEach(btn=>{
+        btn.addEventListener('click', e=>{
+          e.preventDefault();
+          const pack = btn.getAttribute('data-pack') || null;
+          openModal(pack);
+        });
+      });
+      if(modalClose) modalClose.addEventListener('click', closeModal);
+      window.addEventListener('click', e => { if(e.target === modal) closeModal(); });
+
+      // specific commander buttons (safety)
+      $$('.commander').forEach(btn=>{
+        btn.addEventListener('click', function(e){
+          e.preventDefault();
+          const pack = this.getAttribute('data-pack') || null;
+          openModal(pack);
+        });
+      });
+
+      // QR live preview from listing
+      const listing = $('#listing');
+      const qrSmall = $('#qr-sample');
+      const qrInline = $('#qr-inline');
+      const qrDemo = $('#demo-qr');
+      function updateQRPreview(){
+        const url = (listing && listing.value) ? listing.value.trim() : DEMO_URL;
+        const enc = encodeURIComponent(url);
+        if(qrSmall) qrSmall.src = `https://api.qrserver.com/v1/create-qr-code/?size=90x90&data=${enc}`;
+        if(qrInline) qrInline.src = `https://api.qrserver.com/v1/create-qr-code/?size=110x110&data=${enc}`;
+        if(qrDemo) qrDemo.src = `https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=${enc}`;
+      }
+      if(listing){
+        listing.addEventListener('input', updateQRPreview);
+        listing.addEventListener('change', updateQRPreview);
+      }
+      updateQRPreview();
+
+      // mailto fallback
+      const mailto = $('#mailto-fallback');
+      function updateMailto(){
+        if(!mailto) return;
+        const name = ($('#name')?.value||'').trim();
+        const email = ($('#email')?.value||'').trim();
+        const phone = ($('#phone')?.value||'').trim();
+        const list = ($('#listing')?.value||'').trim();
+        const pack = ($('#pack')?.value||'').trim();
+        const notes = ($('#notes')?.value||'').trim();
+
+        // get languages
+        const langNodes = $$('input[name="lang_es"], input[name="lang_it"], input[name="lang_de"]');
+        const langs = langNodes.filter(cb => cb.checked).map(cb=>cb.value).join(', ') || 'Aucune';
+
+        const subject = encodeURIComponent("Commande Livret d'Accueil — WelcomeQR");
+        const body = encodeURIComponent(
+          `Nom: ${name}\nEmail: ${email}\nTel: ${phone}\nAnnonce: ${list}\nPack: ${pack}\nLangues supplémentaires: ${langs}\nNotes: ${notes}`
+        );
+        // change contact@votreemail.com by your real email
+        mailto.href = `mailto:contact@votreemail.com?subject=${subject}&body=${body}`;
+      }
+      ['#name','#email','#phone','#listing','#pack','#notes'].forEach(sel=>{
+        const el = $(sel); if(el) el.addEventListener('input', updateMailto);
+      });
+      $$('input[name="lang_es"], input[name="lang_it"], input[name="lang_de"]').forEach(cb=>cb.addEventListener('change', updateMailto));
+      updateMailto();
+
+      // form submit feedback
+      const formMsg = $('#form-msg');
+      if(form){
+        form.addEventListener('submit', function(){
+          if(formMsg) formMsg.textContent = 'Envoi en cours… Merci — vous allez recevoir une confirmation.';
+        });
+      }
+
+      // FAQ accordion (smooth)
+      $$('.faq-question').forEach(btn=>{
+        btn.addEventListener('click', function(){
+          const item = this.closest('.faq-item');
+          if(!item) return;
+          const answer = item.querySelector('.faq-answer');
+          if(!answer) return;
+          const open = item.classList.contains('open');
+          if(open){
+            answer.style.maxHeight = '0px';
+            item.classList.remove('open');
+            this.setAttribute('aria-expanded','false');
+          } else {
+            answer.style.maxHeight = answer.scrollHeight + 20 + 'px';
+            item.classList.add('open');
+            this.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+
+    }); // DOMContentLoaded
+  </script>
+</body>
+</html>
