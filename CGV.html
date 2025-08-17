@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CGV — WelcomeQR</title>
+  <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+  <header class="site-header">
+    <nav>
+      <a href="./index.html" class="btn btn-outline">Accueil</a>
+      <a href="./cgv.html" class="btn btn-outline">CGV</a>
+      <a href="./privacy.html" class="btn btn-outline">Privacy</a>
+    </nav>
+  </header>
+
+  <main class="site-content">
+    <section class="cgv-section">
+      <h1>Conditions Générales de Vente — WelcomeQR</h1>
+      <p class="muted-sm">Dernière mise à jour : 17 août 2025</p>
+
+      <h2>1. Objet</h2>
+      <p>Les présentes Conditions Générales de Vente (CGV) régissent l’utilisation des services WelcomeQR, consistant en la création de livrets d’accueil personnalisés pour locations courte durée, ainsi que tout pack ou abonnement proposé sur le site.</p>
+
+      <h2>2. Services proposés</h2>
+      <ul>
+        <li><strong>Pack Starter :</strong> Livret d’accueil basique — 49 €</li>
+        <li><strong>Pack Pro :</strong> Livret avancé avec QR codes dynamiques — 89 €</li>
+        <li><strong>Pack Care :</strong> Abonnement mensuel pour mise à jour et support continu — 14 €/mois</li>
+      </ul>
+
+      <h2>3. Processus de commande et paiement</h2>
+      <p>Les commandes se font via le formulaire sur le site. Après soumission :</p>
+      <ol>
+        <li>Le client est contacté par email ou WhatsApp pour confirmer sa demande.</li>
+        <li>Un lien de paiement sécurisé (Stripe) est envoyé pour finaliser le règlement.</li>
+      </ol>
+      <p>Le paiement est obligatoire pour toute création ou mise à disposition des livrets. Les paiements sont sécurisés via Stripe et les informations bancaires ne transitent pas par le site WelcomeQR.</p>
+
+      <h2>4. Abonnement Care</h2>
+      <p>L’abonnement Care est mensuel, renouvelable automatiquement. Le client peut résilier à tout moment en contactant WelcomeQR par email ou WhatsApp. Le renouvellement est facturé automatiquement via le lien de paiement Stripe.</p>
+
+      <h2>5. Livraison des services</h2>
+      <p>Les livrets d’accueil sont livrés au format numérique après confirmation de paiement. Les délais dépendent de la charge de travail mais sont généralement de 24 à 48h pour le pack Starter et Pro.</p>
+
+      <h2>6. Droit de rétractation</h2>
+      <p>Conformément à la législation française, les services numériques personnalisés (livrets d’accueil) ne sont pas soumis à droit de rétractation une fois la commande confirmée et le service commencé, sauf cas exceptionnel à la discrétion de WelcomeQR.</p>
+
+      <h2>7. Responsabilités</h2>
+      <ul>
+        <li>WelcomeQR ne peut être tenu responsable des erreurs ou omissions dans les informations fournies par le client.</li>
+        <li>Le client est responsable du contenu qu’il transmet pour le livret d’accueil (texte, photos, liens, etc.).</li>
+      </ul>
+
+      <h2>8. Propriété intellectuelle</h2>
+      <p>Le contenu des livrets d’accueil est protégé par le droit d’auteur. Toute reproduction ou diffusion non autorisée est interdite.</p>
+
+      <h2>9. Protection des données</h2>
+      <p>Les informations collectées via le formulaire sont utilisées uniquement pour fournir le service demandé et contacter le client. Elles ne sont pas partagées avec des tiers sans consentement explicite. Voir la <a href="./privacy.html">politique de confidentialité</a> pour plus de détails.</p>
+
+      <h2>10. Loi applicable</h2>
+      <p>Les présentes CGV sont régies par la loi française. Tout litige relatif à l’interprétation ou l’exécution des présentes CGV sera soumis aux tribunaux compétents de France.</p>
+
+      <p class="muted-sm">En validant le formulaire sur le site, le client accepte expressément les présentes CGV.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="muted-sm">© <span id="year"></span> WelcomeQR — Tous droits réservés</div>
+  </footer>
+
+  <script>
+    const yearEl = document.getElementById('year'); 
+    if(yearEl) yearEl.textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

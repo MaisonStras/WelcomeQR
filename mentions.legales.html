@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mentions légales — WelcomeSTRAS</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .legal-section {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      line-height: 1.6;
+      color: #333;
+    }
+    .legal-section h1, .legal-section h2 {
+      margin-top: 1.5em;
+      margin-bottom: 0.5em;
+      font-family: 'Helvetica', sans-serif;
+    }
+    .legal-section p, .legal-section li {
+      margin-bottom: 1em;
+      font-size: 1rem;
+    }
+    .legal-section a {
+      color: #007BFF;
+      text-decoration: underline;
+    }
+    @media screen and (max-width: 600px) {
+      .legal-section {
+        padding: 20px 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 style="text-align:center; margin-top:30px;">Mentions légales — WelcomeSTRAS</h1>
+  </header>
+
+  <main class="legal-section">
+    <h2>Éditeur du site</h2>
+    <p>Le site <strong>WelcomeSTRAS</strong> est édité par :</p>
+    <ul>
+      <li>Nom : MaisonSTRAS</li>
+      <li>Email : <a href="mailto:contact@maisonstras.github.io">contact@maisonstras.github.io</a></li>
+      <li>Site web : <a href="https://maisonstras.github.io/welcomestras/">https://maisonstras.github.io/welcomestras/</a></li>
+    </ul>
+
+    <h2>Hébergement</h2>
+    <p>Le site est hébergé par <strong>GitHub Pages</strong> :</p>
+    <ul>
+      <li>Site web : <a href="https://pages.github.com/">https://pages.github.com/</a></li>
+    </ul>
+
+    <h2>Propriété intellectuelle</h2>
+    <p>Tous les contenus présents sur le site (textes, images, vidéos, logos, etc.) sont la propriété de WelcomeSTRAS ou de ses partenaires et sont protégés par le droit d’auteur et la propriété intellectuelle. Toute reproduction, distribution ou utilisation non autorisée est interdite sans accord préalable.</p>
+
+    <h2>Responsabilité</h2>
+    <p>WelcomeSTRAS met tout en œuvre pour assurer l’exactitude des informations sur le site, mais ne peut garantir l’exactitude, la complétude ou l’actualité des contenus. L’utilisateur utilise le site à ses propres risques et dégage l’éditeur de toute responsabilité en cas de dommage direct ou indirect résultant de l’accès ou de l’utilisation du site.</p>
+
+    <h2>Liens externes</h2>
+    <p>Le site peut contenir des liens vers d’autres sites. WelcomeSTRAS n’exerce aucun contrôle sur ces sites et décline toute responsabilité quant à leur contenu.</p>
+
+    <h2>Protection des données personnelles</h2>
+    <p>Pour les informations concernant la protection des données personnelles, veuillez consulter notre <a href="politique-confidentialite.html">Politique de confidentialité</a>.</p>
+
+    <h2>Contact</h2>
+    <p>Pour toute question relative aux mentions légales ou au site, vous pouvez nous contacter à :</p>
+    <p>Email : <a href="mailto:contact@maisonstras.github.io">contact@maisonstras.github.io</a></p>
+  </main>
+
+  <footer class="site-footer" style="text-align:center; padding:20px 0; color:#666;">
+    © <span id="year"></span> WelcomeSTRAS — Tous droits réservés
+  </footer>
+
+  <script>
+    const yearEl = document.getElementById('year');
+    if(yearEl) yearEl.textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

@@ -161,3 +161,79 @@ input:focus,textarea:focus,select:focus{outline:none;box-shadow:0 0 0 4px rgba(5
   flex-wrap: wrap;
   margin-top: 24px;
 }
+
+
+
+/* Contenu principal */
+.cgv-section {
+  max-width: 800px;   /* limite la largeur pour mieux lire */
+  margin: 0 auto;     /* centre le contenu */
+  padding: 40px 20px; /* espace autour */
+  line-height: 1.6;   /* meilleure lisibilité */
+}
+
+/* Titres */
+.cgv-section h1, .cgv-section h2 {
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  font-family: 'Helvetica', sans-serif; /* reste dans le style simple de ton site */
+}
+
+/* Paragraphes et listes */
+.cgv-section p, .cgv-section li {
+  margin-bottom: 1em;
+  font-size: 1rem;
+  color: #333; /* texte lisible */
+}
+
+/* Liens */
+.cgv-section a {
+  color: #007BFF; /* bleu similaire à tes boutons */
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media screen and (max-width: 600px) {
+  .cgv-section {
+    padding: 20px 15px;
+  }
+}
+
+
+    /* Styles spécifiques à la page Politique de confidentialité */
+    .privacy-section {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      line-height: 1.6;
+      color: #333;
+    }
+    .privacy-section h1, .privacy-section h2 {
+      margin-top: 1.5em;
+      margin-bottom: 0.5em;
+      font-family: 'Helvetica', sans-serif;
+    }
+    .privacy-section p, .privacy-section li {
+      margin-bottom: 1em;
+      font-size: 1rem;
+    }
+    .privacy-section a {
+      color: #007BFF;
+      text-decoration: underline;
+    }
+    @media screen and (max-width: 600px) {
+      .privacy-section {
+        padding: 20px 15px;
+      }
+    }
+  
+
+    .footer-links a {
+  color: #666;          /* gris discret */
+  font-size: 0.85rem;   /* plus petit que le texte principal */
+  text-decoration: none;
+  margin: 0 5px;
+}
+.footer-links a:hover {
+  text-decoration: underline;
+}
