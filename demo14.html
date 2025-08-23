@@ -1,0 +1,795 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Démo — Studio Cosy, Centre Historique — WelcomeQR (exemple)</title>
+<meta name="description" content="Page démo exhaustive — exemple d'une page voyageurs : arrivée, Wi-Fi, accès, emplacement des essentiels, appareils, checklist, incontournables Strasbourg (avec images), bons plans (FR/EN)." />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --page-bg: #f5fbff;
+    --card: #ffffff;
+    --ink: #06202a;         /* texte principal (foncé pour bien lire) */
+    --muted: #556970;       /* sous-texte */
+    --accent: #1d9bf0;      /* bouton / accents (SOLIDE) */
+    --accent-2: #06b6d4;
+    --ok: #16a34a;
+    --warn: #f59e0b;
+    --radius: 14px;
+    --maxw: 1200px;
+    --gap: 18px;
+    --mono: ui-monospace, Menlo, "Roboto Mono", monospace;
+    --shadow: 0 18px 50px rgba(9,18,26,0.06);
+  }
+
+  
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:var(--ink);background:var(--page-bg);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:var(--maxw);margin:22px auto;padding:20px}
+
+  header{display:flex;align-items:center;justify-content:space-between;gap:14px}
+  .brand{display:flex;gap:12px;align-items:center}
+  .logo{width:56px;height:56px;border-radius:12px;background:var(--accent);display:grid;place-items:center;color:#fff;font-weight:800}
+  h1{margin:0;font-size:20px}
+  .kicker{font-size:13px;color:var(--muted)}
+  /* language toggle */
+  .lang{display:flex;gap:8px}
+  .pill{padding:8px 12px;border-radius:999px;border:1px solid rgba(6,32,42,0.06);background:#fff;color:var(--ink);cursor:pointer;font-weight:600}
+  .pill.active{background:var(--accent);color:#fff;border-color:transparent;box-shadow:0 8px 22px rgba(29,155,240,0.12)}
+
+  /* sticky section nav (mobile collapsible) */
+  .toc{position:sticky;top:18px;z-index:30;background:transparent;padding:8px 0}
+  .toc.hide{transform:translateY(-100%)}
+  .toc-inner{display:flex;gap:8px;flex-wrap:wrap}
+  .toc a{padding:8px 10px;border-radius:999px;background:#fff;border:1px solid rgba(6,32,42,0.04);text-decoration:none;color:var(--ink);font-weight:700}
+
+@media(max-width:768px){
+.toc{display:none}
+}
+.bottom-nav{display:none}
+@media(max-width:768px){
+.bottom-nav{display:flex;position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid rgba(0,0,0,0.1);z-index:900;justify-content:space-around;padding:8px 0}
+.bottom-nav a{color:var(--ink);text-decoration:none;font-size:22px;display:flex;flex-direction:column;align-items:center;font-weight:600}
+.bottom-nav span{font-size:11px;margin-top:2px;color:var(--muted)}
+}
+
+
+  /* hero as banner with background image */
+.hero{margin-top:56px;border-radius:18px;overflow:hidden;position:relative;box-shadow:var(--shadow)}
+.hero::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  background: url('image/strasbourg.jpg') center/cover no-repeat;
+  background-position: center top; /* ajuste horizontal/vertical selon besoin */
+  filter: saturate(1.05);
+}
+
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,.45), rgba(0,0,0,.25))}
+.hero-inner{position:relative;z-index:1;display:flex;gap:18px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;padding:26px}
+.hero-left{max-width:68%;color:#fff}
+.hero-title{font-size:28px;margin:0;font-weight:800;color:#fff}
+.hero-sub{margin-top:8px;color:#e6f2ff;max-width:70ch}
+.hero-meta{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+.chip{background:rgba(255,255,255,.14);backdrop-filter:blur(4px);padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,0.25);font-weight:700;color:#fff}
+.hero-actions{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap}
+.btn{background:var(--accent);color:#fff;padding:10px 14px;border-radius:10px;border:0;text-decoration:none;font-weight:800}
+.btn.ghost{background:#fff;border:1px solid rgba(6,32,42,0.06);color:var(--ink)}
+.hero-aside{background:rgba(255,255,255,.85);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.6);border-radius:12px;padding:12px;min-width:260px;box-shadow:0 10px 30px rgba(4,10,20,0.08)}
+
+  /* layout */
+  .demo-body{margin-top:var(--gap);display:grid;grid-template-columns:1fr 340px;gap:22px}
+  @media(max-width:1100px){.demo-body{grid-template-columns:1fr}}
+  main.content{min-width:0}
+  aside.panel{position:sticky;top:18px;height:max-content}
+
+  .card{background:var(--card);padding:16px;border-radius:12px;border:1px solid rgba(6,32,42,0.04);box-shadow:0 10px 30px rgba(4,10,20,0.03);margin-bottom:14px}
+  .section-title{margin:0 0 8px;font-size:18px;font-weight:800;color:var(--ink)}
+  .section-sub{margin:0;color:var(--muted);font-size:14px}
+
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:820px){.two-col{grid-template-columns:1fr}}
+
+  .code{font-family:var(--mono);background:#f3fbff;padding:8px;border-radius:8px;border:1px dashed rgba(6,32,42,0.06);display:inline-block}
+  .hint{background:linear-gradient(180deg,rgba(6,182,212,0.06),transparent);padding:12px;border-radius:10px;border:1px solid rgba(6,182,212,0.08)}
+  .steps{counter-reset:step;margin:0;padding:0}
+  .step{display:flex;gap:12px;align-items:flex-start;margin:10px 0}
+  .step:before{counter-increment:step;content:counter(step);display:grid;place-items:center;width:36px;height:36px;border-radius:8px;background:var(--accent);color:#fff;font-weight:800}
+
+  .accordion{border-radius:10px;overflow:hidden;border:1px solid rgba(6,32,42,0.04)}
+  .accordion .item + .item{border-top:1px solid rgba(6,32,42,0.04)}
+  .accordion .head{display:flex;justify-content:space-between;align-items:center;padding:12px;background:#fbfeff;cursor:pointer}
+  .accordion .body{display:none;padding:12px;background:var(--card)}
+  .accordion .item.open .body{display:block}
+
+  /* Incontournables (avec images) */
+  .spots{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  @media(max-width:920px){.spots{grid-template-columns:1fr}}
+  .spot{background:#fff;border-radius:16px;overflow:hidden;border:1px solid rgba(6,32,42,0.06);box-shadow:0 12px 30px rgba(6,32,42,0.06);transition:transform .18s ease}
+  .spot:hover{transform:translateY(-6px)}
+  .spot img{width:100%;height:180px;object-fit:cover}
+  .spot .info{padding:12px}
+  .spot h4{margin:0 0 6px;font-size:16px}
+  .spot .meta{font-size:13px;color:var(--muted)}
+
+  /* local picks (bons plans) */
+  .plan-cats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  @media(max-width:920px){.plan-cats{grid-template-columns:1fr}}
+  .plan{background:linear-gradient(180deg,#fff,#fbfeff);padding:12px;border-radius:12px;border:1px solid rgba(6,32,42,0.06)}
+  .plan h4{margin:0 0 6px;font-size:15px}
+  .plan ul{margin:0;padding-left:18px}
+  .plan li{margin:6px 0}
+  .muted{color:var(--muted)}
+  .small{font-size:13px;color:var(--muted)}
+
+  /* aside quick links */
+  .quick-links{display:flex;flex-direction:column;gap:10px}
+  .quick-links a{display:block;padding:10px;border-radius:10px;text-decoration:none;background:#fff;border:1px solid rgba(6,32,42,0.04);color:var(--ink);font-weight:700;text-align:center}
+
+ .appliances ul {
+    margin: 0.3rem 0 1rem 1.2rem;
+    padding: 0;
+    list-style: "✔ ";
+  }
+  .appliances strong {
+    display: block;
+    margin-top: 1rem;
+    font-size: 1.05rem;
+  }
+
+  /* footer */
+  footer{margin-top:18px;text-align:center;color:var(--muted);font-size:13px;padding-bottom:12px}
+
+  /* accessibility focus */
+  a:focus, button:focus {outline:3px solid rgba(29,155,240,0.25);outline-offset:3px}
+
+  /* subtle entrance */
+  .appear{animation:appear .45s ease both}
+  @keyframes appear{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+
+
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- Header -->
+    <header class="appear" role="banner">
+      <div class="brand">
+        <div class="logo" aria-hidden>WQ</div>
+        <!-- bouton (dans header) -->
+
+        <div>
+          <h1>Studio Cosy — Centre historique (démo)</h1>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:12px;align-items:center">
+        <div class="lang" role="tablist" aria-label="Langues">
+          <button id="btnFR" class="pill active" onclick="setLang('fr')">FR</button>
+          <button id="btnEN" class="pill" onclick="setLang('en')">EN</button>
+        </div>
+        <!-- Minimal contact for demo realism (owner contact visible to traveller) -->
+        <a class="pill" href="mailto:host@example.com?subject=Message%20–%20Studio%20Cosy" title="Contacter le propriétaire">Contact propriétaire</a>
+      </div>
+    </header>
+
+    <!-- TOC -->
+    <div class="toc appear" aria-hidden="false">
+      <div class="toc-inner">
+        <a href="#s-welcome">Accueil</a>
+        <a href="#s-arrival">Arrivée</a>
+        <a href="#s-wifi">Wi-Fi</a>
+        <a href="#s-access">Accès</a>
+        <a href="#s-where">Où</a>
+        <a href="#s-highlights">Incontournables</a>
+        <a href="#s-appliances">Appareils</a>
+        <a href="#s-rules">Règlement</a>
+        <a href="#s-checkout">Check-out</a>
+        <a href="#s-tips">Bons plans</a>
+        <a href="#s-emergency">Urgences</a>
+      </div>
+    </div>
+
+    <!-- Hero (banner cathedral) -->
+    <!-- HERO : version optimisée pour conversion (FR/EN) -->
+<section class="hero appear" aria-labelledby="hero-title">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div id="hero-kicker" class="kicker"
+           data-fr="Studio design — idéal pour 1–2 personnes"
+           data-en="Stylish studio — ideal for 1–2 guests">
+        Studio design — idéal pour 1–2 personnes
+      </div>
+
+      <h2 id="hero-title" class="hero-title"
+          data-fr="Studio Cosy — calme, rénové & central (face à la Cathédrale)"
+          data-en="Studio Cosy — quiet, renovated & central (near the Cathedral)">
+        Studio Cosy — calme, rénové & central (face à la Cathédrale)
+      </h2>
+
+      <p class="hero-sub"
+         data-fr="Studio lumineux, kitchenette équipée, literie premium. Check-in autonome 24h, Wi-Fi illimité et guide local personnalisé — tout est prêt pour un séjour sans stress."
+         data-en="Bright studio, equipped kitchenette, premium bedding. 24h self check-in, unlimited Wi-Fi and a custom local guide — everything ready for a stress-free stay.">
+        Studio lumineux, kitchenette équipée, literie premium. Check-in autonome 24h, Wi-Fi illimité et guide local personnalisé — tout est prêt pour un séjour sans stress.
+      </p>
+
+      <div class="hero-meta" aria-hidden="false">
+        <div class="chip" data-fr="2 pers" data-en="2 guests">2 pers</div>
+
+        <div class="chip" data-fr="Check-in 24h" data-en="24h self check-in">Check-in 24h</div>
+
+        <div class="chip" data-fr="Wi-Fi illimité" data-en="Unlimited Wi-Fi">Wi-Fi illimité</div>
+
+        <div class="chip" data-fr="★ 4.9 (120 avis)" data-en="★ 4.9 (120 reviews)">★ 4.9 (120 avis)</div>
+
+        <div class="chip" data-fr="Nettoyage pro" data-en="Pro cleaning">Nettoyage pro</div>
+      </div>
+
+      <div class="hero-actions">
+        <a class="btn" href="#s-arrival"
+           data-fr="Checklist arrivée" data-en="Arrival checklist">Checklist arrivée</a>
+
+        <a class="btn ghost" href="#s-highlights"
+           data-fr="Voir incontournables" data-en="See highlights">Voir incontournables</a>
+
+        <!-- bouton secondaire discret : contact rapide -->
+        <a class="btn" href="mailto:host@example.com?subject=Question%20–%20Studio%20Cosy"
+           style="background:transparent;border:1px solid rgba(255,255,255,0.18);color:#fff;padding:8px 12px;border-radius:10px;font-weight:700;"
+           data-fr="Contacter le propriétaire" data-en="Contact host">Contacter le propriétaire</a>
+      </div>
+    </div>
+
+    <aside class="hero-aside" aria-label="Infos rapides">
+      <div style="font-weight:800" data-fr="Adresse" data-en="Address">Adresse</div>
+      <div class="small" style="margin-top:8px">12 rue du Vieux-Pont — 67000 Strasbourg</div>
+
+      <div style="margin-top:12px" class="small">
+        <strong data-fr="Accès" data-en="Access">Accès</strong> :
+        <span data-fr="Tram F — arrêt Langstross/Grand'Rue (5 min)" data-en="Tram F — Langstross/Grand'Rue stop (5 min)">
+          Tram F — arrêt Langstross/Grand'Rue (5 min)
+        </span>
+      </div>
+
+      <div style="margin-top:10px" class="small">
+        <strong data-fr="Check-in" data-en="Check-in">Check-in</strong> :
+        <span data-fr="Autonome, code envoyé 24h avant l'arrivée" data-en="Self check-in, code sent 24h before arrival">
+          Autonome, code envoyé 24h avant l'arrivée
+        </span>
+      </div>
+
+      <div style="margin-top:10px" class="small">
+        <strong data-fr="Contact rapide" data-en="Quick contact">Contact rapide</strong> :
+        <a href="tel:+33600000000" style="display:inline-block;margin-left:6px;color:var(--ink);text-decoration:none;">+33 6 00 00 00 00</a>
+      </div>
+
+      <div style="margin-top:12px" class="small" aria-hidden="true">
+        <span data-fr="⏱️ 3 min jusqu'à la Cathédrale" data-en="⏱️ 3 min to the Cathedral">⏱️ 3 min jusqu'à la Cathédrale</span>
+      </div>
+    </aside>
+  </div>
+</section>
+
+
+<nav class="bottom-nav">
+<a href="#s-arrival">📋<span>Arrivée</span></a>
+<a href="#s-wifi">📶<span>Wi-Fi</span></a>
+<a href="#s-highlights">⭐<span>Spots</span></a>
+<a href="#s-tips">🍴<span>Plans</span></a>
+<a href="#s-emergency">🚨<span>Aide</span></a>
+</nav>
+    <!-- Body -->
+    <div class="demo-body">
+
+      <!-- MAIN CONTENT -->
+      <main class="content">
+
+        <!-- Welcome -->
+        <!-- WELCOME : version orientée conversion & utilité -->
+<section id="s-welcome" class="card appear">
+  <h3 class="section-title" data-fr="Bienvenue" data-en="Welcome">Bienvenue</h3>
+
+  <p class="section-sub"
+     data-fr="Bienvenue dans le studio — tout a été pensé pour un séjour simple et confortable. Retrouvez ici les informations essentielles (arrivée, Wi-Fi, accès), le guide local et des actions rapides pour gagner du temps."
+     data-en="Welcome to the studio — everything is designed for a simple, comfortable stay. Find essentials here (arrival, Wi-Fi, access), the local guide and quick actions to save time.">
+    Bienvenue dans le studio — tout a été pensé pour un séjour simple et confortable. Retrouvez ici les informations essentielles (arrivée, Wi-Fi, accès), le guide local et des actions rapides pour gagner du temps.
+  </p>
+
+  <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px">
+    <!-- Quick actions : très utiles pour le voyageur pressé -->
+    <a class="btn" href="#s-arrival" data-fr="Checklist arrivée" data-en="Arrival checklist">Checklist arrivée</a>
+    <a class="btn ghost" href="#s-wifi" data-fr="Accès Wi-Fi" data-en="Wi-Fi access">Accès Wi-Fi</a>
+    <a class="btn ghost" href="mailto:host@example.com?subject=Question%20–%20Studio%20Cosy" data-fr="Contacter le propriétaire" data-en="Contact host">Contacter le propriétaire</a>
+    <a class="btn ghost" href="/assets/guide-studio.pdf" target="_blank" data-fr="Guide complet (PDF)" data-en="Full guide (PDF)">Guide complet (PDF)</a>
+  </div>
+
+  <div class="two-col" style="margin-top:16px;align-items:start">
+    <!-- left: voyageur -->
+    <div>
+      <div class="hint" data-fr="Astuce d'arrivée : nous envoyons le code 24h avant l'arrivée — vérifiez vos e-mails et SMS." data-en="Arrival tip: we send the code 24h before arrival — please check your email and SMS."></div>
+
+      <ul style="margin:12px 0 0;padding-left:18px;line-height:1.5">
+        <li><strong data-fr="Arrivée facile" data-en="Easy arrival">Arrivée facile</strong> — code d'accès envoyé 24h avant.</li>
+        <li><strong data-fr="Wi-Fi & tech" data-en="Wi-Fi & tech">Wi-Fi & tech</strong> — SSID et mot de passe en bas de page (+ guide dépannage).</li>
+        <li><strong data-fr="Propreté" data-en="Cleaning">Propreté</strong> — nettoyage professionnel entre chaque séjour.</li>
+        <li><strong data-fr="Contact rapide" data-en="Quick contact">Contact rapide</strong> — e-mail & téléphone fournis pour toute urgence.</li>
+      </ul>
+
+    </div>
+  </div>
+</section>
+
+
+        <!-- Arrival -->
+        <!-- ARRIVAL — checklist réécrite, claire et actionnable (FR/EN) -->
+<section id="s-arrival" class="card appear">
+  <h3 class="section-title" data-fr="Checklist d'arrivée" data-en="Arrival checklist">Checklist d'arrivée</h3>
+  <p class="section-sub"
+     data-fr="Toutes les étapes pour entrer et vous installer en moins de 5 minutes."
+     data-en="All steps to enter and settle in under 5 minutes.">
+    Toutes les étapes pour entrer et vous installer en moins de 5 minutes.
+  </p>
+
+
+
+  <!-- étapes prioritaires, simples à suivre -->
+ <ol class="steps" style="margin-top:12px">
+  <li class="step">
+    <span data-fr="Regardez le message d'arrivée et récupérez le code (envoyé par e-mail/SMS)." 
+          data-en="Check the arrival message and retrieve the code (sent by email/SMS).">
+      Regardez le message d'arrivée et récupérez le <strong>code</strong> (envoyé par e-mail/SMS).
+    </span>
+  </li>
+
+  <li class="step">
+    <span data-fr="Saisir le code sur le boîtier : 2580 → valider → ouvrir la porte." 
+          data-en="Enter the code on the keypad: 2580 → confirm → open the door.">
+      Saisir le code sur le boîtier : <strong>2580</strong> → valider → ouvrir la porte.
+    </span>
+  </li>
+
+  <li class="step">
+    <span data-fr="Clé : récupérer la clé dans la boîte aimantée sous le paillasson / emplacement indiqué." 
+          data-en="Key: retrieve the key from the magnetic box under the doormat / indicated spot.">
+      Clé : récupérer la clé dans la boîte aimantée sous le paillasson / emplacement indiqué.
+    </span>
+  </li>
+
+  <li class="step">
+    <span data-fr="Entrer : allumer la lumière, vérifier rapidement l'état général (eau chaude, propreté)." 
+          data-en="Enter: turn on lights, do a quick check (hot water, cleanliness).">
+      Entrer : allumer la lumière, vérifier rapidement l'état général (<strong>eau chaude</strong>, propreté).
+    </span>
+  </li>
+
+  <li class="step">
+    <span data-fr="Wi-Fi : connectez-vous au SSID indiqué sur cette page (section Wi-Fi)." 
+          data-en="Wi-Fi: connect to the SSID shown on this page (Wi-Fi section).">
+      Wi-Fi : connectez-vous au SSID indiqué sur cette page (section Wi-Fi).
+    </span>
+  </li>
+</ol>
+
+  <!-- précisions utiles -->
+  <div style="margin-top:12px" class="small" data-fr="En cas de problème d'accès : contactez le propriétaire via le bouton 'Contact propriétaire' en haut de page." data-en="If you can't access: contact the host via the 'Contact host' button at the top of the page.">
+    En cas de problème d'accès : contactez le propriétaire via le bouton 'Contact propriétaire' en haut de page.
+  </div>
+
+  <!-- option courte de vérification / sortie rapide -->
+  <div style="margin-top:12px" class="card" aria-hidden="false">
+    <div style="font-weight:800" data-fr="Contrôle express (30s)" data-en="Quick check (30s)">Contrôle express (30s)</div>
+    <ul style="margin:8px 0 0;padding-left:18px">
+      <li data-fr="Eau chaude OK" data-en="Hot water OK">Eau chaude OK</li>
+      <li data-fr="Lit & linge en ordre" data-en="Bed & linen OK">Lit & linge en ordre</li>
+      <li data-fr="Pas de dommages visibles" data-en="No visible damage">Pas de dommages visibles</li>
+    </ul>
+  </div>
+
+  <!-- info additionnelle (déroulé pour les passagers pressés) -->
+  <div class="small" style="margin-top:10px;color:var(--muted)" data-fr="Temps estimé : 3–5 minutes pour l'arrivée si tout est prêt." data-en="Estimated time: 3–5 minutes to arrive if everything is ready.">
+    Temps estimé : 3–5 minutes pour l'arrivée si tout est prêt.
+  </div>
+</section>
+
+
+       <!-- Wi-Fi -->
+            <section id="s-wifi" class="card appear">
+            <h3 class="section-title" data-fr="Wi-Fi" data-en="Wi-Fi">Wi-Fi</h3>
+            <p class="section-sub" data-fr="Connexion rapide pour vos appareils. Scannez le QR code ou copiez le mot de passe." data-en="Quick connection for your devices. Scan the QR code or copy the password."></p>
+
+            <div class="two-col" style="align-items:center">
+                <div>
+                <p><strong>SSID</strong> : <span class="code">WelcomeQR-Guest</span></p>
+                <p><strong data-fr="Mot de passe" data-en="Password"></strong> : <span id="wifi-pass" class="code">Stras2025!</span></p>
+                <button onclick="copyWifi()" class="btn ghost small" data-fr="Copier le mot de passe" data-en="Copy password">Copier le mot de passe</button>
+                </div>
+                <div>
+                <!-- QR Code Wi-Fi (librairie qrcode.js ou image statique à générer) -->
+                <img src="assets/wifi-qr.png" alt="QR Code Wi-Fi" style="max-width:140px;border:1px solid #ddd;border-radius:8px;padding:4px">
+                <div class="small" data-fr="Scannez ce QR code pour vous connecter automatiquement." data-en="Scan this QR code to connect automatically."></div>
+                </div>
+            </div>
+
+            <div class="hint" style="margin-top:12px" data-fr="Astuce : si la connexion coupe, redémarrez le routeur (prise à gauche de la TV)." data-en="Tip: if connection drops, restart the router (plug left of the TV)."></div>
+            </section>
+
+            <script>
+            function copyWifi(){
+            const pass = document.getElementById('wifi-pass').innerText;
+            navigator.clipboard.writeText(pass).then(()=>{
+                alert('Mot de passe copié !');
+            });
+            }
+</script>
+
+
+        <!-- Access details -->
+        <!-- Access details -->
+<section id="s-access" class="card appear">
+  <h3 class="section-title" data-fr="Accès — Détails" data-en="Access — Details">Accès — Détails</h3>
+  <div class="two-col">
+    <div>
+      <p><strong data-fr="Interphone" data-en="Intercom"></strong> : <span data-fr="Appeler Appartement 3B" data-en="Call Apartment 3B">Appeler Appartement 3B</span></p>
+      <p data-fr="Ascenseur : monter au 3e étage, 2e porte à gauche." data-en="Elevator: go to 3rd floor, 2nd door on the left."></p>
+      <p data-fr="Porte : serrure sécurisée, code vu plus haut (section Arrivée)." data-en="Door: secure lock, see code above (Arrival section)."></p>
+    </div>
+    <div>
+      <div class="accordion" id="acc-access">
+        <div class="item open">
+          <div class="head" onclick="toggleAcc(this)" tabindex="0"><span data-fr="Si vous êtes bloqué" data-en="If locked out">Si vous êtes bloqué</span><span>▾</span></div>
+          <div class="body" data-fr="Contactez immédiatement le propriétaire via l’email en haut de page — indiquez votre heure d’arrivée + numéro de réservation." data-en="Contact the host via email at top of page — include arrival time + booking number."></div>
+        </div>
+        <div class="item">
+          <div class="head" onclick="toggleAcc(this)" tabindex="0"><span data-fr="Boîte à clés" data-en="Key box">Boîte à clés</span><span>▾</span></div>
+          <div class="body" data-fr="Boîte aimantée sous le paillasson (code : 2580)." data-en="Magnetic box under the doormat (code: 2580)."></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+        <!-- Where -->
+                <!-- Where -->
+        <section id="s-where" class="card appear">
+        <h3 class="section-title" data-fr="Où trouver — essentiels" data-en="Where to find — essentials">Où trouver — essentiels</h3>
+        <p class="section-sub" data-fr="Localisation rapide des objets utiles." data-en="Quick location of useful items."></p>
+
+        <div class="two-col">
+            <div>
+            <ul style="margin:0;padding-left:18px;line-height:1.6">
+                <li>🧹 <span data-fr="Aspirateur : placard sous l'escalier (poignée rouge)." data-en="Vacuum: under-stairs closet (red handle)."></span></li>
+                <li>👕 <span data-fr="Fer & planche : tiroir cuisine (côté gauche)." data-en="Iron & board: kitchen drawer (left side)."></span></li>
+                <li>💊 <span data-fr="Trousse de secours : armoire salle de bain — étagère du milieu." data-en="First-aid kit: bathroom cabinet — middle shelf."></span></li>
+                <li>🗑️ <span data-fr="Sacs poubelle : buanderie, étagère basse." data-en="Trash bags: laundry room, bottom shelf."></span></li>
+                <li>🔌 <span data-fr="Chargeurs / adaptateurs : boîte 'Tech' sur la table basse." data-en="Chargers/adapters: 'Tech' box on the coffee table."></span></li>
+            </ul>
+            </div>
+            <div>
+            <div class="hint" data-fr="Astuce : mettez de petites étiquettes (pictos) dans le logement pour indiquer ces emplacements — cela évite les messages." data-en="Tip: add small labels (icons) in the apartment to indicate these spots — reduces guest messages."></div>
+            </div>
+        </div>
+        </section>
+
+
+        <!-- Highlights / Incontournables Strasbourg -->
+<section id="s-highlights" class="card appear">
+  <h3 class="section-title" data-fr="Incontournables — Strasbourg" data-en="Highlights — Strasbourg">
+    Incontournables — Strasbourg
+  </h3>
+  <p class="section-sub"
+     data-fr="À découvrir absolument pendant votre séjour — accessibles à pied depuis le studio."
+     data-en="Must-see spots during your stay — all within walking distance from the studio.">
+    À découvrir absolument pendant votre séjour — accessibles à pied depuis le studio.
+  </p>
+
+  <div class="spots">
+    <!-- Spot 1 -->
+    <article class="spot">
+      <img src="assets/strasbourg/cathedrale.jpg" alt="Cathédrale de Strasbourg" loading="lazy"/>
+      <div class="info">
+        <h4 data-fr="Cathédrale de Strasbourg" data-en="Strasbourg Cathedral">Cathédrale de Strasbourg</h4>
+        <div class="meta" data-fr="⏱️ 3 min • vue incroyable depuis la plateforme" data-en="⏱️ 3 min • amazing view from the tower">
+          ⏱️ 3 min • vue incroyable depuis la plateforme
+        </div>
+      </div>
+    </article>
+
+    <!-- Spot 2 -->
+    <article class="spot">
+      <img src="assets/strasbourg/petite-france.jpg" alt="La Petite France" loading="lazy"/>
+      <div class="info">
+        <h4 data-fr="La Petite France" data-en="La Petite France">La Petite France</h4>
+        <div class="meta" data-fr="⏱️ 10 min • quartier pittoresque au bord de l’eau" data-en="⏱️ 10 min • quaint riverside district">
+          ⏱️ 10 min • quartier pittoresque au bord de l’eau
+        </div>
+      </div>
+    </article>
+
+    <!-- Spot 3 -->
+    <article class="spot">
+      <img src="assets/strasbourg/orangerie.jpg" alt="Parc de l'Orangerie" loading="lazy"/>
+      <div class="info">
+        <h4 data-fr="Parc de l’Orangerie" data-en="Parc de l’Orangerie">Parc de l’Orangerie</h4>
+        <div class="meta" data-fr="⏱️ 20 min • balade relax & cigognes" data-en="⏱️ 20 min • relaxing stroll & storks">
+          ⏱️ 20 min • balade relax & cigognes
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!-- Encadré suggestion bonus -->
+  <div class="hint" style="margin-top:14px"
+       data-fr="Envie de plus ? Le marché de Noël (nov-déc) est à 5 min à pied."
+       data-en="Want more? The Christmas Market (Nov–Dec) is only 5 min away.">
+    Envie de plus ? Le marché de Noël (nov-déc) est à 5 min à pied.
+  </div>
+</section>
+
+
+        <!-- Appliances -->
+        <section id="s-appliances" class="card appear">
+  <h3 class="section-title" 
+      data-fr="Appareils — mode d'emploi" 
+      data-en="Appliances — how to use">
+    Appareils — mode d'emploi
+  </h3>
+  <p class="section-sub" 
+     data-fr="Guide visuel simple pour les équipements essentiels." 
+     data-en="Visual quick guide for the main appliances.">
+  </p>
+
+  <div class="two-col appliances">
+    <div>
+      <strong>🌡️ <span data-fr="Thermostat" data-en="Thermostat">Thermostat</span></strong>
+      <ul>
+        <li data-fr="MODE → +/−" data-en="MODE → +/−">MODE → +/−</li>
+        <li data-fr="+2°C = chauffe rapide (15–20 min)" data-en="+2°C = quick warm-up (15–20 min)">+2°C = chauffe rapide (15–20 min)</li>
+      </ul>
+
+      <strong>🧺 <span data-fr="Machine à laver" data-en="Washing machine">Machine à laver</span></strong>
+      <ul>
+        <li data-fr="Programme conseillé : Eco 40°" data-en="Recommended: Eco 40° program">Programme conseillé : Eco 40°</li>
+        <li data-fr="Lessive → tiroir A" data-en="Detergent → drawer A">Lessive → tiroir A</li>
+        <li data-fr="Ne pas surcharger" data-en="Do not overload">Ne pas surcharger</li>
+      </ul>
+    </div>
+
+    <div>
+      <strong>🔥 <span data-fr="Four" data-en="Oven">Four</span></strong>
+      <ul>
+        <li data-fr="180°C → préchauffage 5 min" data-en="180°C → preheat 5 min">180°C → préchauffage 5 min</li>
+        <li data-fr="Toujours utiliser des gants" data-en="Always use oven gloves">Toujours utiliser des gants</li>
+      </ul>
+
+      <strong>🍳 <span data-fr="Plaques" data-en="Hob">Plaques</span></strong>
+      <ul>
+        <li data-fr="Appuyer 3s → déverrouiller" data-en="Press 3s → unlock">Appuyer 3s → déverrouiller</li>
+        <li data-fr="+/− pour régler la chaleur" data-en="+/− to set heat">+/− pour régler la chaleur</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+
+
+        <!-- Rules -->
+       <!-- Rules -->
+<section id="s-rules" class="card appear">
+  <h3 class="section-title" data-fr="Règlement intérieur" data-en="House rules">Règlement intérieur</h3>
+  <p class="section-sub" data-fr="Merci de respecter ces quelques règles pour un séjour agréable." data-en="Please respect these few rules for a pleasant stay."></p>
+
+  <div class="two-col">
+    <div>
+      <ul style="margin:0;padding-left:18px">
+        <li>🤫 <span data-fr="Silence après 22h — respectez le voisinage." data-en="Quiet hours after 10pm — respect neighbours."></span></li>
+        <li>🚭 <span data-fr="Interdit de fumer à l'intérieur." data-en="No smoking indoors."></span></li>
+        <li>🐾 <span data-fr="Animaux acceptés uniquement sur demande." data-en="Pets allowed only upon request."></span></li>
+        <li>♻️ <span data-fr="Merci de trier vos déchets (bio / recyclables / ordures)." data-en="Please sort waste (bio / recyclables / general)."></span></li>
+      </ul>
+    </div>
+    <div>
+      <div class="hint" data-fr="Astuce : laissez un résumé visuel (pictos) affiché dans le logement pour rappeler les règles." data-en="Tip: leave a visual summary (icons) displayed in the apartment to remind guests."></div>
+    </div>
+  </div>
+
+  <div class="small" style="margin-top:10px" data-fr="Un règlement complet peut être fourni sur demande (ex. PDF ou lien Airbnb)." data-en="A full house manual can be provided on request (e.g. PDF or Airbnb link)."></div>
+</section>
+
+
+        <!-- Check-out -->
+        <section id="s-checkout" class="card appear">
+          <h3 class="section-title" data-fr="Check-out — checklist rapide" data-en="Check-out — quick checklist">Check-out — checklist rapide</h3>
+          <ol style="margin:0;padding-left:18px">
+            <li data-fr="Éteindre toutes les lumières et baisser le chauffage." data-en="Switch off all lights and lower the heating."></li>
+            <li data-fr="Vider la petite poubelle cuisine et déposer les sacs." data-en="Empty the small kitchen bin and dispose of bags."></li>
+            <li data-fr="Remettre les clés dans la boîte aimantée / à l'endroit indiqué." data-en="Return keys to the magnetic box / indicated place."></li>
+            <li data-fr="Fermer les fenêtres." data-en="Close the windows."></li>
+          </ol>
+          <div class="small" style="margin-top:8px" data-fr="Astuce : laisser une note si vous cassez ou signalez un incident." data-en="Tip: leave a note if you break or report an incident."></div>
+        </section>
+
+        <!-- Top picks - reworked -->
+       <!-- Top picks / Bons plans -->
+<section id="s-tips" class="card appear">
+  <h3 class="section-title" data-fr="Bons plans & recommandations" data-en="Top picks & recommendations">
+    Bons plans & recommandations
+  </h3>
+  <p class="section-sub"
+     data-fr="Adresses testées et approuvées : où manger, boire un café, faire ses courses ou se déplacer facilement."
+     data-en="Tried-and-true addresses: where to eat, grab a coffee, shop or move around easily.">
+    Adresses testées et approuvées : où manger, boire un café, faire ses courses ou se déplacer facilement.
+  </p>
+
+  <div class="plan-cats">
+    <!-- Restaurants -->
+    <article class="plan">
+      <h4>🍽️ <span data-fr="Restaurants" data-en="Restaurants">Restaurants</span></h4>
+      <ul>
+        <li><strong>Le Clou</strong> — <span class="muted" data-fr="Alsacien typique, à 5 min. Réservation conseillée." data-en="Classic Alsatian, 5 min. Booking advised."></span></li>
+        <li><strong>L’Alsace à Table</strong> — <span class="muted" data-fr="Winstub réputée, excellents vins locaux." data-en="Renowned winstub, excellent local wines."></span></li>
+        <li><strong>Au Pont Corbeau</strong> — <span class="muted" data-fr="Authentique, portions généreuses." data-en="Authentic, generous portions."></span></li>
+      </ul>
+    </article>
+
+    <!-- Cafés -->
+    <article class="plan">
+      <h4>☕ <span data-fr="Cafés & brunch" data-en="Coffee & brunch">Cafés & brunch</span></h4>
+      <ul>
+        <li><strong>Café Bretelles</strong> — <span class="muted" data-fr="Espresso & brunch, à 8 min." data-en="Espresso & brunch, 8 min."></span></li>
+        <li><strong>Oh My Goodness</strong> — <span class="muted" data-fr="Gâteaux maison, ambiance cosy." data-en="Homemade cakes, cosy vibe."></span></li>
+        <li><strong>Code Bar</strong> — <span class="muted" data-fr="Spécialité café filtre." data-en="Filter coffee speciality."></span></li>
+      </ul>
+    </article>
+
+    <!-- Bars -->
+    <article class="plan">
+      <h4>🍷 <span data-fr="Bars & apéros" data-en="Bars & drinks">Bars & apéros</span></h4>
+      <ul>
+        <li><strong>Le Rafiot</strong> — <span class="muted" data-fr="Bar sur bateau, coucher de soleil magique." data-en="Boat bar, magical sunset."></span></li>
+        <li><strong>Tapas Café</strong> — <span class="muted" data-fr="Tapas & vins, ambiance animée." data-en="Tapas & wine, lively vibe."></span></li>
+        <li><strong>Le Grincheux</strong> — <span class="muted" data-fr="Cave conviviale, vins nature." data-en="Friendly wine bar, natural wines."></span></li>
+      </ul>
+    </article>
+  </div>
+
+  <div class="plan-cats" style="margin-top:12px">
+    <!-- Courses -->
+    <article class="plan">
+      <h4>🛒 <span data-fr="Courses" data-en="Groceries">Courses</span></h4>
+      <ul>
+        <li><strong>Monoprix Gutenberg</strong> — <span class="muted" data-fr="5 min, horaires étendus." data-en="5 min, wide opening hours."></span></li>
+        <li><strong>Marché Broglie (mercredi)</strong> — <span class="muted" data-fr="Produits locaux & fraîcheur." data-en="Local fresh produce."></span></li>
+      </ul>
+    </article>
+
+    <!-- Parking -->
+    <article class="plan">
+      <h4>🅿️ <span data-fr="Parking" data-en="Parking">Parking</span></h4>
+      <ul>
+        <li><strong>Parking Austerlitz</strong> — <span class="muted" data-fr="Sécurisé, à 6 min." data-en="Secure, 6 min."></span></li>
+        <li><strong>Parking Gutenberg</strong> — <span class="muted" data-fr="En plein centre-ville." data-en="Right in the city centre."></span></li>
+      </ul>
+    </article>
+
+    <!-- Transports -->
+    <article class="plan">
+      <h4>🚲 <span data-fr="Transports" data-en="Transport">Transports</span></h4>
+      <ul>
+        <li><strong>Vélhop</strong> — <span class="muted" data-fr="Station vélo à 3 min." data-en="Bike station 3 min."></span></li>
+        <li><strong>Tram A/D/F</strong> — <span class="muted" data-fr="Vers centre & gare." data-en="To centre & station."></span></li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+<!-- Emergency -->
+<section id="s-emergency" class="card appear">
+  <h3 class="section-title" data-fr="Urgences & contacts utiles" data-en="Emergencies & useful contacts">
+    Urgences & contacts utiles
+  </h3>
+  <ul style="margin:0;padding-left:18px">
+    <li><strong>112</strong> — <span data-fr="Urgences (pompiers / police / SAMU)" data-en="Emergency (fire / police / ambulance)"></span></li>
+    <li data-fr="Pharmacie de garde : appeler la pharmacie centrale ou 3237." data-en="On-call pharmacy: call central pharmacy or 3237."></li>
+    <li><strong data-fr="Contact propriétaire" data-en="Host contact">Contact propriétaire</strong> : host@example.com</li>
+  </ul>
+  <div class="small" style="margin-top:8px"
+       data-fr="Incident technique (chauffage, fuite) : signalez immédiatement au propriétaire pour intervention rapide."
+       data-en="Technical issue (heating, leak): notify host immediately for quick intervention.">
+    Incident technique (chauffage, fuite) : signalez immédiatement au propriétaire pour intervention rapide.
+  </div>
+</section>
+
+
+      </main>
+
+      <!-- ASIDE -->
+      <aside class="panel appear" aria-label="Récapitulatif">
+
+        <div class="card" style="margin-top:12px">
+          <div style="font-weight:800">Options de personnalisation</div>
+          <div class="small" style="margin-top:8px">
+            Couleurs, ton et ordre des sections peuvent être adaptés selon le logement.
+          </div>
+        </div>
+
+      </aside>
+    </div>
+
+    <footer class="appear">
+      <div class="muted center">Page démo fournie par WelcomeQR — texte & structure entièrement modifiables.</div>
+    </footer>
+  </div>
+
+<script>
+  // bilingual toggle (FR/EN)
+  function setLang(lang){
+    document.querySelectorAll('[data-fr]').forEach(el=>{
+      el.textContent = (lang === 'fr') ? el.getAttribute('data-fr') : el.getAttribute('data-en');
+    });
+    document.getElementById('btnFR').classList.toggle('active', lang==='fr');
+    document.getElementById('btnEN').classList.toggle('active', lang==='en');
+  }
+  setLang('fr');
+
+  // accordion toggle
+  function toggleAcc(head){
+    const item = head.parentElement;
+    item.classList.toggle('open');
+  }
+
+  // smooth internal links
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+a.addEventListener('click', function(e){
+const id = this.getAttribute('href').slice(1);
+const el = document.getElementById(id);
+if(!el) return;
+e.preventDefault();
+const top = el.getBoundingClientRect().top + window.scrollY - 56;
+window.scrollTo({top,behavior:'smooth'});
+});
+});
+
+// scroll-hide for desktop TOC
+let lastScroll = 0;
+const toc = document.querySelector('.toc');
+window.addEventListener('scroll',()=>{
+if(window.innerWidth < 769) return; // disable on mobile
+if(window.scrollY > lastScroll){
+toc.classList.add('hide');
+} else {
+toc.classList.remove('hide');
+}
+lastScroll = window.scrollY;
+});
+
+
+  // keyboard accessibility for accordion heads
+  document.addEventListener('keydown', (e)=>{
+    if((e.key === 'Enter' || e.key === ' ') && document.activeElement && document.activeElement.classList.contains('head')){
+      e.preventDefault(); toggleAcc(document.activeElement);
+    }
+  });
+
+
+
+
+
+
+  // toggle persistant
+const hostToggle = document.getElementById('hostToggle');
+function setHostMode(on){
+  document.documentElement.classList.toggle('host-mode', on);
+  hostToggle.setAttribute('aria-pressed', on ? 'true' : 'false');
+  hostToggle.textContent = on ? 'Masquer version propriétaire' : 'Voir version propriétaire';
+  localStorage.setItem('hostMode', on ? '1' : '0');
+}
+hostToggle.addEventListener('click', ()=> setHostMode(!document.documentElement.classList.contains('host-mode')));
+// restore
+if(localStorage.getItem('hostMode') === '1') setHostMode(true);
+
+</script>
+</body>
+</html>
