@@ -5,52 +5,66 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Démo — Studio Cosy, Centre Historique — WelcomeQR (exemple)</title>
 <meta name="description" content="Page démo exhaustive — exemple d'une page voyageurs : arrivée, Wi-Fi, accès, emplacement des essentiels, appareils, checklist, bons plans (FR/EN)." />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
 <style>
   :root{
     --page-bg: #f5fbff;
     --card: #ffffff;
-    --ink: #06202a;         /* texte principal (foncé pour bien lire) */
-    --muted: #556970;       /* sous-texte */
-    --accent: #1d9bf0;      /* bouton / accents (SOLIDE) */
-    --accent-2: #06b6d4;
+    --ink: #06202a;
+    --muted: #556970;
+    --accent: #0b84d9;     /* principale */
+    --accent-2: #06b6d4;   /* secondaire */
     --ok: #16a34a;
     --warn: #f59e0b;
     --radius: 14px;
     --maxw: 1200px;
     --gap: 18px;
-    --mono: ui-monospace, Menlo, "Roboto Mono", monospace;
     --shadow: 0 18px 50px rgba(9,18,26,0.06);
+    --glass: rgba(11,132,217,0.06);
+    --ease: cubic-bezier(.2,.9,.3,1);
   }
 
   *{box-sizing:border-box}
-  html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:var(--ink);background:var(--page-bg);-webkit-font-smoothing:antialiased}
-  .wrap{max-width:var(--maxw);margin:22px auto;padding:20px}
+  html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:var(--ink);background:linear-gradient(180deg,#fbfeff,var(--page-bg));-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .wrap{max-width:var(--maxw);margin:26px auto;padding:20px}
+
+  /* HEADER */
   header{display:flex;align-items:center;justify-content:space-between;gap:14px}
   .brand{display:flex;gap:12px;align-items:center}
-  .logo{width:56px;height:56px;border-radius:12px;background:var(--accent);display:grid;place-items:center;color:#fff;font-weight:800}
-  h1{margin:0;font-size:20px}
+  .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:grid;place-items:center;color:#fff;font-weight:800;font-family: 'Playfair Display', serif}
+  h1{margin:0;font-size:18px}
   .kicker{font-size:13px;color:var(--muted)}
+
   /* language toggle */
   .lang{display:flex;gap:8px}
-  .pill{padding:8px 12px;border-radius:999px;border:1px solid rgba(6,32,42,0.06);background:#fff;color:var(--ink);cursor:pointer;font-weight:600}
-  .pill.active{background:var(--accent);color:#fff;border-color:transparent;box-shadow:0 8px 22px rgba(29,155,240,0.12)}
+  .pill{padding:8px 12px;border-radius:999px;border:1px solid rgba(6,32,42,0.06);background:#fff;color:var(--ink);cursor:pointer;font-weight:700;font-size:13px}
+  .pill.active{background:var(--accent);color:#fff;border-color:transparent;box-shadow:0 8px 20px rgba(11,132,217,0.12)}
 
-  /* sticky section nav (mobile collapsible) */
-  .toc{position:sticky;top:18px;z-index:30;background:transparent;padding:8px 0}
+  /* TOC */
+  .toc{position:sticky;top:18px;z-index:30;background:transparent;padding:8px 0;margin-top:12px}
   .toc-inner{display:flex;gap:8px;flex-wrap:wrap}
-  .toc a{padding:8px 10px;border-radius:999px;background:#fff;border:1px solid rgba(6,32,42,0.04);text-decoration:none;color:var(--ink);font-weight:700}
+  .toc a{padding:8px 10px;border-radius:999px;background:#fff;border:1px solid rgba(6,32,42,0.04);text-decoration:none;color:var(--ink);font-weight:700;font-size:13px}
+  .toc a.active{box-shadow:0 6px 18px rgba(9,18,26,0.06);border-color:transparent;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#fff}
 
-  /* hero */
-  .hero{margin-top:16px;padding:22px;border-radius:14px;background:linear-gradient(180deg,#ffffff,#eef9ff);box-shadow:var(--shadow);display:flex;gap:18px;align-items:center;justify-content:space-between;flex-wrap:wrap}
-  .hero-left{max-width:68%}
-  .hero-title{font-size:24px;margin:0;font-weight:800}
-  .hero-sub{margin-top:8px;color:var(--muted);max-width:70ch}
+  /* HERO */
+  .hero{margin-top:14px;position:relative;padding:26px;border-radius:16px;background:linear-gradient(180deg,#ffffff,#eef9ff);box-shadow:var(--shadow);display:flex;gap:18px;align-items:stretch;justify-content:space-between;flex-wrap:wrap;overflow:hidden}
+  .hero-left{flex:1;min-width:240px}
+  .hero-title{font-size:22px;margin:0;font-weight:800;line-height:1.05}
+  .hero-sub{margin-top:8px;color:var(--muted);max-width:72ch}
   .hero-meta{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
-  .chip{background:#fff;padding:8px 12px;border-radius:999px;border:1px solid rgba(6,32,42,0.04);font-weight:700;color:var(--ink)}
+  .chip{background:#fff;padding:8px 12px;border-radius:999px;border:1px solid rgba(6,32,42,0.04);font-weight:700;color:var(--ink);font-size:13px}
   .hero-actions{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap}
-  .btn{background:var(--accent);color:#fff;padding:10px 14px;border-radius:10px;border:0;text-decoration:none;font-weight:800}
+  .btn{background:var(--accent);color:#fff;padding:10px 14px;border-radius:10px;border:0;text-decoration:none;font-weight:800;font-size:13px}
   .btn.ghost{background:#fff;border:1px solid rgba(6,32,42,0.06);color:var(--ink)}
+
+  /* hero visual column */
+  .hero-aside{width:320px;min-width:240px}
+  .addr{background:linear-gradient(180deg,#fff, #fbfeff);padding:14px;border-radius:12px;border:1px solid rgba(6,32,42,0.04);box-shadow:0 8px 26px rgba(9,18,26,0.04)}
+  .addr .small{color:var(--muted)}
+
+  /* skyline silhouette decorative */
+  .silhouette{position:absolute;left:-6%;right:-6%;bottom:-10px;pointer-events:none;opacity:0.12;transform:translateY(0);transition:transform .8s var(--ease)}
 
   /* layout */
   .demo-body{margin-top:var(--gap);display:grid;grid-template-columns:1fr 340px;gap:22px}
@@ -58,22 +72,24 @@
   main.content{min-width:0}
   aside.panel{position:sticky;top:18px;height:max-content}
 
-  .card{background:var(--card);padding:16px;border-radius:12px;border:1px solid rgba(6,32,42,0.04);box-shadow:0 10px 30px rgba(4,10,20,0.03);margin-bottom:14px}
+  .card{background:var(--card);padding:18px;border-radius:12px;border:1px solid rgba(6,32,42,0.04);box-shadow:0 10px 30px rgba(4,10,20,0.03);margin-bottom:14px}
   .section-title{margin:0 0 8px;font-size:18px;font-weight:800;color:var(--ink)}
   .section-sub{margin:0;color:var(--muted);font-size:14px}
 
   .two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
   @media(max-width:820px){.two-col{grid-template-columns:1fr}}
 
-  .code{font-family:var(--mono);background:#f3fbff;padding:8px;border-radius:8px;border:1px dashed rgba(6,32,42,0.06);display:inline-block}
+  .code{font-family:ui-monospace, Menlo, 'Roboto Mono', monospace;background:#f3fbff;padding:8px;border-radius:8px;border:1px dashed rgba(6,32,42,0.06);display:inline-block}
   .hint{background:linear-gradient(180deg,rgba(6,182,212,0.06),transparent);padding:12px;border-radius:10px;border:1px solid rgba(6,182,212,0.08)}
   .steps{counter-reset:step;margin:0;padding:0}
   .step{display:flex;gap:12px;align-items:flex-start;margin:10px 0}
   .step:before{counter-increment:step;content:counter(step);display:grid;place-items:center;width:36px;height:36px;border-radius:8px;background:var(--accent);color:#fff;font-weight:800}
 
+  /* accordion improved */
   .accordion{border-radius:10px;overflow:hidden;border:1px solid rgba(6,32,42,0.04)}
   .accordion .item + .item{border-top:1px solid rgba(6,32,42,0.04)}
   .accordion .head{display:flex;justify-content:space-between;align-items:center;padding:12px;background:#fbfeff;cursor:pointer}
+  .accordion .head:focus{outline:3px solid rgba(11,132,217,0.12);outline-offset:3px}
   .accordion .body{display:none;padding:12px;background:var(--card)}
   .accordion .item.open .body{display:block}
 
@@ -93,11 +109,14 @@
   footer{margin-top:18px;text-align:center;color:var(--muted);font-size:13px;padding-bottom:12px}
 
   /* accessibility focus */
-  a:focus, button:focus {outline:3px solid rgba(29,155,240,0.25);outline-offset:3px}
+  a:focus, button:focus {outline:3px solid rgba(11,132,217,0.18);outline-offset:3px}
 
-  /* subtle entrance */
-  .appear{animation:appear .45s ease both}
+  /* entrance */
+  .appear{animation:appear .45s var(--ease) both}
   @keyframes appear{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  /* small utilities */
+  .muted-2{color:#9aa6b4}
 </style>
 </head>
 <body>
@@ -106,36 +125,36 @@
     <header class="appear" role="banner">
       <div class="brand">
         <div class="logo" aria-hidden>WQ</div>
-        <div >
+        <div>
           <h1>Studio Cosy — Centre historique (démo)</h1>
+          <div class="kicker">Exemple prêt pour impression / QR</div>
         </div>
       </div>
 
       <div style="display:flex;gap:12px;align-items:center">
         <div class="lang" role="tablist" aria-label="Langues">
-          <button id="btnFR" class="pill active" onclick="setLang('fr')">FR</button>
-          <button id="btnEN" class="pill" onclick="setLang('en')">EN</button>
+          <button id="btnFR" class="pill active" onclick="setLang('fr')" aria-pressed="true">FR</button>
+          <button id="btnEN" class="pill" onclick="setLang('en')" aria-pressed="false">EN</button>
         </div>
-        <!-- Minimal contact for demo realism (owner contact visible to traveller) -->
         <a class="pill" href="mailto:host@example.com?subject=Message%20–%20Studio%20Cosy" title="Contacter le propriétaire">Contact propriétaire</a>
       </div>
     </header>
 
     <!-- TOC -->
-    <div class="toc appear" aria-hidden="false">
-      <div class="toc-inner">
+    <nav class="toc appear" aria-label="Table des matières">
+      <div class="toc-inner" id="toc-inner">
         <a href="#s-welcome">Accueil</a>
         <a href="#s-arrival">Arrivée</a>
-        <a href="#s-wifi">Wi-Fi</a>
+        <a href="#s-wifi">Wi‑Fi</a>
         <a href="#s-access">Accès</a>
         <a href="#s-where">Où</a>
         <a href="#s-appliances">Appareils</a>
         <a href="#s-rules">Règlement</a>
-        <a href="#s-checkout">Check-out</a>
+        <a href="#s-checkout">Check‑out</a>
         <a href="#s-tips">Bons plans</a>
         <a href="#s-emergency">Urgences</a>
       </div>
-    </div>
+    </nav>
 
     <!-- Hero -->
     <section class="hero appear" aria-labelledby="hero-title">
@@ -144,26 +163,40 @@
         <h2 id="hero-title" class="hero-title">Studio Cosy — Face à la cour, calme & central</h2>
         <p class="hero-sub" data-fr="Appartement lumineux, kitchenette équipée, literie neuve. Idéal pour découvrir la ville à pied. Cette page liste tout ce que vos voyageurs doivent savoir — claire, directe et actionnable." data-en="Bright studio, equipped kitchenette, new bedding. Perfect base to explore the city on foot. This page lists everything guests need — clear, actionable."></p>
 
-        <div class="hero-meta">
+        <div class="hero-meta" aria-hidden="true">
           <div class="chip" data-fr="2 pers" data-en="2 guests">2 pers</div>
-          <div class="chip" data-fr="Check-in autonome" data-en="Self check-in">Check-in autonome</div>
-          <div class="chip" data-fr="Wi-Fi haut débit" data-en="Fast Wi-Fi">Wi-Fi haut débit</div>
+          <div class="chip" data-fr="Check‑in autonome" data-en="Self check-in">Check-in autonome</div>
+          <div class="chip" data-fr="Wi‑Fi haut débit" data-en="Fast Wi-Fi">Wi-Fi haut débit</div>
         </div>
 
         <div class="hero-actions">
           <a class="btn" href="#s-arrival">Checklist arrivée</a>
           <a class="btn ghost" href="#s-tips">Voir bons plans</a>
         </div>
+
       </div>
 
       <aside class="hero-aside">
-        <div style="font-weight:800">Adresse (exemple)</div>
-        <div class="small" style="margin-top:8px">12 rue du Vieux-Pont — 69002 Lyon</div>
+        <div class="addr">
+          <div style="font-weight:800">Adresse (exemple)</div>
+          <div class="small" style="margin-top:8px">12 rue du Vieux-Pont — 69002 Lyon</div>
 
-        <div style="margin-top:12px" class="small">
-          <strong>Accès public</strong> : tram Ligne T1 — arrêt Cathédrale (5 min).
+          <div style="margin-top:12px" class="small">
+            <strong>Accès public</strong> : tram Ligne T1 — arrêt Cathédrale (5 min).
+          </div>
         </div>
       </aside>
+
+      <!-- decorative skyline -->
+      <svg class="silhouette" viewBox="0 0 1200 220" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="sg" x1="0" x2="1">
+            <stop offset="0" stop-color="#b3d9ff" stop-opacity="0.18"/>
+            <stop offset="1" stop-color="#ffd9cc" stop-opacity="0.06"/>
+          </linearGradient>
+        </defs>
+        <path d="M0 140 L40 120 L90 60 L120 100 L160 80 L210 120 L260 60 L320 110 L380 80 L420 120 L480 90 L540 120 L600 70 L660 120 L740 90 L820 120 L900 70 L980 120 L1100 90 L1200 140 L1200 220 L0 220 Z" fill="url(#sg)"/>
+      </svg>
     </section>
 
     <!-- Body -->
@@ -203,7 +236,7 @@
 
         <!-- Wi-Fi -->
         <section id="s-wifi" class="card appear">
-          <h3 class="section-title">Wi-Fi</h3>
+          <h3 class="section-title">Wi‑Fi</h3>
           <p class="section-sub" data-fr="Connexion pour les invités — SSID et mot de passe affichés clairement." data-en="Guest connection — SSID and password displayed clearly."></p>
           <div class="two-col">
             <div><strong>SSID</strong> : <span class="code">WelcomeQR-Guest</span></div>
@@ -223,11 +256,11 @@
             <div>
               <div class="accordion" id="acc-access">
                 <div class="item open">
-                  <div class="head" onclick="toggleAcc(this)" tabindex="0"><span data-fr="Si vous êtes bloqué" data-en="If locked out"></span><span>▾</span></div>
+                  <div class="head" onclick="toggleAcc(this)" tabindex="0" role="button" aria-expanded="true"><span data-fr="Si vous êtes bloqué" data-en="If locked out"></span><span aria-hidden>▾</span></div>
                   <div class="body" data-fr="Contactez le propriétaire (bouton e-mail en haut) — fournissez heure d'arrivée et numéro de réservation." data-en="Contact the host (email button at top) — provide arrival time and booking number."></div>
                 </div>
                 <div class="item">
-                  <div class="head" onclick="toggleAcc(this)" tabindex="0"><span data-fr="Boîte à clés" data-en="Key box"></span><span>▾</span></div>
+                  <div class="head" onclick="toggleAcc(this)" tabindex="0" role="button" aria-expanded="false"><span data-fr="Boîte à clés" data-en="Key box"></span><span aria-hidden>▾</span></div>
                   <div class="body" data-fr="Boîte aimantée sous le paillasson (code sur cette page)." data-en="Magnetic box under the doormat (code on this page)."></div>
                 </div>
               </div>
@@ -316,48 +349,43 @@
           <p class="section-sub" data-fr="Sélection testée par l'hôte : cafés, restaurants, vues, marchés, activités et transports." data-en="Host-tested selection: cafés, restaurants, viewpoints, markets, activities and transport."></p>
 
           <div class="local-list">
+            <!-- repeated items kept as-is -->
             <article class="local-item">
               <h4>Le Garçon Café — Espresso & pâtisseries</h4>
               <div class="muted">3 min à pied — café local, espresso serré et viennoiseries fraîches.</div>
               <div class="small" style="margin-top:6px">Meilleur pour : petit-déjeuner express.</div>
             </article>
-
+            <!-- ... other items ... (kept) -->
             <article class="local-item">
               <h4>Chez Mado — Bouchon lyonnais</h4>
               <div class="muted">8 min à pied — spécialités locales, réservation conseillée le weekend.</div>
               <div class="small" style="margin-top:6px">Meilleur pour : découvrir la cuisine lyonnaise.</div>
             </article>
-
             <article class="local-item">
               <h4>Belvédère Fourvière — Vue panoramique</h4>
               <div class="muted">15 min (montée) ou 8 min en transport — coucher de soleil remarquable.</div>
               <div class="small" style="margin-top:6px">Astuce : monter via les jardins pour éviter la foule.</div>
             </article>
-
             <article class="local-item">
               <h4>Monoprix Terreaux — Courses</h4>
               <div class="muted">5 min à pied — horaires larges, dépannage pratique.</div>
               <div class="small" style="margin-top:6px">Astuce : rayon bio au sous-sol.</div>
             </article>
-
             <article class="local-item">
               <h4>Marché Hebdomadaire (samedi)</h4>
               <div class="muted">7:30–13:00 — produits frais, fromages, fleurs.</div>
               <div class="small" style="margin-top:6px">Parfait pour : paniers petit-déjeuner locaux.</div>
             </article>
-
             <article class="local-item">
               <h4>Parking public — Parking Bellecour</h4>
               <div class="muted">2–3 min en voiture — sécurisé, payant.</div>
               <div class="small" style="margin-top:6px">Conseil : indiquez l'entrée exacte pour invités en voiture.</div>
             </article>
-
             <article class="local-item">
               <h4>Pharmacie Centrale</h4>
               <div class="muted">6 min à pied — utile pour petits soins & urgences.</div>
               <div class="small" style="margin-top:6px">Indiquer heures d'ouverture réelles lors de la saison.</div>
             </article>
-
             <article class="local-item">
               <h4>Activités famille — Parc & aire de jeux</h4>
               <div class="muted">10 min à pied — espace vert, tables de pique-nique.</div>
@@ -395,7 +423,7 @@
         <div class="card" style="margin-top:12px">
           <div style="font-weight:800">Infos pratiques</div>
           <div class="small" style="margin-top:8px">
-            Capacité : 2 personnes • Check-in autonome • Wi-Fi inclus
+            Capacité : 2 personnes • Check-in autonome • Wi‑Fi inclus
           </div>
         </div>
 
@@ -418,21 +446,32 @@
   // bilingual toggle (FR/EN)
   function setLang(lang){
     document.querySelectorAll('[data-fr]').forEach(el=>{
-      el.textContent = (lang === 'fr') ? el.getAttribute('data-fr') : el.getAttribute('data-en');
+      // if element contains HTML tags in data attributes (like <strong>), keep HTML
+      const fr = el.getAttribute('data-fr') || '';
+      const en = el.getAttribute('data-en') || '';
+      if(/<[^>]+>/.test(fr) || /<[^>]+>/.test(en)){
+        el.innerHTML = (lang === 'fr') ? fr : en;
+      } else {
+        el.textContent = (lang === 'fr') ? fr : en;
+      }
     });
     document.getElementById('btnFR').classList.toggle('active', lang==='fr');
     document.getElementById('btnEN').classList.toggle('active', lang==='en');
+    document.getElementById('btnFR').setAttribute('aria-pressed', lang==='fr');
+    document.getElementById('btnEN').setAttribute('aria-pressed', lang!=='fr');
   }
   setLang('fr');
 
-  // accordion toggle
+  // accordion toggle with aria
   function toggleAcc(head){
     const item = head.parentElement;
-    item.classList.toggle('open');
+    const isOpen = item.classList.toggle('open');
+    head.setAttribute('aria-expanded', isOpen);
   }
 
-  // smooth internal links
-  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  // smooth internal links + active TOC on scroll
+  const tocLinks = Array.from(document.querySelectorAll('.toc a'));
+  tocLinks.forEach(a=>{
     a.addEventListener('click', function(e){
       const id = this.getAttribute('href').slice(1);
       if(!id) return;
@@ -443,6 +482,22 @@
       window.scrollTo({top,behavior:'smooth'});
     });
   });
+
+  const sections = Array.from(document.querySelectorAll('main.content section'));
+  function onScroll(){
+    const offset = 120;
+    const y = window.scrollY + offset;
+    let current = sections[0];
+    for(const s of sections){
+      if(s.offsetTop <= y) current = s;
+    }
+    tocLinks.forEach(a=> a.classList.toggle('active', a.getAttribute('href').slice(1) === current.id));
+    // parallax silhouette
+    const sil = document.querySelector('.silhouette');
+    if(sil) sil.style.transform = `translateY(${(window.scrollY*0.06).toFixed(2)}px)`;
+  }
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
 
   // keyboard accessibility for accordion heads
   document.addEventListener('keydown', (e)=>{

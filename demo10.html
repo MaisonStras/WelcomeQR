@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>WelcomeQR — Appartement « Cathédrale » à Strasbourg | Démo ultra-vendeuse</title>
+<meta name="description" content="Exemple concret d'une page voyageurs pour Strasbourg — header cathédrale, visuels, atouts, galerie, témoignages, FAQ. Design moderne, prêt GitHub Pages." />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* Palette Alsace / Strasbourg */
+    --ink: #0e1726;
+    --muted: #556170;
+    --bg: #f7fbff;
+    --card: #ffffff;
+    --red: #e11d48; /* accent alsacien */
+    --gold: #f59e0b;
+    --blue: #2563eb; /* rappel EU/Strasbourg */
+    --mint: #06b6d4;
+    --radius: 16px;
+    --shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
+    --maxw: 1200px;
+    --gap: 22px;
+    --ease: cubic-bezier(.2,.9,.3,1);
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0}
+  body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:18px}
+
+  /* ===== HERO ===== */
+  .hero{
+    position:relative;overflow:hidden;border-radius:24px;background:#0b1020;color:#fff;
+    min-height:56vh; display:grid; align-items:end; padding:28px; box-shadow:var(--shadow);
+  }
+  .hero::before{ /* background image (replace later) */
+    content:""; position:absolute; inset:0; 
+    background: url('example.png') center/cover no-repeat; /* <<< remplace par ta photo du salon ou de la cathédrale */
+    filter: contrast(1.05) saturate(1.05) brightness(.72);
+    transform: scale(1.03);
+  }
+  .hero::after{ /* gradient overlay */
+    content:""; position:absolute; inset:0; 
+    background: radial-gradient(1200px 420px at 30% 70%, rgba(225,29,72,.55), transparent 60%),
+                linear-gradient(180deg, rgba(2,6,23,0) 0%, rgba(2,6,23,.66) 60%, rgba(2,6,23,.88) 100%);
+    pointer-events:none;
+  }
+  .skyline{position:absolute; left:0; right:0; bottom:-8px; opacity:.35}
+  .hero-inner{position:relative; z-index:2; display:grid; gap:14px; max-width:860px}
+  .badge{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; background:rgba(255,255,255,.1); backdrop-filter: blur(6px); font-weight:700}
+  .title{font-family:'Playfair Display',serif; font-size: clamp(28px, 6vw, 56px); line-height:1.02; margin:0}
+  .subtitle{opacity:.92; max-width:70ch}
+  .chips{display:flex; gap:10px; flex-wrap:wrap}
+  .chip{background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.2); padding:8px 12px; border-radius:999px; font-weight:700; font-size:14px}
+  .cta{display:flex; gap:12px; flex-wrap:wrap; margin-top:6px}
+  .btn{appearance:none; border:0; padding:12px 16px; border-radius:12px; font-weight:800; cursor:pointer; text-decoration:none}
+  .btn.primary{background:linear-gradient(135deg,var(--red),#fb7185); color:#fff; box-shadow:0 10px 30px rgba(225,29,72,.25)}
+  .btn.ghost{background:#fff; color:var(--ink)}
+
+  /* Pretzel confetti pattern (subtle) */
+  .pretzel-bg{--p: url('data:image/svg+xml;utf8,\
+    <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">\
+      <g opacity="0.14">\
+        <path d="M60 36c-8 0-14 6-14 14s6 14 14 14 14-6 14-14-6-14-14-14zm0-8c12.15 0 22 9.85 22 22s-9.85 22-22 22S38 62.15 38 50 47.85 28 60 28z" fill='%23f59e0b'/>\
+        <circle cx="46" cy="52" r="3" fill='%23f59e0b'/>\
+        <circle cx="74" cy="52" r="3" fill='%23f59e0b'/>\
+      </g>\
+    </svg>'); background-image: var(--p); background-size: 180px 180px; background-position:center;}
+
+  /* NAV */
+  .topbar{display:flex; align-items:center; justify-content:space-between; gap:14px; margin:18px 0}
+  .brand{display:flex; align-items:center; gap:12px}
+  .logo{width:48px;height:48px;border-radius:12px;display:grid;place-items:center;color:#fff;font-weight:900; background:linear-gradient(135deg,var(--red),#fb7185)}
+  .brand h1{font-size:18px; margin:0}
+  .lang{display:flex; gap:8px}
+  .pill{padding:8px 12px;border-radius:999px;border:1px solid rgba(6,32,42,0.08);background:#fff;color:var(--ink);cursor:pointer;font-weight:700}
+  .pill.active{background:var(--ink);color:#fff}
+
+  /* LAYOUT */
+  .grid{display:grid; grid-template-columns: 1.2fr .8fr; gap:var(--gap); margin-top:var(--gap)}
+  @media(max-width:1024px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--card); border:1px solid rgba(6,32,42,.06); border-radius:var(--radius); box-shadow:var(--shadow); padding:18px}
+  .section-title{margin:0 0 8px; font-size:20px; font-weight:800}
+  .section-sub{margin:0 0 12px; color:var(--muted)}
+
+  /* HIGHLIGHTS */
+  .highlights{display:grid; grid-template-columns:repeat(3,1fr); gap:12px}
+  @media(max-width:820px){.highlights{grid-template-columns:1fr 1fr}}
+  .hi{border:1px solid rgba(6,32,42,.06); border-radius:14px; padding:14px; background:linear-gradient(180deg,#fff,#fbfeff)}
+  .hi h4{margin:0 0 4px}
+  .icon{width:26px;height:26px;display:inline-grid;place-items:center;border-radius:8px;background:rgba(37,99,235,.12); margin-right:8px}
+
+  /* GALLERY */
+  .gallery{display:grid; grid-template-columns:2fr 1fr 1fr; gap:12px}
+  @media(max-width:820px){.gallery{grid-template-columns:1fr 1fr}}
+  .ph{position:relative; overflow:hidden; border-radius:14px; background:#eef2ff; cursor:pointer}
+  .ph img{width:100%; height:100%; object-fit:cover; display:block;}
+
+  /* AMENITIES */
+  .amenities{display:grid; grid-template-columns:repeat(2,1fr); gap:10px}
+  @media(max-width:600px){.amenities{grid-template-columns:1fr}}
+  .am{display:flex; align-items:center; gap:10px; padding:10px; border:1px dashed rgba(6,32,42,.12); border-radius:12px}
+  .am svg{width:22px;height:22px}
+
+  /* TESTIMONIALS */
+  .testi{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+  @media(max-width:820px){.testi{grid-template-columns:1fr}}
+  .quote{padding:16px; border-radius:14px; background:#fff; border:1px solid rgba(6,32,42,.06); position:relative}
+  .quote:before{content:"\201C"; position:absolute; top:-10px; left:12px; font-size:48px; color:rgba(225,29,72,.25)}
+
+  /* PRICING / CTA */
+  .pricing{display:grid; grid-template-columns:1fr .9fr; gap:12px}
+  @media(max-width:820px){.pricing{grid-template-columns:1fr}}
+  .pricecard{padding:18px; border-radius:16px; background:linear-gradient(135deg,#fff, #fff4f7); border:1px solid rgba(225,29,72,.18)}
+  .price{font-size:32px; font-weight:900}
+
+  /* FAQ */
+  .accordion{border:1px solid rgba(6,32,42,.08); border-radius:14px; overflow:hidden}
+  .item+.item{border-top:1px solid rgba(6,32,42,.08)}
+  .head{display:flex; justify-content:space-between; align-items:center; padding:14px; background:#fbfeff; cursor:pointer}
+  .body{display:none; padding:14px}
+  .item.open .body{display:block}
+
+  footer{margin:28px 0; text-align:center; color:var(--muted)}
+
+  /* LIGHTBOX */
+  .lightbox{position:fixed; inset:0; background:rgba(2,6,23,.85); display:none; align-items:center; justify-content:center; padding:24px; z-index:99}
+  .lightbox.open{display:flex}
+  .lightbox img{max-width:min(96vw, 1200px); max-height:86vh; border-radius:16px; box-shadow:0 20px 60px rgba(0,0,0,.4)}
+  .close{position:absolute; top:18px; right:18px; background:#fff; border:0; border-radius:10px; padding:10px 12px; font-weight:800; cursor:pointer}
+
+  /* UTIL */
+  .muted{color:var(--muted)}
+  .pill2{display:inline-block; padding:6px 10px; border-radius:999px; border:1px solid rgba(6,32,42,.08); background:#fff}
+
+  /* PRINT mini-card (QR) */
+  @media print{
+    body{background:#fff}
+    .hero, .topbar, .lightbox{display:none}
+    .qr-card{break-inside:avoid;}
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo" aria-hidden>WQ</div>
+        <h1>WelcomeQR — Démo Strasbourg</h1>
+      </div>
+      <div class="lang">
+        <a class="pill" href="#contact">Contact</a>
+        <a class="pill" href="#reservation">Réserver</a>
+      </div>
+    </div>
+
+    <!-- ===== HERO ===== -->
+    <header class="hero pretzel-bg" role="banner" aria-label="Présentation Strasbourg Cathédrale">
+      <div class="hero-inner">
+        <span class="badge">🏰 Cathédrale • Hyper-centre • 2 pers</span>
+        <h2 class="title">Studio « Cathédrale » — Terrasse sur cour, charme d'Alsace</h2>
+        <p class="subtitle">À 150 m de la <strong>Cathédrale Notre‑Dame de Strasbourg</strong> et des ruelles de la <strong>Petite France</strong>. Studio refait à neuf : lit queen, kitchenette équipée, Wi‑Fi fibre, check‑in autonome. Idéal city break & déplacements pro.</p>
+        <div class="chips">
+          <span class="chip">⏱️ Check‑in 24/7</span>
+          <span class="chip">📶 Wi‑Fi 500 Mb/s</span>
+          <span class="chip">🚋 Tram A/D — Langstross</span>
+          <span class="chip">🥨 Goûter kougelhopf offert</span>
+        </div>
+        <div class="cta">
+          <a class="btn primary" href="#reservation">Voir disponibilités</a>
+          <a class="btn ghost" href="#galerie">Voir les photos</a>
+        </div>
+      </div>
+
+      <!-- Silhouette cathédrale stylisée -->
+      <svg class="skyline" viewBox="0 0 1200 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="sk" x1="0" x2="1">
+            <stop offset="0" stop-color="#fb7185" stop-opacity=".6"/>
+            <stop offset="1" stop-color="#f59e0b" stop-opacity=".6"/>
+          </linearGradient>
+        </defs>
+        <path d="M0 160 L60 150 L120 120 L160 130 L210 110 L260 140 L300 125 L340 135 L380 90 L430 95 L470 80 L500 90 L530 70 L560 80 L600 30 L620 40 L640 30 L650 20 L660 30 L680 40 L700 55 L730 80 L770 110 L820 100 L860 120 L900 110 L940 130 L1000 115 L1040 140 L1100 120 L1160 150 L1200 160 V200 H0 Z" fill="url(#sk)"/>
+      </svg>
+    </header>
+
+    <!-- ===== CONTENT ===== -->
+    <main class="grid">
+      <section class="card" id="a-propos">
+        <h3 class="section-title">Pourquoi vous allez adorer</h3>
+        <p class="section-sub">Pensé pour les voyageurs pressés qui veulent tout à pied et sans stress.</p>
+        <div class="highlights">
+          <div class="hi">
+            <h4><span class="icon">🏛️</span>Emplacement imbattable</h4>
+            <p>150 m de la Cathédrale, 6 min de <em>Petite France</em>, restaurants & winstubs au coin de la rue.</p>
+          </div>
+          <div class="hi">
+            <h4><span class="icon">🛏️</span>Confort premium</h4>
+            <p>Lit queen 160×200, double rideau blackout, linge hôtelier, machine Nespresso.</p>
+          </div>
+          <div class="hi">
+            <h4><span class="icon">🗝️</span>Check‑in autonome</h4>
+            <p>Boîte à clés sécurisée, arrivée tardive possible. Guide clair + codes envoyés.</p>
+          </div>
+        </div>
+      </section>
+
+      <aside class="card" id="reservation">
+        <h3 class="section-title">Réservation & infos</h3>
+        <p class="muted">Tarif indicatif — basse saison</p>
+        <div class="pricecard">
+          <div class="price">89€ / nuit</div>
+          <div class="muted">+ ménage 25€ • min. 2 nuits</div>
+          <div style="display:flex;gap:10px;margin-top:12px">
+            <a class="btn primary" href="#contact">Demander un devis</a>
+            <a class="btn ghost" href="#faq">Questions fréquentes</a>
+          </div>
+          <ul style="margin:12px 0 0; padding-left:18px">
+            <li>Annulation flexible (D‑5)</li>
+            <li>Check‑in 16:00 • Check‑out 11:00</li>
+          </ul>
+        </div>
+        <div class="qr-card" style="margin-top:12px">
+          <span class="pill2">📱 Carte QR d'accès incluse</span>
+          <p class="muted" style="margin-top:6px">Vos voyageurs scannent, accèdent aux codes, consignes & bons plans.</p>
+        </div>
+      </aside>
+
+      <section class="card" id="galerie">
+        <h3 class="section-title">Galerie</h3>
+        <p class="section-sub">Aperçu (remplace <code>example.png</code> par tes vraies photos).</p>
+        <div class="gallery">
+          <a class="ph" data-img="example.png" title="Séjour — vue 1"><img src="example.png" alt="Photo du séjour"></a>
+          <a class="ph" data-img="example.png" title="Cuisine équipée"><img src="example.png" alt="Cuisine équipée"></a>
+          <a class="ph" data-img="example.png" title="Salle de bain"><img src="example.png" alt="Salle de bain"></a>
+          <a class="ph" data-img="example.png" title="Lit queen"><img src="example.png" alt="Lit queen"></a>
+          <a class="ph" data-img="example.png" title="Terrasse"><img src="example.png" alt="Terrasse sur cour"></a>
+        </div>
+      </section>
+
+      <aside class="card" id="atouts">
+        <h3 class="section-title">Équipements</h3>
+        <div class="amenities">
+          <div class="am">🥨 <div><strong>Welcome snack</strong><br><span class="muted">Kougelhopf / bretzels</span></div></div>
+          <div class="am">📶 <div><strong>Fibre rapide</strong><br><span class="muted">Télétravail OK</span></div></div>
+          <div class="am">❄️ <div><strong>Clim & chauffage</strong><br><span class="muted">Confort 4 saisons</span></div></div>
+          <div class="am">☕ <div><strong>Nespresso</strong><br><span class="muted">Capsules offertes</span></div></div>
+          <div class="am">🧼 <div><strong>Linge & savon</strong><br><span class="muted">Hôtelier</span></div></div>
+          <div class="am">🧺 <div><strong>Lave‑linge</strong><br><span class="muted">Longs séjours</span></div></div>
+        </div>
+      </aside>
+
+      <section class="card" id="arrivee">
+        <h3 class="section-title">Arrivée facile</h3>
+        <ol style="margin:0; padding-left:18px">
+          <li>Code porte <strong>2580#</strong> (hall), boîte à clés à gauche.</li>
+          <li>Ascenseur jusqu'au 3ᵉ • Porte <strong>3B</strong>.</li>
+          <li>Wi‑Fi : <code>WelcomeQR‑Guest</code> • <code>Stras2025!</code>.</li>
+        </ol>
+        <p class="muted" style="margin-top:8px">Besoin d'aide ? Réponse rapide par e‑mail.</p>
+      </section>
+
+      <section class="card" id="quartier">
+        <h3 class="section-title">Tout à pied</h3>
+        <p class="section-sub">Votre base parfaite pour explorer Strasbourg.</p>
+        <ul style="margin:0; padding-left:18px">
+          <li>🕍 <strong>Cathédrale</strong> — 2 min</li>
+          <li>🌉 <strong>Petite France</strong> — 6 min</li>
+          <li>🚋 <strong>Tram A/D (Langstross)</strong> — 3 min</li>
+          <li>🍷 <strong>Winstubs & marchés</strong> — 1‑5 min</li>
+        </ul>
+      </section>
+
+      <section class="card" id="temoignages">
+        <h3 class="section-title">Ils ont adoré</h3>
+        <div class="testi">
+          <div class="quote"><strong>Marie, Paris</strong><br>« Emplacement de rêve, déco chaleureuse et guide super clair. On reviendra ! »</div>
+          <div class="quote"><strong>Lukas, München</strong><br>« Check‑in simple, lit ultra confortable, fibre parfaite pour le télétravail. »</div>
+        </div>
+      </section>
+
+      <section class="card pricing" id="offre-pro">
+        <div>
+          <h3 class="section-title">Offre longue durée</h3>
+          <p class="section-sub">Idéale pour missions au Parlement européen / entreprises tech.</p>
+          <ul style="margin:0; padding-left:18px">
+            <li>‑10 % dès 7 nuits • ‑18 % dès 14 nuits</li>
+            <li>Facture pro sur demande</li>
+            <li>Kit ménage & linge bimensuel</li>
+          </ul>
+        </div>
+        <div class="pricecard">
+          <div class="price">à partir de 560€ / semaine</div>
+          <p class="muted">Tout inclus, taxes & charges comprises</p>
+          <a class="btn primary" href="#contact">Recevoir un devis</a>
+        </div>
+      </section>
+
+      <section class="card" id="faq">
+        <h3 class="section-title">FAQ</h3>
+        <div class="accordion">
+          <div class="item open">
+            <div class="head" onclick="toggleAcc(this)">Parking proche ? <span>▾</span></div>
+            <div class="body">Parkings Gutenberg / Austerlitz à 6‑8 min. Dépose minute possible devant l'immeuble.</div>
+          </div>
+          <div class="item">
+            <div class="head" onclick="toggleAcc(this)">Arrivée tardive ? <span>▾</span></div>
+            <div class="body">Oui, check‑in autonome 24/7 via boîte à clés sécurisée.</div>
+          </div>
+          <div class="item">
+            <div class="head" onclick="toggleAcc(this)">Animaux ? <span>▾</span></div>
+            <div class="body">Petits chiens acceptés sur demande (supplément ménage 15€).</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" id="contact">
+        <h3 class="section-title">Contact</h3>
+        <p class="section-sub">Vous avez une question ou une date précise ?</p>
+        <p><a class="btn primary" href="mailto:host@example.com?subject=Demande%20–%20Studio%20Cath%C3%A9drale%20Strasbourg">host@example.com</a></p>
+        <p class="muted">Réponse rapide (8h‑22h). Contrat & facture envoyés par e‑mail.</p>
+      </section>
+    </main>
+
+    <footer>
+      <div>© WelcomeQR — Démo Strasbourg • Personnalisation totale (couleurs, contenu, photos)</div>
+    </footer>
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="close" onclick="closeLightbox()">Fermer ✕</button>
+    <img src="" alt="aperçu" id="lightboxImg" />
+  </div>
+
+<script>
+  // simple accordion
+  function toggleAcc(head){ head.parentElement.classList.toggle('open'); }
+
+  // lightbox gallery
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightboxImg');
+  document.querySelectorAll('.ph').forEach(ph=>{
+    ph.addEventListener('click', e=>{
+      e.preventDefault();
+      const src = ph.getAttribute('data-img');
+      lbImg.src = src; lb.classList.add('open'); lb.setAttribute('aria-hidden','false');
+    });
+  });
+  function closeLightbox(){ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); }
+  lb.addEventListener('click', (e)=>{ if(e.target===lb) closeLightbox(); });
+  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeLightbox(); });
+</script>
+</body>
+</html>

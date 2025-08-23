@@ -1,0 +1,552 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Strasbourg — Studio Cathédrale • Démo WelcomeQR</title>
+<meta name="description" content="Page démo immersive pour un appartement à Strasbourg : arrivée, Wi-Fi, accès, essentiels, appareils, règles, check-out et bons plans — FR/EN." />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Playfair+Display:wght@600;800&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    /* Thème Strasbourg (facile à décliner) */
+    --sky-1:#0f172a;           /* bleu nuit */
+    --sky-2:#1e293b;           /* ardoise */
+    --alsace:#c81e36;          /* rouge Alsace (accent) */
+    --alsace-2:#f59e0b;        /* doré coucher de soleil */
+    --glow:#06b6d4;            /* cyan léger pour reflets */
+    --ink:#0b1a1f;
+    --muted:#5f7680;
+    --card:#ffffff;
+    --page-bg: radial-gradient(1200px 600px at 70% -10%, rgba(255,255,255,0.18), transparent 60%),
+               linear-gradient(180deg, var(--sky-1), var(--sky-2));
+    --radius:14px;
+    --shadow: 0 20px 60px rgba(0,0,0,0.18);
+    --glass: rgba(255,255,255,0.12);
+    --maxw: 1200px;
+  }
+
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;background:var(--page-bg);color:#e6f2f7;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:20px 20px 80px}
+
+  /* HERO =========================================================== */
+  .hero{
+    position:relative;
+    min-height:72vh;
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:20px;
+    align-items:center;
+  }
+  @media (max-width:1060px){ .hero{grid-template-columns:1fr;min-height:68vh} }
+
+  .brand-row{display:flex;align-items:center;justify-content:space-between;gap:14px}
+  .logo{display:flex;gap:12px;align-items:center}
+  .badge{width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,var(--alsace),#991b1b);display:grid;place-items:center;color:#fff;font-weight:900;box-shadow:0 10px 30px rgba(200,30,54,.35)}
+  .badge span{filter:drop-shadow(0 4px 10px rgba(0,0,0,0.2))}
+  .title{font-size:44px;line-height:1.05;margin:10px 0 6px;font-weight:800;font-family:"Playfair Display",serif;letter-spacing:.2px}
+  .kicker{font-size:14px;color:#cfe5ee}
+  .sub{color:#c7d9e0;max-width:60ch;margin-top:10px}
+
+  .hero-card{
+    backdrop-filter: blur(10px);
+    background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.06));
+    border:1px solid rgba(255,255,255,0.18);
+    border-radius:16px;
+    padding:18px;
+    box-shadow: var(--shadow);
+  }
+
+  .chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+  .chip{padding:8px 12px;border-radius:999px;background:rgba(255,255,255,0.10);border:1px solid rgba(255,255,255,0.18);font-weight:700}
+  .cta{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap}
+  .btn{background:linear-gradient(135deg,var(--alsace),#ef4444);border:0;border-radius:12px;padding:12px 16px;color:#fff;font-weight:900;text-decoration:none;box-shadow:0 12px 26px rgba(200,30,54,.35);transform:translateZ(0)}
+  .btn:hover{filter:brightness(1.05)}
+  .btn.ghost{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);box-shadow:none}
+
+  .hero-art{
+    position:relative;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow: var(--shadow);
+    min-height:420px;
+    background: #000;
+  }
+  .hero-art img{
+    width:100%;height:100%;object-fit:cover;opacity:.88;transform:scale(1.02)
+  }
+  /* Dégradé + bruit fin sur l'image */
+  .hero-art:after{
+    content:"";
+    position:absolute;inset:0;
+    background:
+      linear-gradient(180deg, rgba(15,23,42,0) 0%, rgba(15,23,42,0.35) 45%, rgba(15,23,42,0.65) 100%),
+      radial-gradient(800px 300px at 70% 10%, rgba(6,182,212,.20), transparent 60%);
+    mix-blend: screen;
+    pointer-events:none;
+  }
+
+  /* Silhouette cathédrale + toits (parallax, calée en bas du hero) */
+  .skyline{
+    position:absolute;left:0;right:0;bottom:-1px;height:180px;pointer-events:none;
+  }
+  .layer{position:absolute;inset:auto 0 0 0;height:180px;opacity:.9}
+  .layer svg{width:100%;height:100%}
+  .layer--far path{fill:#0b1724}
+  .layer--mid path{fill:#112034}
+  .layer--near path{fill:#162a42}
+
+  /* NAV collante */
+  .toc{position:sticky;top:14px;z-index:30;margin:22px 0 10px}
+  .toc .inner{display:flex;gap:8px;flex-wrap:wrap}
+  .toc a{padding:8px 12px;border-radius:999px;background:rgba(255,255,255,0.10);border:1px solid rgba(255,255,255,0.18);text-decoration:none;color:#e8f4f9;font-weight:800}
+  .toc a:hover{background:rgba(255,255,255,0.18)}
+
+  /* LAYOUT ========================================================= */
+  .grid{display:grid;grid-template-columns:1fr 360px;gap:22px}
+  @media (max-width:1100px){ .grid{grid-template-columns:1fr} }
+
+  .card{
+    background:linear-gradient(180deg,rgba(255,255,255,0.10),rgba(255,255,255,0.06));
+    border:1px solid rgba(255,255,255,0.18);
+    border-radius:14px;
+    padding:16px;
+    box-shadow:0 10px 40px rgba(0,0,0,0.15);
+    color:#eaf6fb;
+  }
+  .section-title{margin:0 0 8px;font-size:20px;font-weight:900}
+  .section-sub{margin:0;color:#cfe5ee;font-size:14px}
+  .muted{color:#cfe5ee}
+  .small{font-size:13px;color:#b9d3dc}
+
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media (max-width:820px){ .two{grid-template-columns:1fr} }
+
+  .code{font-family:ui-monospace,Menlo,"Roboto Mono",monospace;background:rgba(6,182,212,0.12);padding:6px 8px;border-radius:8px;border:1px dashed rgba(255,255,255,0.25);display:inline-block}
+
+  /* Gallerie / Collage */
+  .collage{display:grid;grid-template-columns:2fr 1fr;gap:12px;margin-top:10px}
+  .collage .stack{display:grid;grid-template-rows:1fr 1fr;gap:12px}
+  .pic{position:relative;border-radius:14px;overflow:hidden;isolation:isolate}
+  .pic img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.03)}
+  .pic:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,23,42,0) 0, rgba(15,23,42,.5) 100%)}
+
+  /* Accordéon (accès) */
+  .accordion{border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.18)}
+  .accordion .item + .item{border-top:1px solid rgba(255,255,255,0.14)}
+  .accordion .head{display:flex;justify-content:space-between;align-items:center;padding:12px;background:rgba(255,255,255,0.06);cursor:pointer}
+  .accordion .body{display:none;padding:12px;background:rgba(255,255,255,0.02)}
+  .accordion .item.open .body{display:block}
+
+  /* Aside */
+  .quick{display:flex;flex-direction:column;gap:10px}
+  .quick a{display:block;padding:10px;border-radius:10px;text-decoration:none;background:rgba(255,255,255,0.10);border:1px solid rgba(255,255,255,0.18);color:#eaf6fb;font-weight:800;text-align:center}
+
+  /* Animations légères */
+  .appear{animation:ap .45s ease both}
+  @keyframes ap{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+  /* Bouton langues */
+  .lang{display:flex;gap:8px}
+  .pill{padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,0.18);background:rgba(255,255,255,0.10);color:#eaf6fb;cursor:pointer;font-weight:800}
+  .pill.active{background:linear-gradient(135deg,var(--glow),#60a5fa);color:#00131a;border-color:transparent;box-shadow:0 8px 22px rgba(6,182,212,0.22)}
+
+  /* Focus */
+  a:focus, button:focus {outline:3px solid rgba(6,182,212,0.35);outline-offset:3px}
+</style>
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- HERO ===================================================== -->
+    <header class="brand-row appear" role="banner">
+      <div class="logo">
+        <div class="badge"><span>WQ</span></div>
+        <div>
+          <div class="kicker">WelcomeQR — Démo Ville #1</div>
+          <h1 class="title">Studio Cathédrale — Strasbourg</h1>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:12px;align-items:center">
+        <div class="lang" role="tablist" aria-label="Langues">
+          <button id="btnFR" class="pill active" onclick="setLang('fr')">FR</button>
+          <button id="btnEN" class="pill" onclick="setLang('en')">EN</button>
+        </div>
+        <a class="pill" href="mailto:host@example.com?subject=Message%20–%20Studio%20Cath%C3%A9drale" title="Contacter le propriétaire">Contact</a>
+      </div>
+    </header>
+
+    <section class="hero appear" aria-labelledby="hero-title">
+      <div class="hero-card" style="align-self:stretch">
+        <div id="hero-kicker" class="kicker" data-fr="Appartement — parfait pour 1–2 personnes, cœur historique" data-en="Apartment — ideal for 1–2 guests, old town">
+          Appartement — parfait pour 1–2 personnes, cœur historique
+        </div>
+        <h2 id="hero-title" class="title" style="font-size:34px;margin:8px 0 6px">Face Cathédrale — Calme sur cour</h2>
+        <p class="sub" data-fr="Lumineux, kitchenette équipée, literie neuve. Découvre Strasbourg à pied : Petite France, Barrage Vauban, tram & commerces à 3–8 min." data-en="Bright studio, equipped kitchenette, new bedding. Explore Strasbourg on foot: Petite France, Vauban Barrage, tram & shops 3–8 min."></p>
+
+        <div class="chips">
+          <div class="chip" data-fr="2 pers" data-en="2 guests">2 pers</div>
+          <div class="chip" data-fr="Check-in autonome" data-en="Self check-in">Check-in autonome</div>
+          <div class="chip" data-fr="Wi-Fi haut débit" data-en="Fast Wi-Fi">Wi-Fi haut débit</div>
+          <div class="chip" data-fr="Ascenseur" data-en="Elevator">Ascenseur</div>
+        </div>
+
+        <div class="cta">
+          <a class="btn" href="#s-arrival" data-fr="Checklist arrivée" data-en="Arrival checklist">Checklist arrivée</a>
+          <a class="btn ghost" href="#s-tips" data-fr="Voir bons plans" data-en="See top picks">Voir bons plans</a>
+        </div>
+
+        <div style="margin-top:14px">
+          <div style="font-weight:800">Adresse (exemple)</div>
+          <div class="small">4 rue des Orfèvres — 67000 Strasbourg</div>
+          <div class="small" style="margin-top:6px"><strong>Tram</strong> : Ligne A — arrêt <em>Langstross Grand’Rue</em> (5 min).</div>
+        </div>
+      </div>
+
+      <aside class="hero-art" aria-label="Photo Strasbourg — Cathédrale">
+        <img src="https://source.unsplash.com/1600x1000/?strasbourg,cathedral" alt="Cathédrale de Strasbourg au crépuscule">
+        <!-- Silhouette couches -->
+        <div class="skyline" aria-hidden="true">
+          <!-- Lointain -->
+          <div class="layer layer--far" data-depth="0.15">
+            <svg viewBox="0 0 1200 180" preserveAspectRatio="none">
+              <path d="M0,140 L120,138 L160,120 L220,126 L300,116 L360,130 L410,110 L470,122 L520,114 L600,126 L660,118 L720,132 L780,120 L860,128 L920,112 L980,126 L1040,118 L1120,130 L1200,126 L1200,180 L0,180 Z"/>
+            </svg>
+          </div>
+          <!-- Milieu (toits) -->
+          <div class="layer layer--mid" data-depth="0.30">
+            <svg viewBox="0 0 1200 180" preserveAspectRatio="none">
+              <path d="M0,150 L60,140 L90,115 L120,140 L170,140 L210,120 L240,140 L300,140 L340,120 L370,140 L420,140 L460,118 L520,142 L560,118 L620,142 L660,120 L700,142 L760,140 L820,118 L880,142 L930,120 L980,140 L1040,120 L1100,140 L1160,130 L1200,140 L1200,180 L0,180 Z"/>
+            </svg>
+          </div>
+          <!-- Proche (cathédrale stylisée + maisons) -->
+          <div class="layer layer--near" data-depth="0.55">
+            <svg viewBox="0 0 1200 180" preserveAspectRatio="none">
+              <!-- flèche cathédrale -->
+              <path d="M620,35 L630,0 L640,35 L640,140 L620,140 Z"/>
+              <!-- nef -->
+              <path d="M580,140 L580,90 L680,90 L680,140 Z"/>
+              <!-- maisons colombages (triangles+rectangles) -->
+              <path d="M140,140 L140,110 L110,110 L125,95 L140,110 L170,110 L170,140 Z"/>
+              <path d="M260,140 L260,112 L230,112 L245,96 L260,112 L290,112 L290,140 Z"/>
+              <path d="M420,140 L420,114 L392,114 L406,98 L420,114 L448,114 L448,140 Z"/>
+              <path d="M820,140 L820,112 L792,112 L806,96 L820,112 L848,112 L848,140 Z"/>
+              <path d="M980,140 L980,114 L952,114 L966,98 L980,114 L1008,114 L1008,140 Z"/>
+              <!-- sol -->
+              <path d="M0,140 L1200,140 L1200,180 L0,180 Z"/>
+            </svg>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- NAV LOCALE ================================================ -->
+    <nav class="toc appear" aria-label="Sections">
+      <div class="inner">
+        <a href="#s-welcome">Accueil</a>
+        <a href="#s-arrival">Arrivée</a>
+        <a href="#s-wifi">Wi-Fi</a>
+        <a href="#s-access">Accès</a>
+        <a href="#s-where">Essentiels</a>
+        <a href="#s-appliances">Appareils</a>
+        <a href="#s-rules">Règlement</a>
+        <a href="#s-checkout">Check-out</a>
+        <a href="#s-gallery">Galerie</a>
+        <a href="#s-tips">Bons plans</a>
+        <a href="#s-emergency">Urgences</a>
+      </div>
+    </nav>
+
+    <!-- CORPS ===================================================== -->
+    <div class="grid">
+
+      <main class="content">
+        <!-- Welcome -->
+        <section id="s-welcome" class="card appear">
+          <h3 class="section-title" data-fr="Bienvenue" data-en="Welcome">Bienvenue</h3>
+          <p class="section-sub" data-fr="Page pratique pour un séjour sans friction : arrivée, codes, où trouver les essentiels, appareils, règles, check-out et top picks." data-en="Practical page for a frictionless stay: arrival, codes, where to find essentials, appliances, rules, check-out and top picks."></p>
+          <div class="two" style="margin-top:8px">
+            <div>
+              <div class="small" data-fr="Astuce : à l’arrivée, ouvrez les fenêtres 3–5 min pour aérer avant d’allumer le chauffage." data-en="Tip: on arrival, open windows 3–5 min before turning heating on."></div>
+            </div>
+            <div>
+              <div class="small" data-fr="Recommandé : lisez la checklist ‘Arrivée’ avant le trajet pour un check-in serein." data-en="Recommended: read the ‘Arrival’ checklist before traveling for a smooth check-in."></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Arrival -->
+        <section id="s-arrival" class="card appear">
+          <h3 class="section-title" data-fr="Checklist d’arrivée" data-en="Arrival checklist">Checklist d’arrivée</h3>
+          <p class="section-sub" data-fr="Étapes simples pour entrer et vous installer rapidement." data-en="Simple steps to get in and settle quickly."></p>
+          <ol style="margin:10px 0 0;padding-left:18px">
+            <li class="small" data-fr="Code d'entrée : <strong>2580</strong> sur le clavier puis valider." data-en="Door code: <strong>2580</strong> on keypad then confirm."></li>
+            <li class="small" data-fr="Porte d’entrée : clé dans la boîte aimantée (sous le paillasson)." data-en="Entrance: key in magnetic box (under the doormat)."></li>
+            <li class="small" data-fr="Ascenseur jusqu’au 3e, 2e porte à gauche." data-en="Elevator to 3rd, 2nd door on left."></li>
+            <li class="small" data-fr="Allumez le chauffage si nécessaire (voir ‘Appareils’)." data-en="Turn heating on if needed (see ‘Appliances’)."></li>
+          </ol>
+        </section>
+
+        <!-- Wi-Fi -->
+        <section id="s-wifi" class="card appear">
+          <h3 class="section-title">Wi-Fi</h3>
+          <p class="section-sub" data-fr="Connexion invité — SSID & mot de passe clairement affichés." data-en="Guest connection — clear SSID & password."></p>
+          <div class="two" style="margin-top:8px">
+            <div><strong>SSID</strong> : <span class="code">WelcomeQR-Guest</span></div>
+            <div><strong data-fr="Mot de passe" data-en="Password">Mot de passe</strong> : <span class="code">Stras2025!</span></div>
+          </div>
+          <div class="small" style="margin-top:6px" data-fr="Conseil : changez le mot de passe si besoin entre deux séjours." data-en="Tip: rotate password between stays if needed."></div>
+        </section>
+
+        <!-- Access -->
+        <section id="s-access" class="card appear">
+          <h3 class="section-title" data-fr="Accès — Détails" data-en="Access — Details">Accès — Détails</h3>
+          <div class="two">
+            <div>
+              <p><strong data-fr="Interphone" data-en="Intercom">Interphone</strong> : <span data-fr="Appeler Appartement 3B" data-en="Call Apartment 3B">Appeler Appartement 3B</span></p>
+              <p class="small" data-fr="Ascenseur : 3e étage, 2e porte à gauche." data-en="Elevator: 3rd floor, 2nd door on left."></p>
+            </div>
+            <div>
+              <div class="accordion" id="acc-access">
+                <div class="item open">
+                  <div class="head" onclick="toggleAcc(this)" tabindex="0"><span data-fr="Si vous êtes bloqué" data-en="If locked out">Si vous êtes bloqué</span><span>▾</span></div>
+                  <div class="body small" data-fr="Contactez le propriétaire (bouton e-mail en haut) — indiquez l’heure d’arrivée et le n° de réservation." data-en="Contact host (email button above) — share arrival time and booking number."></div>
+                </div>
+                <div class="item">
+                  <div class="head" onclick="toggleAcc(this)" tabindex="0"><span data-fr="Boîte à clés" data-en="Key box">Boîte à clés</span><span>▾</span></div>
+                  <div class="body small" data-fr="Boîte aimantée sous le paillasson (code sur cette page)." data-en="Magnetic box under the doormat (code on this page)."></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Where -->
+        <section id="s-where" class="card appear">
+          <h3 class="section-title" data-fr="Où trouver — essentiels" data-en="Where to find — essentials">Où trouver — essentiels</h3>
+          <p class="section-sub" data-fr="Liste précise d’objets utiles." data-en="Precise list of useful items."></p>
+          <div class="two">
+            <div>
+              <ul style="margin:0;padding-left:18px">
+                <li class="small" data-fr="Aspirateur : placard entrée (poignée rouge)." data-en="Vacuum: entry closet (red handle)."></li>
+                <li class="small" data-fr="Fer & planche : tiroir cuisine (gauche)." data-en="Iron & board: kitchen drawer (left)."></li>
+                <li class="small" data-fr="Trousse de secours : armoire salle de bain — étagère milieu." data-en="First-aid kit: bathroom cabinet — middle shelf."></li>
+                <li class="small" data-fr="Sacs poubelle : buanderie, étagère basse." data-en="Trash bags: laundry, bottom shelf."></li>
+                <li class="small" data-fr="Chargeurs / adaptateurs : boîte ‘Tech’ sur la table basse." data-en="Chargers/adapters: ‘Tech’ box on coffee table."></li>
+              </ul>
+            </div>
+            <div>
+              <div class="small" data-fr="Astuce : ajoutez des étiquettes physiques (ex : boîte à clés, aspirateur) pour guider vite." data-en="Tip: add physical labels (e.g., key box, vacuum) to guide quickly."></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Appliances -->
+        <section id="s-appliances" class="card appear">
+          <h3 class="section-title" data-fr="Appareils — mode d’emploi" data-en="Appliances — how to use">Appareils — mode d’emploi</h3>
+          <p class="section-sub" data-fr="Instructions courtes et pratiques, sans jargon." data-en="Short, practical instructions — no jargon."></p>
+          <div class="two">
+            <div>
+              <strong data-fr="Thermostat" data-en="Thermostat">Thermostat</strong>
+              <p class="small" data-fr="MODE puis +/−. Pour chauffer vite : +2°C, attendre 15–20 min." data-en="MODE then +/−. Quick warm: +2°C, wait 15–20 min."></p>
+
+              <strong data-fr="Machine à laver" data-en="Washing machine">Machine à laver</strong>
+              <p class="small" data-fr="Programme Eco 40°. Lessive tiroir A. Ne pas surcharger." data-en="Eco 40°. Detergent in drawer A. Do not overload."></p>
+            </div>
+
+            <div>
+              <strong data-fr="Four" data-en="Oven">Four</strong>
+              <p class="small" data-fr="180°C, préchauffage ~5 min. Utiliser gants." data-en="180°C, preheat ~5 min. Use gloves."></p>
+
+              <strong data-fr="Plaques" data-en="Hob">Plaques</strong>
+              <p class="small" data-fr="Maintenir 3s pour déverrouiller puis +/−." data-en="Hold 3s to unlock, then +/−."></p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Rules -->
+        <section id="s-rules" class="card appear">
+          <h3 class="section-title" data-fr="Règlement intérieur (résumé)" data-en="House rules (summary)">Règlement intérieur (résumé)</h3>
+          <div class="two">
+            <div>
+              <ul style="margin:0;padding-left:18px">
+                <li class="small" data-fr="Silence après 22:00 — respect du voisinage." data-en="Quiet after 10pm — respect neighbours."></li>
+                <li class="small" data-fr="Interdit de fumer à l’intérieur." data-en="No smoking indoors."></li>
+                <li class="small" data-fr="Animaux : sur demande et accord préalable." data-en="Pets: on request with prior approval."></li>
+                <li class="small" data-fr="Tri : bio (brun) / recyclables (jaune) / ordures (noir)." data-en="Sorting: bio (brown) / recyclables (yellow) / general (black)."></li>
+              </ul>
+            </div>
+            <div>
+              <div class="small" data-fr="Astuce : résumé en haut + version longue en bas pour les curieux." data-en="Tip: short summary on top + long version at bottom for detail lovers."></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Check-out -->
+        <section id="s-checkout" class="card appear">
+          <h3 class="section-title" data-fr="Check-out — rapide" data-en="Check-out — quick">Check-out — rapide</h3>
+          <ol style="margin:0;padding-left:18px">
+            <li class="small" data-fr="Éteindre lumières et baisser chauffage." data-en="Switch off lights and lower heating."></li>
+            <li class="small" data-fr="Vider petite poubelle cuisine." data-en="Empty small kitchen bin."></li>
+            <li class="small" data-fr="Remettre les clés dans la boîte aimantée." data-en="Return keys to magnetic box."></li>
+            <li class="small" data-fr="Fermer les fenêtres." data-en="Close windows."></li>
+          </ol>
+        </section>
+
+        <!-- Galerie / Collage -->
+        <section id="s-gallery" class="card appear">
+          <h3 class="section-title" data-fr="Galerie" data-en="Gallery">Galerie</h3>
+          <p class="section-sub" data-fr="Aperçu de l’appartement et du quartier." data-en="A glimpse of the flat and the neighbourhood."></p>
+
+          <div class="collage" style="margin-top:10px">
+            <figure class="pic">
+              <img src="https://source.unsplash.com/1200x800/?apartment,interior,modern" alt="Intérieur studio moderne">
+            </figure>
+            <div class="stack">
+              <figure class="pic"><img src="https://source.unsplash.com/800x600/?strasbourg,petite-france" alt="Quartier Petite France"></figure>
+              <figure class="pic"><img src="https://source.unsplash.com/800x600/?strasbourg,river,bridge" alt="Ponts et Ill à Strasbourg"></figure>
+            </div>
+          </div>
+        </section>
+
+        <!-- Top picks Strasbourg -->
+        <section id="s-tips" class="card appear">
+          <h3 class="section-title" data-fr="Bons plans & incontournables" data-en="Top picks & must-sees">Bons plans & incontournables</h3>
+          <p class="section-sub" data-fr="Sélection testée : cafés, restaurants, vues, marchés, activités & transports." data-en="Host-tested picks: cafés, restaurants, viewpoints, markets, activities & transport."></p>
+
+          <div class="two" style="grid-template-columns:1fr 1fr;gap:12px">
+            <article class="card">
+              <h4 style="margin:0 0 6px">Café Bretelles — Espresso & brunch</h4>
+              <div class="small">3 min à pied — local, cosy, espresso serré.</div>
+            </article>
+            <article class="card">
+              <h4 style="margin:0 0 6px">La Petite France — Promenade</h4>
+              <div class="small">10–12 min — maisons à colombages, canaux, photos top.</div>
+            </article>
+            <article class="card">
+              <h4 style="margin:0 0 6px">Barrage Vauban — Vue</h4>
+              <div class="small">15 min — coucher de soleil remarquable sur la ville.</div>
+            </article>
+            <article class="card">
+              <h4 style="margin:0 0 6px">Cathédrale — Tour</h4>
+              <div class="small">Montez au panorama (selon saison) — cardio + vue 360°.</div>
+            </article>
+            <article class="card">
+              <h4 style="margin:0 0 6px">Marché de Noël (saisonnier)</h4>
+              <div class="small">Fin nov–déc — ambiance unique, pensez affluence.</div>
+            </article>
+            <article class="card">
+              <h4 style="margin:0 0 6px">Parking Austerlitz</h4>
+              <div class="small">7 min en voiture — sécurisé, proche centre.</div>
+            </article>
+          </div>
+        </section>
+
+        <!-- Emergency -->
+        <section id="s-emergency" class="card appear">
+          <h3 class="section-title" data-fr="Urgences & contacts" data-en="Emergencies & contacts">Urgences & contacts</h3>
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>112</strong> — pompiers / police / SAMU</li>
+            <li class="small" data-fr="Pharmacie de garde : voir signalétique locale ou Google Maps." data-en="On-call pharmacy: see local signage or Google Maps."></li>
+            <li class="small"><span data-fr="Contact propriétaire" data-en="Host contact">Contact propriétaire</span> : host@example.com</li>
+          </ul>
+        </section>
+      </main>
+
+      <!-- ASIDE ==================================================== -->
+      <aside class="appear" aria-label="Récapitulatif">
+        <div class="card">
+          <div style="font-weight:900">Résumé rapide</div>
+          <ul class="small" style="margin:8px 0 0;padding-left:18px">
+            <li>Adresse & transport</li>
+            <li>Codes & checklists</li>
+            <li>Essentiels localisés</li>
+            <li>Appareils simplifiés</li>
+            <li>Bons plans testés</li>
+          </ul>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <div style="font-weight:900">Infos pratiques</div>
+          <div class="small" style="margin-top:8px">
+            Capacité : 2 personnes • Check-in autonome • Wi-Fi inclus
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <div style="font-weight:900">Liens rapides</div>
+          <div class="quick" style="margin-top:10px">
+            <a href="#s-arrival">Checklist arrivée</a>
+            <a href="#s-wifi">Wi-Fi</a>
+            <a href="#s-tips">Bons plans</a>
+            <a href="mailto:host@example.com">Contacter</a>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <div style="font-weight:900">Personnalisation</div>
+          <div class="small" style="margin-top:8px">
+            Couleurs, silhouette & ordre des sections adaptables par ville.
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <footer class="appear" style="margin-top:26px;text-align:center;color:#cfe5ee;font-size:13px">
+      Démo Strasbourg par WelcomeQR — structure & texte modifiables. Photos : Unsplash (démo).
+    </footer>
+  </div>
+
+<script>
+  // Parallax simple souris (skyline)
+  (function(){
+    const layers = document.querySelectorAll('.layer');
+    window.addEventListener('mousemove', (e)=>{
+      const r = document.body.getBoundingClientRect();
+      const cx = (e.clientX - r.width/2) / r.width;
+      layers.forEach(el=>{
+        const d = parseFloat(el.getAttribute('data-depth')||0);
+        el.style.transform = `translate3d(${cx * d * 40}px,0,0)`;
+      });
+    }, {passive:true});
+  })();
+
+  // Bilingue
+  function setLang(lang){
+    document.querySelectorAll('[data-fr]').forEach(el=>{
+      el.innerHTML = (lang === 'fr') ? el.getAttribute('data-fr') : el.getAttribute('data-en');
+    });
+    document.getElementById('btnFR').classList.toggle('active', lang==='fr');
+    document.getElementById('btnEN').classList.toggle('active', lang==='en');
+    document.documentElement.lang = (lang==='fr'?'fr':'en');
+  }
+  setLang('fr');
+
+  // Smooth scroll interne
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click', function(e){
+      const id = this.getAttribute('href').slice(1);
+      const el = document.getElementById(id);
+      if(!el) return;
+      e.preventDefault();
+      const top = el.getBoundingClientRect().top + window.scrollY - 14;
+      window.scrollTo({top,behavior:'smooth'});
+    });
+  });
+
+  // Accordéon accessibilité
+  function toggleAcc(head){
+    const item = head.parentElement;
+    item.classList.toggle('open');
+  }
+  document.addEventListener('keydown', (e)=>{
+    if((e.key === 'Enter' || e.key === ' ') && document.activeElement && document.activeElement.classList.contains('head')){
+      e.preventDefault(); toggleAcc(document.activeElement);
+    }
+  });
+</script>
+</body>
+</html>
