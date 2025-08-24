@@ -6,6 +6,8 @@
 <title>Démo — Studio Cosy, Centre Historique — WelcomeQR (exemple)</title>
 <meta name="description" content="Page démo exhaustive — exemple d'une page voyageurs : arrivée, Wi-Fi, accès, emplacement des essentiels, appareils, checklist, incontournables Strasbourg (avec images), bons plans (FR/EN)." />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 <style>
   :root{
     --page-bg: #f5fbff;
@@ -38,45 +40,218 @@
   .pill{padding:8px 12px;border-radius:999px;border:1px solid rgba(6,32,42,0.06);background:#fff;color:var(--ink);cursor:pointer;font-weight:600}
   .pill.active{background:var(--accent);color:#fff;border-color:transparent;box-shadow:0 8px 22px rgba(29,155,240,0.12)}
 
-  /* sticky section nav (mobile collapsible) */
-  .toc{position:sticky;top:18px;z-index:30;background:transparent;padding:8px 0}
-  .toc.hide{transform:translateY(-100%)}
-  .toc-inner{display:flex;gap:8px;flex-wrap:wrap}
-  .toc a{padding:8px 10px;border-radius:999px;background:#fff;border:1px solid rgba(6,32,42,0.04);text-decoration:none;color:var(--ink);font-weight:700}
 
+
+.top-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,.05);
+  padding: 10px 20px;
+}
+.top-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.top-inner .brand {
+  font-weight: 800;
+  font-size: 18px;
+}
+.top-inner .links {
+  display: flex;
+  gap: 16px;
+}
+.top-inner .links a {
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* Bottom nav (mobile) */
+.bottom-nav {
+  display: none;
+}
 @media(max-width:768px){
-.toc{display:none}
+  .top-nav { display:none; }
+  .bottom-nav {
+    display:flex;
+    position:fixed;
+    bottom:0; left:0; right:0;
+    background:#fff;
+    border-top:1px solid rgba(0,0,0,0.1);
+    z-index:900;
+    justify-content:space-around;
+    padding:6px 0;
+  }
+  .bottom-nav a {
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: 600;
+  }
+  .bottom-nav span {
+    font-size: 11px;
+    margin-top: 2px;
+    color: var(--muted);
+  }
 }
-.bottom-nav{display:none}
-@media(max-width:768px){
-.bottom-nav{display:flex;position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid rgba(0,0,0,0.1);z-index:900;justify-content:space-around;padding:8px 0}
-.bottom-nav a{color:var(--ink);text-decoration:none;font-size:22px;display:flex;flex-direction:column;align-items:center;font-weight:600}
-.bottom-nav span{font-size:11px;margin-top:2px;color:var(--muted)}
+
+/* HERO */
+/* ===== HERO (image HTML + carte) ===== */
+.hero{position:relative;overflow:hidden;margin:0 0 16px}
+.hero-media{display:block;height:420px}
+.hero-img{
+  width:100%;height:100%;display:block;
+  object-fit:cover;
+  /* Desktop par défaut */
+  object-position:bottom 22%;
+}
+.hero-overlay{
+  position:absolute;inset:0;
+  /* dégradé pour lisibilité à gauche (desktop), plus light au centre */
+  background:linear-gradient(90deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.35) 35%, rgba(0,0,0,.10) 60%, transparent 85%);
+  pointer-events:none;
+}
+
+/* Carte de texte */
+.hero-card{
+  position:absolute; /* desktop: overlay */
+  left:40px; bottom:40px; right:auto; top:auto;
+  max-width:500px;
+  color:#fff;
+  background:rgba(20,28,36,0.18);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,0.28);
+  border-radius:18px;
+  padding:18px 18px 16px;
+  box-shadow:0 18px 50px rgba(9,18,26,0.22);
+}
+
+.hero-kicker{font-size:14px;color:#484848;margin-bottom:6px}
+.hero-title{margin:0 0 10px;font-size:24px;line-height:1.2;font-weight:800;color:#fff}
+.hero-sub{margin:0 0 14px;font-size:16px;color:#e6f2ff;max-width:70ch}
+.hero-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.chip{background:rgba(255,255,255,.16);padding:6px 12px;border-radius:999px;font-weight:700;font-size:13px}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn{background:var(--accent);color:#fff;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:800}
+.btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.5)}
+
+/* ===== Mobile-first adaptations ===== */
+@media (max-width: 768px){
+  .hero-media{height:360px}
+  .hero-img{object-position:center 30%} /* remonte le cadrage sur mobile */
+  .hero-overlay{
+    /* Dégradé vertical + un peu de sombre en bas pour la carte mobile */
+    background:linear-gradient(180deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.25) 45%, rgba(0,0,0,.10) 70%, transparent 100%);
+  }
+
+  /* Sur mobile, la carte devient un bloc blanc sous l'image = lisibilité max */
+  .hero-card{
+    position:relative; left:auto; right:auto; top:auto; bottom:auto;
+    margin:-28px 14px 8px; /* chevauchement élégant */
+    background:#fff; color:var(--ink);
+    border:1px solid rgba(6,32,42,0.08);
+    box-shadow:0 10px 30px rgba(0,0,0,0.12);
+    border-radius:16px; padding:16px;
+  }
+  .hero-title{font-size:22px;color:var(--ink)}
+  .hero-sub{font-size:14px;color:var(--muted)}
+  .chip{background:rgba(6,32,42,0.06);color:var(--ink)}
+  .btn.ghost{border:1px solid rgba(0,0,0,0.15);color:var(--ink)}
+  .hero-actions{justify-content:center}
+}
+
+/* ===== Large screens : image un peu plus haute ===== */
+@media (min-width: 1100px) {
+  .hero-card {
+    left: auto;
+    right: 40px;   /* passe la carte à droite */
+    bottom: 40px;
+  }
 }
 
 
-  /* hero as banner with background image */
-.hero{margin-top:56px;border-radius:18px;overflow:hidden;position:relative;box-shadow:var(--shadow)}
-.hero::before {
-  content:"";
-  position:absolute;
-  inset:0;
-  background: url('image/strasbourg.jpg') center/cover no-repeat;
-  background-position: center top; /* ajuste horizontal/vertical selon besoin */
-  filter: saturate(1.05);
+
+/* Dropdown "Plus" */
+.dropdown {
+  position: relative;
+}
+.dropbtn {
+  background: transparent;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 6px 10px;
+  font-size: 15px;
+  color: var(--ink);
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  min-width: 180px;
+  z-index: 1000;
+}
+.dropdown-content a {
+  display: block;
+  padding: 10px 14px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 500;
+}
+.dropdown-content a:hover {
+  background: rgba(0,0,0,0.04);
+}
+.dropdown:hover .dropdown-content {
+  display: block;
 }
 
-.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,.45), rgba(0,0,0,.25))}
-.hero-inner{position:relative;z-index:1;display:flex;gap:18px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;padding:26px}
-.hero-left{max-width:68%;color:#fff}
-.hero-title{font-size:28px;margin:0;font-weight:800;color:#fff}
-.hero-sub{margin-top:8px;color:#e6f2ff;max-width:70ch}
-.hero-meta{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
-.chip{background:rgba(255,255,255,.14);backdrop-filter:blur(4px);padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,0.25);font-weight:700;color:#fff}
-.hero-actions{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap}
-.btn{background:var(--accent);color:#fff;padding:10px 14px;border-radius:10px;border:0;text-decoration:none;font-weight:800}
-.btn.ghost{background:#fff;border:1px solid rgba(6,32,42,0.06);color:var(--ink)}
-.hero-aside{background:rgba(255,255,255,.85);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.6);border-radius:12px;padding:12px;min-width:260px;box-shadow:0 10px 30px rgba(4,10,20,0.08)}
+/* Cacher top-nav sur tablettes -> hamburger */
+@media (max-width: 1100px) {
+  .top-nav { display: none; }
+}
+
+
+.welcome-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px,1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.welcome-item strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 15px;
+}
+.welcome-item p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.welcome-item .icon {
+  font-size: 26px;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+
+
+
+
 
   /* layout */
   .demo-body{margin-top:var(--gap);display:grid;grid-template-columns:1fr 340px;gap:22px}
@@ -156,14 +331,7 @@
   <div class="wrap">
     <!-- Header -->
     <header class="appear" role="banner">
-      <div class="brand">
-        <div class="logo" aria-hidden>WQ</div>
-        <!-- bouton (dans header) -->
-
-        <div>
-          <h1>Studio Cosy — Centre historique (démo)</h1>
-        </div>
-      </div>
+      
 
       <div style="display:flex;gap:12px;align-items:center">
         <div class="lang" role="tablist" aria-label="Langues">
@@ -175,110 +343,107 @@
       </div>
     </header>
 
-    <!-- TOC -->
-    <div class="toc appear" aria-hidden="false">
-      <div class="toc-inner">
-        <a href="#s-welcome">Accueil</a>
-        <a href="#s-arrival">Arrivée</a>
-        <a href="#s-wifi">Wi-Fi</a>
-        <a href="#s-access">Accès</a>
-        <a href="#s-where">Où</a>
-        <a href="#s-highlights">Incontournables</a>
-        <a href="#s-appliances">Appareils</a>
-        <a href="#s-rules">Règlement</a>
-        <a href="#s-checkout">Check-out</a>
-        <a href="#s-tips">Bons plans</a>
-        <a href="#s-emergency">Urgences</a>
+
+<!-- HERO optimisé -->
+  <!-- image de fond -->
+<!-- ===== HERO ÉPIC (avec drag-to-focus admin tool) ===== -->
+
+
+<!-- Navigation Desktop -->
+<!-- Navigation Desktop avec "Plus" -->
+<nav class="top-nav">
+  <div class="top-inner">
+    <div class="brand">🏠 Studio Cosy</div>
+    <div class="links">
+      <a href="#s-welcome">Accueil</a>
+      <a href="#s-arrival">Arrivée</a>
+      <a href="#s-wifi">Wi-Fi</a>
+      <a href="#s-highlights">Incontournables</a>
+      <a href="#s-tips">Bons plans</a>
+
+      <!-- menu déroulant -->
+      <div class="dropdown">
+        <button class="dropbtn">… Plus</button>
+        <div class="dropdown-content">
+          <a href="#s-access">Accès</a>
+          <a href="#s-where">Où</a>
+          <a href="#s-appliances">Appareils</a>
+          <a href="#s-rules">Règlement</a>
+          <a href="#s-checkout">Check-out</a>
+          <a href="#s-emergency">Urgences</a>
+        </div>
       </div>
     </div>
+  </div>
+</nav>
 
-    <!-- Hero (banner cathedral) -->
-    <!-- HERO : version optimisée pour conversion (FR/EN) -->
-<section class="hero appear" aria-labelledby="hero-title">
-  <div class="hero-inner">
-    <div class="hero-left">
-      <div id="hero-kicker" class="kicker"
-           data-fr="Studio design — idéal pour 1–2 personnes"
-           data-en="Stylish studio — ideal for 1–2 guests">
-        Studio design — idéal pour 1–2 personnes
-      </div>
 
-      <h2 id="hero-title" class="hero-title"
-          data-fr="Studio Cosy — calme, rénové & central (face à la Cathédrale)"
-          data-en="Studio Cosy — quiet, renovated & central (near the Cathedral)">
-        Studio Cosy — calme, rénové & central (face à la Cathédrale)
-      </h2>
+<!-- HERO -->
+<!-- HERO (mobile-first, image dans le HTML) -->
+<section class="hero appear" id="hero" aria-labelledby="hero-title">
+  <!-- Image Hero -->
+  <picture class="hero-media">
+    <!-- (optionnels si tu ajoutes plus tard des formats optimisés) 
+    <source srcset="image/strasbourg.cathedrale.avif" type="image/avif">
+    <source srcset="image/strasbourg.cathedrale.webp" type="image/webp">
+    -->
+    <img
+      src="image/strasbourg.jpg"
+      alt="Cathédrale de Strasbourg depuis le centre historique"
+      class="hero-img"
+      width="1600" height="900"
+      fetchpriority="high"
+      decoding="sync"
+    >
+  </picture>
 
-      <p class="hero-sub"
-         data-fr="Studio lumineux, kitchenette équipée, literie premium. Check-in autonome 24h, Wi-Fi illimité et guide local personnalisé — tout est prêt pour un séjour sans stress."
-         data-en="Bright studio, equipped kitchenette, premium bedding. 24h self check-in, unlimited Wi-Fi and a custom local guide — everything ready for a stress-free stay.">
-        Studio lumineux, kitchenette équipée, literie premium. Check-in autonome 24h, Wi-Fi illimité et guide local personnalisé — tout est prêt pour un séjour sans stress.
-      </p>
+  <!-- Overlay dégradé (assure la lisibilité du texte sur l'image) -->
+  <div class="hero-overlay" aria-hidden="true"></div>
 
-      <div class="hero-meta" aria-hidden="false">
-        <div class="chip" data-fr="2 pers" data-en="2 guests">2 pers</div>
-
-        <div class="chip" data-fr="Check-in 24h" data-en="24h self check-in">Check-in 24h</div>
-
-        <div class="chip" data-fr="Wi-Fi illimité" data-en="Unlimited Wi-Fi">Wi-Fi illimité</div>
-
-        <div class="chip" data-fr="★ 4.9 (120 avis)" data-en="★ 4.9 (120 reviews)">★ 4.9 (120 avis)</div>
-
-        <div class="chip" data-fr="Nettoyage pro" data-en="Pro cleaning">Nettoyage pro</div>
-      </div>
-
-      <div class="hero-actions">
-        <a class="btn" href="#s-arrival"
-           data-fr="Checklist arrivée" data-en="Arrival checklist">Checklist arrivée</a>
-
-        <a class="btn ghost" href="#s-highlights"
-           data-fr="Voir incontournables" data-en="See highlights">Voir incontournables</a>
-
-        <!-- bouton secondaire discret : contact rapide -->
-        <a class="btn" href="mailto:host@example.com?subject=Question%20–%20Studio%20Cosy"
-           style="background:transparent;border:1px solid rgba(255,255,255,0.18);color:#fff;padding:8px 12px;border-radius:10px;font-weight:700;"
-           data-fr="Contacter le propriétaire" data-en="Contact host">Contacter le propriétaire</a>
-      </div>
+  <!-- Carte de contenu -->
+  <div class="hero-card">
+    <div id="hero-kicker" class="hero-kicker"
+         data-fr="Studio design — idéal pour 1–2 personnes"
+         data-en="Stylish studio — ideal for 1–2 guests">
+      Studio design — idéal pour 1–2 personnes
     </div>
 
-    <aside class="hero-aside" aria-label="Infos rapides">
-      <div style="font-weight:800" data-fr="Adresse" data-en="Address">Adresse</div>
-      <div class="small" style="margin-top:8px">12 rue du Vieux-Pont — 67000 Strasbourg</div>
+    <h1 id="hero-title" class="hero-title"
+        data-fr="Studio Cosy — calme & central "
+        data-en="Cosy Studio — quiet & central ">
+      Studio Cosy — calme & central 
+    </h1>
 
-      <div style="margin-top:12px" class="small">
-        <strong data-fr="Accès" data-en="Access">Accès</strong> :
-        <span data-fr="Tram F — arrêt Langstross/Grand'Rue (5 min)" data-en="Tram F — Langstross/Grand'Rue stop (5 min)">
-          Tram F — arrêt Langstross/Grand'Rue (5 min)
-        </span>
-      </div>
+    <p class="hero-sub"
+       data-fr="Studio lumineux, kitchenette équipée, literie premium, Wi-Fi illimité et guide local — séjour sans stress."
+       data-en="Bright studio, equipped kitchenette, premium bedding, unlimited Wi-Fi and a local guide — stress-free stay.">
+      Studio lumineux, kitchenette équipée, literie premium, Wi-Fi illimité et guide local — séjour sans stress.
+    </p>
 
-      <div style="margin-top:10px" class="small">
-        <strong data-fr="Check-in" data-en="Check-in">Check-in</strong> :
-        <span data-fr="Autonome, code envoyé 24h avant l'arrivée" data-en="Self check-in, code sent 24h before arrival">
-          Autonome, code envoyé 24h avant l'arrivée
-        </span>
-      </div>
+    <div class="hero-meta" aria-hidden="false">
+      <span class="chip" data-fr="2 pers" data-en="2 guests">2 pers</span>
+      <span class="chip" data-fr="Nettoyage pro" data-en="Pro cleaning">Nettoyage Pro</span>
+      <span class="chip" data-fr="Wi-Fi illimité" data-en="Unlimited Wi-Fi">Wi-Fi illimité</span>
+      <span class="chip" data-fr="★ 4.9 (120 avis)" data-en="★ 4.9 (120 reviews)">★ 4.9 (120 avis)</span>
+    </div>
 
-      <div style="margin-top:10px" class="small">
-        <strong data-fr="Contact rapide" data-en="Quick contact">Contact rapide</strong> :
-        <a href="tel:+33600000000" style="display:inline-block;margin-left:6px;color:var(--ink);text-decoration:none;">+33 6 00 00 00 00</a>
-      </div>
-
-      <div style="margin-top:12px" class="small" aria-hidden="true">
-        <span data-fr="⏱️ 3 min jusqu'à la Cathédrale" data-en="⏱️ 3 min to the Cathedral">⏱️ 3 min jusqu'à la Cathédrale</span>
-      </div>
-    </aside>
+    <div class="hero-actions">
+      <a class="btn" href="#s-arrival" data-fr="Checklist arrivée" data-en="Arrival checklist">Checklist arrivée</a>
+      <a class="btn ghost" href="#s-wifi" data-fr="Wi-fi" data-en="Wi-fi">Wifi</a>
+    </div>
   </div>
 </section>
 
 
+<!-- bottom nav (conserver pour mobile) -->
 <nav class="bottom-nav">
-<a href="#s-arrival">📋<span>Arrivée</span></a>
-<a href="#s-wifi">📶<span>Wi-Fi</span></a>
-<a href="#s-highlights">⭐<span>Spots</span></a>
-<a href="#s-tips">🍴<span>Plans</span></a>
-<a href="#s-emergency">🚨<span>Aide</span></a>
+  <a href="#s-arrival">📋<span>Arrivée</span></a>
+  <a href="#s-wifi">📶<span>Wi-Fi</span></a>
+  <a href="#s-highlights">⭐<span>Spots</span></a>
+  <a href="#s-tips">🍴<span>Plans</span></a>
+  <a href="#s-emergency">🚨<span>Aide</span></a>
 </nav>
+
     <!-- Body -->
     <div class="demo-body">
 
@@ -291,34 +456,42 @@
   <h3 class="section-title" data-fr="Bienvenue" data-en="Welcome">Bienvenue</h3>
 
   <p class="section-sub"
-     data-fr="Bienvenue dans le studio — tout a été pensé pour un séjour simple et confortable. Retrouvez ici les informations essentielles (arrivée, Wi-Fi, accès), le guide local et des actions rapides pour gagner du temps."
-     data-en="Welcome to the studio — everything is designed for a simple, comfortable stay. Find essentials here (arrival, Wi-Fi, access), the local guide and quick actions to save time.">
-    Bienvenue dans le studio — tout a été pensé pour un séjour simple et confortable. Retrouvez ici les informations essentielles (arrivée, Wi-Fi, accès), le guide local et des actions rapides pour gagner du temps.
+     data-fr="Nous sommes ravis de vous accueillir dans le studio ✨ Tout est pensé pour un séjour simple et confortable."
+     data-en="We’re delighted to welcome you ✨ Everything is designed for a simple and comfortable stay.">
+    Nous sommes ravis de vous accueillir dans le studio ✨ Tout est pensé pour un séjour simple et confortable.
   </p>
 
-  <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px">
-    <!-- Quick actions : très utiles pour le voyageur pressé -->
-    <a class="btn" href="#s-arrival" data-fr="Checklist arrivée" data-en="Arrival checklist">Checklist arrivée</a>
-    <a class="btn ghost" href="#s-wifi" data-fr="Accès Wi-Fi" data-en="Wi-Fi access">Accès Wi-Fi</a>
-    <a class="btn ghost" href="mailto:host@example.com?subject=Question%20–%20Studio%20Cosy" data-fr="Contacter le propriétaire" data-en="Contact host">Contacter le propriétaire</a>
-    <a class="btn ghost" href="/assets/guide-studio.pdf" target="_blank" data-fr="Guide complet (PDF)" data-en="Full guide (PDF)">Guide complet (PDF)</a>
+      <div class="welcome-grid">
+  <div class="welcome-item">
+    <div class="icon"><i class="fa-solid fa-key"></i></div>
+    <strong>Arrivée facile</strong>
+    <p>Code envoyé 24h avant l’arrivée</p>
   </div>
 
-  <div class="two-col" style="margin-top:16px;align-items:start">
-    <!-- left: voyageur -->
-    <div>
-      <div class="hint" data-fr="Astuce d'arrivée : nous envoyons le code 24h avant l'arrivée — vérifiez vos e-mails et SMS." data-en="Arrival tip: we send the code 24h before arrival — please check your email and SMS."></div>
-
-      <ul style="margin:12px 0 0;padding-left:18px;line-height:1.5">
-        <li><strong data-fr="Arrivée facile" data-en="Easy arrival">Arrivée facile</strong> — code d'accès envoyé 24h avant.</li>
-        <li><strong data-fr="Wi-Fi & tech" data-en="Wi-Fi & tech">Wi-Fi & tech</strong> — SSID et mot de passe en bas de page (+ guide dépannage).</li>
-        <li><strong data-fr="Propreté" data-en="Cleaning">Propreté</strong> — nettoyage professionnel entre chaque séjour.</li>
-        <li><strong data-fr="Contact rapide" data-en="Quick contact">Contact rapide</strong> — e-mail & téléphone fournis pour toute urgence.</li>
-      </ul>
-
-    </div>
+  <div class="welcome-item">
+    <div class="icon"><i class="fa-solid fa-wifi"></i></div>
+    <strong>Wi-Fi & tech</strong>
+    <p>Infos et dépannage en bas de page</p>
   </div>
-</section>
+
+  <div class="welcome-item">
+    <div class="icon"><i class="fa-solid fa-broom"></i></div>
+    <strong>Propreté</strong>
+    <p>Nettoyage professionnel entre chaque séjour</p>
+  </div>
+
+  <div class="welcome-item">
+    <div class="icon"><i class="fa-solid fa-phone"></i></div>
+    <strong>Contact rapide</strong>
+    <p>Mail & téléphone fournis en cas d’urgence</p>
+  </div>
+</div>
+</div>
+
+
+
+
+
 
 
         <!-- Arrival -->
