@@ -9,21 +9,27 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
-  :root{
-    --page-bg: #f5fbff;
-    --card: #ffffff;
-    --ink: #06202a;         /* texte principal (foncé pour bien lire) */
-    --muted: #556970;       /* sous-texte */
-    --accent: #1d9bf0;      /* bouton / accents (SOLIDE) */
-    --accent-2: #06b6d4;
-    --ok: #16a34a;
-    --warn: #f59e0b;
-    --radius: 14px;
-    --maxw: 1200px;
-    --gap: 18px;
-    --mono: ui-monospace, Menlo, "Roboto Mono", monospace;
-    --shadow: 0 18px 50px rgba(9,18,26,0.06);
-  }
+
+  
+:root{
+  --page-bg: #FFF8F1;        /* ou #FFFFFF si tu préfères 100% blanc */
+  --card: #ffffff;
+  --ink: #0B1D2A;            /* texte principal */
+  --muted: #667680;          /* sous-texte */
+  --accent: #E86F2D;         /* sunset */
+  --accent-2: #F59E0B;       /* touche secondaire, parcimonie */
+  --ok: #16a34a;
+  --warn: #f59e0b;
+  --radius: 14px;
+  --maxw: 1200px;
+  --gap: 18px;
+  --mono: ui-monospace, Menlo, "Roboto Mono", monospace;
+  --shadow: 0 18px 50px rgba(9,18,26,0.06);
+}
+.btn{background:var(--accent);color:#fff}
+.btn:hover{filter:brightness(0.95)}
+.pill.active{background:var(--accent);color:#fff;border-color:transparent}
+
 
   
   *{box-sizing:border-box}
@@ -65,11 +71,19 @@
   display: flex;
   gap: 16px;
 }
-.top-inner .links a {
-  text-decoration: none;
+
+.top-inner .links a{
+   text-decoration: none;
   color: var(--ink);
   font-weight: 600;
+  position:relative; padding-bottom:6px;
 }
+.top-inner .links a:hover::after,
+.top-inner .links a[aria-current="true"]::after{
+  content:""; position:absolute; left:0; right:0; bottom:0;
+  height:2px; background:var(--accent); border-radius:2px;
+}
+
 
 /* Bottom nav (mobile) */
 .bottom-nav {
@@ -164,7 +178,15 @@
   }
   .hero-title{font-size:22px;color:var(--ink)}
   .hero-sub{font-size:14px;color:var(--muted)}
-  .chip{background:rgba(6,32,42,0.06);color:var(--ink)}
+  .chip{
+  background: rgba(255,255,255,.16);
+  border: 1px solid rgba(255,255,255,.28);
+  color: #fff;
+}
+@media (max-width: 768px){
+  .chip{background: rgba(11,29,42,0.08); color: var(--ink); border-color: rgba(11,29,42,0.12)}
+}
+
   .btn.ghost{border:1px solid rgba(0,0,0,0.15);color:var(--ink)}
   .hero-actions{justify-content:center}
 }
@@ -250,7 +272,35 @@
 }
 
 
+.essentials-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.essentials-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+.icon {
+  width: 22px;
+  height: 22px;
+  stroke: var(--accent);
+  flex-shrink: 0;
+}
 
+.rules-list, .appliances ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.rules-list li, .appliances strong {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0;
+}
 
 
   /* layout */
@@ -259,7 +309,7 @@
   main.content{min-width:0}
   aside.panel{position:sticky;top:18px;height:max-content}
 
-  .card{background:var(--card);padding:16px;border-radius:12px;border:1px solid rgba(6,32,42,0.04);box-shadow:0 10px 30px rgba(4,10,20,0.03);margin-bottom:14px}
+  .card{background: #fff; border:1px solid rgba(11,29,42,0.06);padding:16px;border-radius:12px;border:1px solid rgba(6,32,42,0.04);box-shadow:0 10px 30px rgba(4,10,20,0.03);margin-bottom:14px}
   .section-title{margin:0 0 8px;font-size:18px;font-weight:800;color:var(--ink)}
   .section-sub{margin:0;color:var(--muted);font-size:14px}
 
@@ -267,7 +317,7 @@
   @media(max-width:820px){.two-col{grid-template-columns:1fr}}
 
   .code{font-family:var(--mono);background:#f3fbff;padding:8px;border-radius:8px;border:1px dashed rgba(6,32,42,0.06);display:inline-block}
-  .hint{background:linear-gradient(180deg,rgba(6,182,212,0.06),transparent);padding:12px;border-radius:10px;border:1px solid rgba(6,182,212,0.08)}
+  .hint{background:linear-gradient(180deg,rgba(232, 167, 98, 0.06),transparent);padding:12px;border-radius:10px;border:1px solid rgba(6,182,212,0.08)}
   .steps{counter-reset:step;margin:0;padding:0}
   .step{display:flex;gap:12px;align-items:flex-start;margin:10px 0}
   .step:before{counter-increment:step;content:counter(step);display:grid;place-items:center;width:36px;height:36px;border-radius:8px;background:var(--accent);color:#fff;font-weight:800}
@@ -291,7 +341,7 @@
   /* local picks (bons plans) */
   .plan-cats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
   @media(max-width:920px){.plan-cats{grid-template-columns:1fr}}
-  .plan{background:linear-gradient(180deg,#fff,#fbfeff);padding:12px;border-radius:12px;border:1px solid rgba(6,32,42,0.06)}
+  .plan{background: linear-gradient(180deg,#fff,#FFF3E9);padding:12px;border-radius:12px;border:1px solid rgba(6,32,42,0.06)}
   .plan h4{margin:0 0 6px;font-size:15px}
   .plan ul{margin:0;padding-left:18px}
   .plan li{margin:6px 0}
@@ -324,6 +374,47 @@
   @keyframes appear{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 
 
+.steps {
+  counter-reset: step;
+  margin: 0;
+  padding: 0;
+}
+
+.step {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin: 10px 0;
+}
+
+.step:before {
+  counter-increment: step;
+  content: counter(step);
+
+  /* carré parfait */
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+
+  width: 36px;   /* fixe */
+  height: 36px;  /* idem */
+  min-width: 36px; /* pour ne pas rétrécir */
+
+  border-radius: 8px;
+  background: var(--accent); 
+  color: #fff;
+  font-weight: 800;
+  font-size: 16px;  /* taille fixe pour que le chiffre tienne bien */
+  line-height: 1;   /* important pour centrer parfaitement */
+}
+
+@media(max-width:600px){
+  .step:before{
+    width: 30px;
+    height: 30px;
+    font-size: 14px;
+  }
+}
 
 </style>
 </head>
@@ -505,7 +596,6 @@
   </p>
 
 
-
   <!-- étapes prioritaires, simples à suivre -->
  <ol class="steps" style="margin-top:12px">
   <li class="step">
@@ -625,25 +715,71 @@
 
         <!-- Where -->
                 <!-- Where -->
-        <section id="s-where" class="card appear">
-        <h3 class="section-title" data-fr="Où trouver — essentiels" data-en="Where to find — essentials">Où trouver — essentiels</h3>
-        <p class="section-sub" data-fr="Localisation rapide des objets utiles." data-en="Quick location of useful items."></p>
+      <section id="s-where" class="card appear">
+  <h3 class="section-title" data-fr="Où trouver — essentiels" data-en="Where to find — essentials">
+    Où trouver — essentiels
+  </h3>
+  <p class="section-sub" data-fr="Localisation rapide des objets utiles." data-en="Quick location of useful items."></p>
 
-        <div class="two-col">
-            <div>
-            <ul style="margin:0;padding-left:18px;line-height:1.6">
-                <li>🧹 <span data-fr="Aspirateur : placard sous l'escalier (poignée rouge)." data-en="Vacuum: under-stairs closet (red handle)."></span></li>
-                <li>👕 <span data-fr="Fer & planche : tiroir cuisine (côté gauche)." data-en="Iron & board: kitchen drawer (left side)."></span></li>
-                <li>💊 <span data-fr="Trousse de secours : armoire salle de bain — étagère du milieu." data-en="First-aid kit: bathroom cabinet — middle shelf."></span></li>
-                <li>🗑️ <span data-fr="Sacs poubelle : buanderie, étagère basse." data-en="Trash bags: laundry room, bottom shelf."></span></li>
-                <li>🔌 <span data-fr="Chargeurs / adaptateurs : boîte 'Tech' sur la table basse." data-en="Chargers/adapters: 'Tech' box on the coffee table."></span></li>
-            </ul>
-            </div>
-            <div>
-            <div class="hint" data-fr="Astuce : mettez de petites étiquettes (pictos) dans le logement pour indiquer ces emplacements — cela évite les messages." data-en="Tip: add small labels (icons) in the apartment to indicate these spots — reduces guest messages."></div>
-            </div>
-        </div>
-        </section>
+  <div class="two-col">
+    <div>
+      <ul class="essentials-list">
+        <li>
+          <!-- Aspirateur -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M12 2 L12 22 M6 18 H18 M8 22 H16" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span data-fr="Aspirateur : placard sous l'escalier (poignée rouge)." data-en="Vacuum: under-stairs closet (red handle)."></span>
+        </li>
+
+        <li>
+          <!-- Fer & planche -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M4 16 H20 L18 10 H6 Z" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M6 16 V20 H18 V16" stroke-width="2"/>
+          </svg>
+          <span data-fr="Fer & planche : tiroir cuisine (côté gauche)." data-en="Iron & board: kitchen drawer (left side)."></span>
+        </li>
+
+        <li>
+          <!-- Trousse de secours -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <rect x="3" y="7" width="18" height="14" rx="2" ry="2" stroke-width="2"/>
+            <path d="M12 11 V17 M9 14 H15" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span data-fr="Trousse de secours : armoire salle de bain — étagère du milieu." data-en="First-aid kit: bathroom cabinet — middle shelf."></span>
+        </li>
+
+        <li>
+          <!-- Poubelle -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M3 6 H21" stroke-width="2" stroke-linecap="round"/>
+            <path d="M8 6 V4 H16 V6" stroke-width="2"/>
+            <rect x="5" y="6" width="14" height="14" rx="2" stroke-width="2"/>
+          </svg>
+          <span data-fr="Sacs poubelle : buanderie, étagère basse." data-en="Trash bags: laundry room, bottom shelf."></span>
+        </li>
+
+        <li>
+          <!-- Chargeurs -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M12 2 V8 M9 4 H15" stroke-width="2" stroke-linecap="round"/>
+            <rect x="6" y="8" width="12" height="10" rx="2" ry="2" stroke-width="2"/>
+          </svg>
+          <span data-fr="Chargeurs / adaptateurs : boîte 'Tech' sur la table basse." data-en="Chargers/adapters: 'Tech' box on the coffee table."></span>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="hint"
+        data-fr="Astuce : mettez de petites étiquettes (pictos) dans le logement pour indiquer ces emplacements — cela évite les messages."
+        data-en="Tip: add small labels (icons) in the apartment to indicate these spots — reduces guest messages.">
+      </div>
+    </div>
+  </div>
+</section>
+
 
 
         <!-- Highlights / Incontournables Strasbourg -->
@@ -702,6 +838,7 @@
 
 
         <!-- Appliances -->
+
         <section id="s-appliances" class="card appear">
   <h3 class="section-title" 
       data-fr="Appareils — mode d'emploi" 
@@ -715,35 +852,64 @@
 
   <div class="two-col appliances">
     <div>
-      <strong>🌡️ <span data-fr="Thermostat" data-en="Thermostat">Thermostat</span></strong>
+      <strong>
+        <!-- Thermostat -->
+        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <circle cx="12" cy="12" r="9" stroke-width="2"/>
+          <path d="M12 7v5l3 3" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span data-fr="Thermostat" data-en="Thermostat">Thermostat</span>
+      </strong>
       <ul>
-        <li data-fr="MODE → +/−" data-en="MODE → +/−">MODE → +/−</li>
-        <li data-fr="+2°C = chauffe rapide (15–20 min)" data-en="+2°C = quick warm-up (15–20 min)">+2°C = chauffe rapide (15–20 min)</li>
+        <li>MODE → +/−</li>
+        <li>+2°C = chauffe rapide (15–20 min)</li>
       </ul>
 
-      <strong>🧺 <span data-fr="Machine à laver" data-en="Washing machine">Machine à laver</span></strong>
+      <strong>
+        <!-- Machine à laver -->
+        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <rect x="3" y="4" width="18" height="16" rx="2" stroke-width="2"/>
+          <circle cx="12" cy="12" r="4" stroke-width="2"/>
+        </svg>
+        <span data-fr="Machine à laver" data-en="Washing machine">Machine à laver</span>
+      </strong>
       <ul>
-        <li data-fr="Programme conseillé : Eco 40°" data-en="Recommended: Eco 40° program">Programme conseillé : Eco 40°</li>
-        <li data-fr="Lessive → tiroir A" data-en="Detergent → drawer A">Lessive → tiroir A</li>
-        <li data-fr="Ne pas surcharger" data-en="Do not overload">Ne pas surcharger</li>
+        <li>Programme conseillé : Eco 40°</li>
+        <li>Lessive → tiroir A</li>
+        <li>Ne pas surcharger</li>
       </ul>
     </div>
 
     <div>
-      <strong>🔥 <span data-fr="Four" data-en="Oven">Four</span></strong>
+      <strong>
+        <!-- Four -->
+        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <rect x="3" y="6" width="18" height="14" rx="2" stroke-width="2"/>
+          <path d="M7 10h.01M12 10h.01M17 10h.01" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span data-fr="Four" data-en="Oven">Four</span>
+      </strong>
       <ul>
-        <li data-fr="180°C → préchauffage 5 min" data-en="180°C → preheat 5 min">180°C → préchauffage 5 min</li>
-        <li data-fr="Toujours utiliser des gants" data-en="Always use oven gloves">Toujours utiliser des gants</li>
+        <li>180°C → préchauffage 5 min</li>
+        <li>Toujours utiliser des gants</li>
       </ul>
 
-      <strong>🍳 <span data-fr="Plaques" data-en="Hob">Plaques</span></strong>
+      <strong>
+        <!-- Plaques -->
+        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <circle cx="7" cy="12" r="3" stroke-width="2"/>
+          <circle cx="17" cy="12" r="3" stroke-width="2"/>
+        </svg>
+        <span data-fr="Plaques" data-en="Hob">Plaques</span>
+      </strong>
       <ul>
-        <li data-fr="Appuyer 3s → déverrouiller" data-en="Press 3s → unlock">Appuyer 3s → déverrouiller</li>
-        <li data-fr="+/− pour régler la chaleur" data-en="+/− to set heat">+/− pour régler la chaleur</li>
+        <li>Appuyer 3s → déverrouiller</li>
+        <li>+/− pour régler la chaleur</li>
       </ul>
     </div>
   </div>
 </section>
+
 
 
 
@@ -756,13 +922,45 @@
 
   <div class="two-col">
     <div>
-      <ul style="margin:0;padding-left:18px">
-        <li>🤫 <span data-fr="Silence après 22h — respectez le voisinage." data-en="Quiet hours after 10pm — respect neighbours."></span></li>
-        <li>🚭 <span data-fr="Interdit de fumer à l'intérieur." data-en="No smoking indoors."></span></li>
-        <li>🐾 <span data-fr="Animaux acceptés uniquement sur demande." data-en="Pets allowed only upon request."></span></li>
-        <li>♻️ <span data-fr="Merci de trier vos déchets (bio / recyclables / ordures)." data-en="Please sort waste (bio / recyclables / general)."></span></li>
+      <ul class="rules-list">
+        <li>
+          <!-- Silence -->
+          <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M9 9v6h4l5 5V4l-5 5H9z" stroke-width="2"/>
+          </svg>
+          <span>Silence après 22h — respectez le voisinage.</span>
+        </li>
+
+        <li>
+          <!-- No smoking -->
+          <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M3 13h18M20 7v6M16 7v6M5 7v6" stroke-width="2"/>
+            <line x1="2" y1="2" x2="22" y2="22" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span>Interdit de fumer à l'intérieur.</span>
+        </li>
+
+        <li>
+          <!-- Pets -->
+          <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="5" cy="8" r="2" stroke-width="2"/>
+            <circle cx="12" cy="5" r="2" stroke-width="2"/>
+            <circle cx="19" cy="8" r="2" stroke-width="2"/>
+            <path d="M5 20c1-4 13-4 14 0" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span>Animaux acceptés uniquement sur demande.</span>
+        </li>
+
+        <li>
+          <!-- Recyclage -->
+          <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z" stroke-width="2"/>
+          </svg>
+          <span>Merci de trier vos déchets (bio / recyclables / ordures).</span>
+        </li>
       </ul>
     </div>
+
     <div>
       <div class="hint" data-fr="Astuce : laissez un résumé visuel (pictos) affiché dans le logement pour rappeler les règles." data-en="Tip: leave a visual summary (icons) displayed in the apartment to remind guests."></div>
     </div>
@@ -770,6 +968,7 @@
 
   <div class="small" style="margin-top:10px" data-fr="Un règlement complet peut être fourni sur demande (ex. PDF ou lien Airbnb)." data-en="A full house manual can be provided on request (e.g. PDF or Airbnb link)."></div>
 </section>
+
 
 
         <!-- Check-out -->
@@ -785,7 +984,9 @@
         </section>
 
         <!-- Top picks - reworked -->
-       <!-- Top picks / Bons plans -->
+
+
+        <!-- Top picks / Bons plans -->
 <section id="s-tips" class="card appear">
   <h3 class="section-title" data-fr="Bons plans & recommandations" data-en="Top picks & recommendations">
     Bons plans & recommandations
@@ -799,7 +1000,10 @@
   <div class="plan-cats">
     <!-- Restaurants -->
     <article class="plan">
-      <h4>🍽️ <span data-fr="Restaurants" data-en="Restaurants">Restaurants</span></h4>
+      <h4>
+        
+        <span data-fr="Restaurants" data-en="Restaurants">Restaurants</span>
+      </h4>
       <ul>
         <li><strong>Le Clou</strong> — <span class="muted" data-fr="Alsacien typique, à 5 min. Réservation conseillée." data-en="Classic Alsatian, 5 min. Booking advised."></span></li>
         <li><strong>L’Alsace à Table</strong> — <span class="muted" data-fr="Winstub réputée, excellents vins locaux." data-en="Renowned winstub, excellent local wines."></span></li>
@@ -809,7 +1013,10 @@
 
     <!-- Cafés -->
     <article class="plan">
-      <h4>☕ <span data-fr="Cafés & brunch" data-en="Coffee & brunch">Cafés & brunch</span></h4>
+      <h4>
+        
+        <span data-fr="Cafés & brunch" data-en="Coffee & brunch">Cafés & brunch</span>
+      </h4>
       <ul>
         <li><strong>Café Bretelles</strong> — <span class="muted" data-fr="Espresso & brunch, à 8 min." data-en="Espresso & brunch, 8 min."></span></li>
         <li><strong>Oh My Goodness</strong> — <span class="muted" data-fr="Gâteaux maison, ambiance cosy." data-en="Homemade cakes, cosy vibe."></span></li>
@@ -819,7 +1026,11 @@
 
     <!-- Bars -->
     <article class="plan">
-      <h4>🍷 <span data-fr="Bars & apéros" data-en="Bars & drinks">Bars & apéros</span></h4>
+      <h4>
+        <!-- SVG verre à vin -->
+        
+        <span data-fr="Bars & apéros" data-en="Bars & drinks">Bars & apéros</span>
+      </h4>
       <ul>
         <li><strong>Le Rafiot</strong> — <span class="muted" data-fr="Bar sur bateau, coucher de soleil magique." data-en="Boat bar, magical sunset."></span></li>
         <li><strong>Tapas Café</strong> — <span class="muted" data-fr="Tapas & vins, ambiance animée." data-en="Tapas & wine, lively vibe."></span></li>
@@ -831,7 +1042,10 @@
   <div class="plan-cats" style="margin-top:12px">
     <!-- Courses -->
     <article class="plan">
-      <h4>🛒 <span data-fr="Courses" data-en="Groceries">Courses</span></h4>
+      <h4>
+        
+        <span data-fr="Courses" data-en="Groceries">Courses</span>
+      </h4>
       <ul>
         <li><strong>Monoprix Gutenberg</strong> — <span class="muted" data-fr="5 min, horaires étendus." data-en="5 min, wide opening hours."></span></li>
         <li><strong>Marché Broglie (mercredi)</strong> — <span class="muted" data-fr="Produits locaux & fraîcheur." data-en="Local fresh produce."></span></li>
@@ -840,7 +1054,10 @@
 
     <!-- Parking -->
     <article class="plan">
-      <h4>🅿️ <span data-fr="Parking" data-en="Parking">Parking</span></h4>
+      <h4>
+       
+        <span data-fr="Parking" data-en="Parking">Parking</span>
+      </h4>
       <ul>
         <li><strong>Parking Austerlitz</strong> — <span class="muted" data-fr="Sécurisé, à 6 min." data-en="Secure, 6 min."></span></li>
         <li><strong>Parking Gutenberg</strong> — <span class="muted" data-fr="En plein centre-ville." data-en="Right in the city centre."></span></li>
@@ -849,7 +1066,11 @@
 
     <!-- Transports -->
     <article class="plan">
-      <h4>🚲 <span data-fr="Transports" data-en="Transport">Transports</span></h4>
+      <h4>
+        <!-- SVG vélo -->
+        
+        <span data-fr="Transports" data-en="Transport">Transports</span>
+      </h4>
       <ul>
         <li><strong>Vélhop</strong> — <span class="muted" data-fr="Station vélo à 3 min." data-en="Bike station 3 min."></span></li>
         <li><strong>Tram A/D/F</strong> — <span class="muted" data-fr="Vers centre & gare." data-en="To centre & station."></span></li>
@@ -866,7 +1087,6 @@
   <ul style="margin:0;padding-left:18px">
     <li><strong>112</strong> — <span data-fr="Urgences (pompiers / police / SAMU)" data-en="Emergency (fire / police / ambulance)"></span></li>
     <li data-fr="Pharmacie de garde : appeler la pharmacie centrale ou 3237." data-en="On-call pharmacy: call central pharmacy or 3237."></li>
-    <li><strong data-fr="Contact propriétaire" data-en="Host contact">Contact propriétaire</strong> : host@example.com</li>
   </ul>
   <div class="small" style="margin-top:8px"
        data-fr="Incident technique (chauffage, fuite) : signalez immédiatement au propriétaire pour intervention rapide."
