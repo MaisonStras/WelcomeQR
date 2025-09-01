@@ -3,525 +3,470 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>WelcomeQR — Livret d'accueil QR personnalisé</title>
-  <meta name="description" content="Livret d'accueil QR personnalisé (FR/EN inclus). ES/IT/DE en option. Livraison 24–48h.">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <meta property="og:title" content="WelcomeQR — Livret d'accueil QR personnalisé">
-  <meta property="og:description" content="Livret d’accueil FR/EN inclus (ES/IT/DE en option), QR, PDF, page privée. Test 24h gratuit.">
-  <meta property="og:type" content="website">
+  <title>WelcomeStras — Livret d'accueil professionnel</title>
+  <meta name="description" content="Livret d'accueil professionnel — moins d'appels, meilleure expérience. Satisfait ou remboursé 14 jours.">
+  <meta name="theme-color" content="#2563eb" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
 </head>
 <body>
-  <div class="wrap">
+  <!-- SVG sprite: icons + logo -->
+  <svg style="display:none" aria-hidden="true">
+    <symbol id="logo-mark" viewBox="0 0 48 48"><rect width="48" height="48" rx="10" fill="currentColor"/><text x="24" y="32" text-anchor="middle" font-family="Poppins,Inter" font-weight="700" font-size="20" fill="#fff">W</text></symbol>
+    <symbol id="icon-demo" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M8 11h8M8 15h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/></symbol>
+    <symbol id="icon-service" viewBox="0 0 24 24"><path d="M12 2l3 6h6l-4.8 3.6L20 20l-8-5-8 5 3.8-8.4L3 8h6z" fill="currentColor"/></symbol>
+    <symbol id="star" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L23.5 9.75l-5.75 5.6L19.336 24 12 20.092 4.664 24l1.586-8.651L.5 9.75l7.832-1.732L12 .587z" fill="currentColor"/></symbol>
+    <symbol id="icon-mail" viewBox="0 0 24 24"><path d="M3 6.5v11A2.5 2.5 0 0 0 5.5 20h13a2.5 2.5 0 0 0 2.5-2.5v-11A2.5 2.5 0 0 0 18.5 4h-13A2.5 2.5 0 0 0 3 6.5z" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M21 6l-9 7L3 6" fill="none" stroke="currentColor" stroke-width="1.4"/></symbol>
+    <symbol id="icon-whatsapp" viewBox="0 0 24 24"><path d="M21 12.3A9 9 0 1 0 11.7 3a.9.9 0 0 0-.9.2L9.1 4.9a.9.9 0 0 0-.2.9 6 6 0 0 0 1.1 2.5.9.9 0 0 1 .1.9l-.7 2.1a.9.9 0 0 0 .9 1.2 12 12 0 0 0 4.4-.8 9 9 0 0 0 6.3-6.8z" fill="currentColor"/></symbol>
+  </svg>
 
+  <!-- TOP BAR: satisfait ou remboursé + quick contact -->
+  <div class="topbar" role="region" aria-label="Offre et contact rapide">
+    <div class="satisfait">Satisfait ou remboursé — 14 jours</div>
+    <div class="contact-quick">
+      <a id="quick-wa" href="#" title="Nous écrire sur WhatsApp" aria-label="WhatsApp"><svg width="16" height="16"><use xlink:href="#icon-whatsapp"/></svg>WhatsApp</a>
+      <a id="quick-mail" href="#" title="Nous envoyer un mail" aria-label="Email"><svg width="16" height="16"><use xlink:href="#icon-mail"/></svg>contact</a>
+    </div>
+  </div>
+
+  <div class="wrap" id="wrap">
     <!-- HEADER -->
-    <header class="site-header">
-      <div class="brand">
-        <div class="logo">WQ</div>
-        <div>
-          <h1 class="brand-title">WelcomeQR</h1>
-          <div class="brand-sub">Livret d’accueil QR — personnalisé & multilingue</div>
+    <header>
+      <div class="brand" aria-label="WelcomeStras">
+        <div class="logo-mark" style="background:var(--primary);color:#fff">
+          <svg width="28" height="28" aria-hidden="true"><use xlink:href="#logo-mark"></use></svg>
+        </div>
+        <div class="brand-title">
+          <h1>WelcomeStras</h1>
+          <p class="small muted">Livret d'accueil digital — simple & pro</p>
         </div>
       </div>
 
-      <nav class="top-nav">
-        <a href="#offres" class="nav-link">Offres</a>
-        <a href="#demo" class="nav-link">Démo</a>
-        <a href="#services" class="nav-link">Services</a>
-        <a href="#b2b" class="nav-link">B2B</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-
-        
-        <button id="cta-test" class="btn btn-primary">Démarrer le test 24h</button>
-        <a class="btn btn-whatsapp" href="https://wa.me/33600000000?text=Bonjour%20je%20veux%20un%20livret" target="_blank" rel="noopener">WhatsApp</a>
+      <nav class="nav" aria-label="Navigation principale">
+        <a href="#offres">Offres</a>
+        <a href="#services-inclus">Services</a>
+        <a href="#paid-services">Services payants</a>
+        <a href="#b2b">Conciergerie</a>
+        <a id="nav-demo" class="btn-primary" href="#" title="Voir la démo"><svg width="16" height="16" aria-hidden="true"><use xlink:href="#icon-demo"/></svg>Voir la démo</a>
       </nav>
     </header>
 
-    <!-- HERO -->
-    <section class="hero card">
-      <div class="hero-left">
-        <div class="label">
-      <svg class="icon" width="16" height="16" aria-hidden="true"><use href="#icon-rocket"></use></svg>
-      <span>OFFRE DE LANCEMENT — Garantie 14 jours</span>
-    </div>
+<section class="hero" aria-labelledby="hero-title">
+  <div>
+    <div class="badge" aria-hidden="true">Offre de lancement</div>
+    
     <h2 id="hero-title">
-      Le livret d’accueil QR qui <strong class="accent">simplifie vos arrivées</strong>
+      Moins d’appels, plus d’avis 
+      <span class="stars" aria-label="cinq étoiles" role="img" style="display:inline-flex;gap:2px;vertical-align:middle">
+        <svg width="14" height="14" aria-hidden="true"><use xlink:href="#star"/></svg>
+        <svg width="14" height="14" aria-hidden="true"><use xlink:href="#star"/></svg>
+        <svg width="14" height="14" aria-hidden="true"><use xlink:href="#star"/></svg>
+        <svg width="14" height="14" aria-hidden="true"><use xlink:href="#star"/></svg>
+        <svg width="14" height="14" aria-hidden="true"><use xlink:href="#star"/></svg>
+      </span>
     </h2>
-
-<p class="lead">
-      Un guide mobile, élégant et personnalisé pour chaque logement — accessible par QR. <strong>FR/EN inclus</strong>, autres langues en option.
-     <strong>24–48h</strong>.
+    
+    <p class="lead">
+      Le livret d’accueil digital qui répond à toutes les questions de vos voyageurs
+      (WiFi, accès, règles, recommandations) en FR & EN.  
+      Résultat : des séjours fluides, plus de temps pour vous, et des avis 5★.
     </p>
 
-        <div class="hero-ctas">
-      <button id="hero-start" class="btn btn-primary">
-        <svg width="18" height="18" aria-hidden="true"><use href="#icon-rocket"></use></svg>
-        Tester 24h — Gratuit
-      </button>
-
-      <a href="#offres" class="btn btn-outline">
-        <svg width="16" height="16" aria-hidden="true"><use href="#icon-qr"></use></svg>
-        Voir les offres & tarifs
-      </a>
+    <div class="icons-row" aria-hidden="true">
+      <div class="icon-item">
+        <svg width="16" height="16"><use xlink:href="#icon-check"/></svg>Prêt en quelques heures
+      </div>
+      <div class="icon-item">
+        <svg width="16" height="16"><use xlink:href="#icon-check"/></svg>Personnalisation incluse
+      </div>
+      <div class="icon-item">
+        <svg width="16" height="16"><use xlink:href="#icon-check"/></svg>Bilingue FR & EN
+      </div>
     </div>
-        
-        
-        <div class="hero-features">
-          <span class="pill">Design unique</span>
-          <span class="pill">Modifs sous 24h</span>
-          <span class="pill">Support WhatsApp</span>
-        </div>
+
+    <div class="cta-stack">
+      <a id="hero-demo" class="cta-demo" href="#" title="Voir la démo">Voir la démo — en 1 clic</a>
+      <button id="hero-test" class="cta-test" title="Tester 24h gratuitement">Essai gratuit</button>
+    </div>
+
+    <div class="satisfaction-small">
+      Garantie satisfait ou remboursé 14 jours · Support humain inclus
+    </div>
+  </div>
+
+
+ <aside class="hero-right">
+  <div>
+    <img src="screenshot-demo.jpg" loading="lazy" 
+         style="max-width:100%;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.08)">
+
+    <div style="margin-top:1rem;text-align:center">
+      <div class="small muted" style="margin-bottom:.25rem">
+        Scannez pour tester en direct
       </div>
+      <img id="mini-qr" class="mini-qr" src="qr-demo.png" alt="QR code de démo" loading="lazy" width="72" height="72">
+    </div>
+  </div>
 
-      <aside class="hero-right">
-        <div class="qr-preview">
-          <img id="qr-sample" src="https://api.qrserver.com/v1/create-qr-code/?size=90x90&data=https%3A%2F%2Fexample.com%2Fdemo" alt="QR demo">
-        </div>
-        <div class="hero-stats">
-          <div class="stat">
-            <div class="small">One-shot</div>
-            <div class="big">dès 49 €</div>
-          </div>
-          <div class="stat">
-            <div class="small">Care</div>
-            <div class="big">14 €/mois</div>
-          </div>
-        </div>
-        <div class="muted">FR/EN inclus — ES/IT/DE en option</div>
-      </aside>
-    </section>
+  <ul class="use-cases" style="margin-top:1rem;list-style:none;padding:0;display:grid;gap:.5rem">
+    <li>
+      <svg width="16" height="16" aria-hidden="true"><use xlink:href="#icon-check"/></svg>
+      Codes d’accès toujours accessibles
+    </li>
+    <li>
+      <svg width="16" height="16" aria-hidden="true"><use xlink:href="#icon-check"/></svg>
+      WiFi partagé en 1 clic
+    </li>
+    <li>
+      <svg width="16" height="16" aria-hidden="true"><use xlink:href="#icon-check"/></svg>
+      Règles claires et disponibles 24/7
+    </li>
+    <li>
+      <svg width="16" height="16" aria-hidden="true"><use xlink:href="#icon-check"/></svg>
+      Recommandations locales personnalisées
+    </li>
+  </ul>
 
-    <!-- DEMO -->
-    <section id="demo" class="card section">
-      <div class="demo-left">
-        <h3>Voir la démo</h3>
-        <p class="muted">Cliquez pour ouvrir un exemple réel de livret — mobile + QR.</p>
-        <div class="demo-ctas">
-          <a id="demo-link" class="btn btn-primary" href="./demo.html" target="_blank" rel="noopener">Ouvrir la démo</a>
-          <button id="demo-open-modal" class="btn btn-outline">Démarrer mon test 24h</button>
-        </div>
+  <div class="small muted" style="text-align:center;margin-top:.75rem">
+    Mise en ligne rapide · Pas de technique à gérer
+  </div>
+</aside>
+
+</section>
+
+<!-- ===== OFFRES (abonnements mis en avant) ===== -->
+<section id="offres" class="offers">
+  <h3>Nos offres</h3>
+  <div class="plans">
+
+    <!-- Care Pro (abonnement recommandé) -->
+    <div class="plan recommended" aria-hidden="false">
+      <span class="ribbon">Meilleure valeur</span>
+      <h4>Care Pro</h4>
+      <div class="price">29 €/mois</div>
+      <div class="plan-feats">
+        <div class="plan-feat">• Tout Care Basic inclus</div>
+        <div class="plan-feat">• Langues supplémentaires illimitées</div>
+        <div class="plan-feat">• Branding premium (logo & couleurs)</div>
+        <div class="plan-feat">• Priorité & réponse sous 24 h</div>
+        <div class="plan-feat">• Résiliable à tout moment</div>
       </div>
+      <div><button class="btn-primary open-modal" data-pack="Care Pro">Souscrire — Care Pro</button></div>
+    </div>
 
-      <div class="demo-right">
-        <img id="demo-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https%3A%2F%2Fexample.com%2Fdemo" alt="QR demo">
-        <div class="muted-sm" id="demo-url-text">demo: ./demo.html</div>
+    <!-- Care Basic (abonnement) -->
+    <div class="plan" aria-hidden="false">
+      <h4>Care Basic</h4>
+      <div class="price">12 €/mois</div>
+      <div class="plan-feats">
+        <div class="plan-feat">• Hébergement & QR code inclus</div>
+        <div class="plan-feat">• Modifications illimitées</div>
+        <div class="plan-feat">• Support WhatsApp illimité</div>
+        <div class="plan-feat">• Résiliable à tout moment</div>
       </div>
-    </section>
+      <div><button class="btn-primary open-modal" data-pack="Care Basic">Souscrire — Care Basic</button></div>
+      <div class="satisfaction-small">Dès 2 modifications/an, vous économisez vs. paiement à l’unité.</div>
+    </div>
 
-    <!-- OFFRES -->
-    <section id="offres" class="section">
-      <h3>Nos offres</h3>
-      <div class="grid-3">
-        <div class="card plan">
-          <h4>Starter</h4>
-          <div class="price">49 €</div>
-          <ul>
-            <li>Page FR/EN (ES/IT/DE en option)</li>
-            <li>QR A5 printable</li>
-            <li>7 jours retouches</li>
-            <li>Livraison 24–48h</li>
-          </ul>
-          <div class="plan-cta">
-            <button class="btn btn-primary commander" data-pack="Starter">Commander Starter</button>
-          </div>
-        </div>
-
-        <div class="card plan">
-          <h4>Pro</h4>
-          <div class="price">89 €</div>
-          <ul>
-            <li>Starter + PDF A5 premium</li>
-            <li>Checklist turnover</li>
-            <li>Mini optimisation annonce</li>
-          </ul>
-          <div class="plan-cta">
-            <button class="btn btn-primary commander" data-pack="Pro">Commander Pro</button>
-          </div>
-        </div>
-
-        <div class="card plan">
-          <h4>Care</h4>
-          <div class="price">14 €/mois</div>
-          <ul>
-            <li>Hébergement & mises à jour</li>
-            <li>Modifs sous 24h</li>
-            <li>Analytics QR</li>
-            <li>Support prioritaire</li>
-          </ul>
-          <div class="plan-cta">
-            <button class="btn btn-primary commander" data-pack="Care">Souscrire Care</button>
-          </div>
-        </div>
+    <!-- Pro (one-shot) -->
+    <div class="plan" aria-hidden="false">
+      <h4>Pro</h4>
+      <div class="price">149 €</div>
+      <div class="plan-feats">
+        <div class="plan-feat">• Tout Starter inclus</div>
+        <div class="plan-feat">• PDF présentable (imprimable)</div>
+        <div class="plan-feat">• 2 révisions incluses</div>
+        <div class="plan-feat">• Assistance WhatsApp prioritaire</div>
       </div>
-    </section>
+      <div><button class="btn-primary open-modal" data-pack="Pro">Commander — 149 €</button></div>
+    </div>
 
-    <!-- SERVICES COMPLÉMENTAIRES PAYANTS -->
-    <section id="services" class="section card">
-      <h3>Services complémentaires (payants)</h3>
-      <div class="services-grid">
-        <div class="service card">
-          <strong>White-label / Domaine perso</strong>
-          <p class="muted">Page livrée sur votre domaine ou sous-domaine, intégration logo & couleurs. <strong>29 € (one-shot)</strong></p>
-        </div>
-
-        <div class="service card">
-          <strong>Langue supplémentaire (ES/IT/DE)</strong>
-          <p class="muted">Traductions humaines adaptées (15 €/langue one-shot ou +2 €/mois/langue avec Care)</p>
-        </div>
-
-        <div class="service card">
-          <strong>Guide imprimable A5</strong>
-          <p class="muted">Guide papier livré prêt à imprimer — 19 € / logement</p>
-        </div>
-
-        <div class="service card">
-          <strong>Import CSV / Onboarding lot</strong>
-          <p class="muted">On reprend votre tableur et on crée les pages (1 €/logement — option manuelle / inclus dans Enterprise)</p>
-        </div>
-
-        <div class="service card">
-          <strong>SLA prioritaire</strong>
-          <p class="muted">SLA 24h pour mises à jour et support (option pour B2B — +3 €/logement/mois)</p>
-        </div>
-
-        <div class="service card">
-          <strong>Service Managed</strong>
-          <p class="muted">Nous gérons toutes les mises à jour et la relation propriétaire (+2 €/logement/mois)</p>
-        </div>
+    <!-- Starter (one-shot) -->
+    <div class="plan" aria-hidden="false">
+      <h4>Starter</h4>
+      <div class="price">79 €</div>
+      <div class="plan-feats">
+        <div class="plan-feat">• Livret FR & EN</div>
+        <div class="plan-feat">• Livraison sous 48 h</div>
+        <div class="plan-feat">• 1 révision incluse</div>
+        <div class="plan-feat">• Support WhatsApp (mise en place)</div>
       </div>
-    </section>
+      <div><button class="btn-primary open-modal" data-pack="Starter">Commander — 79 €</button></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== SERVICES COMPLÉMENTAIRES (payants) ===== -->
+<section id="paid-services" class="paid-services">
+  <h3>Services complémentaires (payants)</h3>
+  <div class="paid-grid">
+
+    <div class="card">
+      <strong>Langue supplémentaire</strong>
+      <p class="muted">Ajout DE / ES / IT… — <strong>39 € / langue (one-shot)</strong>. <em>Inclus en illimité avec Care Pro</em>.</p>
+    </div>
+
+    <div class="card">
+      <strong>Hébergement & QR code</strong>
+      <p class="muted">Sans abonnement : <strong>29 € / an</strong>. <em>Inclus avec Care Basic & Care Pro</em>.</p>
+    </div>
+
+    <div class="card">
+      <strong>Guide imprimable A5</strong>
+      <p class="muted">Version papier prête à imprimer — <strong>19 € / logement</strong>.</p>
+    </div>
+
+    <div class="card">
+      <strong>Modification à l’unité</strong>
+      <p class="muted">Petite : <strong>15 €</strong> • Standard : <strong>30 €</strong> • Nouvelle section : <strong>60 €</strong>.</p>
+    </div>
+
+    <div class="card">
+      <strong>Duplication logement</strong>
+      <p class="muted">Copie + adaptation vers un autre bien — <strong>29 € / logement</strong>.</p>
+    </div>
+
+    <div class="card">
+      <strong>Domaine & branding</strong>
+      <p class="muted">Votre URL + logo & couleurs — <strong>49 € (one-shot)</strong>. <em>Inclus avec Care Pro (branding)</em>.</p>
+    </div>
+
+    <div class="card">
+      <strong>Autres besoins sur mesure</strong>
+      <p class="muted">Je peux ajouter d’autres services (automatisations, intégrations, etc.). Écrivez-moi par 
+        <a href="mailto:contact@welcomestras.fr">email</a> ou sur 
+        <a href="https://wa.me/33600000000" target="_blank" rel="noopener">WhatsApp</a>.
+      </p>
+    </div>
+
+  </div>
+
+  <p class="satisfaction-small">Sans abonnement : chaque modification est facturée à l’unité. Avec Care, vous avez la tranquillité d’esprit toute l’année.</p>
+</section>
 
     <!-- B2B / CONCIERGERIE -->
-    <section id="b2b" class="section">
-      <h3>Conciergeries & gestionnaires — Packs volume</h3>
-      <div class="b2b-grid card">
-        <div>
-          <p class="muted">Déploiement multi-biens avec branding. On propose un pilote (1 page) livré en 24h pour valider le process avant déploiement.</p>
-
-          <div class="grid-3" style="margin-top:12px;">
-            <div class="card small">
-              <strong>Starter</strong>
-              <p class="muted">29 € / logement (setup initial : page + QR + FR/EN)</p>
-            </div>
-            <div class="card small">
-              <strong>Care</strong>
-              <p class="muted">6 € / logement / mois (hébergement + modifs 24h + analytics)</p>
-            </div>
-            <div class="card small">
-              <strong>Enterprise</strong>
-              <p class="muted">Sur devis — volume, intégrations PMS, SLA 12h</p>
-            </div>
-          </div>
-
-          <div class="included" style="margin-top:12px;">
-            <strong>Inclus :</strong>
-            <ul class="muted">
-              <li>Page QR personnalisée par logement</li>
-              <li>Livraison test 24h (1 logement)</li>
-              <li>Tableur de suivi (URL, QR, dernière mise à jour)</li>
-            </ul>
-          </div>
-
-          <div class="options" style="margin-top:12px;">
-            <strong>Options payantes (B2B) :</strong>
-            <ul class="muted">
-              <li>White-label / domaine perso — 29 € (one-shot)</li>
-              <li>Langue追加 (ES/IT/DE) — 15 € / langue (one-shot) ou +2 € / mois / langue avec Care</li>
-              <li>Guide imprimable premium A5 — 19 € / logement</li>
-              <li>Import CSV / onboarding lot — 1 € / logement (ou devis pour gros volumes)</li>
-              <li>SLA prioritaire (24h) — +3 €/logement/mois</li>
-              <li>Service Managed — +2 €/logement/mois</li>
-            </ul>
-          </div>
-        </div>
-
-        <aside>
-          <div style="text-align:center;margin-top:12px;">
-            <button id="cta-devis" class="btn btn-primary">Demander un devis</button>
-          </div>
-        </aside>
+<!-- ===== CONCIERGERIES CTA (page principale) ===== -->
+<section id="conciergeries-cta" class="offers" style="margin-top:28px">
+  <h3>Conciergeries & gestionnaires — packs volume</h3>
+  <div class="plans" style="margin-top:12px">
+    <div class="plan recommended" aria-hidden="false" style="position:relative">
+      <div class="ribbon-b2b">Pensé pour le multi-biens</div>
+      <h4>Gagnez du temps sur chaque logement</h4>
+      <div class="price">À partir de 7 €/logement/mois</div>
+      <div class="plan-feats">
+        <div class="plan-feat">• Page + QR par logement</div>
+        <div class="plan-feat">• Modifications illimitées & support WhatsApp</div>
+        <div class="plan-feat">• Déploiement piloté et suivi centralisé</div>
       </div>
-    </section>
-
-    <!-- FAQ (accordéon) -->
-    <section id="faq" class="section card">
-      <h3>FAQ — Questions fréquentes</h3>
-      <div class="faq">
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false">La page est-elle indexée ?</button>
-          <div class="faq-answer"><p class="muted">Par défaut non (noindex) pour la confidentialité. On peut activer l'indexation si souhaité.</p></div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false">Comment modifier une info ?</button>
-          <div class="faq-answer"><p class="muted">Par WhatsApp : mise à jour sous 24h. Retouches gratuites 7 jours après livraison.</p></div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false">Que contient le guide imprimable ?</button>
-          <div class="faq-answer"><p class="muted">Wi-Fi, urgences, accès, règles, plan, photos, recommandations locales.</p></div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false">Puis-je résilier Care ?</button>
-          <div class="faq-answer"><p class="muted">Oui, résiliation possible à tout moment. Pour B2B, préavis standard 30 jours.</p></div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false">Traductions ?</button>
-          <div class="faq-answer"><p class="muted">FR/EN inclus ; ES/IT/DE en option — traduction humaine et adaptation locale.</p></div>
-        </div>
+      <div style="margin-top:auto">
+        <a class="btn-primary" href="/b2b.html">Découvrir les packs volume</a>
       </div>
+    </div>
+  </div>
+</section>
+
+    <!-- FAQ -->
+    <section style="margin-top:18px">
+      <h3>FAQ — Questions rapides</h3>
+      <div class="faq-grid" style="margin-top:12px">
+        <div class="faq-item"><strong>La page est-elle indexée ?</strong><p class="muted">Par défaut non — confidentialité. Indexation possible à la demande.</p></div>
+        <div class="faq-item"><strong>Comment modifier une info ?</strong><p class="muted">Par formulaire ou support — modifications sous 24h pour Pro/Care.</p></div>
+        <div class="faq-item"><strong>Paiement & facture ?</strong><p class="muted">Paiement sécurisé — facture fournie.</p></div>
+      </div>
+      <div style="margin-top:12px;text-align:right"><a href="./faq.html" class="small muted">Voir plus FAQ →</a></div>
     </section>
 
     <!-- TESTIMONIALS -->
-    <section id="testimonials" class="section">
-      <h3>Ils ont testé</h3>
-      <div class="grid-3">
-        <div class="card testimonial">
-          <div class="stars">★★★★★</div>
-          <p class="quote">« Mon livret personnalisé a fait forte impression — moins d’appels et plus d’autonomie pour mes voyageurs. »</p>
-          <div class="author"><img src="https://i.pravatar.cc/60?img=1" alt="Pauline"><span><strong>Pauline</strong>, hôte Airbnb, Lyon</span></div>
+    <section class="card testimonials" style="margin-top:18px" aria-labelledby="testimonials-title">
+      <h3 id="testimonials-title">Ils ont testé — Avis clients</h3>
+      <p class="small muted">Exemples d'avis (remplacez par retours réels dès que possible).</p>
+
+      <div style="margin-top:12px;display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap">
+        <div style="flex:1">
+          <div id="review-slot" class="review-card" tabindex="0" aria-live="polite"></div>
+          <div style="display:flex;gap:8px;margin-top:8px;align-items:center">
+            <button id="prev-review" class="btn-ghost" aria-label="Avis précédent">◀</button>
+            <button id="next-review" class="btn-ghost" aria-label="Avis suivant">▶</button>
+            <div id="review-counter" class="small muted" style="margin-left:auto"></div>
+          </div>
         </div>
 
-        <div class="card testimonial">
-          <div class="stars">★★★★★</div>
-          <p class="quote">« Livraison en 24h — très pro. Mes clients utilisent le QR dès l’arrivée. »</p>
-          <div class="author"><img src="https://i.pravatar.cc/60?img=2" alt="Karim"><span><strong>Karim</strong>, hôte Booking, Marseille</span></div>
-        </div>
-
-        <div class="card testimonial">
-          <div class="stars">★★★★☆</div>
-          <p class="quote">« Gain de temps énorme — pratique quand on gère plusieurs biens. »</p>
-          <div class="author"><img src="https://i.pravatar.cc/60?img=3" alt="Julie"><span><strong>Julie</strong>, conciergerie, Paris</span></div>
+        <div style="width:180px;text-align:center">
+          <div class="small muted"><a href="#" id="see-more-reviews">Voir plus d'avis</a></div>
         </div>
       </div>
     </section>
 
-    <!-- MODAL FORMULAIRE -->
-    <div id="modal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="modal-title">
-      <div class="modal-content">
-        <div class="modal-left">
-          <div class="modal-header">
-            <h4 id="modal-title">Démarrer votre livret — Test 24h</h4>
-            <button id="modal-close" class="btn btn-outline" aria-label="Fermer">✕</button>
-          </div>
-
-          <form id="lead-form" method="POST" action="https://formspree.io/f/xdkdvdgz" class="form">
-            <input type="hidden" name="_subject" value="Nouvelle demande — WelcomeQR">
-            <input type="hidden" name="_language" value="fr">
-
-            <label for="name">Nom & prénom</label>
-            <input id="name" name="name" required placeholder="Ex : Pauline Durand">
-
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" required placeholder="contact@exemple.com">
-
-            <label for="phone">WhatsApp / Tel</label>
-            <input id="phone" name="phone" placeholder="+33 6 12 34 56 78">
-
-            <label for="listing">Lien annonce (Airbnb, Booking, site)</label>
-            <input id="listing" name="listing" type="url" placeholder="https://www.airbnb.fr/rooms/XXXX" required>
-
-            <label for="pack">Pack souhaité</label>
-            <select id="pack" name="pack">
-              <option>Starter — 49 €</option>
-              <option>Pro — 89 €</option>
-              <option>Care — 14 €/mois</option>
-            </select>
-
-            <label>Langues supplémentaires (optionnel)</label>
-            <div class="langs">
-              <label><input type="checkbox" name="lang_es" value="ES"> ES</label>
-              <label><input type="checkbox" name="lang_it" value="IT"> IT</label>
-              <label><input type="checkbox" name="lang_de" value="DE"> DE</label>
-            </div>
-            <div class="muted-sm">FR/EN inclus par défaut.</div>
-
-            <label for="notes">Notes / consignes (optionnel)</label>
-            <textarea id="notes" name="notes" rows="3" placeholder="Infos Wi-Fi, règles..."></textarea>
-
-            <div class="form-actions">
-              <button type="submit" class="btn btn-primary">Envoyer & lancer le test</button>
-              <a id="mailto-fallback" class="btn btn-outline" href="#">Envoyer par email</a>
-            </div>
-
-            <div id="form-msg" class="muted-sm" aria-live="polite"></div>
-          </form>
-        </div>
-
-        <aside class="modal-right">
-          <div class="qr-card">
-            <div class="qr-title">Aperçu QR</div>
-            <img id="qr-inline" src="https://api.qrserver.com/v1/create-qr-code/?size=110x110&data=https%3A%2F%2Fexample.com%2Fdemo" alt="QR preview" width="110" height="110">
-            <div class="muted-sm">Le QR utilisera l'URL saisie dans le champ "Lien annonce".</div>
-          </div>
-
-          <div class="modal-note">
-            <strong>Pourquoi personnalisé ?</strong>
-            <p class="muted">Une page adaptée aux couleurs & photos augmente la confiance du voyageur et réduit les questions répétées.</p>
-          </div>
-        </aside>
-      </div>
-    </div>
-
-    <!-- FOOTER -->
-    <footer class="site-footer">
-      <a href="cgv.html" class="nav-link">CGV</a>
-  <a href="privacy.html" class="nav-link">Politique de confidentialité</a>
-  <a href="mentions.legales.html" class="nav-link">Mentions légales</a>
-
-      <div class="muted-sm">© <span id="year"></span> WelcomeQR — Tous droits réservés</div>
+    <footer style="margin-top:20px;text-align:center;color:var(--muted)">
+      <div><a href="./cgv.html" class="small muted">CGV</a> · <a href="./privacy.html" class="small muted">Politique</a> · <a href="./mentions.legales.html" class="small muted">Mentions</a></div>
+      <div class="small muted" style="margin-top:10px">© <span id="year"></span> WelcomeStras</div>
     </footer>
   </div>
 
-  <!-- SCRIPT -->
+  <!-- BOTTOM NAV mobile -->
+  <nav class="bottom-nav" aria-label="Navigation mobile">
+    <a class="item" href="#offres" title="Offres"><svg width="18" height="18"><use xlink:href="#icon-service"/></svg><span>Offres</span></a>
+    <a class="item" href="#services-inclus" title="Services"><svg width="18" height="18"><use xlink:href="#icon-service"/></svg><span>Services</span></a>
+    <a class="item" href="#paid-services" title="Payants"><svg width="18" height="18"><use xlink:href="#icon-service"/></svg><span>Payants</span></a>
+    <a class="item" id="bottom-demo" href="#" title="Voir la démo"><svg width="18" height="18"><use xlink:href="#icon-demo"/></svg><span>Démo</span></a>
+    <button class="item cta" id="bottom-test" title="Tester">Tester</button>
+  </nav>
+
+  <!-- MODAL lead form -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-inner" role="document">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <h3>Demandez votre livret — Test 24h</h3>
+        <button id="modal-close" aria-label="Fermer">✕</button>
+      </div>
+
+      <form id="lead-form" class="form" action="https://formspree.io/f/xdkdvdgz" method="POST" style="margin-top:12px">
+        <input type="hidden" name="_subject" value="Nouvelle demande — WelcomeStras">
+        <div class="form-row">
+          <input id="name" name="name" placeholder="Nom & prénom *" required class="focus-ring">
+          <input id="email" name="email" type="email" placeholder="Email *" required class="focus-ring">
+        </div>
+        <div class="form-row" style="margin-top:10px">
+          <input id="phone" name="phone" placeholder="WhatsApp / Tel" class="focus-ring">
+          <input id="listing" name="listing" type="url" placeholder="Lien annonce (Airbnb) *" required class="focus-ring">
+        </div>
+        <div style="margin-top:10px">
+          <label for="pack" class="small muted">Pack souhaité</label>
+          <select id="pack" name="pack" style="margin-top:6px;padding:10px;border-radius:8px;border:1px solid rgba(7,18,34,0.06)" class="focus-ring">
+            <option>Starter — 49 €</option>
+            <option>Pro — 89 €</option>
+            <option>Care — 14 €/mois</option>
+          </select>
+        </div>
+
+        <div style="margin-top:12px;display:flex;gap:10px;align-items:center">
+          <button type="submit" class="btn-primary">Envoyer & lancer</button>
+          <a id="mailto-fallback" class="small muted" href="#">Envoyer par email</a>
+        </div>
+
+        <div id="form-msg" class="small muted" style="margin-top:10px" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    (function(){
+      // ------------- CONFIG (remplace par tes valeurs) -------------
+      const DEMO_URL = './demo.html';
+      const CONTACT_EMAIL = 'contact@votreemail.com';
+      const WA_NUMBER = '33600000000'; // format international sans + (ex: 33612345678)
+      // ------------------------------------------------------------
 
-      // --- CONFIG (MODIFIE ICI) ---
-      const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xdkdvdgz'; // <-- remplace par ton endpoint Formspree
-      const DEMO_URL = './demo.html'; // <-- remplace si tu veux une autre URL de demo
+      const $ = (s,ctx=document)=>ctx.querySelector(s);
+      const $$ = (s,ctx=document)=>Array.from((ctx||document).querySelectorAll(s));
 
-      // utility
-      const $ = (sel, ctx=document) => ctx.querySelector(sel);
-      const $$ = (sel, ctx=document) => Array.from(ctx.querySelectorAll(sel));
+      // set year
+      $('#year').textContent = new Date().getFullYear();
 
-      // set demo QR (dynamic)
-      const demoLink = $('#demo-link');
-      const demoQR = $('#demo-qr');
-      const demoUrlText = $('#demo-url-text');
-      if (demoLink) demoLink.href = DEMO_URL;
-      if (demoQR) demoQR.src = `https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=${encodeURIComponent(DEMO_URL)}`;
-      if (demoUrlText) demoUrlText.textContent = `demo: ${DEMO_URL}`;
+      // wire demo links (open in new tab)
+      [$('#hero-demo'), $('#nav-demo'), $('#bottom-demo')].forEach(el=>{
+        if(!el) return;
+        el.setAttribute('href', DEMO_URL);
+        el.setAttribute('target','_blank');
+        el.setAttribute('rel','noopener noreferrer');
+      });
 
-      // year
-      const yearEl = $('#year'); if (yearEl) yearEl.textContent = new Date().getFullYear();
+      // Quick contact links: mail & whatsapp
+      const waLink = $('#quick-wa'), mailLink = $('#quick-mail');
+      if(waLink) waLink.href = `https://wa.me/${WA_NUMBER}`;
+      if(mailLink) mailLink.href = `mailto:${CONTACT_EMAIL}`;
 
-      // modal controls
-      const modal = $('#modal');
-      const modalClose = $('#modal-close');
-      const openButtons = [].concat($$('.commander'), [$('#cta-test'), $('#hero-start'), $('#demo-open-modal'), $('#cta-devis')]).filter(Boolean);
-      const form = $('#lead-form');
+      // bottom demo / bottom test
+      $('#bottom-test')?.addEventListener('click', ()=> openModal('Starter'));
+      $('#hero-test')?.addEventListener('click', ()=> openModal('Starter'));
 
-      if (form && FORMSPREE_ENDPOINT) form.action = FORMSPREE_ENDPOINT; // set Formspree endpoint
+      // mini QR small and optional
+      const miniQr = $('#mini-qr');
+      if(miniQr) miniQr.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(DEMO_URL)}`;
 
-      function openModal(preselectPack){
-        if(!modal) return;
-        modal.classList.add('active');
-        modal.style.display = 'flex';
-        modal.setAttribute('aria-hidden','false');
-        // preselect pack
-        if(preselectPack){
-          const packSelect = $('#pack');
-          if(packSelect){
-            const opt = Array.from(packSelect.options).find(o => o.textContent.trim().toLowerCase().startsWith(preselectPack.toLowerCase()));
-            if(opt) packSelect.value = opt.textContent.trim();
-          }
+      // modal handling
+      const modal = $('#modal'), modalClose = $('#modal-close');
+      function openModal(pack){
+        modal.classList.add('active'); modal.setAttribute('aria-hidden','false');
+        setTimeout(()=>{ $('#name')?.focus(); },60);
+        if(pack){
+          const sel = $('#pack'); if(sel) Array.from(sel.options).forEach(o=>{ if(o.textContent.toLowerCase().startsWith(pack.toLowerCase())) sel.value = o.textContent; });
         }
-        setTimeout(()=> { const name = $('#name'); if(name) name.focus(); }, 60);
       }
-      function closeModal(){
-        if(!modal) return;
-        modal.classList.remove('active');
-        modal.style.display = 'none';
-        modal.setAttribute('aria-hidden','true');
-      }
+      function closeModal(){ modal.classList.remove('active'); modal.setAttribute('aria-hidden','true'); }
+      $$('.open-modal').forEach(b=>b.addEventListener('click', e=>{ e.preventDefault(); openModal(b.dataset.pack||''); }));
+      modalClose?.addEventListener('click', closeModal);
+      window.addEventListener('keydown', e=>{ if(e.key === 'Escape') closeModal(); });
+      modal.addEventListener('click', e=>{ if(e.target === modal) closeModal(); });
 
-      openButtons.forEach(btn=>{
-        btn.addEventListener('click', e=>{
-          e.preventDefault();
-          const pack = btn.getAttribute('data-pack') || null;
-          openModal(pack);
-        });
-      });
-      if(modalClose) modalClose.addEventListener('click', closeModal);
-      window.addEventListener('click', e => { if(e.target === modal) closeModal(); });
-
-      // specific commander buttons (safety)
-      $$('.commander').forEach(btn=>{
-        btn.addEventListener('click', function(e){
-          e.preventDefault();
-          const pack = this.getAttribute('data-pack') || null;
-          openModal(pack);
-        });
-      });
-
-      // QR live preview from listing
-      const listing = $('#listing');
-      const qrSmall = $('#qr-sample');
-      const qrInline = $('#qr-inline');
-      const qrDemo = $('#demo-qr');
-      function updateQRPreview(){
-        const url = (listing && listing.value) ? listing.value.trim() : DEMO_URL;
-        const enc = encodeURIComponent(url);
-        if(qrSmall) qrSmall.src = `https://api.qrserver.com/v1/create-qr-code/?size=90x90&data=${enc}`;
-        if(qrInline) qrInline.src = `https://api.qrserver.com/v1/create-qr-code/?size=110x110&data=${enc}`;
-        if(qrDemo) qrDemo.src = `https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=${enc}`;
-      }
-      if(listing){
-        listing.addEventListener('input', updateQRPreview);
-        listing.addEventListener('change', updateQRPreview);
-      }
-      updateQRPreview();
-
-      // mailto fallback
-      const mailto = $('#mailto-fallback');
+      // mailto fallback building
       function updateMailto(){
-        if(!mailto) return;
         const name = ($('#name')?.value||'').trim();
         const email = ($('#email')?.value||'').trim();
         const phone = ($('#phone')?.value||'').trim();
-        const list = ($('#listing')?.value||'').trim();
+        const listing = ($('#listing')?.value||'').trim();
         const pack = ($('#pack')?.value||'').trim();
-        const notes = ($('#notes')?.value||'').trim();
-
-        // get languages
-        const langNodes = $$('input[name="lang_es"], input[name="lang_it"], input[name="lang_de"]');
-        const langs = langNodes.filter(cb => cb.checked).map(cb=>cb.value).join(', ') || 'Aucune';
-
-        const subject = encodeURIComponent("Commande Livret d'Accueil — WelcomeQR");
-        const body = encodeURIComponent(
-          `Nom: ${name}\nEmail: ${email}\nTel: ${phone}\nAnnonce: ${list}\nPack: ${pack}\nLangues supplémentaires: ${langs}\nNotes: ${notes}`
-        );
-        // change contact@votreemail.com by your real email
-        mailto.href = `mailto:contact@votreemail.com?subject=${subject}&body=${body}`;
+        const sub = encodeURIComponent('Demande — WelcomeStras');
+        const body = encodeURIComponent(`Nom: ${name}\nEmail: ${email}\nTel: ${phone}\nAnnonce: ${listing}\nPack: ${pack}`);
+        $('#mailto-fallback').href = `mailto:${CONTACT_EMAIL}?subject=${sub}&body=${body}`;
       }
-      ['#name','#email','#phone','#listing','#pack','#notes'].forEach(sel=>{
-        const el = $(sel); if(el) el.addEventListener('input', updateMailto);
-      });
-      $$('input[name="lang_es"], input[name="lang_it"], input[name="lang_de"]').forEach(cb=>cb.addEventListener('change', updateMailto));
+      ['#name','#email','#phone','#listing','#pack'].forEach(s=>{ const el=$(s); if(el) el.addEventListener('input', updateMailto); });
       updateMailto();
 
-      // form submit feedback
-      const formMsg = $('#form-msg');
+      // form UX
+      const form = $('#lead-form'), formMsg = $('#form-msg');
       if(form){
-        form.addEventListener('submit', function(){
-          if(formMsg) formMsg.textContent = 'Envoi en cours… Merci — vous allez recevoir une confirmation.';
-        });
+        form.addEventListener('submit', ()=>{ formMsg.textContent = 'Envoi en cours…'; setTimeout(()=>{ formMsg.textContent = 'Envoi effectué — nous vous contactons sous 24h.'; }, 900); });
       }
 
-      // FAQ accordion (smooth)
-      $$('.faq-question').forEach(btn=>{
-        btn.addEventListener('click', function(){
-          const item = this.closest('.faq-item');
-          if(!item) return;
-          const answer = item.querySelector('.faq-answer');
-          if(!answer) return;
-          const open = item.classList.contains('open');
-          if(open){
-            answer.style.maxHeight = '0px';
-            item.classList.remove('open');
-            this.setAttribute('aria-expanded','false');
-          } else {
-            answer.style.maxHeight = answer.scrollHeight + 20 + 'px';
-            item.classList.add('open');
-            this.setAttribute('aria-expanded','true');
-          }
+      // testimonials carousel
+      const reviews = [
+        {score:4.9, text:"Nous avons réduit les appels et gagné en tranquillité. Service très pro.", author:"Julie P., Strasbourg", date:"Avr 2025", reviews:12},
+        {score:4.8, text:"Livraison rapide, retouches efficaces — nos voyageurs sont ravis.", author:"Karim L., Lyon", date:"Mai 2025", reviews:8},
+        {score:4.7, text:"Care est parfait pour gérer plusieurs logements facilement.", author:"Sophie M., Paris", date:"Mar 2025", reviews:7}
+      ];
+      const slot = $('#review-slot'), counter = $('#review-counter'), prev = $('#prev-review'), next = $('#next-review');
+      let i = 0, timer = null;
+      function render(i0){
+        const r = reviews[i0];
+        const stars = Array.from({length:5}).map(()=>`<svg width="16" height="16"><use xlink:href="#star"/></svg>`).join('');
+        slot.innerHTML = `<div class="rating"><strong>${r.score}</strong><div class="stars" aria-hidden="true" style="margin-left:8px">${stars}</div></div><p style="margin-top:8px;color:var(--muted)">${r.text}</p><div class="small muted" style="margin-top:8px">— ${r.author} · ${r.date} · ${r.reviews} avis</div>`;
+        counter.textContent = `${i0+1} / ${reviews.length}`;
+      }
+      function nextR(){ i = (i + 1) % reviews.length; render(i); }
+      function prevR(){ i = (i - 1 + reviews.length) % reviews.length; render(i); }
+      render(0);
+      next?.addEventListener('click', ()=>{ nextR(); reset(); });
+      prev?.addEventListener('click', ()=>{ prevR(); reset(); });
+      function start(){ stop(); timer = setInterval(nextR, 4200); }
+      function stop(){ if(timer){ clearInterval(timer); timer = null; } }
+      function reset(){ stop(); start(); }
+      slot?.addEventListener('mouseenter', stop); slot?.addEventListener('mouseleave', start);
+      slot?.addEventListener('focus', stop); slot?.addEventListener('blur', start);
+      start();
+
+      // focus trap simple
+      document.addEventListener('focus', function(e){
+        if(!modal.classList.contains('active')) return;
+        if(!modal.contains(e.target)){ e.stopPropagation(); modal.querySelector('input,button,select,textarea')?.focus(); }
+      }, true);
+
+      // highlight bottom nav on click
+      $$('.bottom-nav .item').forEach(it => {
+        it.addEventListener('click', () => {
+          $$('.bottom-nav .item').forEach(a => a.classList.remove('active'));
+          it.classList.add('active');
         });
       });
 
-    }); // DOMContentLoaded
+      // small console events (replace by analytics)
+      $('#hero-demo')?.addEventListener('click', ()=> console.log('event:hero_demo'));
+      $('#nav-demo')?.addEventListener('click', ()=> console.log('event:nav_demo'));
+      $('#bottom-demo')?.addEventListener('click', ()=> console.log('event:bottom_demo'));
+    })();
   </script>
 </body>
 </html>
