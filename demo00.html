@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Démo — Studio Cosy, Centre Historique — WelcomeQR (exemple)</title>
+<meta name="description" content="Page démo exhaustive — exemple d'une page voyageurs : arrivée, Wi-Fi, accès, emplacement des essentiels, appareils, checklist, bons plans (FR/EN)." />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- Header -->
+    <header class="appear" role="banner">
+      <div class="brand">
+        <div class="logo" aria-hidden>WQ</div>
+        <div >
+          <h1>Studio Cosy — Centre historique (démo)</h1>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:12px;align-items:center">
+        <div class="lang" role="tablist" aria-label="Langues">
+          <button id="btnFR" class="pill active" onclick="setLang('fr')">FR</button>
+          <button id="btnEN" class="pill" onclick="setLang('en')">EN</button>
+        </div>
+        <!-- Minimal contact for demo realism (owner contact visible to traveller) -->
+        <a class="pill" href="mailto:host@example.com?subject=Message%20–%20Studio%20Cosy" title="Contacter le propriétaire">Contact propriétaire</a>
+      </div>
+    </header>
+
+    <!-- TOC -->
+    <div class="toc appear" aria-hidden="false">
+      <div class="toc-inner">
+        <a href="#s-welcome">Accueil</a>
+        <a href="#s-arrival">Arrivée</a>
+        <a href="#s-wifi">Wi-Fi</a>
+        <a href="#s-access">Accès</a>
+        <a href="#s-where">Où</a>
+        <a href="#s-appliances">Appareils</a>
+        <a href="#s-rules">Règlement</a>
+        <a href="#s-checkout">Check-out</a>
+        <a href="#s-tips">Bons plans</a>
+        <a href="#s-emergency">Urgences</a>
+      </div>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero appear" aria-labelledby="hero-title">
+      <div class="hero-left">
+        <div id="hero-kicker" class="kicker" data-fr="Appartement — parfait pour 1–2 personnes" data-en="Apartment — perfect for 1–2 guests">Appartement — parfait pour 1–2 personnes</div>
+        <h2 id="hero-title" class="hero-title">Studio Cosy — Face à la cour, calme & central</h2>
+        <p class="hero-sub" data-fr="Appartement lumineux, kitchenette équipée, literie neuve. Idéal pour découvrir la ville à pied. Cette page liste tout ce que vos voyageurs doivent savoir — claire, directe et actionnable." data-en="Bright studio, equipped kitchenette, new bedding. Perfect base to explore the city on foot. This page lists everything guests need — clear, actionable."></p>
+
+        <div class="hero-meta">
+          <div class="chip" data-fr="2 pers" data-en="2 guests">2 pers</div>
+          <div class="chip" data-fr="Check-in autonome" data-en="Self check-in">Check-in autonome</div>
+          <div class="chip" data-fr="Wi-Fi haut débit" data-en="Fast Wi-Fi">Wi-Fi haut débit</div>
+        </div>
+
+        <div class="hero-actions">
+          <a class="btn" href="#s-arrival">Checklist arrivée</a>
+          <a class="btn ghost" href="#s-tips">Voir bons plans</a>
+        </div>
+      </div>
+
+      <aside class="hero-aside">
+        <div style="font-weight:800">Adresse (exemple)</div>
+        <div class="small" style="margin-top:8px">12 rue du Vieux-Pont — 69002 Lyon</div>
+
+        <div style="margin-top:12px" class="small">
+          <strong>Accès public</strong> : tram Ligne T1 — arrêt Cathédrale (5 min).
+        </div>
+      </aside>
+    </section>
+
+    <!-- Body -->
+    <div class="demo-body">
+
+      <!-- MAIN CONTENT -->
+      <main class="content">
+
+        <!-- Welcome -->
+        <section id="s-welcome" class="card appear">
+          <h3 class="section-title" data-fr="Bienvenue" data-en="Welcome">Bienvenue</h3>
+          <p class="section-sub" data-fr="Bienvenue dans le studio. Cette page centralise toutes les informations pratiques : arrivée, codes, emplacement des objets, fonctionnement des appareils, règles, check-out et bons plans." data-en="Welcome to the studio. This page centralizes all practical information: arrival, codes, where things are, how appliances work, rules, check-out and top picks."></p>
+          <div class="two-col">
+            <div>
+              <div class="hint" data-fr="Astuce d'arrivée : ouvrez toutes les fenêtres 3–5 minutes pour aérer avant d'allumer le chauffage." data-en="Arrival tip: open all windows 3–5 minutes to air before turning on heating."></div>
+            </div>
+            <div>
+              <div class="small" data-fr="Nous recommandons aux voyageurs de lire la checklist arrivée avant d'arriver pour un check-in sans stress." data-en="We recommend guests read the arrival checklist before arrival for a stress-free check-in."></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Arrival -->
+        <section id="s-arrival" class="card appear">
+          <h3 class="section-title" data-fr="Checklist d'arrivée" data-en="Arrival checklist">Checklist d'arrivée</h3>
+          <p class="section-sub" data-fr="Étapes simples pour entrer et vous installer rapidement." data-en="Simple steps to enter and settle in quickly."></p>
+
+          <ol class="steps">
+            <li class="step" data-fr="Saisir le code d'entrée : <strong>2580</strong> sur le boîtier puis valider." data-en="Enter the door code: <strong>2580</strong> on the keypad and confirm."></li>
+            <li class="step" data-fr="Ouvrir la porte et récupérer la clé dans la boîte aimantée (sous le paillasson)." data-en="Open the door and retrieve the key from the magnetic box (under the doormat)."></li>
+            <li class="step" data-fr="Allumer le chauffage si nécessaire (voir section appareils)." data-en="Turn on heating if needed (see appliances section)."></li>
+            <li class="step" data-fr="Vérifier la présence d'eau chaude et la propreté générale." data-en="Check hot water and general cleanliness."></li>
+          </ol>
+
+          <div style="margin-top:10px" class="small" data-fr="Si problème d'accès : contactez le propriétaire par e-mail (bouton en haut)." data-en="If access issues: contact the host by e-mail (button at top)."></div>
+        </section>
+
+        <!-- Wi-Fi -->
+        <section id="s-wifi" class="card appear">
+          <h3 class="section-title">Wi-Fi</h3>
+          <p class="section-sub" data-fr="Connexion pour les invités — SSID et mot de passe affichés clairement." data-en="Guest connection — SSID and password displayed clearly."></p>
+          <div class="two-col">
+            <div><strong>SSID</strong> : <span class="code">WelcomeQR-Guest</span></div>
+            <div><strong data-fr="Mot de passe" data-en="Password"></strong> : <span class="code">Bellecour2025!</span></div>
+          </div>
+          <div style="margin-top:8px" class="small" data-fr="Conseil : changez le mot de passe régulièrement si vous le souhaitez." data-en="Tip: change the password regularly if you prefer."></div>
+        </section>
+
+        <!-- Access details -->
+        <section id="s-access" class="card appear">
+          <h3 class="section-title" data-fr="Accès — Détails" data-en="Access — Details">Accès — Détails</h3>
+          <div class="two-col">
+            <div>
+              <p><strong data-fr="Interphone" data-en="Intercom"></strong> : <span data-fr="Appeler Appartement 3B" data-en="Call Apartment 3B">Appeler Appartement 3B</span></p>
+              <p data-fr="Ascenseur : monter au 3e étage, 2e porte à gauche." data-en="Elevator: go to 3rd floor, 2nd door on the left."></p>
+            </div>
+            <div>
+              <div class="accordion" id="acc-access">
+                <div class="item open">
+                  <div class="head" onclick="toggleAcc(this)" tabindex="0"><span data-fr="Si vous êtes bloqué" data-en="If locked out"></span><span>▾</span></div>
+                  <div class="body" data-fr="Contactez le propriétaire (bouton e-mail en haut) — fournissez heure d'arrivée et numéro de réservation." data-en="Contact the host (email button at top) — provide arrival time and booking number."></div>
+                </div>
+                <div class="item">
+                  <div class="head" onclick="toggleAcc(this)" tabindex="0"><span data-fr="Boîte à clés" data-en="Key box"></span><span>▾</span></div>
+                  <div class="body" data-fr="Boîte aimantée sous le paillasson (code sur cette page)." data-en="Magnetic box under the doormat (code on this page)."></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Where -->
+        <section id="s-where" class="card appear">
+          <h3 class="section-title" data-fr="Où trouver — essentiels" data-en="Where to find — essentials">Où trouver — essentiels</h3>
+          <p class="section-sub" data-fr="Liste précise d'objets utiles." data-en="Precise list of useful items."></p>
+
+          <div class="two-col">
+            <div>
+              <ul style="margin:0;padding-left:18px">
+                <li data-fr="Aspirateur : placard sous l'escalier (poignée rouge)." data-en="Vacuum: under-stairs closet (red handle)."></li>
+                <li data-fr="Fer & planche : tiroir cuisine (côté gauche)." data-en="Iron & board: kitchen drawer (left side)."></li>
+                <li data-fr="Trousse de secours : armoire salle de bain — étagère du milieu." data-en="First-aid kit: bathroom cabinet — middle shelf."></li>
+                <li data-fr="Sacs poubelle : buanderie, étagère basse." data-en="Trash bags: laundry room, bottom shelf."></li>
+                <li data-fr="Chargeurs / adaptateurs : boîte 'Tech' sur la table basse." data-en="Chargers/adapters: 'Tech' box on the coffee table."></li>
+              </ul>
+            </div>
+            <div>
+              <div class="hint" data-fr="Astuce : mettez des étiquettes physiques aux endroits sensibles (ex : boîte à clés, aspirateur) pour guider le voyageur rapidement." data-en="Tip: add physical labels for sensitive spots (key box, vacuum) to guide guests quickly."></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Appliances -->
+        <section id="s-appliances" class="card appear">
+          <h3 class="section-title" data-fr="Appareils — mode d'emploi" data-en="Appliances — how to use">Appareils — mode d'emploi</h3>
+          <p class="section-sub" data-fr="Instructions courtes et pratiques, sans jargon technique." data-en="Short, practical instructions without technical jargon."></p>
+
+          <div class="two-col">
+            <div>
+              <strong data-fr="Thermostat" data-en="Thermostat"></strong>
+              <p data-fr="Appuyez sur MODE puis +/−. Pour monter rapidement : +2°C, attendre 15–20 min." data-en="Press MODE then +/−. To raise quickly: +2°C, wait 15–20 min."></p>
+
+              <strong data-fr="Machine à laver" data-en="Washing machine"></strong>
+              <p data-fr="Programme Eco 40°. Lessive : tiroir A. Ne pas surcharger." data-en="Eco 40° program. Detergent in drawer A. Do not overload."></p>
+            </div>
+
+            <div>
+              <strong data-fr="Four" data-en="Oven"></strong>
+              <p data-fr="Sélectionnez 180°C, préchauffage ~5 min. Utiliser gants." data-en="Select 180°C, preheat ~5 min. Use oven gloves."></p>
+
+              <strong data-fr="Plaques" data-en="Hob"></strong>
+              <p data-fr="Maintenir 3s pour déverrouiller puis +/−." data-en="Hold 3s to unlock then +/−."></p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Rules -->
+        <section id="s-rules" class="card appear">
+          <h3 class="section-title" data-fr="Règlement intérieur (résumé)" data-en="House rules (summary)">Règlement intérieur (résumé)</h3>
+          <div class="two-col">
+            <div>
+              <ul style="margin:0;padding-left:18px">
+                <li data-fr="Silence après 22:00 — respecter le voisinage." data-en="Quiet after 10pm — respect neighbours."></li>
+                <li data-fr="Interdit de fumer à l'intérieur." data-en="No smoking indoors."></li>
+                <li data-fr="Animaux : uniquement sur demande et accord préalable." data-en="Pets: only on request and prior approval."></li>
+                <li data-fr="Tri : bio (brun) / recyclables (jaune) / ordures (noir)." data-en="Sorting: bio (brown) / recyclables (yellow) / general (black)."></li>
+              </ul>
+            </div>
+            <div>
+              <div class="small" data-fr="Conseil : mettez un résumé en haut + version complète en bas pour les curieux." data-en="Tip: put a short summary at top + full version at bottom for detail lovers."></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Check-out -->
+        <section id="s-checkout" class="card appear">
+          <h3 class="section-title" data-fr="Check-out — checklist rapide" data-en="Check-out — quick checklist">Check-out — checklist rapide</h3>
+          <ol style="margin:0;padding-left:18px">
+            <li data-fr="Éteindre toutes les lumières et baisser le chauffage." data-en="Switch off all lights and lower the heating."></li>
+            <li data-fr="Vider la petite poubelle cuisine et déposer les sacs." data-en="Empty the small kitchen bin and dispose of bags."></li>
+            <li data-fr="Remettre les clés dans la boîte aimantée / à l'endroit indiqué." data-en="Return keys to the magnetic box / indicated place."></li>
+            <li data-fr="Fermer les fenêtres." data-en="Close the windows."></li>
+          </ol>
+          <div class="small" style="margin-top:8px" data-fr="Astuce : laisser une note si vous cassez ou signalez un incident." data-en="Tip: leave a note if you break or report an incident."></div>
+        </section>
+
+        <!-- Top picks - exhaustive -->
+        <section id="s-tips" class="card appear">
+          <h3 class="section-title" data-fr="Bons plans & incontournables" data-en="Top picks & must-sees">Bons plans & incontournables</h3>
+          <p class="section-sub" data-fr="Sélection testée par l'hôte : cafés, restaurants, vues, marchés, activités et transports." data-en="Host-tested selection: cafés, restaurants, viewpoints, markets, activities and transport."></p>
+
+          <div class="local-list">
+            <article class="local-item">
+              <h4>Le Garçon Café — Espresso & pâtisseries</h4>
+              <div class="muted">3 min à pied — café local, espresso serré et viennoiseries fraîches.</div>
+              <div class="small" style="margin-top:6px">Meilleur pour : petit-déjeuner express.</div>
+            </article>
+
+            <article class="local-item">
+              <h4>Chez Mado — Bouchon lyonnais</h4>
+              <div class="muted">8 min à pied — spécialités locales, réservation conseillée le weekend.</div>
+              <div class="small" style="margin-top:6px">Meilleur pour : découvrir la cuisine lyonnaise.</div>
+            </article>
+
+            <article class="local-item">
+              <h4>Belvédère Fourvière — Vue panoramique</h4>
+              <div class="muted">15 min (montée) ou 8 min en transport — coucher de soleil remarquable.</div>
+              <div class="small" style="margin-top:6px">Astuce : monter via les jardins pour éviter la foule.</div>
+            </article>
+
+            <article class="local-item">
+              <h4>Monoprix Terreaux — Courses</h4>
+              <div class="muted">5 min à pied — horaires larges, dépannage pratique.</div>
+              <div class="small" style="margin-top:6px">Astuce : rayon bio au sous-sol.</div>
+            </article>
+
+            <article class="local-item">
+              <h4>Marché Hebdomadaire (samedi)</h4>
+              <div class="muted">7:30–13:00 — produits frais, fromages, fleurs.</div>
+              <div class="small" style="margin-top:6px">Parfait pour : paniers petit-déjeuner locaux.</div>
+            </article>
+
+            <article class="local-item">
+              <h4>Parking public — Parking Bellecour</h4>
+              <div class="muted">2–3 min en voiture — sécurisé, payant.</div>
+              <div class="small" style="margin-top:6px">Conseil : indiquez l'entrée exacte pour invités en voiture.</div>
+            </article>
+
+            <article class="local-item">
+              <h4>Pharmacie Centrale</h4>
+              <div class="muted">6 min à pied — utile pour petits soins & urgences.</div>
+              <div class="small" style="margin-top:6px">Indiquer heures d'ouverture réelles lors de la saison.</div>
+            </article>
+
+            <article class="local-item">
+              <h4>Activités famille — Parc & aire de jeux</h4>
+              <div class="muted">10 min à pied — espace vert, tables de pique-nique.</div>
+              <div class="small" style="margin-top:6px">Idéal pour familles avec enfants.</div>
+            </article>
+          </div>
+        </section>
+
+        <!-- Emergency -->
+        <section id="s-emergency" class="card appear">
+          <h3 class="section-title" data-fr="Urgences & contacts utiles" data-en="Emergencies & useful contacts">Urgences & contacts utiles</h3>
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Urgences (pompiers / police / SAMU)</strong> : 112</li>
+            <li data-fr="Pharmacie de garde : voir rubrique 'Bons plans' ou appeler la pharmacie centrale." data-en="On-call pharmacy: see 'Top picks' or call the central pharmacy."></li>
+            <li data-fr="Contact propriétaire" data-en="Host contact">host@example.com</li>
+          </ul>
+          <div class="small" style="margin-top:8px" data-fr="Si incident technique (chauffage, fuite) : signalez immédiatement afin que le propriétaire intervienne." data-en="If technical incident (heating, leak): report immediately so host can act."></div>
+        </section>
+
+      </main>
+
+      <!-- ASIDE -->
+      <aside class="panel appear" aria-label="Récapitulatif">
+        <div class="card">
+          <div style="font-weight:800">Résumé rapide</div>
+          <ul style="margin:8px 0 0;padding-left:18px">
+            <li>Adresse & transport</li>
+            <li>Codes & checklists claires</li>
+            <li>Emplacements des essentiels</li>
+            <li>Instructions appareils</li>
+            <li>Bons plans testés</li>
+          </ul>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <div style="font-weight:800">Infos pratiques</div>
+          <div class="small" style="margin-top:8px">
+            Capacité : 2 personnes • Check-in autonome • Wi-Fi inclus
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <div style="font-weight:800">Options de personnalisation</div>
+          <div class="small" style="margin-top:8px">
+            Couleurs, ton et ordre des sections peuvent être adaptés selon le logement.
+          </div>
+        </div>
+
+      </aside>
+    </div>
+
+    <footer class="appear">
+      <div class="muted center">Page démo fournie par WelcomeQR — texte & structure entièrement modifiables.</div>
+    </footer>
+  </div>
+
+<script>
+  // bilingual toggle (FR/EN)
+  function setLang(lang){
+    document.querySelectorAll('[data-fr]').forEach(el=>{
+      el.textContent = (lang === 'fr') ? el.getAttribute('data-fr') : el.getAttribute('data-en');
+    });
+    document.getElementById('btnFR').classList.toggle('active', lang==='fr');
+    document.getElementById('btnEN').classList.toggle('active', lang==='en');
+  }
+  setLang('fr');
+
+  // accordion toggle
+  function toggleAcc(head){
+    const item = head.parentElement;
+    item.classList.toggle('open');
+  }
+
+  // smooth internal links
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click', function(e){
+      const id = this.getAttribute('href').slice(1);
+      if(!id) return;
+      const el = document.getElementById(id);
+      if(!el) return;
+      e.preventDefault();
+      const top = el.getBoundingClientRect().top + window.scrollY - 14;
+      window.scrollTo({top,behavior:'smooth'});
+    });
+  });
+
+  // keyboard accessibility for accordion heads
+  document.addEventListener('keydown', (e)=>{
+    if((e.key === 'Enter' || e.key === ' ') && document.activeElement && document.activeElement.classList.contains('head')){
+      e.preventDefault(); toggleAcc(document.activeElement);
+    }
+  });
+</script>
+</body>
+</html>

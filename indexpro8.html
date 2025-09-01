@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>WelcomeStras — Livret d'accueil QR professionnel</title>
+  <meta name="description" content="Livret d'accueil QR : page dédiée par logement, PDF A5, support et services complémentaires. Livraison rapide, retouches sous 24h.">
+  <meta name="theme-color" content="#0b63c7" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      /* Palette pro : bleu confiance + accent chaud pour micro-interactions */
+      --bg: #f6fbff;
+      --surface: #ffffff;
+      --ink: #0b1720;
+      --muted: #55606a;
+      --primary: #0b63c7;   /* trust blue */
+      --accent: #06b6d4;    /* teal accent */
+      --warm: #ff7a59;      /* warm micro-interaction */
+      --cta-grad: linear-gradient(90deg,var(--primary),var(--accent));
+      --radius: 14px;
+      --shadow: 0 12px 30px rgba(8,20,40,0.06);
+      --nav-height: 76px;
+      --maxw: 1120px;
+    }
+
+    /* Reset & layout */
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
+    img,svg{max-width:100%;height:auto;display:block}
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:var(--maxw);margin:18px auto;padding:20px 18px 24px;padding-bottom:calc(24px + var(--nav-height));} /* reserve space for bottom nav */
+
+    /* Header */
+    header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:56px;height:56px;border-radius:12px;background:var(--primary);display:grid;place-items:center;color:#fff;font-weight:800;font-size:18px;box-shadow:0 10px 30px rgba(11,99,199,0.12)}
+    .brand-title h1{margin:0;font-size:18px}
+    .brand-title p{margin:0;font-size:12px;color:var(--muted)}
+
+    /* Desktop nav */
+    .nav{display:flex;gap:12px;align-items:center}
+    .nav a{padding:8px 10px;border-radius:10px;color:var(--muted);font-weight:600}
+    .nav .cta{background:var(--cta-grad);color:#fff;padding:10px 14px;border-radius:12px;font-weight:800;box-shadow:0 10px 28px rgba(11,99,199,0.10)}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 360px;gap:20px;align-items:center;margin:20px 0;padding:26px;border-radius:18px;background:linear-gradient(180deg,#fff,#f3faff);box-shadow:var(--shadow)}
+    @media (max-width:980px){.hero{grid-template-columns:1fr;padding:20px}}
+    @media (max-width:720px){.hero{grid-template-columns:1fr;padding:16px}}
+    .hero h2{font-size:clamp(22px,4.6vw,34px);margin:0;line-height:1.04}
+    .lead{color:var(--muted);margin-top:10px;font-size:15px}
+    .chips{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+    .chip{background:rgba(11,99,199,0.06);color:var(--primary);padding:6px 10px;border-radius:999px;font-weight:700;font-size:13px}
+
+    .cta-row{display:flex;gap:10px;margin-top:16px;align-items:center;flex-wrap:wrap}
+    .btn{padding:10px 14px;border-radius:12px;border:0;cursor:pointer;font-weight:800}
+    .btn-primary{background:var(--cta-grad);color:#fff}
+    .btn-ghost{background:transparent;border:1px solid rgba(6,18,40,0.06);color:var(--muted)}
+    .btn-demo{display:inline-flex;align-items:center;gap:10px;padding:11px 16px;border-radius:14px;background:var(--cta-grad);color:#fff;box-shadow:0 18px 50px rgba(11,99,199,0.12);transition:transform .16s ease}
+    .btn-demo:hover{transform:translateY(-3px)}
+
+    .hero-right{display:flex;flex-direction:column;align-items:center;gap:12px;padding:12px;border-radius:12px;background:linear-gradient(180deg,#fff,#fbfeff);border:1px solid rgba(6,18,40,0.04)}
+
+    /* Sections */
+    section{margin-top:22px}
+    h3{margin:0 0 10px 0;font-size:20px}
+    .card{background:var(--surface);padding:14px;border-radius:12px;border:1px solid rgba(6,18,40,0.04);box-shadow:var(--shadow)}
+
+    /* Offers */
+    .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    @media (max-width:880px){.plans{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:520px){.plans{grid-template-columns:1fr}}
+    .plan{padding:16px;border-radius:12px}
+    .price{font-weight:900;color:var(--primary);font-size:20px;margin:12px 0}
+    .addons{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+    .addon{background:rgba(6,18,40,0.03);padding:10px;border-radius:10px;font-size:14px;border:1px dashed rgba(6,18,40,0.04)}
+
+    /* Services included */
+    .services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    @media (max-width:880px){.services-grid{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:520px){.services-grid{grid-template-columns:1fr}}
+    .service{display:flex;gap:12px;align-items:flex-start}
+    .service svg{width:44px;height:44px;flex-shrink:0;color:var(--primary)}
+    .service h4{margin:0;font-size:16px}
+    .service p{margin:6px 0 0 0;color:var(--muted);font-size:14px}
+
+    /* Paid services */
+    .paid-services .services-grid{grid-template-columns:repeat(3,1fr)}
+    @media (max-width:880px){.paid-services .services-grid{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:520px){.paid-services .services-grid{grid-template-columns:1fr}}
+
+    /* FAQ */
+    .faq-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    @media (max-width:880px){.faq-grid{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:520px){.faq-grid{grid-template-columns:1fr}}
+    .faq-item{padding:12px;border-radius:10px;border:1px solid rgba(6,18,40,0.04)}
+
+    /* Testimonials */
+    .testimonials{display:grid;grid-template-columns:1fr 220px;gap:18px;align-items:center}
+    @media (max-width:920px){.testimonials{grid-template-columns:1fr}}
+    .review-card{padding:16px;border-radius:12px;background:linear-gradient(180deg,#fff,#f8fcff);border:1px solid rgba(6,18,40,0.04)}
+    .rating{display:flex;gap:10px;align-items:center}
+    .rating strong{font-size:18px}
+    .stars{display:flex;gap:6px;align-items:center}
+    .stars svg{width:16px;height:16px;color:#ffb400}
+
+    /* Bottom nav (fixed on mobile like an app) */
+    .bottom-nav{position:fixed;left:12px;right:12px;bottom:12px;height:var(--nav-height);background:linear-gradient(180deg,#fff,#fbfeff);border-radius:16px;display:none;align-items:center;justify-content:space-between;padding:8px 10px;box-shadow:0 18px 40px rgba(6,18,40,0.08);z-index:140}
+    .bottom-nav .item{flex:1;text-align:center;font-size:13px;color:var(--muted);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+    .bottom-nav .item.active{color:var(--primary);font-weight:800}
+    @media (max-width:900px){ .nav{display:none} .bottom-nav{display:flex} }
+
+    /* Modal & smaller helpers */
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(6,18,40,0.45);z-index:190;padding:18px}
+    .modal.active{display:flex}
+    .modal-inner{width:100%;max-width:760px;background:var(--surface);border-radius:12px;padding:18px}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    @media (max-width:520px){.form-row{grid-template-columns:1fr}}
+    input,select,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(6,18,40,0.06)}
+    .muted{color:var(--muted)}
+    footer{margin-top:28px;text-align:center;color:var(--muted);padding-bottom:18px}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  </style>
+
+  <!-- inline SVG icons used for stars & small icons -->
+  <svg style="display:none" aria-hidden="true">
+    <symbol id="star" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L23.5 9.75l-5.75 5.6L19.336 24 12 20.092 4.664 24l1.586-8.651L.5 9.75l7.832-1.732L12 .587z" fill="currentColor"/></symbol>
+    <symbol id="service-ic" viewBox="0 0 24 24"><path d="M12 2l3 6h6l-4.8 3.6L20 20l-8-5-8 5 3.8-8.4L3 8h6z" fill="currentColor"/></symbol>
+    <symbol id="demo-ic" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M8 11h8M8 15h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  </svg>
+</head>
+<body>
+  <div class="wrap" id="page-wrap">
+    <!-- Header -->
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true">WS</div>
+        <div class="brand-title">
+          <h1>WelcomeStras</h1>
+          <p class="muted">Livret d'accueil QR — simple, pro, livré rapidement</p>
+        </div>
+      </div>
+
+      <nav class="nav" aria-label="Navigation principale">
+        <a href="#offres">Offres</a>
+        <a href="#services-inclus">Services</a>
+        <a href="#paid-services">Services payants</a>
+        <a href="#b2b">Conciergerie</a>
+        <a href="#demo" class="cta btn-demo" title="Voir la démo"><svg width="16" height="16" style="margin-right:8px"><use xlink:href="#demo-ic"/></svg>Voir la démo</a>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <div class="chip">OFFRE LANCEMENT — Garantie 14 jours</div>
+        <h2 id="hero-title">Simplifiez l'accueil — moins d'appels, plus d'avis 5★</h2>
+        <p class="lead">Livret d'accueil personnalisé livré rapidement : page dédiée par logement, PDF A5 professionnel, assistance et retouches sous 24h. Objectif : améliorer l'expérience client et augmenter vos réservations.</p>
+
+        <div class="chips" aria-hidden="true">
+          <span class="chip">Design premium</span>
+          <span class="chip">Livraison rapide</span>
+          <span class="chip">Support réactif</span>
+        </div>
+
+        <div class="cta-row">
+          <a href="#demo" class="btn-demo" aria-label="Voir la démo"><svg width="16" height="16"><use xlink:href="#demo-ic"/></svg> Voir la démo</a>
+          <button class="btn btn-ghost" id="open-modal-hero">Tester 24h — gratuit</button>
+          <a href="#offres" class="muted" style="align-self:center">Voir les tarifs</a>
+        </div>
+
+        <div class="muted" style="margin-top:12px">À partir de <strong>49 €</strong> • Abonnement <strong>Care</strong> : 14 €/mois</div>
+      </div>
+
+      <aside class="hero-right" aria-hidden="false">
+        <div style="text-align:center">
+          <img id="qr-hero" src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=https%3A%2F%2Fexample.com%2Fdemo" alt="QR Démo" width="180" height="180" loading="lazy" style="border-radius:12px;border:1px solid rgba(6,18,40,0.04)">
+        </div>
+        <div class="muted small" style="text-align:center">Impression A5 fournie • Langues supplémentaires disponibles</div>
+      </aside>
+    </section>
+
+    <!-- DEMO -->
+    <section id="demo" class="card" aria-labelledby="demo-title">
+      <div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">
+        <div style="flex:1;min-width:220px">
+          <h3 id="demo-title">Expérience démo</h3>
+          <p class="muted">Ouvrez la page de démonstration pour voir le rendu client et la structure des informations (check-in, consignes, conseils locaux).</p>
+          <div style="margin-top:12px">
+            <a id="demo-btn" class="btn btn-demo" href="./demo.html" target="_blank" rel="noopener"><svg width="14" height="14"><use xlink:href="#demo-ic"/></svg> Ouvrir la démo</a>
+            <a id="demo-open-modal" class="btn btn-ghost" href="#" style="margin-left:10px">Tester 24h</a>
+          </div>
+        </div>
+
+        <div style="width:200px;text-align:center">
+          <img id="demo-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Fexample.com%2Fdemo" alt="QR démo" width="160" height="160" loading="lazy" style="border-radius:12px;border:1px solid rgba(6,18,40,0.04)">
+          <div class="muted small" style="margin-top:8px">demo: <code class="small">./demo.html</code></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OFFRES -->
+    <section id="offres">
+      <h3>Nos offres</h3>
+      <div class="plans" style="margin-top:12px">
+        <div class="card plan">
+          <h4>Starter</h4>
+          <div class="price">49 €</div>
+          <ul class="muted">
+            <li>Page dédiée par logement</li>
+            <li>QR & PDF A5 imprimable</li>
+            <li>Retouches 7 jours</li>
+          </ul>
+          <div style="margin-top:12px"><button class="btn btn-primary open-modal" data-pack="Starter">Commander — 49 €</button></div>
+          <div class="addons" aria-hidden="false">
+            <div class="addon">+ Traduction (ES/IT/DE) — 15 €</div>
+            <div class="addon">+ Livraison express 12h — 29 €</div>
+          </div>
+        </div>
+
+        <div class="card plan">
+          <h4>Pro</h4>
+          <div class="price">89 €</div>
+          <ul class="muted">
+            <li>Starter + PDF premium</li>
+            <li>Checklist turnover</li>
+            <li>Optimisation de l'annonce</li>
+          </ul>
+          <div style="margin-top:12px"><button class="btn btn-primary open-modal" data-pack="Pro">Commander — 89 €</button></div>
+          <div class="addons" aria-hidden="false">
+            <div class="addon">+ Pack photo pro (6) — 99 €</div>
+            <div class="addon">+ Rédaction annonce — 39 €</div>
+          </div>
+        </div>
+
+        <div class="card plan">
+          <h4>Care</h4>
+          <div class="price">14 €/mois</div>
+          <ul class="muted">
+            <li>Hébergement & mises à jour</li>
+            <li>Modifs sous 24h</li>
+            <li>Analytics QR</li>
+          </ul>
+          <div style="margin-top:12px"><button class="btn btn-primary open-modal" data-pack="Care">Souscrire — Care</button></div>
+          <div class="addons" aria-hidden="false">
+            <div class="addon">+ Support prioritaire — +6 €/mois</div>
+            <div class="addon">+ Multi-listing (5 pages) — 29 €/mois</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES INCLUS -->
+    <section id="services-inclus" class="card">
+      <h3>Services inclus</h3>
+      <div class="services-grid" style="margin-top:12px">
+        <div class="service"><svg><use xlink:href="#service-ic"/></svg><div><h4>Page structurée</h4><p>Check-in, règles, contacts et recommandations locales clairs et rapides à consulter.</p></div></div>
+        <div class="service"><svg><use xlink:href="#service-ic"/></svg><div><h4>PDF & QR</h4><p>Plaquette A5 professionnelle prête à imprimer.</p></div></div>
+        <div class="service"><svg><use xlink:href="#service-ic"/></svg><div><h4>Optimisation</h4><p>Conseils pour améliorer vos fiches Airbnb/Booking et stimuler les réservations.</p></div></div>
+        <div class="service"><svg><use xlink:href="#service-ic"/></svg><div><h4>Support</h4><p>Assistance rapide pour modifications et questions voyageurs.</p></div></div>
+      </div>
+    </section>
+
+    <!-- SERVICES COMPLÉMENTAIRES (PAYANTS) -->
+    <section id="paid-services" class="card paid-services" aria-labelledby="paid-services-title" style="margin-top:18px">
+      <h3 id="paid-services-title">Services complémentaires (payants)</h3>
+      <div class="services-grid" style="margin-top:12px">
+        <div class="service card"><strong>White-label / Domaine perso</strong><p class="muted">Page livrée sur votre domaine, logo & couleurs. <strong>29 € (one-shot)</strong></p></div>
+        <div class="service card"><strong>Langue supplémentaire</strong><p class="muted">Traduction humaine (ES/IT/DE) — 15 €/langue one-shot ou +2 €/mois/langue avec Care</p></div>
+        <div class="service card"><strong>Guide imprimable A5</strong><p class="muted">Guide papier prêt à imprimer — 19 € / logement</p></div>
+        <div class="service card"><strong>Import CSV / Onboarding lot</strong><p class="muted">On reprend votre tableur et on crée les pages — 1 €/logement (inclus Enterprise)</p></div>
+        <div class="service card"><strong>SLA prioritaire</strong><p class="muted">SLA 24h pour mises à jour & support — option B2B (+3 €/logement/mois)</p></div>
+        <div class="service card"><strong>Service Managed</strong><p class="muted">Nous gérons les mises à jour & relation propriétaire — +2 €/logement/mois</p></div>
+      </div>
+    </section>
+
+    <!-- CONCIERGERIE B2B -->
+    <section id="b2b" class="card">
+      <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap">
+        <div style="flex:1">
+          <h3>Conciergerie B2B — opérations simplifiées</h3>
+          <p class="muted">Pack dédié pour agences : onboarding, check-ins, maintenance, reporting et intégration multi-listings.</p>
+          <ul class="muted" style="margin-top:8px">
+            <li>Onboarding personnalisé</li>
+            <li>SLA 24h pour modifications</li>
+            <li>Reporting & analytics</li>
+          </ul>
+        </div>
+        <div style="min-width:200px;text-align:center"><a class="btn btn-primary" href="./b2b.html">Voir plus — Conciergerie</a></div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="card">
+      <h3>FAQ — questions fréquentes</h3>
+      <div class="faq-grid" style="margin-top:12px">
+        <div class="faq-item"><strong>La page est-elle indexée ?</strong><p class="muted">Par défaut non — confidentialité. On peut activer l'indexation sur demande.</p></div>
+        <div class="faq-item"><strong>Comment modifier une info ?</strong><p class="muted">Via formulaire ou support — modifications sous 24h (Pro/Care).</p></div>
+        <div class="faq-item"><strong>Paiement & facture ?</strong><p class="muted">Paiement sécurisé, facture disponible automatiquement.</p></div>
+      </div>
+      <div style="margin-top:12px;text-align:right"><a href="./faq.html" class="muted">Voir plus FAQ →</a></div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="card testimonials" aria-labelledby="testimonials-title">
+      <h3 id="testimonials-title">Ils ont testé — avis clients</h3>
+      <p class="muted">Avis clients représentatifs — remplacez par vos retours réels dès que possible.</p>
+
+      <div style="margin-top:12px;display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap">
+        <div style="flex:1">
+          <div id="review-slot" class="review-card" tabindex="0" aria-live="polite"></div>
+          <div style="display:flex;gap:8px;margin-top:10px;align-items:center">
+            <button id="prev-review" class="btn btn-ghost" aria-label="Avis précédent">◀</button>
+            <button id="next-review" class="btn btn-ghost" aria-label="Avis suivant">▶</button>
+            <div class="muted small" id="review-counter" style="margin-left:auto"></div>
+          </div>
+        </div>
+
+        <div style="width:220px;text-align:center">
+          <div class="muted small" style="margin-top:8px"><a href="#" id="see-more-reviews">Voir plus d'avis</a></div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div style="margin-top:18px;text-align:center;color:var(--muted)"><a href="./cgv.html" class="muted">CGV</a> · <a href="./privacy.html" class="muted">Politique</a> · <a href="./mentions.legales.html" class="muted">Mentions</a></div>
+      <div style="margin-top:10px;text-align:center;color:var(--muted)">© <span id="year"></span> WelcomeStras</div>
+    </footer>
+  </div>
+
+  <!-- Bottom nav: fixed, always visible on small screens (app-like) -->
+  <nav class="bottom-nav" aria-label="Navigation mobile">
+    <a class="item" href="#offres" aria-label="Offres">Offres</a>
+    <a class="item" href="#services-inclus" aria-label="Services">Services</a>
+    <a class="item" href="#paid-services" aria-label="Services payants">Payants</a>
+    <a class="item" href="#demo" aria-label="Démo">Démo</a>
+    <button class="item" id="bottom-cta" aria-label="Tester">Tester</button>
+  </nav>
+
+  <!-- Modal (light) -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-inner" role="document">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <h3>Demander un livret — Test 24h</h3>
+        <button id="modal-close" aria-label="Fermer">✕</button>
+      </div>
+
+      <form id="lead-form" class="form" action="https://formspree.io/f/xdkdvdgz" method="POST">
+        <!-- TODO: remplacez action par votre endpoint -->
+        <input type="hidden" name="_subject" value="Nouvelle demande — WelcomeStras">
+        <div class="form-row" style="margin-top:12px">
+          <input id="name" name="name" placeholder="Nom & prénom *" required>
+          <input id="email" name="email" type="email" placeholder="Email *" required>
+        </div>
+        <div style="margin-top:8px" class="form-row">
+          <input id="phone" name="phone" placeholder="WhatsApp / Tel">
+          <input id="listing" name="listing" type="url" placeholder="Lien annonce (Airbnb) *" required>
+        </div>
+        <div style="margin-top:8px">
+          <label for="pack" class="muted small">Pack souhaité</label>
+          <select id="pack" name="pack" style="margin-top:6px;padding:10px;border-radius:8px;border:1px solid rgba(6,18,40,0.06)">
+            <option>Starter — 49 €</option>
+            <option>Pro — 89 €</option>
+            <option>Care — 14 €/mois</option>
+          </select>
+        </div>
+
+        <div style="margin-top:12px;display:flex;gap:10px;align-items:center">
+          <button type="submit" class="btn btn-primary">Envoyer & lancer</button>
+          <a id="mailto-fallback" class="muted small" href="#">Envoyer par email</a>
+        </div>
+        <div id="form-msg" class="muted small" style="margin-top:10px" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      // ---------- CONFIG: remplacez ces valeurs ----------
+      const DEMO_URL = './demo.html'; // <-- mettre l'URL réelle de la démo
+      const CONTACT_EMAIL = 'contact@votreemail.com'; // <-- email contact
+      // --------------------------------------------------
+
+      // helpers
+      const $ = (s,ctx=document)=>ctx.querySelector(s);
+      const $$ = (s,ctx=document)=>Array.from((ctx||document).querySelectorAll(s));
+
+      // set year
+      $('#year').textContent = new Date().getFullYear();
+
+      // demo links & QR
+      $('#demo-btn')?.setAttribute('href', DEMO_URL);
+      $$('#demo-qr, #qr-hero').forEach(img => img && img.setAttribute('src', `https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=${encodeURIComponent(DEMO_URL)}`));
+
+      // modal behaviour
+      const modal = $('#modal'), modalClose = $('#modal-close');
+      function openModal(pack){
+        modal.classList.add('active'); modal.setAttribute('aria-hidden','false');
+        setTimeout(()=>{ $('#name')?.focus(); },60);
+        if(pack){
+          const sel = $('#pack'); if(sel){ Array.from(sel.options).forEach(o=>{ if(o.textContent.toLowerCase().startsWith(pack.toLowerCase())) sel.value = o.textContent; }); }
+        }
+      }
+      function closeModal(){ modal.classList.remove('active'); modal.setAttribute('aria-hidden','true'); }
+
+      $$('.open-modal').forEach(b=>b.addEventListener('click', e=>{ e.preventDefault(); openModal(b.dataset.pack||''); }));
+      $('#open-modal-hero')?.addEventListener('click', e=>{ e.preventDefault(); openModal(); });
+      $('#demo-open-modal')?.addEventListener('click', e=>{ e.preventDefault(); openModal(); });
+      $('#bottom-cta')?.addEventListener('click', e=>{ e.preventDefault(); openModal(); });
+      modalClose?.addEventListener('click', closeModal);
+      window.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
+      modal.addEventListener('click', e=>{ if(e.target===modal) closeModal(); });
+
+      // mailto fallback
+      function updateMailto(){
+        const name = ($('#name')?.value||'').trim();
+        const email = ($('#email')?.value||'').trim();
+        const phone = ($('#phone')?.value||'').trim();
+        const list = ($('#listing')?.value||'').trim();
+        const pack = ($('#pack')?.value||'').trim();
+        const subject = encodeURIComponent('Demande — WelcomeStras');
+        const body = encodeURIComponent(`Nom: ${name}\nEmail: ${email}\nTel: ${phone}\nAnnonce: ${list}\nPack: ${pack}`);
+        $('#mailto-fallback').href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+      }
+      ['#name','#email','#phone','#listing','#pack'].forEach(sel=>{ const el=$(sel); if(el) el.addEventListener('input', updateMailto); }); updateMailto();
+
+      // form feedback
+      const form = $('#lead-form'), formMsg = $('#form-msg');
+      if(form){ form.addEventListener('submit', ()=>{ formMsg.textContent = 'Envoi en cours…'; setTimeout(()=>{ formMsg.textContent = 'Envoi effectué — nous vous contactons sous 24h.'; }, 900); }); }
+
+      // Testimonials: horizontal stars, accessible carousel
+      const reviews = [
+        {score:4.9, text:"Notre taux d'occupation a augmenté de 12% le mois suivant la mise en ligne — les voyageurs ont moins appelé.", author:"Julie P., Strasbourg", date:"Avr 2025", reviews:12},
+        {score:4.8, text:"Livré en 24h, retouches rapides. Le PDF A5 est très pro.", author:"Karim L., Lyon", date:"Mai 2025", reviews:8},
+        {score:4.7, text:"Pack Care très pratique pour multi-biens — support réactif.", author:"Sophie M., Paris", date:"Mar 2025", reviews:7}
+      ];
+      const slot = $('#review-slot'), counter = $('#review-counter'), prev = $('#prev-review'), next = $('#next-review');
+      let idx = 0, autoTimer = null;
+      function renderReview(i){
+        const r = reviews[i];
+        const stars = Array.from({length:5}).map(()=>`<svg width="16" height="16"><use xlink:href="#star"/></svg>`).join('');
+        slot.innerHTML = `<div class="rating"><strong>${r.score}</strong><div class="stars">${stars}</div></div><p style="margin-top:8px;color:${'var(--muted)'}">${r.text}</p><div class="review-meta muted" style="margin-top:8px">— ${r.author} · ${r.date} · ${r.reviews} avis</div>`;
+        counter.textContent = `${i+1} / ${reviews.length}`;
+      }
+      function nextReview(){ idx = (idx+1) % reviews.length; renderReview(idx); }
+      function prevReview(){ idx = (idx-1 + reviews.length) % reviews.length; renderReview(idx); }
+      renderReview(0);
+      next?.addEventListener('click', ()=>{ nextReview(); resetAuto(); });
+      prev?.addEventListener('click', ()=>{ prevReview(); resetAuto(); });
+      function startAuto(){ stopAuto(); autoTimer = setInterval(nextReview, 4200); }
+      function stopAuto(){ if(autoTimer){ clearInterval(autoTimer); autoTimer = null; } }
+      function resetAuto(){ stopAuto(); startAuto(); }
+      slot?.addEventListener('mouseenter', stopAuto); slot?.addEventListener('mouseleave', startAuto);
+      slot?.addEventListener('focus', stopAuto); slot?.addEventListener('blur', startAuto);
+      startAuto();
+
+      // Accessibility: simple focus trap when modal open
+      document.addEventListener('focus', function(e){ if(!modal.classList.contains('active')) return; if(!modal.contains(e.target)){ e.stopPropagation(); modal.querySelector('input,button,select,textarea')?.focus(); } }, true);
+
+      // NOTE: bottom nav is fixed and intentionally always visible on small screens (no hide-on-scroll)
+    })();
+  </script>
+</body>
+</html>

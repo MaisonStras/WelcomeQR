@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>WelcomeStras — Livret d'accueil QR (optimisé mobile)</title>
+  <meta name="description" content="Livret d'accueil QR professionnel — demo mobile, packs Starter/Pro/Care, conciergerie B2B, services complémentaires payants.">
+  <meta name="theme-color" content="#0b63c7" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+  /* ---------------------------
+     WelcomeStras - final
+     - palette raffinée (pro)
+     - mobile-first / responsive
+     - bottom nav stable
+     - testimonials horizontal stars
+     - services complémentaires ajoutés
+     ---------------------------*/
+  :root{
+    --bg: #f6fbff;
+    --surface: #ffffff;
+    --muted: #596470;
+    --ink: #05202b;
+
+    --primary: #0b63c7;       /* strong blue */
+    --accent: #06b6d4;        /* teal accent */
+    --warm: #ff7a59;          /* gentle warm accent for microinteractions */
+
+    --cta-grad: linear-gradient(90deg,var(--primary),var(--accent));
+    --radius: 14px;
+    --shadow: 0 12px 30px rgba(6,18,40,0.08);
+    --maxw: 1120px;
+  }
+
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
+  img,svg{max-width:100%;height:auto;display:block}
+  a{color:inherit;text-decoration:none}
+
+  .wrap{max-width:var(--maxw);margin:18px auto;padding:16px}
+  header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .brand{display:flex;gap:12px;align-items:center}
+  .logo{width:56px;height:56px;border-radius:12px;background:var(--primary);display:grid;place-items:center;color:#fff;font-weight:800;font-size:18px;box-shadow:0 8px 30px rgba(11,99,199,0.14)}
+  .brand-title h1{margin:0;font-size:18px}
+  .brand-title p{margin:0;font-size:12px;color:var(--muted)}
+
+  /* Desktop nav */
+  .nav{display:flex;gap:12px;align-items:center}
+  .nav a{padding:8px 10px;border-radius:10px;color:var(--muted);font-weight:600}
+  .nav .cta{background:var(--cta-grad);color:#fff;padding:10px 14px;border-radius:12px;font-weight:800;box-shadow:0 10px 30px rgba(11,99,199,0.12)}
+
+  /* hero */
+  .hero{display:grid;grid-template-columns:1fr 360px;gap:18px;align-items:center;margin:18px 0;padding:22px;border-radius:16px;background:linear-gradient(180deg,#fff,#f3faff);box-shadow:var(--shadow)}
+  @media (max-width:980px){.hero{grid-template-columns:1fr;padding:18px}}
+  @media (max-width:720px){.hero{grid-template-columns:1fr;padding:14px}}
+  .hero h2{font-size:clamp(22px,5vw,34px);margin:0;line-height:1.02}
+  .lead{color:var(--muted);margin-top:8px;font-size:15px}
+  .chips{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+  .chip{background:rgba(11,99,199,0.06);color:var(--primary);padding:6px 10px;border-radius:999px;font-weight:700;font-size:13px}
+
+  .cta-row{display:flex;gap:10px;margin-top:16px;align-items:center;flex-wrap:wrap}
+  .btn{padding:10px 14px;border-radius:12px;border:0;cursor:pointer;font-weight:800}
+  .btn-primary{background:var(--cta-grad);color:#fff}
+  .btn-ghost{background:transparent;border:1px solid rgba(6,18,40,0.06);color:var(--muted)}
+  .btn-demo{display:inline-flex;align-items:center;gap:8px;padding:11px 16px;border-radius:14px;background:var(--cta-grad);color:#fff;box-shadow:0 18px 50px rgba(11,99,199,0.12);transform:translateZ(0);transition:transform .18s ease,box-shadow .18s ease}
+  .btn-demo:hover{transform:translateY(-4px)}
+
+  .hero-right{display:flex;flex-direction:column;align-items:center;gap:10px;padding:12px;border-radius:12px;background:linear-gradient(180deg,#fff,#fbfeff);border:1px solid rgba(6,18,40,0.04)}
+  .mock-phone{width:220px;height:420px;border-radius:18px;background:linear-gradient(180deg,#ffffff,#f8fbff);display:grid;place-items:center;border:1px solid rgba(6,18,40,0.04)}
+
+  /* sections */
+  section{margin-top:20px}
+  h3{margin:0 0 8px 0}
+  .card{background:var(--surface);padding:14px;border-radius:12px;border:1px solid rgba(6,18,40,0.04);box-shadow:var(--shadow)}
+
+  /* offers */
+  .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media (max-width:880px){.plans{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:520px){.plans{grid-template-columns:1fr}}
+  .plan{padding:16px;border-radius:12px}
+  .price{font-weight:900;color:var(--primary);font-size:20px;margin:12px 0}
+  .addons{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+  .addon{background:rgba(6,18,40,0.03);padding:10px;border-radius:10px;font-size:14px;border:1px dashed rgba(6,18,40,0.04)}
+
+  /* services included */
+  .services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  @media (max-width:880px){.services-grid{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:520px){.services-grid{grid-template-columns:1fr}}
+  .service{display:flex;gap:12px;align-items:flex-start}
+  .service svg{width:44px;height:44px;flex-shrink:0;color:var(--primary)}
+  .service h4{margin:0;font-size:16px}
+  .service p{margin:6px 0 0 0;color:var(--muted);font-size:14px}
+
+  /* SERVICES COMPLÉMENTAIRES (payants) */
+  .paid-services .services-grid{grid-template-columns:repeat(3,1fr);gap:12px}
+  @media (max-width:880px){.paid-services .services-grid{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:520px){.paid-services .services-grid{grid-template-columns:1fr}}
+
+  /* b2b */
+  .b2b{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+  .b2b-left{flex:1}
+
+  /* faq summary */
+  .faq-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  @media (max-width:880px){.faq-grid{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:520px){.faq-grid{grid-template-columns:1fr}}
+  .faq-item{padding:12px;border-radius:10px;border:1px solid rgba(6,18,40,0.04)}
+
+  /* testimonials */
+  .testimonials{display:grid;grid-template-columns:1fr 240px;gap:18px;align-items:center}
+  @media (max-width:920px){.testimonials{grid-template-columns:1fr}}
+  .review-card{padding:16px;border-radius:12px;background:linear-gradient(180deg,#fff,#f8fcff);border:1px solid rgba(6,18,40,0.04)}
+  .rating{display:flex;gap:10px;align-items:center}
+  .rating strong{font-size:18px}
+  .stars{display:flex;gap:6px;align-items:center}
+  .stars svg{width:16px;height:16px;color:#ffb400}
+  .review-card p{color:var(--muted);margin-top:10px}
+  .review-meta{margin-top:8px;font-size:13px;color:var(--muted)}
+
+  /* bottom nav mobile */
+  .bottom-nav{position:fixed;left:12px;right:12px;bottom:18px;height:64px;background:linear-gradient(180deg,#fff,#fbfeff);border-radius:18px;display:none;align-items:center;justify-content:space-between;padding:8px 12px;box-shadow:0 18px 40px rgba(6,18,40,0.08);z-index:140;transition:transform .32s ease;transform:translateY(0)}
+  .bottom-nav .item{flex:1;text-align:center;font-size:12px;color:var(--muted);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+  .bottom-nav .item.active{color:var(--primary);font-weight:800}
+  @media (max-width:900px){.nav{display:none}.bottom-nav{display:flex}}
+
+  /* modal */
+  .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(6,18,40,0.45);z-index:190;padding:18px}
+  .modal.active{display:flex}
+  .modal-inner{width:100%;max-width:760px;background:var(--surface);border-radius:12px;padding:18px}
+  .modal .form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media (max-width:520px){.modal .form-row{grid-template-columns:1fr}}
+  .form input,.form select,.form textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(6,18,40,0.06)}
+
+  /* helpers */
+  .muted{color:var(--muted)}
+  .small{font-size:13px;color:var(--muted)}
+  footer{margin-top:28px;text-align:center;color:var(--muted);padding-bottom:80px}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- SVG sprite (icons) -->
+    <svg style="display:none" aria-hidden="true">
+      <symbol id="logo-mark" viewBox="0 0 24 24"><rect x="1" y="1" width="22" height="22" rx="6" fill="currentColor"/></symbol>
+      <symbol id="icon-demo" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M8 11h8M8 15h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="icon-service" viewBox="0 0 24 24"><path d="M12 2l3 6h6l-4.8 3.6L20 20l-8-5-8 5 3.8-8.4L3 8h6z" fill="currentColor"/></symbol>
+      <symbol id="star" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L23.5 9.75l-5.75 5.6L19.336 24 12 20.092 4.664 24l1.586-8.651L.5 9.75l7.832-1.732L12 .587z" fill="currentColor"/></symbol>
+    </svg>
+
+    <!-- Header -->
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true"><svg width="26" height="26"><use xlink:href="#logo-mark"/></svg></div>
+        <div class="brand-title">
+          <h1>WelcomeStras</h1>
+          <p class="small">Livret d'accueil QR • FR/EN inclus</p>
+        </div>
+      </div>
+
+      <nav class="nav" aria-label="Navigation principale">
+        <a href="#offres">Offres</a>
+        <a href="#services">Services</a>
+        <a href="#paid-services">Services payants</a>
+        <a href="#b2b">Conciergerie</a>
+        <a href="#demo" class="cta btn-demo" title="Voir la démo">Voir la démo</a>
+        <button class="cta btn btn-primary" id="open-modal-top">Tester 24h</button>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <div class="chip">OFFRE LANCEMENT — Garantie 14 jours</div>
+        <h2 id="hero-title">Le livret d'accueil QR <span style="color:var(--primary)">qui transforme l'arrivée</span> — simple, pro, mobile-first</h2>
+        <p class="lead">Page mobile dédiée pour chaque logement, QR imprimable, FR/EN inclus. Réduisez les appels, améliorez les avis 5★ — livraison sous 24–48h.</p>
+
+        <div class="chips" aria-hidden="true">
+          <span class="chip">Design premium</span>
+          <span class="chip">Modifs sous 24h</span>
+          <span class="chip">Support WhatsApp</span>
+        </div>
+
+        <div class="cta-row">
+          <a href="#demo" class="btn-demo" aria-label="Voir la démo en situation"><svg width="18" height="18" style="margin-right:6px"><use xlink:href="#icon-demo"/></svg> Voir la démo</a>
+          <button class="btn btn-ghost" id="open-modal-hero">Tester 24h — Gratuit</button>
+          <a href="#offres" class="small muted" style="align-self:center">Voir offres & tarifs</a>
+        </div>
+
+        <div class="small muted" style="margin-top:12px">À partir de <strong>49 €</strong> — Abonnement <strong>Care</strong> 14 €/mois</div>
+      </div>
+
+      <aside class="hero-right" aria-hidden="false">
+        <div class="mock-phone" role="img" aria-label="Aperçu mobile de la démo">
+          <div style="text-align:center">
+            <img id="qr-hero" src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=https%3A%2F%2Fexample.com%2Fdemo" alt="QR Démo" width="180" height="180" loading="lazy" style="border-radius:10px;border:1px solid rgba(6,18,40,0.04)">
+          </div>
+          <div class="small muted" style="margin-top:8px">Scannez-le ou <strong>cliquez Voir la démo</strong></div>
+        </div>
+        <div class="small muted" style="text-align:center">FR/EN inclus — autres langues en option</div>
+      </aside>
+    </section>
+
+    <!-- DEMO -->
+    <section id="demo" class="card" aria-labelledby="demo-title">
+      <div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">
+        <div style="flex:1;min-width:240px">
+          <h3 id="demo-title">Expérience démo — Mobile d'abord</h3>
+          <p class="muted small">Ouvre la démo dédiée — navigation mobile fluide, contenu structuré pour voyageurs (check-in, consignes, recommandations locales).</p>
+          <div style="margin-top:14px">
+            <a id="demo-btn" class="btn btn-demo" href="./demo.html" target="_blank" rel="noopener">Ouvrir la démo — mobile</a>
+            <a id="demo-open-modal" style="margin-left:10px" class="btn btn-ghost" href="#" role="button">Tester 24h</a>
+          </div>
+        </div>
+
+        <div style="width:200px;text-align:center">
+          <img id="demo-qr" alt="QR pour la démo" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Fexample.com%2Fdemo" width="160" height="160" loading="lazy" style="border-radius:12px;border:1px solid rgba(6,18,40,0.04)">
+          <div class="small muted" style="margin-top:8px">demo: <code class="small">./demo.html</code></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OFFRES -->
+    <section id="offres">
+      <h3>Nos offres</h3>
+      <div class="plans" style="margin-top:12px">
+        <div class="card plan">
+          <h4>Starter</h4>
+          <div class="price">49 €</div>
+          <ul class="small muted">
+            <li>Page mobile FR/EN</li>
+            <li>QR A5 imprimable</li>
+            <li>Livraison 24–48h</li>
+          </ul>
+          <div style="margin-top:12px"><button class="btn btn-primary open-modal" data-pack="Starter">Commander — 49 €</button></div>
+          <div class="addons" aria-hidden="false">
+            <div class="addon">+ Traduction supplémentaire (ES/IT/DE) — 15 €</div>
+            <div class="addon">+ Livraison express 12h — 29 €</div>
+          </div>
+        </div>
+
+        <div class="card plan">
+          <h4>Pro</h4>
+          <div class="price">89 €</div>
+          <ul class="small muted">
+            <li>Starter + PDF premium A5</li>
+            <li>Checklist turnover</li>
+            <li>Mini optimisation d'annonce</li>
+          </ul>
+          <div style="margin-top:12px"><button class="btn btn-primary open-modal" data-pack="Pro">Commander — 89 €</button></div>
+          <div class="addons" aria-hidden="false">
+            <div class="addon">+ Photo pro (pack 6) — 99 €</div>
+            <div class="addon">+ Texte d'annonce optimisé — 39 €</div>
+          </div>
+        </div>
+
+        <div class="card plan">
+          <h4>Care</h4>
+          <div class="price">14 €/mois</div>
+          <ul class="small muted">
+            <li>Hébergement & mises à jour</li>
+            <li>Modifs sous 24h</li>
+            <li>Analytics QR</li>
+          </ul>
+          <div style="margin-top:12px"><button class="btn btn-primary open-modal" data-pack="Care">Souscrire — Care</button></div>
+          <div class="addons" aria-hidden="false">
+            <div class="addon">+ Support prioritaire — +6 €/mois</div>
+            <div class="addon">+ Multi-listing bundle (5 pages) — 29 €/mois</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES inclus -->
+    <section id="services" class="card">
+      <h3>Services inclus</h3>
+      <div class="services-grid" style="margin-top:12px">
+        <div class="service"><svg><use xlink:href="#icon-service"/></svg><div><h4>Page mobile sur-mesure</h4><p>Contenu clair : check-in, consignes, contacts utiles.</p></div></div>
+        <div class="service"><svg><use xlink:href="#icon-service"/></svg><div><h4>PDF & QR imprimable</h4><p>Plaquette A5 prête à imprimer et QR codé.</p></div></div>
+        <div class="service"><svg><use xlink:href="#icon-service"/></svg><div><h4>Optimisation annonce</h4><p>Conseils rapides pour améliorer votre annonce.</p></div></div>
+        <div class="service"><svg><use xlink:href="#icon-service"/></svg><div><h4>Support WhatsApp</h4><p>Modifications et assistance rapide.</p></div></div>
+      </div>
+    </section>
+
+    <!-- SERVICES COMPLÉMENTAIRES PAYANTS -->
+    <section id="paid-services" class="card paid-services" aria-labelledby="paid-services-title" style="margin-top:18px">
+      <h3 id="paid-services-title">Services complémentaires (payants)</h3>
+      <div class="services-grid" style="margin-top:12px">
+        <div class="service card">
+          <strong>White-label / Domaine perso</strong>
+          <p class="muted">Page livrée sur votre domaine ou sous-domaine, intégration logo & couleurs. <strong>29 € (one-shot)</strong></p>
+        </div>
+
+        <div class="service card">
+          <strong>Langue supplémentaire (ES/IT/DE)</strong>
+          <p class="muted">Traductions humaines adaptées (15 €/langue one-shot ou +2 €/mois/langue avec Care)</p>
+        </div>
+
+        <div class="service card">
+          <strong>Guide imprimable A5</strong>
+          <p class="muted">Guide papier livré prêt à imprimer — 19 € / logement</p>
+        </div>
+
+        <div class="service card">
+          <strong>Import CSV / Onboarding lot</strong>
+          <p class="muted">On reprend votre tableur et on crée les pages (1 €/logement — option manuelle / inclus dans Enterprise)</p>
+        </div>
+
+        <div class="service card">
+          <strong>SLA prioritaire</strong>
+          <p class="muted">SLA 24h pour mises à jour et support (option pour B2B — +3 €/logement/mois)</p>
+        </div>
+
+        <div class="service card">
+          <strong>Service Managed</strong>
+          <p class="muted">Nous gérons toutes les mises à jour et la relation propriétaire (+2 €/logement/mois)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Conciergerie B2B -->
+    <section id="b2b" class="card">
+      <div class="b2b">
+        <div class="b2b-left">
+          <h3>Conciergerie B2B — Simplifiez vos opérations</h3>
+          <p class="small muted">Service clé en main pour agences et gestionnaires : check-ins, maintenance, communication clients et reporting.</p>
+          <ul class="small muted" style="margin-top:8px">
+            <li>Onboarding personnalisé</li>
+            <li>SLA 24h pour modifications</li>
+            <li>Reporting mensuel & analytics QR</li>
+          </ul>
+        </div>
+        <div style="min-width:200px;text-align:center">
+          <a class="btn btn-primary" href="./b2b.html">Voir plus — Conciergerie B2B</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ (résumé) -->
+    <section class="card">
+      <h3>FAQ — Questions rapides</h3>
+      <div class="faq-grid" style="margin-top:12px">
+        <div class="faq-item"><strong>La page est-elle indexée ?</strong><p class="small muted">Par défaut non — confidentialité. Indexation possible à la demande.</p></div>
+        <div class="faq-item"><strong>Comment modifier une info ?</strong><p class="small muted">Par WhatsApp ou formulaire — modifications sous 24h pour Pro/Care.</p></div>
+        <div class="faq-item"><strong>Paiement & facture ?</strong><p class="small muted">Paiement sécurisé par carte — facture fournie.</p></div>
+      </div>
+      <div style="margin-top:12px;text-align:right"><a href="./faq.html" class="small muted">Voir plus FAQ →</a></div>
+    </section>
+
+    <!-- Testimonials (no QR here) -->
+    <section class="card testimonials" aria-labelledby="testimonials-title">
+      <div>
+        <h3 id="testimonials-title">Ils ont testé — Avis clients</h3>
+        <p class="small muted">Exemples d'avis clients (remplacez par avis réels dès que possible).</p>
+
+        <div style="margin-top:12px">
+          <div style="display:flex;gap:10px;align-items:center">
+            <div style="flex:1">
+              <div id="review-slot" class="review-card" tabindex="0" aria-live="polite"></div>
+              <div style="display:flex;gap:8px;margin-top:10px;align-items:center">
+                <button id="prev-review" class="btn btn-ghost" aria-label="Avis précédent">◀</button>
+                <button id="next-review" class="btn btn-ghost" aria-label="Avis suivant">▶</button>
+                <div class="small muted" id="review-counter" style="margin-left:auto"></div>
+              </div>
+            </div>
+            <div style="width:240px;text-align:center">
+              <!-- no QR here (user requested removal) -->
+              <div style="margin-top:8px"><a class="small muted" href="#" id="see-more-reviews">Voir plus d'avis</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div style="margin-top:8px"><a href="cgv.html" class="small muted">CGV</a> · <a href="privacy.html" class="small muted">Politique</a> · <a href="mentions.legales.html" class="small muted">Mentions</a></div>
+      <div class="small muted" style="margin-top:8px">© <span id="year">2025</span> WelcomeStras</div>
+    </footer>
+  </div>
+
+  <!-- Bottom nav mobile -->
+  <nav class="bottom-nav" aria-label="Navigation mobile">
+    <a class="item" href="#" aria-current="page"><svg width="18" height="18"><use xlink:href="#logo-mark"/></svg><span>Accueil</span></a>
+    <a class="item" href="#offres"><svg width="18" height="18"><use xlink:href="#logo-mark"/></svg><span>Offres</span></a>
+    <a class="item" href="#demo"><svg width="18" height="18"><use xlink:href="#icon-demo"/></svg><span>Démo</span></a>
+    <button class="item" id="bottom-cta"><svg width="18" height="18" style="color:#fff"><use xlink:href="#icon-demo"/></svg><span style="color:var(--primary);font-weight:800">Tester</span></button>
+  </nav>
+
+  <!-- Modal -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-inner" role="document">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <h3 id="modal-title">Demandez votre livret — Test 24h</h3>
+        <button id="modal-close" aria-label="Fermer">✕</button>
+      </div>
+
+      <form id="lead-form" class="form" action="https://formspree.io/f/xdkdvdgz" method="POST">
+        <input type="hidden" name="_subject" value="Nouvelle demande — WelcomeStras">
+        <div class="form-row" style="margin-top:12px">
+          <input id="name" name="name" placeholder="Nom & prénom *" required>
+          <input id="email" name="email" type="email" placeholder="Email *" required>
+        </div>
+        <div style="margin-top:8px" class="form-row">
+          <input id="phone" name="phone" placeholder="WhatsApp / Tel">
+          <input id="listing" name="listing" type="url" placeholder="Lien annonce (Airbnb) *" required>
+        </div>
+        <div style="margin-top:8px">
+          <label for="pack" class="small">Pack souhaité</label>
+          <select id="pack" name="pack" style="margin-top:6px;padding:10px;border-radius:8px;border:1px solid rgba(6,18,40,0.06)">
+            <option>Starter — 49 €</option>
+            <option>Pro — 89 €</option>
+            <option>Care — 14 €/mois</option>
+          </select>
+        </div>
+
+        <div style="margin-top:12px;display:flex;gap:10px;align-items:center">
+          <button type="submit" class="btn btn-primary">Envoyer & lancer le test</button>
+          <a id="mailto-fallback" class="small muted" href="#">Envoyer par email</a>
+        </div>
+        <div id="form-msg" class="small muted" style="margin-top:10px" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    // ------------- Config (REPLACE with your values) -------------
+    const DEMO_URL = './demo.html'; // replace with your real demo URL
+    const FORM_ENDPOINT = 'https://formspree.io/f/xdkdvdgz'; // replace if needed
+    const CONTACT_EMAIL = 'contact@votreemail.com'; // replace with your contact email
+
+    const $ = (s, ctx=document) => ctx.querySelector(s);
+    const $$ = (s, ctx=document) => Array.from((ctx||document).querySelectorAll(s));
+
+    // set year
+    $('#year').textContent = new Date().getFullYear();
+
+    // demo links & QR update
+    const demoBtn = $('#demo-btn'); if(demoBtn) demoBtn.href = DEMO_URL;
+    $$('#demo-qr, #qr-hero').forEach(img => img && (img.src = `https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=${encodeURIComponent(DEMO_URL)}`));
+
+    // modal
+    const modal = $('#modal'), modalClose = $('#modal-close');
+    function openModal(pack){
+      modal.classList.add('active'); modal.setAttribute('aria-hidden','false');
+      setTimeout(()=>{ $('#name')?.focus(); }, 80);
+      if(pack){
+        const sel = $('#pack');
+        if(sel){
+          Array.from(sel.options).forEach(o => { if(o.textContent.toLowerCase().startsWith(pack.toLowerCase())) sel.value = o.textContent; });
+        }
+      }
+    }
+    function closeModal(){ modal.classList.remove('active'); modal.setAttribute('aria-hidden','true'); }
+
+    $$('.open-modal').forEach(b => b.addEventListener('click', e => { e.preventDefault(); openModal(b.dataset.pack || ''); }));
+    $('#open-modal-top')?.addEventListener('click', e => { e.preventDefault(); openModal(); });
+    $('#open-modal-hero')?.addEventListener('click', e => { e.preventDefault(); openModal(); });
+    $('#demo-open-modal')?.addEventListener('click', e => { e.preventDefault(); openModal(); });
+    $('#bottom-cta')?.addEventListener('click', e => { e.preventDefault(); openModal(); });
+    modalClose.addEventListener('click', closeModal);
+    window.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
+    modal.addEventListener('click', e => { if(e.target === modal) closeModal(); });
+
+    // mailto fallback
+    function updateMailto(){
+      const name = ($('#name')?.value||'').trim();
+      const email = ($('#email')?.value||'').trim();
+      const phone = ($('#phone')?.value||'').trim();
+      const list = ($('#listing')?.value||'').trim();
+      const pack = ($('#pack')?.value||'').trim();
+      const subject = encodeURIComponent('Demande — WelcomeStras');
+      const body = encodeURIComponent(`Nom: ${name}\nEmail: ${email}\nTel: ${phone}\nAnnonce: ${list}\nPack: ${pack}`);
+      $('#mailto-fallback').href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+    }
+    ['#name','#email','#phone','#listing','#pack'].forEach(sel => { const el = $(sel); if(el) el.addEventListener('input', updateMailto); });
+    updateMailto();
+
+    // form feedback
+    const form = $('#lead-form'), formMsg = $('#form-msg');
+    if(form){
+      form.addEventListener('submit', function(){
+        formMsg.textContent = 'Envoi en cours…';
+        setTimeout(()=>{ formMsg.textContent = 'Envoi effectué — nous vous contactons sous 24h.'; }, 900);
+      });
+    }
+
+    // bottom nav behavior (stable)
+    const bottomNav = document.querySelector('.bottom-nav');
+    if(bottomNav){
+      let lastY = window.scrollY || 0;
+      let ticking = false;
+      const HIDE_THRESHOLD = 12;
+      const BOTTOM_MARGIN = 120; // don't hide near page bottom
+      function onScroll(){
+        if(!ticking){
+          window.requestAnimationFrame(()=>{
+            const y = window.scrollY || 0;
+            const docH = document.documentElement.scrollHeight || 0;
+            const winH = window.innerHeight || 0;
+            const nearBottom = (y + winH + BOTTOM_MARGIN) >= docH;
+            if(y > lastY + HIDE_THRESHOLD && !nearBottom){
+              bottomNav.style.transform = 'translateY(120%)';
+            } else if(y < lastY - HIDE_THRESHOLD){
+              bottomNav.style.transform = 'translateY(0)';
+            }
+            lastY = y;
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }
+      window.addEventListener('scroll', onScroll, {passive:true});
+      // small touch heuristic to avoid jitter when user scrolls slightly
+      let touchStartY = null;
+      window.addEventListener('touchstart', e => { if(e.touches && e.touches[0]) touchStartY = e.touches[0].clientY; }, {passive:true});
+      window.addEventListener('touchend', () => { touchStartY = null; });
+    }
+
+    // testimonials - horizontal stars and controlled carousel
+    const reviews = [
+      {score:4.9, text:"Notre taux d'occupation a augmenté de 12% le mois suivant la mise en ligne. Le livret est clair et les voyageurs ont moins appelé.", author:"Julie P., Propriétaire — Strasbourg", date:"Avr 2025", reviews:12},
+      {score:4.8, text:"Livraison en 24h, retouches rapides. Le PDF A5 fait très professionnel et les QR ont réduit les demandes répétitives.", author:"Karim L., Gestionnaire — Lyon", date:"Mai 2025", reviews:8},
+      {score:4.7, text:"Excellent service client. Nous avons pris le pack Care pour l'hébergement et c'est très pratique.", author:"Sophie M., Hôte — Paris", date:"Mar 2025", reviews:7}
+    ];
+    const slot = $('#review-slot'), counter = $('#review-counter'), prev = $('#prev-review'), next = $('#next-review');
+    let idx = 0, autoTimer = null;
+
+    function renderReview(i){
+      const r = reviews[i];
+      const stars = Array.from({length:5}).map((_,k) => {
+        // full / half / empty logic could be added; here display 5 gold stars for credibility
+        return `<svg width="16" height="16"><use xlink:href="#star"/></svg>`;
+      }).join('');
+      slot.innerHTML = `<div class="rating"><strong>${r.score}</strong><div class="stars">${stars}</div></div><p>${r.text}</p><div class="review-meta">— ${r.author} · ${r.date} · ${r.reviews} avis</div>`;
+      counter.textContent = `${i+1} / ${reviews.length}`;
+    }
+    function nextReview(){ idx = (idx+1) % reviews.length; renderReview(idx); }
+    function prevReview(){ idx = (idx-1 + reviews.length) % reviews.length; renderReview(idx); }
+    renderReview(0);
+    next.addEventListener('click', ()=>{ nextReview(); resetAuto(); });
+    prev.addEventListener('click', ()=>{ prevReview(); resetAuto(); });
+    function startAuto(){ stopAuto(); autoTimer = setInterval(nextReview, 4200); }
+    function stopAuto(){ if(autoTimer) { clearInterval(autoTimer); autoTimer = null; } }
+    function resetAuto(){ stopAuto(); startAuto(); }
+    slot.addEventListener('mouseenter', stopAuto); slot.addEventListener('mouseleave', startAuto);
+    slot.addEventListener('focus', stopAuto); slot.addEventListener('blur', startAuto);
+    startAuto();
+
+    // accessibility: simple focus trap for modal
+    document.addEventListener('focus', function(e){
+      if(!modal.classList.contains('active')) return;
+      if(!modal.contains(e.target)){
+        e.stopPropagation();
+        modal.querySelector('input,button,select,textarea')?.focus();
+      }
+    }, true);
+
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>WelcomeStras — Livret d'accueil professionnel</title>
+  <meta name="description" content="Livret d'accueil professionnel — page dédiée par logement, PDF A5, services & conciergerie.">
+  <meta name="theme-color" content="#2563eb" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+  /* ---------- Variables + reset ---------- */
+  :root{
+    --bg:#f7fbff; --surface:#ffffff; --ink:#0b1720; --muted:#55606a;
+    --primary:#2563eb; --accent:#06b6d4; --warm:#ff6b4a;
+    --cta-grad: linear-gradient(90deg,var(--primary),var(--accent));
+    --radius:12px; --shadow:0 10px 28px rgba(8,20,40,0.06);
+    --nav-h:72px;
+    --maxw:1120px;
+    /* typography */
+    --fs-base:16px; --lh:1.48;
+  }
+  /* alternate warm theme (toggle by setting data-theme="warm" on <html>) */
+  html[data-theme="warm"]{
+    --primary:#ff6b4a; --accent:#ffb86b; --cta-grad: linear-gradient(90deg,var(--primary),var(--accent));
+  }
+
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;font-size:var(--fs-base);line-height:var(--lh)}
+  img,svg{max-width:100%;height:auto;display:block}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:18px auto;padding:18px;padding-bottom:calc(24px + var(--nav-h));}
+
+  /* header */
+  header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .brand{display:flex;gap:12px;align-items:center}
+  .logo-wrap{display:flex;align-items:center;gap:10px}
+  .logo-sq{width:48px;height:48px;border-radius:10px;display:grid;place-items:center;color:#fff}
+  .brand-title h1{margin:0;font-size:1.05rem}
+  .brand-title p{margin:0;font-size:.85rem;color:var(--muted)}
+
+  /* nav desktop */
+  .nav{display:flex;gap:10px;align-items:center}
+  .nav a{padding:8px 10px;border-radius:10px;color:var(--muted);font-weight:600;font-size:.95rem}
+  .cta{background:var(--cta-grad);color:#fff;padding:10px 14px;border-radius:12px;font-weight:800;box-shadow:0 8px 24px rgba(0,0,0,0.08)}
+
+  /* theme & logo controls */
+  .controls{display:flex;gap:8px;align-items:center}
+  .theme-toggle{display:flex;gap:6px;align-items:center;background:rgba(6,18,40,0.03);padding:6px;border-radius:10px;font-size:.85rem}
+
+  /* hero: mobile-first */
+  .hero{display:grid;grid-template-columns:1fr;gap:12px;margin:16px 0;padding:18px;border-radius:14px;background:linear-gradient(180deg,#fff,#f6fbff);box-shadow:var(--shadow)}
+  @media(min-width:900px){.hero{grid-template-columns:1fr 360px;padding:26px;gap:20px}}
+  .hero h2{font-size:clamp(20px,5.3vw,32px);margin:0;line-height:1.03}
+  .lead{color:var(--muted);margin-top:8px;font-size:1rem}
+  .chips{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+  .chip{background:rgba(37,99,235,0.06);color:var(--primary);padding:6px 10px;border-radius:999px;font-weight:700;font-size:.9rem}
+
+  .cta-row{display:flex;gap:10px;margin-top:14px;align-items:center;flex-wrap:wrap}
+  .btn{padding:10px 14px;border-radius:12px;border:0;cursor:pointer;font-weight:800;font-size:1rem}
+  .btn-primary{background:var(--cta-grad);color:#fff}
+  .btn-ghost{background:transparent;border:1px solid rgba(6,18,40,0.06);color:var(--muted)}
+  /* on mobile, make CTAs full width for tap ease */
+  @media(max-width:520px){ .cta-row .btn-demo, .cta-row .btn-primary{width:100%;display:inline-flex;justify-content:center} }
+
+  /* hero right: compact mock + tiny QR */
+  .hero-right{display:flex;flex-direction:column;align-items:center;padding:10px;border-radius:12px;background:linear-gradient(180deg,#fff,#fbfeff);border:1px solid rgba(6,18,40,0.04)}
+  .mock-screenshot{width:220px;height:140px;border-radius:12px;background:linear-gradient(180deg,#ffffff,#eef7ff);display:grid;place-items:center;border:1px solid rgba(6,18,40,0.04)}
+  .mini-qr{display:block;width:110px;height:110px;border-radius:10px;border:1px solid rgba(6,18,40,0.04);object-fit:cover}
+  @media(max-width:520px){ .mini-qr{width:72px;height:72px} .mock-screenshot{width:160px;height:110px} }
+
+  /* sections + cards */
+  section{margin-top:18px}
+  h3{margin:0 0 8px 0;font-size:1.05rem}
+  .card{background:var(--surface);padding:14px;border-radius:12px;border:1px solid rgba(6,18,40,0.04);box-shadow:var(--shadow)}
+
+  /* offers grid */
+  .plans{display:grid;grid-template-columns:1fr;gap:12px}
+  @media(min-width:700px){.plans{grid-template-columns:repeat(3,1fr)}}
+  .plan{padding:14px;border-radius:12px}
+  .price{font-weight:900;color:var(--primary);font-size:1.05rem;margin:10px 0}
+  .addons{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+  .addon{background:rgba(6,18,40,0.03);padding:8px;border-radius:10px;font-size:.95rem;border:1px dashed rgba(6,18,40,0.04)}
+
+  /* services grid */
+  .services-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(min-width:900px){.services-grid{grid-template-columns:repeat(4,1fr)}}
+  .service{display:flex;gap:12px;align-items:flex-start}
+  .service svg{width:40px;height:40px;color:var(--primary);flex-shrink:0}
+  .service h4{margin:0;font-size:1rem}
+  .service p{margin:6px 0 0 0;color:var(--muted);font-size:.95rem}
+
+  /* paid services = denser grid */
+  .paid-services .services-grid{grid-template-columns:1fr;gap:10px}
+  @media(min-width:700px){ .paid-services .services-grid{grid-template-columns:repeat(3,1fr)} }
+
+  /* faq, testimonials */
+  .faq-grid{display:grid;grid-template-columns:1fr;gap:10px}
+  @media(min-width:700px){ .faq-grid{grid-template-columns:repeat(3,1fr)} }
+  .faq-item{padding:12px;border-radius:10px;border:1px solid rgba(6,18,40,0.04)}
+  .testimonials{display:grid;grid-template-columns:1fr;gap:12px}
+  @media(min-width:900px){ .testimonials{grid-template-columns:1fr 240px;align-items:center} }
+  .review-card{padding:14px;border-radius:12px;background:linear-gradient(180deg,#fff,#f8fcff);border:1px solid rgba(6,18,40,0.04)}
+  .rating{display:flex;gap:8px;align-items:center}
+  .stars{display:flex;gap:6px;align-items:center}
+
+  /* bottom nav fixed (app-like), always visible on small screens */
+  .bottom-nav{position:fixed;left:12px;right:12px;bottom:12px;height:var(--nav-h);background:linear-gradient(180deg,#fff,#fbfeff);border-radius:14px;display:none;align-items:center;justify-content:space-between;padding:8px 12px;box-shadow:0 18px 40px rgba(6,18,40,0.08);z-index:160}
+  .bottom-nav .item{flex:1;text-align:center;font-size:.95rem;color:var(--muted);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+  .bottom-nav .item.active{color:var(--primary);font-weight:800}
+  @media(max-width:900px){ .nav{display:none} .bottom-nav{display:flex} }
+
+  /* modal */
+  .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(6,18,40,0.45);z-index:190;padding:18px}
+  .modal.active{display:flex}
+  .modal-inner{width:100%;max-width:740px;background:var(--surface);border-radius:12px;padding:18px}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  @media(max-width:520px){ .form-row{grid-template-columns:1fr} .brand-title h1{font-size:1rem} }
+
+  /* helpers */
+  .muted{color:var(--muted)}
+  .small{font-size:.9rem;color:var(--muted)}
+  footer{margin-top:20px;text-align:center;color:var(--muted);padding-bottom:24px}
+  </style>
+</head>
+<body>
+  <!-- SVG sprite: logos + icons (replace with your SVGs if needed) -->
+  <svg style="display:none" aria-hidden="true">
+    <!-- Logo variant A: monogram -->
+    <symbol id="logo-A" viewBox="0 0 100 100">
+      <rect rx="18" width="100" height="100" fill="currentColor"/>
+      <text x="50" y="62" text-anchor="middle" font-family="Inter,Arial" font-weight="700" font-size="48" fill="#fff">WS</text>
+    </symbol>
+    <!-- Logo variant B: wordmark simplified -->
+    <symbol id="logo-B" viewBox="0 0 200 40">
+      <text x="0" y="28" font-family="Inter,Arial" font-weight="800" font-size="28" fill="currentColor">Welcome<span fill="#06b6d4">Stras</span></text>
+    </symbol>
+
+    <!-- small icons -->
+    <symbol id="icon-demo" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M8 11h8M8 15h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="icon-service" viewBox="0 0 24 24"><path d="M12 2l3 6h6l-4.8 3.6L20 20l-8-5-8 5 3.8-8.4L3 8h6z" fill="currentColor"/></symbol>
+    <symbol id="star" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L23.5 9.75l-5.75 5.6L19.336 24 12 20.092 4.664 24l1.586-8.651L.5 9.75l7.832-1.732L12 .587z" fill="currentColor"/></symbol>
+  </svg>
+
+  <div class="wrap" id="wrap">
+
+    <!-- HEADER -->
+    <header>
+      <div class="brand">
+        <div class="logo-wrap">
+          <div class="logo-sq" id="logo-sq" style="background:var(--primary);color:#fff">
+            <!-- Uses the active logo via use -->
+            <svg width="34" height="34"><use id="logo-use" xlink:href="#logo-A" /></svg>
+          </div>
+        </div>
+        <div class="brand-title">
+          <h1>WelcomeStras</h1>
+          <p class="small muted">Livret d'accueil professionnel — simple & rentable</p>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:10px;align-items:center">
+        <nav class="nav" aria-label="Navigation">
+          <a href="#offres">Offres</a>
+          <a href="#services-inclus">Services</a>
+          <a href="#paid-services">Payants</a>
+          <a href="#b2b">Conciergerie</a>
+          <a href="#demo" class="cta"><svg width="14" height="14" style="margin-right:8px"><use xlink:href="#icon-demo"/></svg>Voir la démo</a>
+        </nav>
+
+        <div class="controls" style="margin-left:12px">
+          <!-- Theme switcher -->
+          <div class="theme-toggle" role="group" aria-label="Thème & logo">
+            <label style="display:flex;align-items:center;gap:6px"><input type="radio" name="theme" value="blue" checked> Bleu</label>
+            <label style="display:flex;align-items:center;gap:6px"><input type="radio" name="theme" value="warm"> Chaleur</label>
+            <select id="logo-select" title="Choisir logo" style="margin-left:8px;padding:6px;border-radius:8px;border:1px solid rgba(6,18,40,0.06)">
+              <option value="A">Logo A (WS)</option>
+              <option value="B">Logo B (WelcomeStras)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <div class="chip">OFFRE LANCEMENT — Garantie 14 jours</div>
+        <h2 id="hero-title">Le livret d'accueil qui réduit les appels et augmente les avis positifs</h2>
+        <p class="lead">Page dédiée par logement, PDF A5 professionnel, retouches rapides et support. Objectif : améliorer l'expérience client et augmenter vos réservations.</p>
+
+        <div class="chips" aria-hidden="true">
+          <span class="chip">Design premium</span>
+          <span class="chip">Livraison rapide</span>
+          <span class="chip">Support pro</span>
+        </div>
+
+        <div class="cta-row" style="margin-top:12px">
+          <a href="#demo" class="btn btn-primary btn-demo" aria-label="Voir la démo"><svg width="14" height="14" style="margin-right:6px"><use xlink:href="#icon-demo"/></svg>Voir la démo</a>
+          <button class="btn btn-ghost" id="open-modal-hero">Tester 24h — gratuit</button>
+        </div>
+
+        <div class="small muted" style="margin-top:12px">À partir de <strong>49 €</strong> • Abonnement <strong>Care</strong> : 14 €/mois</div>
+      </div>
+
+      <aside class="hero-right" aria-hidden="false">
+        <div class="mock-screenshot" aria-hidden="true">
+          <div style="padding:10px;text-align:left;width:86%">
+            <strong style="font-size:1rem">Extrait</strong>
+            <p class="small muted" style="margin:8px 0 0 0">Check-in • Consignes • Accès • Recommandations</p>
+          </div>
+        </div>
+
+        <!-- small QR for convenience (very small on mobile) -->
+        <img id="mini-qr" class="mini-qr" alt="QR court vers la demo" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://example.com/demo" loading="lazy">
+        <div class="small muted" style="text-align:center;margin-top:6px">Aperçu dans la démo</div>
+      </aside>
+    </section>
+
+    <!-- DEMO -->
+    <section id="demo" class="card" aria-labelledby="demo-title">
+      <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap">
+        <div style="flex:1;min-width:220px">
+          <h3 id="demo-title">Voir la démo</h3>
+          <p class="muted small">Évaluez la structure, la clarté et la vitesse d'accès — idéal pour convaincre vos voyageurs.</p>
+          <div style="margin-top:10px">
+            <a id="demo-btn" class="btn btn-primary" href="./demo.html" target="_blank" rel="noopener">Ouvrir la démo</a>
+            <a id="demo-open-modal" class="btn btn-ghost" href="#" style="margin-left:8px">Tester 24h</a>
+          </div>
+        </div>
+
+        <div style="width:200px;text-align:center">
+          <div style="padding:10px;border-radius:10px;border:1px solid rgba(6,18,40,0.04);background:linear-gradient(180deg,#fff,#f7fbff)">Aperçu disponible</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OFFRES -->
+    <section id="offres">
+      <h3>Nos offres</h3>
+      <div class="plans" style="margin-top:12px">
+        <div class="card plan">
+          <h4>Starter</h4>
+          <div class="price">49 €</div>
+          <ul class="small muted"><li>Page dédiée par logement</li><li>PDF A5 professionnel</li></ul>
+          <div style="margin-top:10px"><button class="btn btn-primary open-modal" data-pack="Starter">Commander — 49 €</button></div>
+          <div class="addons" aria-hidden="false"><div class="addon">+ Traduction — 15 €</div><div class="addon">+ Express 12h — 29 €</div></div>
+        </div>
+
+        <div class="card plan">
+          <h4>Pro</h4>
+          <div class="price">89 €</div>
+          <ul class="small muted"><li>Starter + PDF premium</li><li>Checklist turnover</li></ul>
+          <div style="margin-top:10px"><button class="btn btn-primary open-modal" data-pack="Pro">Commander — 89 €</button></div>
+          <div class="addons" aria-hidden="false"><div class="addon">+ Pack photo — 99 €</div><div class="addon">+ Rédaction — 39 €</div></div>
+        </div>
+
+        <div class="card plan">
+          <h4>Care</h4>
+          <div class="price">14 €/mois</div>
+          <ul class="small muted"><li>Hébergement & mises à jour</li><li>Modifs sous 24h</li><li>Analytics</li></ul>
+          <div style="margin-top:10px"><button class="btn btn-primary open-modal" data-pack="Care">Souscrire — Care</button></div>
+          <div class="addons" aria-hidden="false"><div class="addon">+ Support prioritaire — +6 €/mois</div><div class="addon">+ Multi-listing (5) — 29 €/mois</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services inclus -->
+    <section id="services-inclus" class="card">
+      <h3>Services inclus</h3>
+      <div class="services-grid" style="margin-top:10px">
+        <div class="service"><svg><use xlink:href="#icon-service"/></svg><div><h4>Page structurée</h4><p class="muted">Check-in, règles, contacts et recommandations.</p></div></div>
+        <div class="service"><svg><use xlink:href="#icon-service"/></svg><div><h4>PDF & QR</h4><p class="muted">A5 premium prêt à imprimer.</p></div></div>
+        <div class="service"><svg><use xlink:href="#icon-service"/></svg><div><h4>Optimisation</h4><p class="muted">Conseils pour augmenter vos réservations.</p></div></div>
+        <div class="service"><svg><use xlink:href="#icon-service"/></svg><div><h4>Support</h4><p class="muted">Assistance et retouches rapides.</p></div></div>
+      </div>
+    </section>
+
+    <!-- Paid services -->
+    <section id="paid-services" class="card paid-services" style="margin-top:16px">
+      <h3>Services complémentaires (payants)</h3>
+      <div class="services-grid" style="margin-top:10px">
+        <div class="service card"><strong>White-label / Domaine perso</strong><p class="muted">Livraison sur votre domaine, logo & couleurs — 29 €</p></div>
+        <div class="service card"><strong>Langue supplémentaire</strong><p class="muted">Traduction humaine — 15 €/langue ou +2 €/mois avec Care</p></div>
+        <div class="service card"><strong>Guide imprimable A5</strong><p class="muted">Guide papier prêt à imprimer — 19 €</p></div>
+        <div class="service card"><strong>Import CSV / Onboarding</strong><p class="muted">Création de pages depuis tableur — 1 €/logement</p></div>
+        <div class="service card"><strong>SLA prioritaire</strong><p class="muted">SLA 24h pour mises à jour & support — option B2B</p></div>
+        <div class="service card"><strong>Service Managed</strong><p class="muted">Gestion complète (+2 €/logement/mois)</p></div>
+      </div>
+    </section>
+
+    <!-- B2B -->
+    <section id="b2b" class="card" style="margin-top:16px">
+      <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+        <div style="flex:1">
+          <h3>Conciergerie B2B — Ops simplifiées</h3>
+          <p class="muted">Onboarding, check-ins, maintenance, reporting et intégration multi-listings.</p>
+          <ul class="muted small" style="margin-top:8px"><li>Onboarding personnalisé</li><li>SLA 24h</li><li>Reporting</li></ul>
+        </div>
+        <div style="min-width:160px;text-align:center"><a class="btn btn-primary" href="./b2b.html">Voir plus</a></div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="card" style="margin-top:16px">
+      <h3>FAQ rapide</h3>
+      <div class="faq-grid" style="margin-top:10px">
+        <div class="faq-item"><strong>Indexation ?</strong><p class="muted">Par défaut non — confidentialité. Activation possible.</p></div>
+        <div class="faq-item"><strong>Modifs ?</strong><p class="muted">Via formulaire / support — 24h pour Pro/Care.</p></div>
+        <div class="faq-item"><strong>Paiement ?</strong><p class="muted">Paiement sécurisé, facture fournie.</p></div>
+      </div>
+      <div style="margin-top:10px;text-align:right"><a class="small muted" href="./faq.html">Voir plus →</a></div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="card testimonials" style="margin-top:16px">
+      <h3>Ils ont testé — Avis clients</h3>
+      <p class="small muted">Avis représentatifs (exemples).</p>
+
+      <div style="margin-top:10px;display:flex;gap:12px;flex-wrap:wrap;align-items:flex-start">
+        <div style="flex:1">
+          <div id="review-slot" class="review-card" tabindex="0" aria-live="polite"></div>
+          <div style="display:flex;gap:8px;margin-top:8px;align-items:center">
+            <button id="prev-review" class="btn btn-ghost" aria-label="Avis précédent">◀</button>
+            <button id="next-review" class="btn btn-ghost" aria-label="Avis suivant">▶</button>
+            <div class="small muted" id="review-counter" style="margin-left:auto"></div>
+          </div>
+        </div>
+
+        <div style="width:160px;text-align:center">
+          <div class="small muted"><a href="#" id="see-more-reviews">Voir plus d'avis</a></div>
+        </div>
+      </div>
+    </section>
+
+    <footer style="margin-top:18px">
+      <div style="text-align:center;color:var(--muted)"><a href="./cgv.html" class="small muted">CGV</a> · <a href="./privacy.html" class="small muted">Politique</a> · <a href="./mentions.legales.html" class="small muted">Mentions</a></div>
+      <div style="text-align:center;color:var(--muted);margin-top:8px">© <span id="year"></span> WelcomeStras</div>
+    </footer>
+
+  </div>
+
+  <!-- bottom nav fixed (app-like) -->
+  <nav class="bottom-nav" aria-label="Navigation mobile">
+    <a class="item" href="#offres">Offres</a>
+    <a class="item" href="#services-inclus">Services</a>
+    <a class="item" href="#paid-services">Payants</a>
+    <a class="item" href="#demo">Démo</a>
+    <button class="item" id="bottom-cta">Tester</button>
+  </nav>
+
+  <!-- modal (lead) -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-inner">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <h3>Demandez votre livret — Test 24h</h3>
+        <button id="modal-close" aria-label="Fermer">✕</button>
+      </div>
+
+      <form id="lead-form" action="https://formspree.io/f/xdkdvdgz" method="POST" style="margin-top:12px">
+        <!-- TODO: replace action with your endpoint -->
+        <input type="hidden" name="_subject" value="Nouvelle demande — WelcomeStras">
+        <div class="form-row">
+          <input id="name" name="name" placeholder="Nom & prénom *" required>
+          <input id="email" name="email" type="email" placeholder="Email *" required>
+        </div>
+        <div class="form-row" style="margin-top:8px">
+          <input id="phone" name="phone" placeholder="WhatsApp / Tel">
+          <input id="listing" name="listing" type="url" placeholder="Lien annonce (Airbnb) *" required>
+        </div>
+        <div style="margin-top:8px">
+          <label for="pack" class="small muted">Pack souhaité</label>
+          <select id="pack" name="pack" style="margin-top:6px;padding:10px;border-radius:8px;border:1px solid rgba(6,18,40,0.06)">
+            <option>Starter — 49 €</option>
+            <option>Pro — 89 €</option>
+            <option>Care — 14 €/mois</option>
+          </select>
+        </div>
+
+        <div style="margin-top:12px;display:flex;gap:8px;align-items:center">
+          <button type="submit" class="btn btn-primary">Envoyer & lancer</button>
+          <a id="mailto-fallback" class="small muted" href="#">Envoyer par email</a>
+        </div>
+        <div id="form-msg" class="small muted" style="margin-top:8px" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    // ---------- Config (replace these) ----------
+    const DEMO_URL = './demo.html';
+    const CONTACT_EMAIL = 'contact@votreemail.com';
+    // --------------------------------------------
+
+    const $ = (s,ctx=document)=>ctx.querySelector(s);
+    const $$ = (s,ctx=document)=>Array.from((ctx||document).querySelectorAll(s));
+
+    // set year
+    $('#year').textContent = new Date().getFullYear();
+
+    // small QR (use smaller sizes on mobile) - update src to your demo url
+    const miniQr = $('#mini-qr');
+    if(miniQr) miniQr.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(DEMO_URL)}`;
+
+    // modal
+    const modal = $('#modal'), modalClose = $('#modal-close');
+    function openModal(pack){ modal.classList.add('active'); modal.setAttribute('aria-hidden','false'); setTimeout(()=>{ $('#name')?.focus(); },60); if(pack){ const sel = $('#pack'); if(sel) Array.from(sel.options).forEach(o=>{ if(o.textContent.toLowerCase().startsWith(pack.toLowerCase())) sel.value=o.textContent; }); } }
+    function closeModal(){ modal.classList.remove('active'); modal.setAttribute('aria-hidden','true'); }
+    $$('.open-modal').forEach(b=>b.addEventListener('click', e=>{ e.preventDefault(); openModal(b.dataset.pack||''); }));
+    $('#open-modal-hero')?.addEventListener('click', e=>{ e.preventDefault(); openModal(); });
+    $('#demo-open-modal')?.addEventListener('click', e=>{ e.preventDefault(); openModal(); });
+    $('#bottom-cta')?.addEventListener('click', e=>{ e.preventDefault(); openModal(); });
+    modalClose?.addEventListener('click', closeModal);
+    window.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
+    modal.addEventListener('click', e=>{ if(e.target===modal) closeModal(); });
+
+    // mailto fallback
+    function updateMailto(){ const name=($('#name')?.value||'').trim(); const email=($('#email')?.value||'').trim(); const phone=($('#phone')?.value||'').trim(); const list=($('#listing')?.value||'').trim(); const pack=($('#pack')?.value||'').trim(); const sub=encodeURIComponent('Demande — WelcomeStras'); const body=encodeURIComponent(`Nom: ${name}\nEmail: ${email}\nTel: ${phone}\nAnnonce: ${list}\nPack: ${pack}`); $('#mailto-fallback').href = `mailto:${CONTACT_EMAIL}?subject=${sub}&body=${body}`; }
+    ['#name','#email','#phone','#listing','#pack'].forEach(sel=>{ const el=$(sel); if(el) el.addEventListener('input', updateMailto); }); updateMailto();
+
+    // testimonials carousel (horizontal stars)
+    const reviews = [
+      {score:4.9, text:"Notre taux d'occupation a augmenté de 12% — les voyageurs appellent moins.", author:"Julie P., Strasbourg", date:"Avr 2025", reviews:12},
+      {score:4.8, text:"Livraison en 24h, retouches rapides. Le PDF est très pro.", author:"Karim L., Lyon", date:"Mai 2025", reviews:8},
+      {score:4.7, text:"Pack Care idéal pour multi-biens — support réactif.", author:"Sophie M., Paris", date:"Mar 2025", reviews:7}
+    ];
+    const slot = $('#review-slot'), counter = $('#review-counter'), prev = $('#prev-review'), next = $('#next-review');
+    let idx = 0, timer = null;
+    function render(i){ const r = reviews[i]; const stars = Array.from({length:5}).map(()=>`<svg width="16" height="16"><use xlink:href="#star"/></svg>`).join(''); slot.innerHTML = `<div class="rating"><strong>${r.score}</strong><div class="stars" style="margin-left:8px">${stars}</div></div><p style="margin-top:8px;color:var(--muted)">${r.text}</p><div class="review-meta muted" style="margin-top:8px">— ${r.author} · ${r.date} · ${r.reviews} avis</div>`; counter.textContent = `${i+1} / ${reviews.length}`; }
+    function nextR(){ idx = (idx+1) % reviews.length; render(idx); }
+    function prevR(){ idx = (idx-1 + reviews.length) % reviews.length; render(idx); }
+    render(0);
+    next?.addEventListener('click', ()=>{ nextR(); resetAuto(); });
+    prev?.addEventListener('click', ()=>{ prevR(); resetAuto(); });
+    function startAuto(){ stopAuto(); timer = setInterval(nextR, 4200); }
+    function stopAuto(){ if(timer){ clearInterval(timer); timer = null; } }
+    function resetAuto(){ stopAuto(); startAuto(); }
+    slot?.addEventListener('mouseenter', stopAuto); slot?.addEventListener('mouseleave', startAuto);
+    slot?.addEventListener('focus', stopAuto); slot?.addEventListener('blur', startAuto);
+    startAuto();
+
+    // theme & logo controls
+    $$('input[name="theme"]').forEach(el=>el.addEventListener('change', (e)=>{ document.documentElement.setAttribute('data-theme', e.target.value === 'warm' ? 'warm' : ''); }));
+    const logoUse = $('#logo-use');
+    $('#logo-select').addEventListener('change', (e)=>{ const v = e.target.value; logoUse.setAttribute('xlink:href', (v==='B' ? '#logo-B' : '#logo-A')); /* also change square bg for A/B */ const sq = document.getElementById('logo-sq'); if(v==='B'){ sq.style.background = 'transparent'; sq.style.color = 'var(--primary)'; } else { sq.style.background = 'var(--primary)'; sq.style.color = '#fff'; } });
+
+    // accessibility: simple focus trap (light)
+    document.addEventListener('focus', function(ev){ if(!modal.classList.contains('active')) return; if(!modal.contains(ev.target)){ ev.stopPropagation(); modal.querySelector('input,button,select,textarea')?.focus(); } }, true);
+
+    // note: bottom nav is intentionally fixed & visible on mobile (app-like).
+  })();
+  </script>
+</body>
+</html>

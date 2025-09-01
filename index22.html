@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>WelcomeQR — Livret d'accueil QR personnalisé</title>
+  <meta name="description" content="Livret d'accueil QR personnalisé, FR/EN inclus. Test 24h. Livraison 24–48h.">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+  /* ------------------
+     Variables & reset
+     ------------------*/
+    :root{
+      --bg:#f6fbfc; --card:#ffffff; --ink:#0b2630; --muted:#56626a;
+      --accent:#0b63c7; --cta:#0574ff; --radius:12px; --shadow:0 12px 30px rgba(7,18,30,0.06);
+      --maxw:1120px; --gap:18px; --glass: rgba(255,255,255,0.6);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+  /* Container */
+    .wrap{max-width:var(--maxw);margin:24px auto;padding:20px}
+
+  /* Header: simplified */
+    .site-header{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:nowrap;margin-bottom:20px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,#0b63c7,#06b6d4);display:grid;place-items:center;color:#fff;font-weight:800}
+    .brand-title{margin:0;font-size:18px}
+    .brand-sub{font-size:13px;color:var(--muted)}
+
+    /* Desktop navigation only shows subtle links */
+    .top-nav{display:flex;align-items:center;gap:10px}
+    .top-nav .nav-link{color:var(--muted);padding:8px;border-radius:8px;font-weight:600}
+
+  /* Primary CTA kept single and prominent */
+    .cta-primary{background:linear-gradient(90deg,var(--cta),#06b6d4);color:#fff;border:0;padding:10px 14px;border-radius:10px;font-weight:700;cursor:pointer;box-shadow:0 8px 22px rgba(5,116,255,0.12)}
+
+  /* HERO: clear, conversion-first */
+    .hero{display:grid;grid-template-columns:1fr 360px;gap:20px;align-items:center;margin-bottom:22px;padding:28px;border-radius:16px;background:linear-gradient(135deg,#ffffff 0%, #f0f7ff 100%);box-shadow:var(--shadow)}
+    @media (max-width:900px){.hero{grid-template-columns:1fr;padding:20px}}
+    .hero h1{margin:0 0 8px;font-size:clamp(22px,4vw,34px);line-height:1.05}
+    .hero p.lead{margin:0;color:var(--muted);max-width:60ch;font-size:clamp(14px,2vw,16px)}
+    .hero .benefits{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+    .chip{background:rgba(11,99,199,0.06);color:var(--accent);padding:6px 10px;border-radius:999px;font-weight:700;font-size:13px}
+
+    /* Right column: QR + trust */
+    .hero-right{padding:14px;border-radius:12px;border:1px solid rgba(7,20,39,0.04);box-shadow:var(--shadow);display:flex;flex-direction:column;gap:12px;align-items:center}
+    .hero-stats{display:flex;gap:14px;width:100%;justify-content:space-between}
+    .small{font-size:13px;color:var(--muted)}
+    .big{font-weight:900;color:var(--accent)}
+
+  /* Sections */
+    .section{margin-top:24px}
+    .card{background:var(--card);padding:14px;border-radius:12px;border:1px solid rgba(7,20,39,0.04);box-shadow:var(--shadow)}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    @media (max-width:900px){.grid-3{grid-template-columns:1fr 1fr}}
+    @media (max-width:600px){.grid-3{grid-template-columns:1fr}}
+
+  /* Plans: clearer CTA + one button */
+    .plan h4{margin:0}
+    .price{font-weight:900;color:var(--accent);margin:8px 0}
+    .plan .plan-cta{display:flex;justify-content:center}
+
+  /* Demo section */
+    .demo-right{text-align:center}
+    .demo-qr{width:140px;height:140px;border-radius:12px;border:1px solid rgba(7,20,39,0.04)}
+
+  /* FAQ */
+    .faq-item{border-bottom:1px solid rgba(7,20,39,0.06);padding:6px 0}
+    .faq-question{width:100%;text-align:left;background:none;border:0;padding:12px;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+    .faq-answer{max-height:0;overflow:hidden;transition:max-height .28s ease;padding:0 12px;color:var(--muted)}
+    .faq-item.open .faq-answer{padding:12px}
+
+  /* modal (accessible) */
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(7,20,39,0.45);z-index:120;padding:18px}
+    .modal.active{display:flex}
+    .modal-content{width:100%;max-width:720px;display:grid;grid-template-columns:1fr;gap:12px;align-items:start;padding:20px;border-radius:12px;background:var(--card);box-shadow:0 18px 50px rgba(0,0,0,0.12)}
+    .modal-close{background:transparent;border:0;font-size:20px;cursor:pointer}
+    .form label{display:block;margin-top:10px;font-weight:700}
+    .form input,.form textarea,.form select{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(7,20,39,0.07);margin-top:6px}
+
+  /* Bottom navigation for mobile (app-like) */
+    .bottom-nav{position:fixed;left:12px;right:12px;bottom:18px;height:62px;background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.95));border-radius:16px;display:none;align-items:center;justify-content:space-between;padding:8px 12px;box-shadow:0 10px 30px rgba(12,20,40,0.08);z-index:140}
+    .bottom-nav .nav-item{flex:1;text-align:center;font-size:12px;color:var(--muted);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+    .bottom-nav .nav-item.active{color:var(--cta);font-weight:700}
+    @media (max-width:900px){.top-nav{display:none}.bottom-nav{display:flex}}
+
+  /* small helpers */
+    .muted{color:var(--muted)}
+    .muted-sm{color:var(--muted);font-size:13px}
+    .site-footer{margin-top:28px;text-align:center;color:var(--muted);padding-bottom:80px}
+
+  /* smooth transitions */
+    button, .nav-item, .card{transition:transform .18s ease,box-shadow .18s ease}
+    .card:hover{transform:translateY(-4px)}
+    input:focus,textarea:focus,select:focus{outline:none;box-shadow:0 0 0 6px rgba(5,116,255,0.06)}
+
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="site-header" role="banner">
+      <div class="brand">
+        <div class="logo">WQ</div>
+        <div>
+          <h1 class="brand-title">WelcomeQR</h1>
+          <div class="brand-sub">Livret d’accueil QR — personnalisé & multilingue</div>
+        </div>
+      </div>
+
+      <nav class="top-nav" role="navigation" aria-label="Navigation principale">
+        <a href="#offres" class="nav-link">Offres</a>
+        <a href="#demo" class="nav-link">Démo</a>
+        <a href="#faq" class="nav-link">FAQ</a>
+        <button id="open-modal-desktop" class="cta-primary" aria-controls="modal">Tester 24h</button>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <div class="chip">OFFRE LANCEMENT — Garantie 14 jours</div>
+        <h1 id="hero-title">Le livret d’accueil QR qui <strong style="color:var(--accent)">simplifie vos arrivées</strong></h1>
+        <p class="lead">Page mobile dédiée par logement, QR imprimable, traduction FR/EN incluse. Test 24h gratuit — livraison 24–48h. Diminuez les appels et augmentez les avis 5★.</p>
+
+        <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+          <button id="cta-hero" class="cta-primary">Tester 24h — Gratuit</button>
+          <a href="#offres" class="muted-sm" style="padding:10px 12px;border-radius:10px;border:1px solid rgba(7,20,39,0.04)">Voir offres & tarifs</a>
+        </div>
+
+        <div class="benefits">
+          <span class="chip">Design pro</span>
+          <span class="chip">Modifs sous 24h</span>
+          <span class="chip">Support WhatsApp</span>
+        </div>
+
+        <div style="margin-top:18px;display:flex;gap:12px;align-items:center">
+          <div style="display:flex;flex-direction:column"><span class="small muted">One-shot</span><strong class="big">dès 49 €</strong></div>
+          <div style="display:flex;flex-direction:column"><span class="small muted">Care</span><strong class="big">14 €/mois</strong></div>
+        </div>
+      </div>
+
+      <aside class="hero-right" aria-hidden="false">
+        <div style="text-align:center">
+          <img id="qr-sample" src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https%3A%2F%2Fexample.com%2Fdemo" alt="Aperçu QR" loading="lazy" width="140" height="140" class="demo-qr">
+        </div>
+        <div class="muted-sm">FR/EN inclus — ES/IT/DE en option</div>
+        <div style="text-align:center;margin-top:4px"><a href="#demo" class="muted-sm">Ouvrir la démo</a></div>
+      </aside>
+    </section>
+
+    <!-- OFFRES -->
+    <section id="offres" class="section">
+      <h2>Nos offres</h2>
+      <div class="grid-3">
+        <div class="card plan">
+          <h4>Starter</h4>
+          <div class="price">49 €</div>
+          <ul class="muted-sm">
+            <li>Page FR/EN (ES/IT/DE en option)</li>
+            <li>QR A5 printable</li>
+            <li>7 jours retouches</li>
+            <li>Livraison 24–48h</li>
+          </ul>
+          <div class="plan-cta">
+            <button class="cta-primary open-modal" data-pack="Starter">Commander Starter</button>
+          </div>
+        </div>
+
+        <div class="card plan">
+          <h4>Pro</h4>
+          <div class="price">89 €</div>
+          <ul class="muted-sm">
+            <li>Starter + PDF A5 premium</li>
+            <li>Checklist turnover</li>
+            <li>Mini optimisation annonce</li>
+          </ul>
+          <div class="plan-cta">
+            <button class="cta-primary open-modal" data-pack="Pro">Commander Pro</button>
+          </div>
+        </div>
+
+        <div class="card plan">
+          <h4>Care</h4>
+          <div class="price">14 €/mois</div>
+          <ul class="muted-sm">
+            <li>Hébergement & mises à jour</li>
+            <li>Modifs sous 24h</li>
+            <li>Analytics QR</li>
+            <li>Support prioritaire</li>
+          </ul>
+          <div class="plan-cta">
+            <button class="cta-primary open-modal" data-pack="Care">Souscrire Care</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DEMO -->
+    <section id="demo" class="section card">
+      <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap">
+        <div style="flex:1;min-width:220px">
+          <h3>Voir la démo</h3>
+          <p class="muted-sm">Ouvrez un exemple réel — expérience mobile optimisée.</p>
+          <div style="margin-top:12px"><a id="demo-link" class="cta-primary" href="./demo.html" target="_blank" rel="noopener">Ouvrir la démo</a></div>
+        </div>
+        <div style="width:160px;text-align:center">
+          <img id="demo-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https%3A%2F%2Fexample.com%2Fdemo" alt="QR démo" loading="lazy" width="140" height="140" style="border-radius:10px;border:1px solid rgba(7,20,39,0.04)">
+          <div class="muted-sm" id="demo-url-text">demo: ./demo.html</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="section card">
+      <h3>FAQ — Questions fréquentes</h3>
+      <div class="faq">
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">La page est-elle indexée ?</button>
+          <div class="faq-answer"><p class="muted-sm">Par défaut non (noindex) pour la confidentialité. On peut activer l'indexation sur demande.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">Comment modifier une info ?</button>
+          <div class="faq-answer"><p class="muted-sm">Par WhatsApp : mise à jour sous 24h. Retouches gratuites 7 jours après livraison.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <a href="cgv.html" class="muted-sm">CGV</a> · <a href="privacy.html" class="muted-sm">Politique de confidentialité</a> · <a href="mentions.legales.html" class="muted-sm">Mentions légales</a>
+      <div class="muted-sm" style="margin-top:10px">© <span id="year">2025</span> WelcomeQR — Tous droits réservés</div>
+    </footer>
+  </div>
+
+  <!-- MOBILE BOTTOM NAV -->
+  <nav class="bottom-nav" role="navigation" aria-label="Navigation mobile">
+    <a class="nav-item" href="#" id="bn-home" title="Accueil">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden><path d="M3 11.5L12 4l9 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Accueil</span>
+    </a>
+    <a class="nav-item" href="#offres" id="bn-offres" title="Offres">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden><path d="M3 7h18v14H3z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Offres</span>
+    </a>
+    <a class="nav-item" href="#demo" id="bn-demo" title="Démo">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.6"/></svg>
+      <span>Démo</span>
+    </a>
+    <button class="nav-item" id="bn-cta" title="Tester 24h">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden><path d="M22 12H2" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span style="color:var(--cta);font-weight:800">Tester</span>
+    </button>
+  </nav>
+
+  <!-- Modal (markup reused for accessibility) -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-content" role="document">
+      <div>
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <h3 id="modal-title">Démarrer votre livret — Test 24h</h3>
+          <button class="modal-close" id="modal-close" aria-label="Fermer">✕</button>
+        </div>
+
+        <form id="lead-form" class="form" action="https://formspree.io/f/xdkdvdgz" method="POST">
+          <input type="hidden" name="_subject" value="Nouvelle demande — WelcomeQR">
+          <label for="name">Nom & prénom</label>
+          <input id="name" name="name" required placeholder="Ex : Pauline Durand">
+
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" required placeholder="contact@exemple.com">
+
+          <label for="phone">WhatsApp / Tel</label>
+          <input id="phone" name="phone" placeholder="+33 6 12 34 56 78">
+
+          <label for="listing">Lien annonce (Airbnb, Booking, site)</label>
+          <input id="listing" name="listing" type="url" placeholder="https://www.airbnb.fr/rooms/XXXX" required>
+
+          <label for="pack">Pack souhaité</label>
+          <select id="pack" name="pack">
+            <option>Starter — 49 €</option>
+            <option>Pro — 89 €</option>
+            <option>Care — 14 €/mois</option>
+          </select>
+
+          <div style="margin-top:10px" class="form-actions">
+            <button type="submit" class="cta-primary">Envoyer & lancer le test</button>
+            <a id="mailto-fallback" class="muted-sm" href="#" style="align-self:center;padding:8px 10px;border-radius:8px">Envoyer par email</a>
+          </div>
+
+          <div id="form-msg" class="muted-sm" aria-live="polite" style="margin-top:8px"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Lightweight, focused JS
+    (function(){
+      const DEMO_URL = './demo.html';
+      const $ = (s,ctx=document)=>ctx.querySelector(s);
+      const $$ = (s,ctx=document)=>Array.from(ctx.querySelectorAll(s));
+
+      // set year
+      const yearEl = $('#year'); if(yearEl) yearEl.textContent = new Date().getFullYear();
+
+      // Demo link + QR
+      const demoLink = $('#demo-link'); const demoQR = $('#demo-qr'); const demoUrlText = $('#demo-url-text');
+      if(demoLink) demoLink.href = DEMO_URL;
+      if(demoQR) demoQR.src = `https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=${encodeURIComponent(DEMO_URL)}`;
+      if(demoUrlText) demoUrlText.textContent = `demo: ${DEMO_URL}`;
+
+      // Modal
+      const modal = $('#modal'); const openBtns = $$('.open-modal').concat([$('#cta-hero'), $('#open-modal-desktop'), $('#bn-cta')].filter(Boolean));
+      const closeBtn = $('#modal-close');
+      function openModal(pack){ if(!modal) return; modal.classList.add('active'); modal.setAttribute('aria-hidden','false'); const packSelect = $('#pack'); if(pack && packSelect){ Array.from(packSelect.options).forEach(o=>{ if(o.textContent.toLowerCase().startsWith(pack.toLowerCase())) packSelect.value = o.textContent; }); } setTimeout(()=>{ const name = $('#name'); if(name) name.focus(); },60); }
+      function closeModal(){ if(!modal) return; modal.classList.remove('active'); modal.setAttribute('aria-hidden','true'); }
+      openBtns.forEach(btn=>btn && btn.addEventListener('click', e=>{ e.preventDefault(); const pack = btn.getAttribute('data-pack') || null; openModal(pack); }));
+      closeBtn && closeBtn.addEventListener('click', closeModal);
+      window.addEventListener('keydown', e=>{ if(e.key === 'Escape') closeModal(); });
+      window.addEventListener('click', e=>{ if(e.target === modal) closeModal(); });
+
+      // FAQ accordion
+      $$('.faq-question').forEach(btn=>btn.addEventListener('click', function(){ const item = this.closest('.faq-item'); if(!item) return; const answer = item.querySelector('.faq-answer'); const open = item.classList.contains('open'); if(open){ answer.style.maxHeight = '0px'; item.classList.remove('open'); this.setAttribute('aria-expanded','false'); } else { answer.style.maxHeight = answer.scrollHeight + 20 + 'px'; item.classList.add('open'); this.setAttribute('aria-expanded','true'); } }));
+
+      // QR live preview from listing in modal
+      const listing = $('#listing'); const qrSample = $('#qr-sample');
+      function updateQR(){ const url = (listing && listing.value) ? listing.value.trim() : DEMO_URL; const enc = encodeURIComponent(url); if(qrSample) qrSample.src = `https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=${enc}`; }
+      if(listing){ listing.addEventListener('input', updateQR); listing.addEventListener('change', updateQR); }
+      updateQR();
+
+      // mailto fallback
+      const mailto = $('#mailto-fallback'); function updateMailto(){ if(!mailto) return; const name = ($('#name')?.value||'').trim(); const email = ($('#email')?.value||'').trim(); const phone = ($('#phone')?.value||'').trim(); const list = ($('#listing')?.value||'').trim(); const pack = ($('#pack')?.value||'').trim(); const subject = encodeURIComponent("Commande Livret d'Accueil — WelcomeQR"); const body = encodeURIComponent(`Nom: ${name}\nEmail: ${email}\nTel: ${phone}\nAnnonce: ${list}\nPack: ${pack}`); mailto.href = `mailto:contact@votreemail.com?subject=${subject}&body=${body}`; }
+      ['#name','#email','#phone','#listing','#pack'].forEach(sel=>{ const el = $(sel); if(el) el.addEventListener('input', updateMailto); }); updateMailto();
+
+      // bottom nav hide on scroll down (mobile app-like)
+      let lastY = window.scrollY || 0; const bottomNav = document.querySelector('.bottom-nav'); if(bottomNav){ let ticking=false; window.addEventListener('scroll', ()=>{ if(!ticking){ window.requestAnimationFrame(()=>{ const y = window.scrollY || 0; if(y > lastY + 10) { bottomNav.style.transform = 'translateY(110%)'; } else if(y < lastY - 10) { bottomNav.style.transform = 'translateY(0)'; } lastY = y; ticking=false; }); ticking=true; } }); }
+
+      // lightweight form submit feedback
+      const form = $('#lead-form'); const formMsg = $('#form-msg'); if(form){ form.addEventListener('submit', ()=>{ if(formMsg) formMsg.textContent = 'Envoi en cours… Merci — vous allez recevoir une confirmation.'; setTimeout(()=>{ if(formMsg) formMsg.textContent = 'Envoi effectué — nous vous contactons sous 24h.'; },1000); }); }
+
+      // accessibility: focus trap light (for modal)
+      document.addEventListener('focus', function(e){ if(!modal.classList.contains('active')) return; if(!modal.contains(e.target)) { e.stopPropagation(); modal.querySelector('input,button,select,textarea')?.focus(); } }, true);
+
+    })();
+  </script>
+</body>
+</html>

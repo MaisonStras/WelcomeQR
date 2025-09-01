@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WelcomeQR — Livret d'accueil QR personnalisé</title>
+  <meta name="description" content="Livret d'accueil QR personnalisé (FR/EN inclus). ES/IT/DE en option. Livraison 24–48h.">
+  <meta property="og:title" content="WelcomeQR — Livret d'accueil QR personnalisé">
+  <meta property="og:description" content="Livret d’accueil FR/EN inclus (ES/IT/DE en option), QR, PDF, page privée. Test 24h gratuit.">
+  <meta property="og:type" content="website">
+
+  <!-- Fonts (fast + accessible) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================
+       Design system (variables)
+    ============================ */
+    :root {
+      /* Colors */
+      --bg: #f7f9fc;               /* page */
+      --surface: #ffffff;          /* cards */
+      --text: #0b1220;             /* base text */
+      --muted: #5d6b82;            /* secondary text */
+      --accent: #0b63c7;           /* brand */
+      --cta: #0574ff;              /* CTA */
+      --success: #25d366;          /* WhatsApp */
+      --border: rgba(7,20,39,0.08);
+
+      /* Radii */
+      --r-xs: 8px;
+      --r-sm: 12px;
+      --r-md: 16px;
+      --r-xl: 24px;
+
+      /* Shadows */
+      --shadow-sm: 0 2px 10px rgba(7, 20, 39, 0.06);
+      --shadow-md: 0 8px 24px rgba(7, 20, 39, 0.08);
+      --shadow-lg: 0 20px 48px rgba(7, 20, 39, 0.10);
+
+      /* Spacing scale */
+      --space-1: clamp(6px, 0.6vw, 8px);
+      --space-2: clamp(10px, 1vw, 12px);
+      --space-3: clamp(12px, 1.4vw, 16px);
+      --space-4: clamp(16px, 2vw, 20px);
+      --space-5: clamp(20px, 3vw, 28px);
+      --space-6: clamp(24px, 3.6vw, 36px);
+
+      /* Typography scale */
+      --step--1: clamp(12px, 1.4vw, 14px);
+      --step-0: clamp(14px, 1.6vw, 16px);
+      --step-1: clamp(18px, 2.6vw, 22px);
+      --step-2: clamp(22px, 3.6vw, 28px);
+      --step-3: clamp(28px, 5vw, 40px);
+      --step-4: clamp(34px, 6.2vw, 52px);
+
+      color-scheme: light dark; /* enable default form + UA themes */
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b1020;
+        --surface: #131a2a;
+        --text: #eaf2ff;
+        --muted: #a2b3cc;
+        --border: rgba(255,255,255,0.08);
+        --shadow-sm: none; --shadow-md: none; --shadow-lg: none; /* shadows look odd on dark */
+      }
+    }
+
+    /* ============================
+       Base & layout helpers
+    ============================ */
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--text);
+      background: radial-gradient(1200px 800px at 0% 0%, rgba(11, 99, 199, 0.05), transparent 60%),
+                  radial-gradient(1200px 800px at 100% 100%, rgba(5, 116, 255, 0.06), transparent 60%),
+                  var(--bg);
+      line-height: 1.5;
+    }
+
+    img { max-width: 100%; height: auto; }
+    svg { flex: 0 0 auto; }
+    .container {
+      max-width: 1100px;
+      margin-inline: auto;
+      padding-inline: clamp(16px, 4vw, 28px);
+    }
+    .wrap { padding-block: var(--space-5); }
+
+    .visually-hidden {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+
+    /* Better anchor scroll for fixed header */
+    :target { scroll-margin-top: 88px; }
+
+    /* ============================
+       Header
+    ============================ */
+    .site-header {
+      position: sticky; top: 0; z-index: 40;
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: saturate(1.2) blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+    @media (prefers-color-scheme: dark) {
+      .site-header { background: rgba(19,26,42,0.6); }
+    }
+    .site-header-inner {
+      display: grid; align-items: center; gap: var(--space-3);
+      grid-template-columns: 1fr auto;
+      padding-block: var(--space-2);
+    }
+    .brand { display: inline-flex; align-items: center; gap: var(--space-2); }
+    .logo {
+      inline-size: 40px; block-size: 40px; display: grid; place-items: center;
+      border-radius: 12px; font-weight: 800; color: #fff; background: linear-gradient(135deg, var(--accent), var(--cta));
+      box-shadow: var(--shadow-sm);
+    }
+    .brand-title { font-size: var(--step-1); line-height: 1.1; margin: 0; }
+    .brand-sub { font-size: var(--step--1); color: var(--muted); }
+
+    /* Nav */
+    .top-nav { display: flex; align-items: center; gap: var(--space-2); }
+    .nav-links { display: flex; gap: var(--space-2); align-items: center; }
+    .nav-link { text-decoration: none; color: var(--text); font-weight: 600; font-size: var(--step--1); opacity: .9; }
+    .nav-link:hover { opacity: 1; }
+
+    /* Mobile menu */
+    .menu-btn { display: none; }
+    @media (max-width: 900px) {
+      .site-header-inner { grid-template-columns: auto 1fr auto; }
+      .nav-links { display: none; position: absolute; left: 0; right: 0; top: 64px; padding: var(--space-3);
+        background: var(--surface); border-bottom: 1px solid var(--border); box-shadow: var(--shadow-sm);
+        flex-direction: column; gap: var(--space-1);
+      }
+      .nav-links[data-open="true"] { display: flex; }
+      .menu-btn { display: inline-flex; }
+    }
+
+    /* ============================
+       Buttons
+    ============================ */
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: clamp(8px, 1.6vw, 12px) clamp(12px, 2.2vw, 18px);
+      border-radius: var(--r-sm); font-weight: 700; border: 0; cursor: pointer; text-decoration: none; color: #fff;
+      transition: transform .06s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .btn:active { transform: translateY(1px); }
+    .btn:focus-visible { outline: 3px solid color-mix(in oklab, var(--cta), white 35%); outline-offset: 2px; }
+
+    .btn-primary { background: var(--cta); box-shadow: 0 8px 22px rgba(5,116,255,0.12); }
+    .btn-primary:hover { background: color-mix(in oklab, var(--cta), black 8%); }
+
+    .btn-outline { background: transparent; color: var(--accent); border: 1px solid var(--border); }
+    .btn-outline:hover { background: color-mix(in oklab, var(--accent), white 88%); }
+
+    .btn-whatsapp { background: var(--success); color: #fff; }
+    .btn-whatsapp:hover { filter: brightness(0.96); }
+
+    /* Icon sizing for buttons */
+    .btn svg { width: 18px; height: 18px; }
+
+    /* ============================
+       Hero
+    ============================ */
+    .hero {
+      display: grid; gap: var(--space-5); align-items: center;
+      grid-template-columns: 1.2fr minmax(260px, 340px);
+      padding: var(--space-5);
+      border-radius: var(--r-md);
+      background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 100%);
+      background-image:
+        radial-gradient(700px 400px at 0% 0%, rgba(11,99,199,0.06), transparent 60%),
+        radial-gradient(700px 400px at 100% 100%, rgba(5,116,255,0.06), transparent 60%);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-md);
+      overflow: clip;
+    }
+    @media (max-width: 900px) { .hero { grid-template-columns: 1fr; } }
+
+    .hero .label { display: inline-flex; align-items: center; gap: 6px;
+      background: linear-gradient(90deg, #0b63c7, #06b6d4); color: #fff; padding: 6px 10px; border-radius: 999px;
+      font-weight: 800; font-size: 12px; box-shadow: var(--shadow-sm);
+    }
+    .hero h2 { margin: var(--space-2) 0 var(--space-1); font-size: var(--step-3); line-height: 1.15; text-wrap: balance; }
+    .lead { color: var(--muted); max-width: 60ch; font-size: var(--step-0); }
+    .hero-ctas { display: flex; gap: var(--space-2); margin-top: var(--space-3); flex-wrap: wrap; }
+    .hero-features { display: flex; gap: 8px; margin-top: var(--space-2); flex-wrap: wrap; }
+    .pill { background: rgba(11,99,199,0.06); color: var(--accent); padding: 6px 10px; border-radius: 999px; font-weight: 700; font-size: 12px; }
+
+    .hero-right { padding: var(--space-4); border-radius: var(--r-sm); border: 1px solid var(--border);
+      background: var(--surface); box-shadow: var(--shadow-sm); display: flex; flex-direction: column; gap: var(--space-3); align-items: center;
+    }
+    .qr-preview { display: grid; place-items: center; }
+    .qr-preview img { width: 120px; aspect-ratio: 1 / 1; border-radius: var(--r-xs); }
+
+    .hero-stats { display: flex; gap: var(--space-3); width: 100%; justify-content: space-between; align-items: end; }
+    .stat .small { font-size: 12px; color: var(--muted); }
+    .stat .big { font-weight: 900; color: var(--accent); font-size: var(--step-1); }
+
+    .muted { color: var(--muted); font-size: 12px; }
+
+    /* ============================
+       Sections & cards
+    ============================ */
+    .section { margin-top: var(--space-6); }
+    .card { background: var(--surface); padding: var(--space-4); border-radius: var(--r-sm); border: 1px solid var(--border); box-shadow: var(--shadow-sm); }
+
+    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-3); }
+    @media (max-width: 900px) { .grid-3 { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px) { .grid-3 { grid-template-columns: 1fr; } }
+
+    /* Animations (respect reduced motion) */
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <!-- SVG sprite (icons) -->
+  <svg xmlns="http://www.w3.org/2000/svg" class="visually-hidden">
+    <symbol id="icon-rocket" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M14 3l7 7-4.5 1.5L11.5 17 10 15.5l5.5-5.5L14 3zM9 13l2 2-5 5H4v-2l5-5z"/>
+    </symbol>
+    <symbol id="icon-qr" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M3 3h8v8H3V3zm2 2v4h4V5H5zm6 0h2v2h-2V5zm4 0h6v6h-6V5zm2 2v2h2V7h-2zM3 13h2v2H3v-2zm4 0h4v4H7v-4zm6 2h2v2h-2v-2zm4 0h4v6h-6v-4h2v2h2v-2h-2v-2z"/>
+    </symbol>
+    <symbol id="icon-whatsapp" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M20.5 3.5A11 11 0 006.2 19.4L3 21l1.7-3.1A11 11 0 1020.5 3.5zM12 4a8 8 0 110 16 8 8 0 010-16zm4.6 10.6c-.2-.1-1.3-.6-1.5-.7-.2-.1-.4-.1-.6.1-.2.2-.7.7-.9.9-.2.2-.3.2-.6.1s-1.2-.5-2.3-1.4c-.9-.8-1.4-1.6-1.5-1.8-.1-.2 0-.4.1-.5.1-.1.2-.3.3-.4.1-.1.1-.2.2-.3.1-.1.1-.2 0-.4 0-.1-.6-1.5-.8-2.1-.2-.6-.3-.5-.4-.5h-.3c-.1 0-.4.1-.6.3-.2.2-.8.8-.8 2 0 1.1.8 2.2.9 2.3.1.2 1.7 2.6 4.1 3.6.6.3 1.1.5 1.4.6.6.2 1.1.2 1.5.1.5-.1 1.3-.5 1.4-1 .1-.5.1-.9.1-1 0-.1-.1-.1-.3-.2z"/>
+    </symbol>
+  </svg>
+
+  <div class="wrap container">
+    <!-- HEADER -->
+    <header class="site-header">
+      <div class="container site-header-inner">
+        <a href="#top" class="brand" aria-label="Accueil WelcomeQR">
+          <div class="logo">WQ</div>
+          <div>
+            <h1 class="brand-title">WelcomeQR</h1>
+            <div class="brand-sub">Livret d’accueil QR — personnalisé & multilingue</div>
+          </div>
+        </a>
+
+        <nav class="top-nav" aria-label="Navigation principale">
+          <button id="menuBtn" class="btn btn-outline menu-btn" aria-expanded="false" aria-controls="menuList">
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/></svg>
+            Menu
+          </button>
+
+          <div id="menuList" class="nav-links" data-open="false" role="menu">
+            <a href="#offres" class="nav-link" role="menuitem">Offres</a>
+            <a href="#demo" class="nav-link" role="menuitem">Démo</a>
+            <a href="#services" class="nav-link" role="menuitem">Services</a>
+            <a href="#b2b" class="nav-link" role="menuitem">B2B</a>
+            <a href="#faq" class="nav-link" role="menuitem">FAQ</a>
+          </div>
+        </nav>
+
+        <div class="top-ctas" style="display:flex; gap: var(--space-2)">
+          <button id="cta-test" class="btn btn-primary">Démarrer le test 24h</button>
+          <a class="btn btn-whatsapp" href="https://wa.me/33600000000?text=Bonjour%20je%20veux%20un%20livret" target="_blank" rel="noopener">
+            <svg aria-hidden="true"><use href="#icon-whatsapp"></use></svg>
+            WhatsApp
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section id="top" class="hero card" aria-labelledby="hero-title">
+      <div class="hero-left">
+        <div class="label">
+          <svg class="icon" width="16" height="16" aria-hidden="true"><use href="#icon-rocket"></use></svg>
+          <span>OFFRE DE LANCEMENT — Garantie 14 jours</span>
+        </div>
+        <h2 id="hero-title">
+          Le livret d’accueil QR qui <strong class="accent">simplifie vos arrivées</strong>
+        </h2>
+        <p class="lead">
+          Un guide mobile, élégant et personnalisé pour chaque logement — accessible par QR.
+          <strong>FR/EN inclus</strong>, autres langues en option. Livraison en <strong>24–48h</strong>.
+        </p>
+        <div class="hero-ctas">
+          <button id="hero-start" class="btn btn-primary">
+            <svg width="18" height="18" aria-hidden="true"><use href="#icon-rocket"></use></svg>
+            Tester 24h — Gratuit
+          </button>
+          <a href="#offres" class="btn btn-outline">
+            <svg width="16" height="16" aria-hidden="true"><use href="#icon-qr"></use></svg>
+            Voir les offres & tarifs
+          </a>
+        </div>
+        <div class="hero-features">
+          <span class="pill">Design unique</span>
+          <span class="pill">Modifs sous 24h</span>
+          <span class="pill">Support WhatsApp</span>
+        </div>
+      </div>
+
+      <aside class="hero-right" aria-label="Aperçu QR et tarifs">
+        <div class="qr-preview">
+          <img id="qr-sample" src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https%3A%2F%2Fexample.com%2Fdemo" alt="QR de démonstration" decoding="async" fetchpriority="high">
+        </div>
+        <div class="hero-stats" role="group" aria-label="Tarifs">
+          <div class="stat">
+            <div class="small">One‑shot</div>
+            <div class="big">dès 49 €</div>
+          </div>
+          <div class="stat">
+            <div class="small">Care</div>
+            <div class="big">14 € / mois</div>
+          </div>
+        </div>
+        <div class="muted">FR/EN inclus — ES/IT/DE en option</div>
+      </aside>
+    </section>
+
+    <!-- EXEMPLE DE SECTION (facultatif, pour tester le grid) -->
+    <section id="offres" class="section">
+      <div class="grid-3">
+        <article class="card">
+          <h3>Offre Starter</h3>
+          <p>Pour un seul logement. PDF + page QR privée, FR/EN inclus.</p>
+          <a href="#" class="btn btn-outline">Détails</a>
+        </article>
+        <article class="card">
+          <h3>Offre Pro</h3>
+          <p>Jusqu’à 5 logements, gestion multi‑pages, options langues étendues.</p>
+          <a href="#" class="btn btn-outline">Détails</a>
+        </article>
+        <article class="card">
+          <h3>Offre Care</h3>
+          <p>Abonnement mensuel avec mises à jour illimitées et support prioritaire.</p>
+          <a href="#" class="btn btn-outline">Détails</a>
+        </article>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    // Mobile menu toggle (accessible)
+    const menuBtn = document.getElementById('menuBtn');
+    const menuList = document.getElementById('menuList');
+    if (menuBtn && menuList) {
+      menuBtn.addEventListener('click', () => {
+        const open = menuList.getAttribute('data-open') === 'true';
+        menuList.setAttribute('data-open', String(!open));
+        menuBtn.setAttribute('aria-expanded', String(!open));
+      });
+    }
+  </script>
+</body>
+</html>
