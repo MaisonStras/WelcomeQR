@@ -10,12 +10,39 @@ html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,"Segoe 
 /* HEADER */
 .site-header{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:20px}
 .brand{display:flex;gap:12px;align-items:center}
-.logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,#0b63c7,#06b6d4);display:grid;place-items:center;color:#fff;font-weight:800}
 .brand-title{margin:0;font-size:18px}
 .brand-sub{font-size:13px;color:var(--muted)}
 .top-nav{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .nav-link{color:var(--muted);text-decoration:none;padding:8px;border-radius:8px}
 .nav-link:hover{background:rgba(7,20,39,0.03)}
+
+
+.logo-mark img {
+  width: 80px;       /* taille par défaut pour desktop */
+  height: auto;
+  display: block;
+  border-radius: var(--radius); /* optionnel pour arrondir le logo */
+}
+
+@media (max-width: 600px) {
+  .brand {
+    flex-direction: column; /* logo au-dessus du texte sur petit écran */
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .logo-mark img {
+    width: 60px; /* taille réduite sur mobile */
+  }
+
+  .brand-title {
+    font-size: 16px; /* texte plus petit sur mobile */
+  }
+
+  .brand-sub {
+    font-size: 12px;
+  }
+}
 
 /* BUTTONS */
 
@@ -23,7 +50,7 @@ html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,"Segoe 
   align-items:center;
   justify-content:center;
   padding: clamp(8px,1.6vw,12px) clamp(12px,2.2vw,18px);;border-radius:10px;font-weight:700;border:0;cursor:pointer;text-decoration:none;color:#fff}
-.btn-primary{background:var(--cta);box-shadow:0 8px 22px rgba(5,116,255,0.12)}
+.btn-primary{background:rgb(37, 99, 235);box-shadow:0 8px 22px rgba(5,116,255,0.12)}
 .btn-outline{background:transparent;color:var(--accent);border:1px solid rgba(7,20,39,0.06);color:var(--accent);padding:10px 12px;border-radius:10px}
 .btn-whatsapp{background:#25d366;color:#fff;padding:9px 12px;border-radius:10px}
 
