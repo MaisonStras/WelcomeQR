@@ -32,32 +32,49 @@
 
   <div class="wrap" id="wrap">
     <!-- HEADER -->
-    <header>
-      <div class="brand" aria-label="WelcomeStras">
-        <div class="logo-mark">
-          <img src="image/logo1.png" alt="Logo Loto" width="200" height="200">
-        </div>
-      <div class="brand-title">
-          <p class="small muted">Livret d'accueil digital — simple & pro</p>
-      </div>
-</div>
-
-      <nav class="nav" aria-label="Navigation principale">
-        <a href="#offres">Offres</a>
-        <a href="#services-inclus">Services</a>
-        <a href="#paid-services">Services payants</a>
-        <a href="#b2b">Conciergerie</a>
-        <a id="nav-demo" class="btn-primary" href="#" title="Voir la démo"><svg width="16" height="16" aria-hidden="true"><use xlink:href="#icon-demo"/></svg>Voir la démo</a>
-      </nav>
-    </header>
-
-     <div class="topbar" role="region" aria-label="Offre et contact rapide">
+  <header>
+  <!-- Topbar (visible desktop uniquement) -->
+  <div class="topbar" role="region" aria-label="Offre et contact rapide">
     <div class="satisfait">Satisfait ou remboursé — 14 jours</div>
-    <div class="contact-quick">
-      <a id="quick-wa" href="#" title="Nous écrire sur WhatsApp" aria-label="WhatsApp"><svg width="16" height="16"><use xlink:href="#icon-whatsapp"/></svg>WhatsApp</a>
-      <a id="quick-mail" href="#" title="Nous envoyer un mail" aria-label="Email"><svg width="16" height="16"><use xlink:href="#icon-mail"/></svg>contact</a>
-    </div>
+   <div class="contact-quick">
+    <a href="https://wa.me/..." aria-label="WhatsApp">WhatsApp</a>
+    <a href="mailto:contact@..." aria-label="Email">Contact</a>
   </div>
+  </div>
+
+  <!-- Header principal -->
+  <div class="header-main">
+    <div class="brand" aria-label="WelcomeStras">
+      <div class="logo-mark">
+        <img src="image/logo1.png" alt="Logo WelcomeStras">
+      </div>
+      <div class="brand-title">
+        <p class="tagline small muted">Livret d'accueil digital — simple & pro</p>
+        <p class="policy">Satisfait ou remboursé — 14 jours</p>
+      </div>
+    </div>
+
+ <!-- WhatsApp -->
+<div class="contact-quick">
+    <a href="https://wa.me/..." aria-label="WhatsApp">WhatsApp</a>
+    <a href="mailto:contact@..." aria-label="Email">Contact</a>
+  </div>
+
+
+
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="#offres">Offres</a>
+      <a href="#services-inclus">Services</a>
+      <a href="#paid-services">Services payants</a>
+      <a href="#b2b">Conciergerie</a>
+      <a id="nav-demo" class="btn-primary" href="#" title="Voir la démo">
+        <svg width="16" height="16" aria-hidden="true"><use xlink:href="#icon-demo"/></svg>Voir la démo
+      </a>
+    </nav>
+  </div>
+</header>
+
+
 
 <section class="hero" aria-labelledby="hero-title">
   <div>
@@ -82,7 +99,7 @@
 
     <div class="icons-row" aria-hidden="true">
       <div class="icon-item">
-        <svg width="16" height="16"><use xlink:href="#icon-check"/></svg>Prêt en quelques heures
+        <svg width="16" height="16"><use xlink:href="#icon-check"/></svg>Prêt en 24/48H
       </div>
       <div class="icon-item">
         <svg width="16" height="16"><use xlink:href="#icon-check"/></svg>Personnalisation incluse
@@ -143,67 +160,78 @@
 </section>
 
 <!-- ===== OFFRES (abonnements mis en avant) ===== -->
+<!-- ===== OFFRES (abonnements) ===== -->
 <section id="offres" class="offers">
   <h3>Nos offres</h3>
+
   <div class="plans">
 
-    <!-- Care Pro (abonnement recommandé) -->
-    <div class="plan recommended" aria-hidden="false">
+    <!-- Care Pro (recommandée) -->
+    <div class="plan recommended">
       <span class="ribbon">Meilleure valeur</span>
       <h4>Care Pro</h4>
       <div class="price">29 €/mois</div>
       <div class="plan-feats">
-        <div class="plan-feat">• Tout Care Basic inclus</div>
-        <div class="plan-feat">• Langues supplémentaires illimitées</div>
-        <div class="plan-feat">• Branding premium (logo & couleurs)</div>
-        <div class="plan-feat">• Priorité & réponse sous 24 h</div>
-        <div class="plan-feat">• Résiliable à tout moment</div>
+        <div class="plan-feat">
+          <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path d="M16.7 5.3a1 1 0 0 0-1.4-1.4L8 11.2 4.7 7.9a1 1 0 1 0-1.4 1.4l4.3 4.3a1 1 0 0 0 1.4 0l7.7-7.7z"/></svg>
+          Tout Care Basic inclus
+        </div>
+        <div class="plan-feat">
+          <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path d="M16.7 5.3a1 1 0 0 0-1.4-1.4L8 11.2 4.7 7.9a1 1 0 1 0-1.4 1.4l4.3 4.3a1 1 0 0 0 1.4 0l7.7-7.7z"/></svg>
+          Langues supplémentaires illimitées
+        </div>
+        <div class="plan-feat">
+          <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path d="M16.7 5.3a1 1 0 0 0-1.4-1.4L8 11.2 4.7 7.9a1 1 0 1 0-1.4 1.4l4.3 4.3a1 1 0 0 0 1.4 0l7.7-7.7z"/></svg>
+          Branding premium (logo & couleurs)
+        </div>
+        <div class="plan-feat">
+          <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path d="M16.7 5.3a1 1 0 0 0-1.4-1.4L8 11.2 4.7 7.9a1 1 0 1 0-1.4 1.4l4.3 4.3a1 1 0 0 0 1.4 0l7.7-7.7z"/></svg>
+          Support prioritaire sous 24 h
+        </div>
       </div>
-      <div><button class="btn-primary open-modal" data-pack="Care Pro">Souscrire — Care Pro</button></div>
+      <button class="btn-primary open-modal" data-pack="Care Pro">Souscrire — Care Pro</button>
     </div>
 
-    <!-- Care Basic (abonnement) -->
-    <div class="plan" aria-hidden="false">
+    <!-- Care Basic -->
+    <div class="plan">
       <h4>Care Basic</h4>
       <div class="price">12 €/mois</div>
       <div class="plan-feats">
-        <div class="plan-feat">• Hébergement & QR code inclus</div>
-        <div class="plan-feat">• Modifications illimitées</div>
-        <div class="plan-feat">• Support WhatsApp illimité</div>
-        <div class="plan-feat">• Résiliable à tout moment</div>
+        <div class="plan-feat"><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path d="M16.7 5.3a1 1 0 0 0-1.4-1.4L8 11.2 4.7 7.9a1 1 0 1 0-1.4 1.4l4.3 4.3a1 1 0 0 0 1.4 0l7.7-7.7z"/></svg> Hébergement & QR code</div>
+        <div class="plan-feat"><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path d="M16.7 5.3a1 1 0 0 0-1.4-1.4L8 11.2 4.7 7.9a1 1 0 1 0-1.4 1.4l4.3 4.3a1 1 0 0 0 1.4 0l7.7-7.7z"/></svg> Modifications illimitées</div>
+        <div class="plan-feat"><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path d="M16.7 5.3a1 1 0 0 0-1.4-1.4L8 11.2 4.7 7.9a1 1 0 1 0-1.4 1.4l4.3 4.3a1 1 0 0 0 1.4 0l7.7-7.7z"/></svg> Support WhatsApp illimité</div>
       </div>
-      <div><button class="btn-primary open-modal" data-pack="Care Basic">Souscrire — Care Basic</button></div>
-      <div class="satisfaction-small">Dès 2 modifications/an, vous économisez vs. paiement à l’unité.</div>
+      <button class="btn-primary open-modal" data-pack="Care Basic">Souscrire — Care Basic</button>
     </div>
 
-    <!-- Pro (one-shot) -->
-    <div class="plan" aria-hidden="false">
+    <!-- Pro -->
+    <div class="plan">
       <h4>Pro</h4>
       <div class="price">149 €</div>
       <div class="plan-feats">
-        <div class="plan-feat">• Tout Starter inclus</div>
-        <div class="plan-feat">• PDF présentable (imprimable)</div>
-        <div class="plan-feat">• 2 révisions incluses</div>
-        <div class="plan-feat">• Assistance WhatsApp prioritaire</div>
+        <div class="plan-feat"><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path d="M16.7 5.3a1 1 0 0 0-1.4-1.4L8 11.2 4.7 7.9a1 1 0 1 0-1.4 1.4l4.3 4.3a1 1 0 0 0 1.4 0l7.7-7.7z"/></svg> PDF présentable</div>
+        <div class="plan-feat"><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path d="M16.7 5.3a1 1 0 0 0-1.4-1.4L8 11.2 4.7 7.9a1 1 0 1 0-1.4 1.4l4.3 4.3a1 1 0 0 0 1.4 0l7.7-7.7z"/></svg> 2 révisions incluses</div>
+        <div class="plan-feat"><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path d="M16.7 5.3a1 1 0 0 0-1.4-1.4L8 11.2 4.7 7.9a1 1 0 1 0-1.4 1.4l4.3 4.3a1 1 0 0 0 1.4 0l7.7-7.7z"/></svg> Assistance prioritaire</div>
       </div>
-      <div><button class="btn-primary open-modal" data-pack="Pro">Commander — 149 €</button></div>
+      <button class="btn-primary open-modal" data-pack="Pro">Commander — 149 €</button>
     </div>
 
-    <!-- Starter (one-shot) -->
-    <div class="plan" aria-hidden="false">
+    <!-- Starter -->
+    <div class="plan">
       <h4>Starter</h4>
       <div class="price">79 €</div>
       <div class="plan-feats">
-        <div class="plan-feat">• Livret FR & EN</div>
-        <div class="plan-feat">• Livraison sous 48 h</div>
-        <div class="plan-feat">• 1 révision incluse</div>
-        <div class="plan-feat">• Support WhatsApp (mise en place)</div>
+        <div class="plan-feat"><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path d="M16.7 5.3a1 1 0 0 0-1.4-1.4L8 11.2 4.7 7.9a1 1 0 1 0-1.4 1.4l4.3 4.3a1 1 0 0 0 1.4 0l7.7-7.7z"/></svg> Livret FR & EN</div>
+        <div class="plan-feat"><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path d="M16.7 5.3a1 1 0 0 0-1.4-1.4L8 11.2 4.7 7.9a1 1 0 1 0-1.4 1.4l4.3 4.3a1 1 0 0 0 1.4 0l7.7-7.7z"/></svg> Livraison 48 h</div>
+        <div class="plan-feat"><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path d="M16.7 5.3a1 1 0 0 0-1.4-1.4L8 11.2 4.7 7.9a1 1 0 1 0-1.4 1.4l4.3 4.3a1 1 0 0 0 1.4 0l7.7-7.7z"/></svg> 1 révision incluse</div>
       </div>
-      <div><button class="btn-primary open-modal" data-pack="Starter">Commander — 79 €</button></div>
+      <button class="btn-primary open-modal" data-pack="Starter">Commander — 79 €</button>
     </div>
 
   </div>
 </section>
+
+
 
 <!-- ===== SERVICES COMPLÉMENTAIRES (payants) ===== -->
 <section id="paid-services" class="paid-services">
