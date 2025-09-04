@@ -73,7 +73,8 @@ a{color:inherit;text-decoration:none}
   text-decoration: none;
   cursor: pointer;
 }
-.bottom-nav .item svg { width:20px; height:20px; opacity:.95; display:block; }
+.bottom-nav .item svg { width:20px; height:20px; opacity:.95; display:block;  width: 22px;
+  height: 22px;}
 .bottom-nav .item:active { transform: translateY(1px) scale(.99); }
 
 .bottom-nav .item:hover { transform: translateY(-3px); box-shadow: 0 6px 18px rgba(8,20,40,0.06); }
@@ -84,6 +85,9 @@ a{color:inherit;text-decoration:none}
   background: color-mix(in oklab, var(--primary), transparent 90%);
   box-shadow: inset 0 -3px 0 rgba(37,99,235,0.06);
 }
+
+
+
 
 .bottom-nav .item.cta {
   color: #fff;
@@ -161,8 +165,14 @@ body { padding-bottom: calc(var(--bottom-nav-h) + env(safe-area-inset-bottom) + 
   transition: background .12s ease, transform .08s ease, border-color .12s ease;
   background: transparent;
 }
-.side-list a small { display:block; color:var(--muted); font-size:12px; margin-top:4px; }
-.side-list a:hover { background: color-mix(in oklab, var(--accent), transparent 92%); border-color: color-mix(in oklab, var(--accent), transparent 78%); transform: translateX(2px); }
+
+
+
+.side-list a:hover {
+  background: color-mix(in oklab, var(--accent), transparent 90%);
+  border-left: 3px solid var(--accent);
+  transform: translateX(2px);
+}
 
 /* footer */
 .side-footer { padding: 12px; border-top: 1px solid color-mix(in oklab, var(--muted), transparent 80%); display:flex; flex-direction:column; gap:8px; }
@@ -219,6 +229,33 @@ svg { max-width: none !important; }
   .bottom-nav { display: none; }
 }
 
+.bottom-nav .item:not(.cta):hover svg {
+  fill: var(--hot); /* orange sur hover */
+}
+
+
+
+.bottom-nav .item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(8,20,40,0.08);
+  color: var(--primary);
+}
+
+
+
+.bottom-nav .item.is-active {
+  color: var(--primary);
+  box-shadow: inset 0 -3px 0 var(--primary);
+  background: color-mix(in oklab, var(--primary), transparent 90%);
+}
+
+
+.bottom-nav .item.cta:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 10px 24px rgba(37,99,235,0.16);
+    color: #fff; /* toujours blanc, pas de bleu */
+
+}
 
 
 /* ------------------------------------------ HEADER ----------------------------------------------------------
