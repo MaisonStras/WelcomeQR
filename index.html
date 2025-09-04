@@ -84,12 +84,51 @@
   </symbol>
 </svg>
 
+  <!-- icone menu mobile -->
 
 
-  <!-- TOP BAR: satisfait ou remboursé + quick contact -->
- 
+
 
   <div class="wrap" id="wrap">
+
+
+<!-- =========================
+     NAV MOBILE — bottom + drawer
+     Place ce bloc juste avant </body>
+     ========================= -->
+
+<!-- === SPRITE SVG (à mettre en haut du <body>) === -->
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden">
+  <defs>
+    <symbol id="icon-menu" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></symbol>
+    <symbol id="icon-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6l-12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></symbol>
+    <symbol id="icon-service" viewBox="0 0 24 24"><path d="M12 3a9 9 0 100 18 9 9 0 000-18zm0 4a5 5 0 015 5h-5V7z" fill="currentColor"/></symbol>
+    <symbol id="icon-euro" viewBox="0 0 24 24"><path d="M19 7h-6.5a5.5 5.5 0 000 10H19M5 12h11" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></symbol>
+    <symbol id="icon-demo" viewBox="0 0 24 24"><path d="M4 5h16v10H4z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 21l4-6H6l4 6z" fill="currentColor"/></symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></symbol>
+    <symbol id="icon-faq" viewBox="0 0 24 24"><path d="M12 3a9 9 0 100 18h5l4 3-1-5A9 9 0 0012 3zm0 11v2m0-9a3.5 3.5 0 013.5 3.2c0 2-2.2 2.4-2.9 3.6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></symbol>
+    <symbol id="icon-contact" viewBox="0 0 24 24"><path d="M3 5h18v12H3z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 5l9 7 9-7" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="icon-conciergerie" viewBox="0 0 24 24"><path d="M4 20h16M6 18V8a6 6 0 1112 0v10" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></symbol>
+    <symbol id="icon-legal" viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9 7h6M9 11h6M9 15h6" stroke="currentColor" stroke-width="2"/></symbol>
+  <symbol id="icon-offer" viewBox="0 0 24 24" >
+  <path d="M21.7 10.3l-8-8a1 1 0 0 0-.7-.3H5a2 2 0 0 0-2 2v7a1 1 0 0 0 .3.7l8 8a2 2 0 0 0 2.8 0l7.6-7.6a1 1 0 0 0 0-1.4zM7.5 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" fill="currentColor"/>
+</symbol>
+
+<!-- icône "services" / tools (simple) -->
+<symbol id="icon-services" viewBox="0 0 24 24">
+  <path d="M21 13v6a1 1 0 0 1-1 1H13a1 1 0 0 1-1-1v-6h9zM11 11V3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v8H11zM3 13h6v8H4a1 1 0 0 1-1-1v-7z" fill="currentColor"/>
+</symbol>
+  
+  </defs>
+</svg>
+<!-- === fin sprite === -->
+
+
+
+
+
+
+
     <!-- HEADER -->
   <header>
   <!-- Topbar (visible desktop uniquement) -->
@@ -440,14 +479,15 @@
     </footer>
   </div>
 
-  <!-- BOTTOM NAV mobile -->
-  <nav class="bottom-nav" aria-label="Navigation mobile">
-    <a class="item" href="#offres" title="Offres"><svg width="18" height="18"><use xlink:href="#icon-service"/></svg><span>Offres</span></a>
-    <a class="item" href="#services-inclus" title="Services"><svg width="18" height="18"><use xlink:href="#icon-service"/></svg><span>Services</span></a>
-    <a class="item" href="#paid-services" title="Payants"><svg width="18" height="18"><use xlink:href="#icon-service"/></svg><span>Payants</span></a>
-    <a class="item" id="bottom-demo" href="#" title="Voir la démo"><svg width="18" height="18"><use xlink:href="#icon-demo"/></svg><span>Démo</span></a>
-    <button class="item cta" id="bottom-test" title="Tester">Tester</button>
-  </nav>
+
+ 
+
+
+
+
+
+
+
 
   <!-- MODAL lead form -->
   <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
@@ -485,6 +525,161 @@
       </form>
     </div>
   </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-services" xlink:href="#icon-services"></use></svg>
+
+
+
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav" aria-label="Navigation principale mobile">
+  <a class="item" href="#offres" data-scroll-to="#offres" title="Offres">
+    <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-offer" xlink:href="#icon-offer"></use></svg>
+
+    <span>Offres</span>
+  </a>
+
+  <a class="item" href="#services-inclus" data-scroll-to="#services-inclus" title="Services inclus">
+    <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-service" xlink:href="#icon-service"></use></svg>
+    <span>Services</span>
+  </a>
+
+  <a class="item" href="#services-payants" data-scroll-to="#services-payants" title="Services complémentaires">
+    <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-euro" xlink:href="#icon-euro"></use></svg>
+    <span>Payants</span>
+  </a>
+
+  <a class="item" href="#demo" data-scroll-to="#demo" title="Voir la démo">
+    <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-demo" xlink:href="#icon-demo"></use></svg>
+    <span>Démo</span>
+  </a>
+
+  <button class="item cta" id="bottom-test" type="button" title="Demander un essai" aria-label="Demander un essai">
+    <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-check" xlink:href="#icon-check"></use></svg>
+    <span>Tester</span>
+  </button>
+
+  <button class="item menu-toggle" id="open-menu" aria-controls="side-menu" aria-expanded="false" aria-label="Ouvrir le menu" type="button" title="Menu">
+    <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-menu" xlink:href="#icon-menu"></use></svg>
+    <span>Menu</span>
+  </button>
+</nav>
+
+<!-- BACKDROP + DRAWER -->
+<div id="menu-backdrop" class="menu-backdrop" hidden aria-hidden="true"></div>
+
+<aside id="side-menu" class="side-menu" role="dialog" aria-modal="true" aria-labelledby="side-menu-title" hidden>
+  <header class="side-head">
+    <h2 id="side-menu-title" class="side-title">Menu</h2>
+    <button class="side-close" id="close-menu" aria-label="Fermer le menu" type="button">
+      <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-close" xlink:href="#icon-close"></use></svg>
+    </button>
+  </header>
+
+  <div class="side-content" id="side-menu-content">
+    <!-- Navigation -->
+    <section class="side-section" aria-labelledby="nav-principale">
+      <h3 id="nav-principale">Navigation</h3>
+      <ul class="side-list">
+        <li>
+          <a href="#offres" data-scroll-to="#offres">
+            <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-service" xlink:href="#icon-service"></use></svg>
+            <span>Offres</span>
+            <small>Formules & tarifs</small>
+          </a>
+        </li>
+        <li>
+          <a href="#services-inclus" data-scroll-to="#services-inclus">
+            <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-service" xlink:href="#icon-service"></use></svg>
+            <span>Services inclus</span>
+            <small>Wi-Fi, règles, recos…</small>
+          </a>
+        </li>
+        <li>
+          <a href="#services-payants" data-scroll-to="#services-payants">
+            <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-euro" xlink:href="#icon-euro"></use></svg>
+            <span>Services complémentaires</span>
+            <small>Langues, impression…</small>
+          </a>
+        </li>
+        <li>
+          <a href="/welcomestras/b2b.html">
+            <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-conciergerie" xlink:href="#icon-conciergerie"></use></svg>
+            <span>Conciergerie</span>
+            <small>Page dédiée</small>
+          </a>
+        </li>
+        <li>
+          <a href="#faq" data-scroll-to="#faq">
+            <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-faq" xlink:href="#icon-faq"></use></svg>
+            <span>FAQ</span>
+            <small>Questions rapides</small>
+          </a>
+        </li>
+        <li>
+          <a href="/welcomestras/faq.html">
+            <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-faq" xlink:href="#icon-faq"></use></svg>
+            <span>FAQ — page complète</span>
+            <small>Tout savoir</small>
+          </a>
+        </li>
+        <li>
+          <a href="https://wa.me/" target="_blank" rel="noopener">
+            <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-contact" xlink:href="#icon-contact"></use></svg>
+            <span>Contact</span>
+            <small>WhatsApp</small>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Actions -->
+    <section class="side-section" aria-labelledby="nav-actions">
+      <h3 id="nav-actions">Actions</h3>
+      <ul class="side-list">
+        <li>
+          <a href="#demo" data-scroll-to="#demo">
+            <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-demo" xlink:href="#icon-demo"></use></svg>
+            <span>Voir la démo</span>
+            <small>Exemple en direct</small>
+          </a>
+        </li>
+        <li>
+          <a href="#test" data-scroll-to="#test">
+            <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-check" xlink:href="#icon-check"></use></svg>
+            <span>Essai gratuit</span>
+            <small class="chip">24 h</small>
+          </a>
+        </li>
+      </ul>
+    </section>
+  </div>
+
+  <footer class="side-footer">
+    <ul class="legal-links">
+      <li><a href="/welcomestras/CGV.html"><svg class="nav-icon" width="18" height="18" aria-hidden="true"><use href="#icon-legal" xlink:href="#icon-legal"></use></svg> CGV</a></li>
+      <li><a href="/welcomestras/privacy.html"><svg class="nav-icon" width="18" height="18" aria-hidden="true"><use href="#icon-legal" xlink:href="#icon-legal"></use></svg> Politique</a></li>
+      <li><a href="/welcomestras/mentions.legales.html"><svg class="nav-icon" width="18" height="18" aria-hidden="true"><use href="#icon-legal" xlink:href="#icon-legal"></use></svg> Mentions</a></li>
+    </ul>
+    <small>© WelcomeStras</small>
+  </footer>
+</aside>
+
+
+
 
 
 
@@ -601,6 +796,8 @@
   start();
 })();
 
+
+
       // focus trap simple
       document.addEventListener('focus', function(e){
         if(!modal.classList.contains('active')) return;
@@ -619,7 +816,186 @@
       $('#hero-demo')?.addEventListener('click', ()=> console.log('event:hero_demo'));
       $('#nav-demo')?.addEventListener('click', ()=> console.log('event:nav_demo'));
       $('#bottom-demo')?.addEventListener('click', ()=> console.log('event:bottom_demo'));
+
+
+
+
+
+
+      /* nav.js — gère drawer, focus trap, scroll lisse, état actif */
+(function () {
+  // éléments
+  const openBtn = document.getElementById('open-menu');
+  const closeBtn = document.getElementById('close-menu');
+  const sideMenu = document.getElementById('side-menu');
+  const backdrop = document.getElementById('menu-backdrop');
+  const sideContent = document.getElementById('side-menu-content');
+  const testBtn = document.getElementById('bottom-test');
+
+  // sécurité si éléments manquent
+  if (!sideMenu || !openBtn) return;
+
+  // helpers
+  const setOpenState = (isOpen) => {
+    if (isOpen) {
+      sideMenu.hidden = false;
+      backdrop.hidden = false;
+      requestAnimationFrame(() => {
+        sideMenu.classList.add('is-open');
+        backdrop.classList.add('is-open');
+      });
+      openBtn.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+      trapFocus(sideMenu);
+    } else {
+      sideMenu.classList.remove('is-open');
+      backdrop.classList.remove('is-open');
+      openBtn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+      // masquer après animation
+      setTimeout(() => {
+        sideMenu.hidden = true;
+        backdrop.hidden = true;
+      }, 240);
+      releaseFocus();
+      openBtn.focus({ preventScroll: true });
+    }
+  };
+
+  function openMenu() { setOpenState(true); }
+  function closeMenu() { setOpenState(false); }
+
+  openBtn.addEventListener('click', openMenu);
+  closeBtn && closeBtn.addEventListener('click', closeMenu);
+  backdrop && backdrop.addEventListener('click', closeMenu);
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !sideMenu.hidden) closeMenu();
+  });
+
+  // focus trap
+  let lastFocus = null;
+  let focusables = [];
+  function trapFocus(container) {
+    lastFocus = document.activeElement;
+    focusables = Array.from(container.querySelectorAll('a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])'))
+      .filter(el => !el.hasAttribute('disabled') && !el.getAttribute('aria-hidden'));
+    (focusables[0] || container).focus({ preventScroll: true });
+    container.addEventListener('keydown', handleTab);
+  }
+  function releaseFocus() {
+    try { sideMenu && sideMenu.removeEventListener('keydown', handleTab); } catch(e){}
+    if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true });
+  }
+  function handleTab(e) {
+    if (e.key !== 'Tab' || !focusables.length) return;
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  }
+
+  // scroll doux et fallback de section
+  function normalize(s){ return (s||'').toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
+  function findSection(selector) {
+    if (!selector) return null;
+    // direct
+    try {
+      const el = document.querySelector(selector);
+      if (el) return el;
+    } catch(e){}
+    // heuristique : chercher par id ou titres contenant le mot
+    const key = normalize(selector.replace('#',''));
+    const candidates = Array.from(document.querySelectorAll('section[id], [id], h1, h2, h3, main'));
+    const hit = candidates.find(n => {
+      const txt = normalize(n.id || n.textContent || '');
+      return txt.includes(key.slice(0, Math.max(4, key.length)));
+    });
+    return hit || null;
+  }
+  function smoothScrollTo(selector) {
+    const target = findSection(selector);
+    if (!target) return false;
+    // scroll offset si tu as header fixe :
+    const headerOffset = 12; // ajustable si tu as header fixe
+    const rect = target.getBoundingClientRect();
+    const targetY = window.scrollY + rect.top - headerOffset;
+    window.scrollTo({ top: targetY, behavior: 'smooth' });
+    return true;
+  }
+
+  // lier tous les liens data-scroll-to
+  document.querySelectorAll('[data-scroll-to]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      const sel = link.getAttribute('data-scroll-to') || link.getAttribute('href');
+      if (sel && sel.startsWith('#')) {
+        e.preventDefault();
+        const ok = smoothScrollTo(sel);
+        if (ok && !sideMenu.hidden) closeMenu();
+      } else {
+        // lien normal sur page ou externe -> close drawer
+        if (!sideMenu.hidden) closeMenu();
+      }
+    });
+  });
+
+  // bouton tester
+  testBtn && testBtn.addEventListener('click', () => {
+    const done = smoothScrollTo('#test') || smoothScrollTo('#tester') || smoothScrollTo('#contact') || smoothScrollTo('#demo');
+    if (!done) {
+      // fallback : ouvre formulaire ou hash
+      location.hash = '#test';
+    }
+  });
+
+  // IntersectionObserver pour état actif bottom nav
+  try {
+    const navItems = Array.from(document.querySelectorAll('.bottom-nav .item[href]'));
+    const map = new Map();
+    navItems.forEach(a => {
+      const sel = a.getAttribute('data-scroll-to') || a.getAttribute('href');
+      if (sel && sel.startsWith('#')) map.set(a, sel);
+    });
+
+    if ('IntersectionObserver' in window && map.size) {
+      const sections = [];
+      map.forEach((sel) => {
+        const node = findSection(sel);
+        if (node) sections.push({ sel, node });
+      });
+
+      const observer = new IntersectionObserver(entries => {
+        // choisir la section la plus visible
+        let best = null, bestRatio = 0;
+        entries.forEach(ent => {
+          if (ent.intersectionRatio > bestRatio) { best = ent; bestRatio = ent.intersectionRatio; }
+        });
+        if (!best) return;
+        const id = best.target.id ? '#' + best.target.id : null;
+        map.forEach((sel, a) => {
+          a.toggleAttribute('aria-current', sel === id);
+        });
+      }, { root: null, threshold: [0.25, 0.5, 0.75], rootMargin: '-20% 0% -40% 0%' });
+
+      sections.forEach(s => observer.observe(s.node));
+    }
+  } catch (e) {
+    // silent fail
+    console.warn('nav: observer failed', e);
+  }
+
+})();
+
+
+
+
     })();
   </script>
+
+
+
+
+
+
+
 </body>
 </html>

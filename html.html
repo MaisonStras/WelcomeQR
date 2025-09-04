@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Navigation mobile — WelcomeStras</title>
+  <style>
+    /*
+    ==========================================================
+    NAV MOBILE "BÉTON" — Bottom Nav + Drawer (side-menu)
+    - Accessible (ARIA, clavier, focus trap, ESC, lecteur d'écran)
+    - Performant (transform + will-change, GPU friendly)
+    - Confort iOS (safe-area)
+    - Résistant (fallback si IDs manquants, observer de section)
+    ==========================================================
+    Intégration :
+      1) Collez tout ce bloc <body> dans votre page (ou gardez juste <svg> + les balises <nav>/<aside>/<div>)
+      2) IMPORTANT — Ajoutez des IDs sur vos sections pour un scroll parfait :
+         #offres, #services-inclus, #services-payants, #conciergerie, #faq, #demo, #test
+         (voir commentaires dans le HTML ci-dessous)
+      3) Ajustez les URLs (FAQ/CGV/Mentions/Politique/Conciergerie) si besoin.
+    */
+
+
+    /* Visually hidden (accessibilité) */
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+    /* ===== Bottom nav ===== */
+    .bottom-nav {
+      position: fixed; left: 0; right: 0; bottom: 0;
+      height: calc(var(--bottom-nav-h) + env(safe-area-inset-bottom));
+      padding: 6px 8px calc(6px + env(safe-area-inset-bottom));
+      background: color-mix(in oklab, var(--bg), var(--brand-2) 6%);
+      border-top: 1px solid color-mix(in oklab, var(--muted), transparent 70%);
+      display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 6px;
+      align-items: center; z-index: var(--z-bottom);
+      box-shadow: 0 -6px 30px rgba(2,6,23,.06);
+      -webkit-backdrop-filter: saturate(140%) blur(10px);
+      backdrop-filter: saturate(140%) blur(10px);
+    }
+    .bottom-nav .item { 
+      min-width: 0; min-height: 44px; /* zone tactile */
+      padding: 6px 8px; border-radius: 12px; 
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+      font-size: 11px; line-height: 1; color: var(--muted);
+      transition: transform .15s ease, background-color .15s ease, color .15s ease;
+    }
+    .bottom-nav .item:active { transform: translateY(1px) scale(.98); }
+    .bottom-nav .item svg { width: 20px; height: 20px; opacity: .9; }
+    .bottom-nav .item[aria-current="page"],
+    .bottom-nav .item.is-active { color: var(--text); background: color-mix(in oklab, var(--accent), transparent 90%); }
+    .bottom-nav .item.cta { color: #fff; background: var(--accent); border-radius: 14px; font-weight: 600; }
+    .bottom-nav .item.cta:hover { background: var(--accent-2); }
+
+    /* Affichage desktop : on masque la bottom-nav au-delà d'une largeur donnée */
+    @media (min-width: 900px) {
+      .bottom-nav { display: none; }
+      body { padding-bottom: 0; }
+    }
+
+    /* Pour éviter que le contenu soit caché derrière la bottom-nav */
+    body { padding-bottom: calc(var(--bottom-nav-h) + env(safe-area-inset-bottom) + 8px); }
+
+    /* ===== Drawer / Side menu ===== */
+    .menu-backdrop {
+      position: fixed; inset: 0; z-index: var(--z-backdrop);
+      background: rgba(2,6,23,.4);
+      -webkit-backdrop-filter: blur(6px);
+      backdrop-filter: blur(6px);
+      opacity: 0; pointer-events: none; transition: opacity .18s ease;
+    }
+    .menu-backdrop.is-open { opacity: 1; pointer-events: auto; }
+
+    .side-menu {
+      position: fixed; inset: 0 0 0 auto; width: min(88vw, 420px);
+      background: var(--bg); color: var(--text);
+      z-index: var(--z-drawer); transform: translateX(100%);
+      display: grid; grid-template-rows: auto 1fr auto; gap: 8px;
+      box-shadow: var(--shadow);
+      transition: transform .22s cubic-bezier(.2,.8,.2,1);
+    }
+    .side-menu.is-open { transform: translateX(0); }
+
+    .side-head { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; border-bottom: 1px solid color-mix(in oklab, var(--muted), transparent 75%); }
+    .side-title { font-size: 14px; font-weight: 700; letter-spacing: .02em; }
+    .side-close { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; }
+    .side-close:hover { background: color-mix(in oklab, var(--muted), transparent 85%); }
+
+    .side-content { overflow: auto; padding: 10px 12px 16px; }
+
+    .side-section { margin: 8px 0 14px; }
+    .side-section h3 { font-size: 12px; font-weight: 700; letter-spacing: .08em; color: var(--muted); text-transform: uppercase; margin: 10px 8px; }
+    .side-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+    .side-list a { display: grid; grid-template-columns: 24px 1fr auto; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px; border: 1px solid transparent; }
+    .side-list a:hover { background: color-mix(in oklab, var(--accent), transparent 92%); border-color: color-mix(in oklab, var(--accent), transparent 78%); }
+    .side-list small { color: var(--muted); font-size: 12px; }
+
+    .side-footer { padding: 10px 12px 16px; border-top: 1px solid color-mix(in oklab, var(--muted), transparent 80%); }
+    .legal-links { list-style: none; margin: 0 0 8px; padding: 0; display: grid; gap: 4px; }
+    .legal-links a { display: inline-flex; align-items: center; gap: 8px; padding: 6px 8px; border-radius: 10px; color: var(--muted); }
+    .legal-links a:hover { background: color-mix(in oklab, var(--muted), transparent 85%); color: var(--text); }
+
+    .chip { font-size: 11px; padding: 2px 6px; border-radius: 999px; background: color-mix(in oklab, var(--accent), transparent 90%); color: var(--accent-2); }
+
+    /* Respect du mouvement réduit */
+    @media (prefers-reduced-motion: reduce) {
+      .menu-backdrop { transition: none; }
+      .side-menu { transition: none; }
+      .bottom-nav .item { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <!-- ======================================================== -->
+  <!-- 1) SPRITE SVG — placez-le idéalement tout en haut du <body> -->
+  <!-- ======================================================== -->
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden">
+    <defs>
+      <!-- Icônes minimalistes, optimisées pour 18–24 px -->
+      <symbol id="icon-menu" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+      <symbol id="icon-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6l-12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+      <symbol id="icon-service" viewBox="0 0 24 24"><path d="M12 3a9 9 0 100 18 9 9 0 000-18zm0 4a5 5 0 015 5h-5V7z" fill="currentColor"/></symbol>
+      <symbol id="icon-euro" viewBox="0 0 24 24"><path d="M19 7h-6.5a5.5 5.5 0 000 10H19M5 12h11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+      <symbol id="icon-demo" viewBox="0 0 24 24"><path d="M4 5h16v10H4z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 21l4-6H6l4 6z" fill="currentColor"/></symbol>
+      <symbol id="icon-check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="icon-faq" viewBox="0 0 24 24"><path d="M12 3a9 9 0 100 18h5l4 3-1-5A9 9 0 0012 3zm0 11v2m0-9a3.5 3.5 0 013.5 3.2c0 2-2.2 2.4-2.9 3.6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></symbol>
+      <symbol id="icon-contact" viewBox="0 0 24 24"><path d="M3 5h18v12H3z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 5l9 7 9-7" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+      <symbol id="icon-conciergerie" viewBox="0 0 24 24"><path d="M4 20h16M6 18V8a6 6 0 1112 0v10" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></symbol>
+      <symbol id="icon-legal" viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9 7h6M9 11h6M9 15h6" stroke="currentColor" stroke-width="2"/></symbol>
+      <symbol id="icon-link" viewBox="0 0 24 24"><path d="M10 7h-2a5 5 0 000 10h2m4-10h2a5 5 0 010 10h-2M8 12h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    </defs>
+  </svg>
+
+  <!-- ======================================================== -->
+  <!-- 2) BOTTOM NAV — actions principales (toujours visible)    -->
+  <!-- ======================================================== -->
+  <nav class="bottom-nav" aria-label="Navigation mobile">
+    <a class="item" href="#offres" data-scroll-to="#offres" title="Offres" aria-current="page">
+      <svg width="20" height="20" aria-hidden="true"><use href="#icon-service" xlink:href="#icon-service"/></svg>
+      <span>Offres</span>
+    </a>
+
+    <a class="item" href="#services-inclus" data-scroll-to="#services-inclus" title="Services inclus">
+      <svg width="20" height="20" aria-hidden="true"><use href="#icon-service" xlink:href="#icon-service"/></svg>
+      <span>Services</span>
+    </a>
+
+    <a class="item" href="#services-payants" data-scroll-to="#services-payants" title="Services payants">
+      <svg width="20" height="20" aria-hidden="true"><use href="#icon-euro" xlink:href="#icon-euro"/></svg>
+      <span>Payants</span>
+    </a>
+
+    <a class="item" href="#demo" data-scroll-to="#demo" title="Voir la démo">
+      <svg width="20" height="20" aria-hidden="true"><use href="#icon-demo" xlink:href="#icon-demo"/></svg>
+      <span>Démo</span>
+    </a>
+
+    <button class="item cta" id="bottom-test" type="button" title="Demandez votre livret">
+      <svg width="20" height="20" aria-hidden="true"><use href="#icon-check" xlink:href="#icon-check"/></svg>
+      <span>Tester</span>
+    </button>
+
+    <button class="item menu-toggle" id="open-menu" aria-controls="side-menu" aria-expanded="false" aria-label="Ouvrir le menu" type="button" title="Menu">
+      <svg width="20" height="20" aria-hidden="true"><use href="#icon-menu" xlink:href="#icon-menu"/></svg>
+      <span>Menu</span>
+    </button>
+  </nav>
+
+  <!-- ======================================================== -->
+  <!-- 3) BACKDROP + DRAWER (menu complet)                       -->
+  <!-- ======================================================== -->
+  <div id="menu-backdrop" class="menu-backdrop" hidden aria-hidden="true"></div>
+
+  <aside id="side-menu" class="side-menu" role="dialog" aria-modal="true" aria-labelledby="side-menu-title" hidden>
+    <header class="side-head">
+      <h2 id="side-menu-title" class="side-title">Menu</h2>
+      <button class="side-close" id="close-menu" aria-label="Fermer le menu" type="button">
+        <svg width="22" height="22" aria-hidden="true"><use href="#icon-close" xlink:href="#icon-close"/></svg>
+      </button>
+    </header>
+
+    <div class="side-content" id="side-menu-content">
+      <!-- Bloc 1: Navigation -->
+      <section class="side-section" aria-labelledby="nav-principale">
+        <h3 id="nav-principale">Navigation</h3>
+        <ul class="side-list">
+          <li>
+            <a href="#offres" data-scroll-to="#offres">
+              <svg width="20" height="20" aria-hidden="true"><use href="#icon-service"/></svg>
+              <span>Offres</span>
+              <small>Formules & tarifs</small>
+            </a>
+          </li>
+          <li>
+            <a href="#services-inclus" data-scroll-to="#services-inclus">
+              <svg width="20" height="20" aria-hidden="true"><use href="#icon-service"/></svg>
+              <span>Services inclus</span>
+              <small>Wi‑Fi, règles, recos…</small>
+            </a>
+          </li>
+          <li>
+            <a href="#services-payants" data-scroll-to="#services-payants">
+              <svg width="20" height="20" aria-hidden="true"><use href="#icon-euro"/></svg>
+              <span>Services complémentaires</span>
+              <small>Langues, impression, domaine…</small>
+            </a>
+          </li>
+          <li>
+            <a href="/welcomestras/b2b.html">
+              <svg width="20" height="20" aria-hidden="true"><use href="#icon-conciergerie"/></svg>
+              <span>Conciergerie</span>
+              <small>Page dédiée — packs volume</small>
+            </a>
+          </li>
+          <li>
+            <a href="#faq" data-scroll-to="#faq">
+              <svg width="20" height="20" aria-hidden="true"><use href="#icon-faq"/></svg>
+              <span>FAQ (aperçu)</span>
+              <small>Questions rapides</small>
+            </a>
+          </li>
+          <li>
+            <a href="/welcomestras/faq.html">
+              <svg width="20" height="20" aria-hidden="true"><use href="#icon-faq"/></svg>
+              <span>FAQ — page complète</span>
+              <small>Tout savoir en détail</small>
+            </a>
+          </li>
+          <li>
+            <a href="https://wa.me/" target="_blank" rel="noopener">
+              <svg width="20" height="20" aria-hidden="true"><use href="#icon-contact"/></svg>
+              <span>Contact</span>
+              <small>WhatsApp — réponse rapide</small>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Bloc 2: Actions -->
+      <section class="side-section" aria-labelledby="nav-actions">
+        <h3 id="nav-actions">Actions</h3>
+        <ul class="side-list">
+          <li>
+            <a href="#demo" data-scroll-to="#demo">
+              <svg width="20" height="20" aria-hidden="true"><use href="#icon-demo"/></svg>
+              <span>Voir la démo</span>
+              <small>Exemple en direct</small>
+            </a>
+          </li>
+          <li>
+            <a href="#test" data-scroll-to="#test">
+              <svg width="20" height="20" aria-hidden="true"><use href="#icon-check"/></svg>
+              <span>Essai gratuit</span>
+              <small class="chip">24 h</small>
+            </a>
+          </li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- Bloc 3: Légal (en bas) -->
+    <footer class="side-footer">
+      <ul class="legal-links">
+        <li><a href="/welcomestras/CGV.html"><svg width="18" height="18" aria-hidden="true"><use href="#icon-legal"/></svg> CGV</a></li>
+        <li><a href="/welcomestras/privacy.html"><svg width="18" height="18" aria-hidden="true"><use href="#icon-legal"/></svg> Politique de confidentialité</a></li>
+        <li><a href="/welcomestras/mentions.legales.html"><svg width="18" height="18" aria-hidden="true"><use href="#icon-legal"/></svg> Mentions légales</a></li>
+      </ul>
+      <small>© WelcomeStras</small>
+    </footer>
+  </aside>
+
+  <!-- ======================================================== -->
+  <!-- 4) SCRIPT — interactions, accessibilité, robustesse        -->
+  <!-- ======================================================== -->
+  <script>
+    (function() {
+      const body = document.body;
+      const openBtn = document.getElementById('open-menu');
+      const closeBtn = document.getElementById('close-menu');
+      const sideMenu = document.getElementById('side-menu');
+      const backdrop = document.getElementById('menu-backdrop');
+      const sideContent = document.getElementById('side-menu-content');
+      const testBtn = document.getElementById('bottom-test');
+
+      // Gestion ouverture/fermeture du drawer
+      const openMenu = () => {
+        if (!sideMenu) return;
+        sideMenu.hidden = false; backdrop.hidden = false;
+        requestAnimationFrame(() => {
+          sideMenu.classList.add('is-open');
+          backdrop.classList.add('is-open');
+        });
+        openBtn?.setAttribute('aria-expanded', 'true');
+        body.style.overflow = 'hidden';
+        trapFocus(sideMenu);
+      };
+      const closeMenu = () => {
+        sideMenu?.classList.remove('is-open');
+        backdrop?.classList.remove('is-open');
+        openBtn?.setAttribute('aria-expanded', 'false');
+        body.style.overflow = '';
+        // Attendre la fin d'anim pour cacher
+        setTimeout(() => { sideMenu && (sideMenu.hidden = true); backdrop && (backdrop.hidden = true); }, 200);
+        releaseFocus();
+        openBtn?.focus();
+      };
+
+      openBtn?.addEventListener('click', openMenu);
+      closeBtn?.addEventListener('click', closeMenu);
+      backdrop?.addEventListener('click', closeMenu);
+      window.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !sideMenu.hidden) closeMenu(); });
+
+      // Focus trap basique
+      let lastFocus = null; let focusables = [];
+      function trapFocus(container){
+        lastFocus = document.activeElement;
+        focusables = Array.from(container.querySelectorAll('a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])'))
+          .filter(el => !el.hasAttribute('disabled') && !el.getAttribute('aria-hidden'));
+        (focusables[0] || container).focus();
+        container.addEventListener('keydown', handleTab);
+      }
+      function releaseFocus(){
+        sideMenu?.removeEventListener('keydown', handleTab);
+        if (lastFocus && lastFocus.focus) lastFocus.focus();
+      }
+      function handleTab(e){
+        if (e.key !== 'Tab' || !focusables.length) return;
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        if (e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+      }
+
+      // Scroll doux + fallback si l'ID exact n'existe pas
+      function normalize(str){ return (str||'').toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu,''); }
+      function findSection(selector){
+        if (!selector) return null;
+        const el = document.querySelector(selector);
+        if (el) return el;
+        // Fallback heuristique : chercher titres similaires
+        const key = normalize(selector.replace('#',''));
+        const candidates = Array.from(document.querySelectorAll('section, [id], h2, h3'));
+        const hit = candidates.find(n => normalize(n.id||n.textContent||'').includes(key.replace('services-','').slice(0,6)));
+        return hit || null;
+      }
+      function smoothScrollTo(selector){
+        const target = findSection(selector);
+        if (!target) return false;
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return true;
+      }
+
+      // Lier tous les liens data-scroll-to (bottom + drawer)
+      document.querySelectorAll('[data-scroll-to]').forEach(link => {
+        link.addEventListener('click', (e) => {
+          const sel = link.getAttribute('data-scroll-to');
+          if (sel && sel.startsWith('#')){
+            e.preventDefault();
+            const ok = smoothScrollTo(sel);
+            if (ok && !sideMenu.hidden) closeMenu();
+          }
+        });
+      });
+
+      // Bouton "Tester" : essaie d'ouvrir la zone de test (#test)
+      testBtn?.addEventListener('click', () => {
+        const done = smoothScrollTo('#test') || smoothScrollTo('#tester') || smoothScrollTo('#contact');
+        if (!done) location.hash = '#test';
+      });
+
+      // Mise à jour de l'état actif de la bottom-nav selon la section visible
+      const navItems = Array.from(document.querySelectorAll('.bottom-nav .item[href]'));
+      const map = new Map();
+      navItems.forEach(a => { const sel = a.getAttribute('data-scroll-to') || a.getAttribute('href'); if (sel?.startsWith('#')) map.set(a, sel); });
+
+      if ('IntersectionObserver' in window && map.size){
+        const obs = new IntersectionObserver((entries) => {
+          let best = null, bestRatio = 0;
+          for (const entry of entries){
+            if (entry.isIntersecting && entry.intersectionRatio > bestRatio){ best = entry; bestRatio = entry.intersectionRatio; }
+          }
+          if (!best) return;
+          const activeSel = '#' + (best.target.id || '');
+          for (const [a, sel] of map){ a.toggleAttribute('aria-current', sel === activeSel); }
+        }, { rootMargin: '-30% 0px -50% 0px', threshold: [0.25, 0.5, 0.75] });
+
+        const observed = new Set();
+        for (const sel of map.values()){
+          const node = findSection(sel);
+          if (node && !observed.has(node)) { obs.observe(node); observed.add(node); }
+        }
+      }
+    })();
+  </script>
+</body>
+</html>
