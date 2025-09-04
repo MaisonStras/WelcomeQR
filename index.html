@@ -290,7 +290,7 @@
   
 <!-- ===== Section Services ===== -->
 <section id="paid-services" class="paid-services">
-  <h3>Services complémentaires (payants)</h3>
+  <h3>Services complémentaires </h3>
   <div class="paid-grid">
 
     <div class="service-card">
@@ -365,7 +365,7 @@
     <!-- B2B / CONCIERGERIE -->
 <!-- ===== CONCIERGERIES CTA (page principale) ===== -->
 <section id="b2b" class="b2b-section">
-  <h3>Conciergeries & gestionnaires — packs volume</h3>
+  <h3>Conciergeries & gestionnaires - packs volume</h3>
 
   <div class="b2b-container">
     <div class="b2b-card recommended">
@@ -388,36 +388,51 @@
 
 
     <!-- FAQ -->
-    <section style="margin-top:18px">
-      <h3>FAQ — Questions rapides</h3>
-      <div class="faq-grid" style="margin-top:12px">
-        <div class="faq-item"><strong>La page est-elle indexée ?</strong><p class="muted">Par défaut non — confidentialité. Indexation possible à la demande.</p></div>
-        <div class="faq-item"><strong>Comment modifier une info ?</strong><p class="muted">Par formulaire ou support — modifications sous 24h pour Pro/Care.</p></div>
-        <div class="faq-item"><strong>Paiement & facture ?</strong><p class="muted">Paiement sécurisé — facture fournie.</p></div>
-      </div>
-      <div style="margin-top:12px;text-align:right"><a href="./faq.html" class="small muted">Voir plus FAQ →</a></div>
-    </section>
+    <section class="faq-section">
+  <h3 class="faq-title">FAQ — Questions rapides</h3>
+
+  <div class="faq-grid">
+    <div class="faq-item">
+      <h4 class="faq-question">La page est-elle indexée ?</h4>
+      <p class="faq-answer">Par défaut non — confidentialité. Indexation possible à la demande.</p>
+    </div>
+
+    <div class="faq-item">
+      <h4 class="faq-question">Comment modifier une info ?</h4>
+      <p class="faq-answer">Par formulaire ou support — modifications sous 24h pour Pro/Care.</p>
+    </div>
+
+    <div class="faq-item">
+      <h4 class="faq-question">Paiement & facture ?</h4>
+      <p class="faq-answer">Paiement sécurisé — facture fournie.</p>
+    </div>
+  </div>
+
+  <div class="faq-footer">
+    <a href="./faq.html" class="faq-link">Voir plus FAQ →</a>
+  </div>
+</section>
 
     <!-- TESTIMONIALS -->
-    <section class="card testimonials" style="margin-top:18px" aria-labelledby="testimonials-title">
-      <h3 id="testimonials-title">Ils ont testé — Avis clients</h3>
-      <p class="small muted">Exemples d'avis (remplacez par retours réels dès que possible).</p>
+<section class="testimonials" aria-labelledby="testimonials-title">
+  <h3 id="testimonials-title">Ils nous font confiance</h3>
 
-      <div style="margin-top:12px;display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap">
-        <div style="flex:1">
-          <div id="review-slot" class="review-card" tabindex="0" aria-live="polite"></div>
-          <div style="display:flex;gap:8px;margin-top:8px;align-items:center">
-            <button id="prev-review" class="btn-ghost" aria-label="Avis précédent">◀</button>
-            <button id="next-review" class="btn-ghost" aria-label="Avis suivant">▶</button>
-            <div id="review-counter" class="small muted" style="margin-left:auto"></div>
-          </div>
-        </div>
+  <div class="review-summary">
+    <div class="stars" aria-hidden="true">
+      <svg><use xlink:href="#star"/></svg>
+      <svg><use xlink:href="#star"/></svg>
+      <svg><use xlink:href="#star"/></svg>
+      <svg><use xlink:href="#star"/></svg>
+      <svg><use xlink:href="#star"/></svg>
+    </div>
+    <span><strong>4,9</strong> · 124 avis clients</span>
+  </div>
 
-        <div style="width:180px;text-align:center">
-          <div class="small muted"><a href="#" id="see-more-reviews">Voir plus d'avis</a></div>
-        </div>
-      </div>
-    </section>
+  <div class="review-slider" id="review-slider">
+    <!-- Les avis seront injectés ici -->
+  </div>
+</section>
+
 
     <footer style="margin-top:20px;text-align:center;color:var(--muted)">
       <div><a href="./CGV.html" class="small muted">CGV</a> · <a href="./privacy.html" class="small muted">Politique</a> · <a href="./mentions.legales.html" class="small muted">Mentions</a></div>
@@ -552,30 +567,39 @@
       }
 
       // testimonials carousel
-      const reviews = [
-        {score:4.9, text:"Nous avons réduit les appels et gagné en tranquillité. Service très pro.", author:"Julie P., Strasbourg", date:"Avr 2025", reviews:12},
-        {score:4.8, text:"Livraison rapide, retouches efficaces — nos voyageurs sont ravis.", author:"Karim L., Lyon", date:"Mai 2025", reviews:8},
-        {score:4.7, text:"Care est parfait pour gérer plusieurs logements facilement.", author:"Sophie M., Paris", date:"Mar 2025", reviews:7}
-      ];
-      const slot = $('#review-slot'), counter = $('#review-counter'), prev = $('#prev-review'), next = $('#next-review');
-      let i = 0, timer = null;
-      function render(i0){
-        const r = reviews[i0];
-        const stars = Array.from({length:5}).map(()=>`<svg width="16" height="16"><use xlink:href="#star"/></svg>`).join('');
-        slot.innerHTML = `<div class="rating"><strong>${r.score}</strong><div class="stars" aria-hidden="true" style="margin-left:8px">${stars}</div></div><p style="margin-top:8px;color:var(--muted)">${r.text}</p><div class="small muted" style="margin-top:8px">— ${r.author} · ${r.date} · ${r.reviews} avis</div>`;
-        counter.textContent = `${i0+1} / ${reviews.length}`;
-      }
-      function nextR(){ i = (i + 1) % reviews.length; render(i); }
-      function prevR(){ i = (i - 1 + reviews.length) % reviews.length; render(i); }
-      render(0);
-      next?.addEventListener('click', ()=>{ nextR(); reset(); });
-      prev?.addEventListener('click', ()=>{ prevR(); reset(); });
-      function start(){ stop(); timer = setInterval(nextR, 4200); }
-      function stop(){ if(timer){ clearInterval(timer); timer = null; } }
-      function reset(){ stop(); start(); }
-      slot?.addEventListener('mouseenter', stop); slot?.addEventListener('mouseleave', start);
-      slot?.addEventListener('focus', stop); slot?.addEventListener('blur', start);
-      start();
+      
+(function(){
+  const reviews = [
+    {text:"Nous avons réduit les appels et gagné en tranquillité. Service très pro.", author:"Julie P., Strasbourg", date:"Avr 2025"},
+    {text:"Livraison rapide, retouches efficaces — nos voyageurs sont ravis.", author:"Karim L., Lyon", date:"Mai 2025"},
+    {text:"Care est parfait pour gérer plusieurs logements facilement.", author:"Sophie M., Paris", date:"Mar 2025"},
+    {text:"Support hyper réactif, ça change la vie. Merci !", author:"Marc D., Toulouse", date:"Fév 2025"},
+    {text:"La mise en ligne a été super simple, mes clients trouvent tout facilement.", author:"Nathalie R., Lille", date:"Jan 2025"}
+  ];
+
+  const slider = document.getElementById('review-slider');
+  let i = 0, timer = null;
+
+  function render(){
+    slider.innerHTML = reviews.map((r, idx) => `
+      <div class="review-card ${idx===i?'active':''}">
+        <p>“${r.text}”</p>
+        <div class="review-meta">— ${r.author} · ${r.date}</div>
+      </div>
+    `).join('');
+  }
+
+  function next(){
+    i = (i + 1) % reviews.length;
+    render();
+  }
+
+  function start(){ stop(); timer=setInterval(next, 5000); }
+  function stop(){ if(timer){ clearInterval(timer); timer=null; } }
+
+  render();
+  start();
+})();
 
       // focus trap simple
       document.addEventListener('focus', function(e){

@@ -28,6 +28,9 @@
 }
 
 
+
+/* ------------------------------------------ HEADER ----------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------- */
     /* ===== SVG sprite default ===== */
     svg.icon{display:block;fill:currentColor}
 
@@ -171,33 +174,10 @@
   */
 }
 
-/* ----- Bouton flottant WhatsApp (mobile only) ----- */
-.fab-wa {
-  display: none; /* desktop: caché */
-}
-@media (max-width: 600px) {
-  .fab-wa {
-    position: fixed;
-    right: max(16px, env(safe-area-inset-right));
-    bottom: max(16px, env(safe-area-inset-bottom));
-    width: 52px; height: 52px;
-    border-radius: 9999px;
-    background: #25D366;
-    color: #fff;
-    display: inline-flex; align-items: center; justify-content: center;
-    box-shadow: 0 10px 24px rgba(0,0,0,0.18);
-    z-index: 999;
-    text-decoration: none;
-  }
-  .fab-wa svg { fill: currentColor; display: block; }
-  .fab-wa:active { transform: scale(0.98); }
-}
-
 
 @media(min-width: 769px) {
   .header-main .contact-quick { display: none; } /* desktop = topbar suffisant */
 }
-
 
 
 /* ----- Logo responsive (exemple) ----- */
@@ -277,6 +257,13 @@
 #nav-demo {
   color: white; /* texte en blanc */
 }
+
+
+
+
+
+/* ------------------------------------------ HERO ----------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------- */
 
 
 .hero {
@@ -488,15 +475,12 @@
 }
 
 
-
-
-
-
     /* hide desktop nav on small screens */
-    @media (max-width:920px){ .nav{display:none} }
-
-    /* ===== HERO (focus sur démo + test) ===== */
-
+    @media (max-width:920px
+    ){ .nav{
+      display:none
+    } 
+  }
 
     /* hero-right (mock + small QR) */
     .hero-right {
@@ -518,9 +502,6 @@
     .mock-sub{font-size:13px;color:var(--muted)}
   
 
-
-
-/* ===== HERO RIGHT (aside) ===== */
 
 /* ===== HERO RIGHT (aside) ===== */
 .hero-right {
@@ -611,8 +592,9 @@
 
 
 
+/* ------------------------------------------ OFFRES ----------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------- */
 
-    /* ===== OFFERS: emphasize middle plan ===== */
 .offers {
   margin-top: 28px;
   padding: 0 16px;
@@ -779,7 +761,14 @@
 }
 
 
-/* Section container */
+
+
+
+
+/* ------------------------------------------ SERVICES ----------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------- */
+
+
 .paid-services {
   margin-top: 40px;
   padding: 0 16px;
@@ -810,9 +799,6 @@
     grid-template-columns: repeat(3, 1fr);
   }
 }
-
-
-
 
 
 
@@ -856,6 +842,11 @@
   line-height: 1.4;
 }
 
+
+
+
+/* ------------------------------------------ B2B ----------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------- */
 
 
 
@@ -977,22 +968,148 @@
 
 
 
-    /* ===== FAQ & B2B ===== */
-    .faq-grid{display:grid;grid-template-columns:1fr;gap:12px}
-    @media(min-width:700px){ .faq-grid{grid-template-columns:repeat(3,1fr)} }
-    .faq-item{padding:12px;border-radius:10px;border:1px solid rgba(7,18,34,0.04)}
+/* ------------------------------------------ FAQ ----------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------- */
+
+
+/* ===== FAQ Section ===== */
+.faq-section {
+  margin-top: 28px;
+}
+
+.faq-title {
+  font-size: clamp(18px, 2.5vw, 22px);
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.faq-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+@media (min-width: 700px) {
+  .faq-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.faq-item {
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(7, 18, 34, 0.08);
+  background: var(--surface, #fff);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.faq-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
+}
+
+.faq-question {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0 0 6px;
+}
+
+.faq-answer {
+  font-size: 14px;
+  color: var(--muted, #555);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.faq-footer {
+  margin-top: 16px;
+  text-align: right;
+}
+
+.faq-link {
+  font-size: 13px;
+  color: var(--muted, #666);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.faq-link:hover {
+  color: var(--primary, #1476eb);
+}
+
+
 
     /* ===== Testimonials ===== */
-    .testimonials{display:grid;gap:12px}
-    @media(min-width:900px){ .testimonials{grid-template-columns:1fr 240px;align-items:center} }
-    .review-card{padding:14px;border-radius:12px;background:linear-gradient(180deg,#fff,#f8fcff);border:1px solid rgba(7,18,34,0.04)}
-    .rating{display:flex;gap:8px;align-items:center}
-    .stars{display:flex;gap:4px;align-items:center}
-    .stars svg{ 
-  color: #FFC107; /* jaune/orangé vif */
-  width: 12px;
-  height: 12px;
+   
+
+.testimonials {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
 }
+.review-summary {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 15px;
+  color: #444;
+}
+.review-summary .stars {
+  display: flex;
+  gap: 2px;
+}
+.review-summary svg {
+  color: #FFC107;
+  width: 16px;
+  height: 16px;
+}
+.review-slider {
+  position: relative;
+  width: 100%;
+  max-width: 760px;
+  min-height: 160px;
+  overflow: hidden;
+}
+.review-card {
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  padding: 20px;
+  border-radius: 14px;
+  background: linear-gradient(180deg,#fff,#f8fcff);
+  border: 1px solid rgba(7,18,34,0.05);
+  box-shadow: 0 6px 20px rgba(8,20,40,0.05);
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  text-align: left;
+}
+.review-card.active {
+  opacity: 1;
+  position: relative;
+}
+.review-card p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 10px 0;
+  color: #333;
+}
+.review-meta {
+  font-size: 13px;
+  color: #666;
+}
+@media (min-width: 1000px) {
+  .review-card p { font-size: 17px; }
+}
+
+
+
+
+
 
     /* ===== Bottom nav mobile ===== */
     .bottom-nav{position:fixed;left:12px;right:12px;bottom:12px;height:var(--nav-h);background:linear-gradient(180deg,#fff,#fbfeff);border-radius:14px;display:none;align-items:center;justify-content:space-between;padding:8px 10px;box-shadow:0 18px 40px rgba(7,18,34,0.08);z-index:160}
@@ -1027,7 +1144,6 @@
     .s18{width:18px;height:18px}
     .s20{width:20px;height:20px}
 
-    /* ===== HEADER ===== */
     
     /* ===== SECTION + ACCORDÉON ===== */
     .lead{color:var(--muted);margin:4px 0 14px}
