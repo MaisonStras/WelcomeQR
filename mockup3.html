@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Demo - Mockup compact — WelcomeStras</title>
+
+<style>
+  /* ---------- Variables & reset ---------- */
+  :root{
+    --page-bg:#f4f7fb;
+    --card:#ffffff;
+    --ink:#0B1D2A;
+    --muted:#667680;
+    --accent:#E86F2D;
+    --radius:14px;
+    --device-w:390px;    /* width for phone mockup */
+    --device-h:844px;    /* height for phone mockup */
+    --nav-h:58px;        /* bottom nav height */
+    --hero-h:220px;      /* hero image height */
+    --hero-card-h:118px; /* estimated hero-card height (used to compute content area) */
+    --shadow: 0 22px 60px rgba(10,20,40,0.16);
+  }
+
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{height:100%;margin:0;padding:0;background:var(--page-bg);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:var(--ink);-webkit-font-smoothing:antialiased}
+  img{max-width:100%;display:block;height:auto;user-select:none;-webkit-user-drag:none}
+
+  /* ---------- container centered ---------- */
+  .container { min-height:100vh; display:flex; align-items:center; justify-content:center; padding:18px }
+
+  /* ---------- device frame (fixed size) ---------- */
+  .device {
+    width:var(--device-w);
+    height:var(--device-h);
+    border-radius:34px;
+    background:linear-gradient(180deg,#fff 0%, #fff 100%);
+    box-shadow:var(--shadow);
+    overflow:hidden;
+    position:relative;
+    display:flex;
+    flex-direction:column;
+  }
+  .device:before{
+    content:""; position:absolute; left:50%; transform:translateX(-50%); top:10px;
+    width:200px;height:22px;border-radius:12px;background:rgba(0,0,0,0.04); pointer-events:none;
+  }
+
+  /* ---------- viewport ---------- */
+  .viewport {
+    width:100%;
+    height:100%;
+    overflow:hidden; /* prevent outer scroll during capture */
+    display:flex;
+    flex-direction:column;
+  }
+
+  /* ---------- HERO IMAGE (reduced height) ---------- */
+  .hero {
+    position:relative;
+    width:100%;
+    height:var(--hero-h);
+    flex: 0 0 var(--hero-h);
+    overflow:hidden;
+    background:#ddd;
+  }
+  .hero-media img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center 30%;
+    display:block;
+  }
+  .hero-overlay{
+    position:absolute; inset:0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0.10) 50%, rgba(0,0,0,0.02) 100%);
+    pointer-events:none;
+  }
+
+  /* ---------- HERO CARD (overlay) ---------- */
+  .hero-card {
+    /* pull up to overlap the image */
+    margin: calc(-1 * var(--hero-card-h) / 2) 12px 8px;
+    background:var(--card);
+    border-radius:12px;
+    padding:12px;
+    box-shadow: 0 10px 26px rgba(8,18,30,0.08);
+    z-index:3;
+  }
+  .hero-kicker{font-size:12px;color:var(--muted);margin-bottom:6px}
+  .hero-title{margin:0;font-size:17px;line-height:1.15;font-weight:800;color:var(--ink)}
+  .hero-sub{margin:8px 0 0;color:var(--muted);font-size:12.5px;line-height:1.35}
+  .hero-meta{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+  .chip{background:rgba(11,29,42,0.06);padding:6px 8px;border-radius:999px;font-weight:700;font-size:12px;color:var(--ink)}
+  .hero-actions{display:flex;gap:8px;margin-top:10px}
+  .btn{background:var(--accent);color:#fff;padding:8px 10px;border-radius:10px;text-decoration:none;font-weight:700;font-size:13px;display:inline-flex;align-items:center;gap:8px}
+  .btn.ghost{background:transparent;border:1px solid rgba(11,29,42,0.08);color:var(--ink)}
+
+  /* ---------- CONTENT AREA: fixed height to avoid scroll ---------- */
+  /* calculate available height so that content + bottom nav fit into device exactly */
+  .content {
+    padding:8px 12px 8px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    /* height = device height - hero height - (hero-card visible area approximated) - nav height - small margin */
+    height: calc(var(--device-h) - var(--hero-h) - (var(--hero-card-h) / 2) - var(--nav-h) - 16px);
+    overflow:hidden; /* ensure no vertical scroll inside device */
+  }
+
+  /* ---------- compact cards ---------- */
+  .card {
+    background:var(--card);
+    border-radius:10px;
+    padding:10px;
+    box-shadow:0 6px 18px rgba(8,18,30,0.04);
+    border:1px solid rgba(6,32,42,0.04);
+    font-size:13px;
+  }
+  .row{display:flex;gap:8px;align-items:flex-start}
+  .col{flex:1;min-width:0}
+  .qr{width:78px;height:78px;border-radius:8px;background:#fff;display:grid;place-items:center;border:1px solid rgba(6,32,42,0.04)}
+  .small-muted{font-size:12px;color:var(--muted);margin-top:6px}
+
+  /* ---------- bottom nav (fixed inside device) ---------- */
+  .bottom-nav {
+    position:absolute;
+    left:0;right:0;bottom:0;
+    height:var(--nav-h);
+    display:flex;
+    background:linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.99));
+    border-top:1px solid rgba(6,32,42,0.04);
+  }
+  .bottom-nav a {
+    flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-decoration:none;color:var(--muted);font-size:12px;
+  }
+  .bottom-nav svg{width:18px;height:18px;display:block;margin-bottom:4px;fill:currentColor;opacity:0.95}
+  .bottom-nav a.active{color:var(--accent);font-weight:700}
+
+  /* ensure no horizontal overflow */
+  .device, .viewport, .hero, .hero-card, .content, .card { overflow-x:hidden; }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="device" role="region" aria-label="Aperçu mobile — mockup">
+      <div class="viewport">
+
+        <!-- HERO image -->
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="hero-media">
+            <img src="image/strasbourg.jpg" alt="Cathédrale de Strasbourg" loading="eager">
+          </div>
+          <div class="hero-overlay" aria-hidden="true"></div>
+        </section>
+
+        <!-- hero-card (overlay) -->
+        <div class="hero-card" role="article" aria-labelledby="hero-title" style="height:var(--hero-card-h);">
+          <div id="hero-kicker" class="hero-kicker">Studio design — idéal pour 1–2 personnes</div>
+          <h1 id="hero-title" class="hero-title">Studio Cosy — calme & central</h1>
+          <p class="hero-sub">Studio lumineux, kitchenette équipée, literie premium, Wi-Fi illimité — séjour sans stress.</p>
+
+          <div class="hero-meta" aria-hidden="false">
+            <span class="chip">2 pers</span>
+            <span class="chip">Nettoyage Pro</span>
+            <span class="chip">Wi-Fi</span>
+          </div>
+
+          <div class="hero-actions">
+            <a class="btn" href="#s-arrival">Checklist arrivée</a>
+            <a class="btn ghost" href="#s-wifi">Wi-Fi</a>
+          </div>
+        </div>
+
+        <!-- main compact content (arrival + wifi) -->
+        <div class="content" id="content">
+          <!-- Arrival card -->
+          <section id="s-arrival" class="card" aria-labelledby="arrival-title" style="flex:0 0 auto;">
+            <h3 id="arrival-title" style="margin:0 0 6px;font-size:14px">Checklist arrivée</h3>
+            <div style="font-size:13px;color:var(--muted)">
+              <div class="row">
+                <div class="col">
+                  <div><strong>Code porte</strong></div>
+                  <div style="margin-top:6px"><strong id="door-code">4592#</strong></div>
+                  <div class="small-muted">Check-in 15h · Check-out 11h</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- WiFi card -->
+          <section id="s-wifi" class="card" aria-labelledby="wifi-title" style="flex:0 0 auto;">
+            <h3 id="wifi-title" style="margin:0 0 6px;font-size:14px">Wi-Fi</h3>
+            <div style="display:flex;gap:8px;align-items:center">
+              <div class="col">
+                <div style="font-size:13px;color:var(--muted)">Nom</div>
+                <div style="font-weight:800;font-size:14px">WelcomeStras</div>
+
+                <div style="margin-top:8px;font-size:13px;color:var(--muted)">Mot de passe</div>
+                <div style="display:flex;gap:8px;align-items:center;margin-top:6px">
+                  <div style="font-weight:800" id="wifi-pass">welcome2024</div>
+                  <button id="copyBtn" class="btn" style="padding:6px 10px;font-size:13px">Copier</button>
+                </div>
+                <div class="small-muted">Scannez depuis un autre appareil</div>
+              </div>
+
+              <div class="qr" aria-hidden="false">
+                <img src="qr-demo.png" alt="QR code" style="width:74px;height:74px;border-radius:6px;display:block">
+              </div>
+            </div>
+          </section>
+
+        </div> <!-- /content -->
+
+      </div> <!-- /viewport -->
+
+      <!-- bottom nav (guaranteed visible) -->
+      <nav class="bottom-nav" role="navigation" aria-label="Navigation principale">
+        <a href="#s-arrival" class="active" aria-label="Arrivée">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 2h6a2 2 0 0 1 2 2v2h-2V4H9v2H7V4a2 2 0 0 1 2-2zM7 8h10v12a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V8z"></path></svg>
+          <span>Arrivée</span>
+        </a>
+        <a href="#s-wifi" aria-label="Wi-Fi">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 18.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zM2 9.5C5 6.5 8.5 5 12 5s7 1.5 10 4.5l-1.4 1.4C18.7 8.6 15.5 7.5 12 7.5s-6.7 1.1-8.6 3.4L2 9.5z"></path></svg>
+          <span>Wi-Fi</span>
+        </a>
+        <a href="#s-highlights" aria-label="Spots">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7z"></path></svg>
+          <span>Spots</span>
+        </a>
+        <a href="#s-tips" aria-label="Plans">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6z"></path></svg>
+          <span>Plans</span>
+        </a>
+        <a href="#s-emergency" aria-label="Aide">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path></svg>
+          <span>Aide</span>
+        </a>
+      </nav>
+
+    </div> <!-- /device -->
+  </div> <!-- /container -->
+
+<script>
+  // copy password
+  (function(){
+    const copyBtn = document.getElementById('copyBtn');
+    if(copyBtn){
+      copyBtn.addEventListener('click', async function(){
+        const pass = document.getElementById('wifi-pass').textContent;
+        try {
+          await navigator.clipboard.writeText(pass);
+          this.textContent = 'Copié ✓';
+          setTimeout(()=> this.textContent = 'Copier', 1200);
+        } catch(e) {
+          alert('Impossible de copier — sélectionnez le mot de passe manuellement.');
+        }
+      });
+    }
+
+    // anchors inside device: smooth centering but we keep overall no page scroll
+    document.querySelectorAll('.device a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', function(e){
+        const id = this.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if(!el) return;
+        e.preventDefault();
+        el.scrollIntoView({behavior:'smooth', block:'center'});
+      });
+    });
+  })();
+</script>
+</body>
+</html>
