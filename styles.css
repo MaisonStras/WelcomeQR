@@ -495,6 +495,18 @@ svg { max-width: none !important; }
 /* ------------------------------------------ HERO ----------------------------------------------------------
 -------------------------------------------------------------------------------------------------------------------- */
 
+@media (max-width: 520px) {
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* centre horizontalement */
+    text-align: center;
+  }
+  .hero-content, .hero-right {
+    width: 100%;
+    max-width: 500px;
+  }
+}
 
 .hero {
     overflow-x: hidden;
@@ -712,12 +724,6 @@ svg { max-width: none !important; }
     } 
   }
 
- 
-
-    .mock-screen{width:260px;border-radius:12px;background:linear-gradient(180deg,#fff,#eef7ff);padding:14px;border:1px solid rgba(7,18,34,0.04)}
-    .mock-title{font-weight:700;margin-bottom:6px}
-    .mock-sub{font-size:13px;color:var(--muted)}
-  
 
 
 /* ===== HERO RIGHT (aside) ===== */
@@ -725,54 +731,102 @@ svg { max-width: none !important; }
 .hero-right {
   display: flex;
   flex-direction: column;
-  align-items: center; /* centrer l'image et le texte */
-  gap: 12px;
-  padding: 12px;
-  border-radius: 12px;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  border-radius: 16px;
   background: linear-gradient(180deg,#fff,#fbfeff);
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
   text-align: center;
+    align-self: center;   /* centre l'aside verticalement dans la cellule grid */
+
 }
+
+
+
 
 .hero-right .mockup img {
-  width: 200px;       /* largeur max sur desktop */
+  max-width: 100%;
+  width: clamp(100px, 16vw, 150px); /* bcp plus compact */
   height: auto;
-  border-radius: 16px;
+  border-radius: 20px;
   display: block;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
 }
 
-@media (max-width: 980px) {
-  .hero-right .mockup img {
-    width: 160px;     /* un peu plus petit sur tablette/mobile */
-  }
+
+.hero-right .mockup img:hover {
+  transform: scale(1.03); /* petit effet hover élégant */
 }
+
+
+
+.hero-right figcaption {
+  margin-top: 6px;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.4;
+  max-width: 200px;
+}
+
+.hero-right .highlight {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--primary); /* une touche bleue pour accrocher */
+  margin-top: 4px;
+}
+
+
 
 @media (max-width: 520px) {
   .hero-right {
-    background: none; /* sur mobile, on supprime le fond pour alléger */
+    background: none; /* on allège */
     padding: 0;
   }
   .hero-right .mockup img {
-    width: 140px;     /* encore réduit sur mobile */
+    width: clamp(140px, 50vw, 220px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
   }
   .hero-right figcaption {
     font-size: 12px;
   }
 }
 
-.hero-right figcaption {
-  font-size: 13px;
-  color: var(--muted);
-  margin-top: 6px;
-  line-height: 1.4;
+@media (max-width: 980px) {
+  .hero-right .mockup img {
+    width: clamp(120px, 34vw, 220px);
+  }
 }
 
 .hero-right .small.muted {
   font-size: 12px;
   color: var(--muted);
 }
+
+/* Fix : image au-dessus + caption en dessous dans .mockup */
+.mockup {
+  display: flex;
+  flex-direction: column; /* <-- important : empile verticalement img puis figcaption */
+  align-items: center;    /* centre horizontalement l'image + la légende */
+  justify-content: center;
+  gap: 8px;               /* espace entre l'image et la légende */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Image responsive et compacte */
+.mockup img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+  width: clamp(96px, 12vw, 140px); /* ajuste si tu veux une autre taille */
+  border-radius: 14px;   /* optionnel */
+  box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+}
+
 
 
 
