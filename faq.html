@@ -8,7 +8,7 @@
   <meta name="description" content="FAQ professionnelle pour hôtes, propriétaires et conciergeries : mise en place, personnalisation, QR code, multilingue, sécurité, RGPD, technique, tarifs, support." />
   <link rel="icon" href="/favicon.ico" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="style.css">
 
  
 </head>
@@ -37,24 +37,40 @@
    <div class="wrap" id="wrap">
     <!-- HEADER -->
     <header>
-      <div class="brand" aria-label="WelcomeStras">
-        <div class="logo-mark" style="background:var(--primary);color:#fff">
-          <svg width="28" height="28" aria-hidden="true"><use xlink:href="#logo-mark"></use></svg>
-        </div>
-        <div class="brand-title">
-          <h1>WelcomeStras</h1>
-          <p class="small muted">Livret d'accueil digital — simple & pro</p>
-        </div>
-      </div>
+  <!-- Topbar (desktop uniquement) -->
+  <div class="topbar" role="region" aria-label="Offre et contact rapide">
+    <div class="satisfait">Satisfait ou remboursé — 14 jours</div>
+    <!-- <div class="contact-quick">
+      <a href="https://wa.me/..." aria-label="WhatsApp">WhatsApp</a>
+      <a href="mailto:contact@..." aria-label="Email">Contact</a>
+    </div> -->
+  </div>
 
-      <nav class="nav" aria-label="Navigation principale">
-        <a href="#offres">Offres</a>
-        <a href="#services-inclus">Services</a>
-        <a href="#paid-services">Services payants</a>
-        <a href="#b2b">Conciergerie</a>
-        <a id="nav-demo" class="btn-primary" href="#" title="Voir la démo"><svg width="16" height="16" aria-hidden="true"><use xlink:href="#icon-demo"/></svg>Voir la démo</a>
-      </nav>
-    </header>
+  <!-- Header principal -->
+  <div class="header-main">
+    <div class="brand" aria-label="WelcomeStras">
+      <div class="logo-mark" aria-hidden="true">
+        <img src="image/logo1.webp" alt="Logo WelcomeStras">
+      </div>
+      <div class="brand-title">
+        <p class="tagline headline" id="site-tagline">Accueil parfait, hôtes sereins.</p>
+      </div>
+    </div>
+
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="index.html#offres">Offres</a>
+      <a href="index.html#paid-services">Services</a>
+      <a href="b2b.html">Conciergerie</a>
+      <a href="faq.html">FAQ</a>
+      <a href="#demo" class="btn-demo">
+        <svg width="16" height="16" aria-hidden="true"><use xlink:href="#icon-demo"></use></svg>
+        Démo
+      </a>
+    </nav>
+  </div>
+</header>
+
+  <div class="wrap" id="wrap">
 
     <p class="lead">Toutes les réponses sur le livret d’accueil digital : fonctionnement, personnalisation, technique, sécurité/RGPD, tarifs et support.</p>
 
@@ -417,8 +433,13 @@
     </div>
 </section>
 
+
+    <footer class="footer" role="contentinfo">
+      <div><a href="./CGV.html" class="small muted">CGV</a> · <a href="./privacy.html" class="small muted">Politique</a> · <a href="./mentions.legales.html" class="small muted">Mentions</a></div>
+      <div class="small muted" style="margin-top:10px">© <span id="year"></span> WelcomeStras</div>
     </footer>
   </div>
+ 
 
   <!-- Données structurées pour SEO quand l’indexation sera activée -->
   <script type="application/ld+json" id="faqJson"></script>
