@@ -3,76 +3,383 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>WelcomeStras — Livret d'accueil professionnel</title>
-  <meta name="description" content="Livret d'accueil professionnel — moins d'appels, meilleure expérience. Satisfait ou remboursé 14 jours.">
-  <meta name="theme-color" content="#2563eb" />
+  <title>WelcomeStras — Packs Conciergeries</title>
+      <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
 
 </head>
-<body>
-  <header class="site-header">
-    <nav>
-      <a href="./index.html" class="btn btn-outline">Accueil</a>
-      <a href="./cgv.html" class="btn btn-outline">CGV</a>
-      <a href="./privacy.html" class="btn btn-outline">Privacy</a>
+
+<style>
+/* CGV responsive */
+.cgv-section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  line-height: 1.6;
+  color: #333;
+  font-family: 'Inter', sans-serif;
+}
+
+.cgv-title {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 0.5em;
+}
+
+.cgv-subtitle {
+  font-size: 1.5rem;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+.cgv-text, .cgv-list {
+  font-size: 1rem;
+  margin-bottom: 1em;
+}
+
+.cgv-list {
+  padding-left: 1.5em;
+}
+
+.cgv-muted {
+  font-size: 0.875rem;
+  color: #666;
+  margin-bottom: 1.5em;
+}
+
+/* Tablette */
+@media screen and (max-width: 1024px) {
+  .cgv-section {
+    padding: 30px 15px;
+  }
+  .cgv-title {
+    font-size: 1.8rem;
+  }
+  .cgv-subtitle {
+    font-size: 1.3rem;
+  }
+  .cgv-text, .cgv-list {
+    font-size: 0.95rem;
+  }
+}
+
+/* Mobile */
+@media screen and (max-width: 600px) {
+  .cgv-section {
+    padding: 20px 10px;
+  }
+  .cgv-title {
+    font-size: 1.6rem;
+  }
+  .cgv-subtitle {
+    font-size: 1.1rem;
+  }
+  .cgv-text, .cgv-list {
+    font-size: 0.9rem;
+  }
+}
+</style>
+
+
+<body class="b2b">
+    
+  <svg style="display:none" aria-hidden="true">
+    <symbol id="logo-mark" viewBox="0 0 48 48"><rect width="48" height="48" rx="10" fill="currentColor"/><text x="24" y="32" text-anchor="middle" font-family="Poppins,Inter" font-weight="700" font-size="20" fill="#fff">W</text></symbol>
+    <symbol id="icon-demo" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M8 11h8M8 15h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/></symbol>
+    <symbol id="icon-service" viewBox="0 0 24 24"><path d="M12 2l3 6h6l-4.8 3.6L20 20l-8-5-8 5 3.8-8.4L3 8h6z" fill="currentColor"/></symbol>
+    <symbol id="star" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L23.5 9.75l-5.75 5.6L19.336 24 12 20.092 4.664 24l1.586-8.651L.5 9.75l7.832-1.732L12 .587z" fill="currentColor"/></symbol>
+    <symbol id="icon-mail" viewBox="0 0 24 24"><path d="M3 6.5v11A2.5 2.5 0 0 0 5.5 20h13a2.5 2.5 0 0 0 2.5-2.5v-11A2.5 2.5 0 0 0 18.5 4h-13A2.5 2.5 0 0 0 3 6.5z" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M21 6l-9 7L3 6" fill="none" stroke="currentColor" stroke-width="1.4"/></symbol>
+    <symbol id="icon-whatsapp" viewBox="0 0 24 24"><path d="M21 12.3A9 9 0 1 0 11.7 3a.9.9 0 0 0-.9.2L9.1 4.9a.9.9 0 0 0-.2.9 6 6 0 0 0 1.1 2.5.9.9 0 0 1 .1.9l-.7 2.1a.9.9 0 0 0 .9 1.2 12 12 0 0 0 4.4-.8 9 9 0 0 0 6.3-6.8z" fill="currentColor"/></symbol>
+  </svg>
+
+
+
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden">
+  <defs>
+    <symbol id="icon-menu" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></symbol>
+    <symbol id="icon-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6l-12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></symbol>
+    <symbol id="icon-service" viewBox="0 0 24 24"><path d="M12 3a9 9 0 100 18 9 9 0 000-18zm0 4a5 5 0 015 5h-5V7z" fill="currentColor"/></symbol>
+    <symbol id="icon-euro" viewBox="0 0 24 24"><path d="M19 7h-6.5a5.5 5.5 0 000 10H19M5 12h11" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></symbol>
+    <symbol id="icon-demo" viewBox="0 0 24 24"><path d="M4 5h16v10H4z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 21l4-6H6l4 6z" fill="currentColor"/></symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></symbol>
+    <symbol id="icon-faq" viewBox="0 0 24 24"><path d="M12 3a9 9 0 100 18h5l4 3-1-5A9 9 0 0012 3zm0 11v2m0-9a3.5 3.5 0 013.5 3.2c0 2-2.2 2.4-2.9 3.6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></symbol>
+    <symbol id="icon-contact" viewBox="0 0 24 24"><path d="M3 5h18v12H3z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 5l9 7 9-7" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="icon-conciergerie" viewBox="0 0 24 24"><path d="M4 20h16M6 18V8a6 6 0 1112 0v10" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></symbol>
+    <symbol id="icon-legal" viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9 7h6M9 11h6M9 15h6" stroke="currentColor" stroke-width="2"/></symbol>
+  <symbol id="icon-offer" viewBox="0 0 24 24" >
+  <path d="M21.7 10.3l-8-8a1 1 0 0 0-.7-.3H5a2 2 0 0 0-2 2v7a1 1 0 0 0 .3.7l8 8a2 2 0 0 0 2.8 0l7.6-7.6a1 1 0 0 0 0-1.4zM7.5 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" fill="currentColor"/>
+</symbol>
+
+<!-- icône "services" / tools (simple) -->
+<symbol id="icon-services" viewBox="0 0 24 24">
+  <path d="M21 13v6a1 1 0 0 1-1 1H13a1 1 0 0 1-1-1v-6h9zM11 11V3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v8H11zM3 13h6v8H4a1 1 0 0 1-1-1v-7z" fill="currentColor"/>
+</symbol>
+  
+  </defs>
+</svg>
+
+  <!-- TOP BAR: satisfait ou remboursé + quick contact -->
+ <header>
+  <!-- Topbar (desktop uniquement) -->
+  <div class="topbar" role="region" aria-label="Offre et contact rapide">
+    <div class="satisfait">Satisfait ou remboursé — 14 jours</div>
+    <!-- <div class="contact-quick">
+      <a href="https://wa.me/..." aria-label="WhatsApp">WhatsApp</a>
+      <a href="mailto:contact@..." aria-label="Email">Contact</a>
+    </div> -->
+  </div>
+
+  <!-- Header principal -->
+  <div class="header-main">
+    <div class="brand" aria-label="WelcomeStras">
+      <div class="logo-mark" aria-hidden="true">
+             <a href="index.html">  <img src="image/logo1.webp" alt="Logo WelcomeStras"></a> 
+
+      </div>
+      <div class="brand-title">
+        <p class="tagline headline" id="site-tagline">Accueil parfait, hôtes sereins.</p>
+      </div>
+    </div>
+
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="index.html#offres">Offres</a>
+      <a href="index.html#paid-services">Services</a>
+      <a href="./b2b.html">Conciergerie</a>
+      <a href="./faq.html">FAQ</a>
+      <a id="hero-demo"  href="./demo.html" title="Voir la démo"class="btn-demo">
+        <svg width="16" height="16" aria-hidden="true"><use xlink:href="#icon-demo"></use></svg>
+        Démo
+      </a>
     </nav>
+  </div>
+</header>
+
+    <div class="wrap" id="wrap">
+
+<main class="site-content">
+  <section class="cgv-section">
+    <h1 class="cgv-title">Conditions Générales de Vente — WelcomeQR</h1>
+    <p class="cgv-muted">Dernière mise à jour : 17 août 2025</p>
+
+    <h2 class="cgv-subtitle">1. Objet</h2>
+    <p class="cgv-text">Les présentes Conditions Générales de Vente (CGV) régissent l’utilisation des services WelcomeQR, consistant en la création de livrets d’accueil personnalisés pour locations courte durée, ainsi que tout pack ou abonnement proposé sur le site.</p>
+
+    <h2 class="cgv-subtitle">2. Services proposés</h2>
+    <ul class="cgv-list">
+      <li><strong>Pack Starter :</strong> Livret d’accueil basique — 49 €</li>
+      <li><strong>Pack Pro :</strong> Livret avancé avec QR codes dynamiques — 89 €</li>
+      <li><strong>Pack Care :</strong> Abonnement mensuel pour mise à jour et support continu — 14 €/mois</li>
+    </ul>
+
+    <h2 class="cgv-subtitle">3. Processus de commande et paiement</h2>
+    <p class="cgv-text">Les commandes se font via le formulaire sur le site. Après soumission :</p>
+    <ol class="cgv-list">
+      <li>Le client est contacté par email ou WhatsApp pour confirmer sa demande.</li>
+      <li>Un lien de paiement sécurisé (Stripe) est envoyé pour finaliser le règlement.</li>
+    </ol>
+    <p class="cgv-text">Le paiement est obligatoire pour toute création ou mise à disposition des livrets. Les paiements sont sécurisés via Stripe et les informations bancaires ne transitent pas par le site WelcomeQR.</p>
+
+    <h2 class="cgv-subtitle">4. Abonnement Care</h2>
+    <p class="cgv-text">L’abonnement Care est mensuel, renouvelable automatiquement. Le client peut résilier à tout moment en contactant WelcomeQR par email ou WhatsApp. Le renouvellement est facturé automatiquement via le lien de paiement Stripe.</p>
+
+    <h2 class="cgv-subtitle">5. Livraison des services</h2>
+    <p class="cgv-text">Les livrets d’accueil sont livrés au format numérique après confirmation de paiement. Les délais dépendent de la charge de travail mais sont généralement de 24 à 48h pour le pack Starter et Pro.</p>
+
+    <h2 class="cgv-subtitle">6. Droit de rétractation</h2>
+    <p class="cgv-text">Conformément à la législation française, les services numériques personnalisés (livrets d’accueil) ne sont pas soumis à droit de rétractation une fois la commande confirmée et le service commencé, sauf cas exceptionnel à la discrétion de WelcomeQR.</p>
+
+    <h2 class="cgv-subtitle">7. Responsabilités</h2>
+    <ul class="cgv-list">
+      <li>WelcomeQR ne peut être tenu responsable des erreurs ou omissions dans les informations fournies par le client.</li>
+      <li>Le client est responsable du contenu qu’il transmet pour le livret d’accueil (texte, photos, liens, etc.).</li>
+    </ul>
+
+    <h2 class="cgv-subtitle">8. Propriété intellectuelle</h2>
+    <p class="cgv-text">Le contenu des livrets d’accueil est protégé par le droit d’auteur. Toute reproduction ou diffusion non autorisée est interdite.</p>
+
+    <h2 class="cgv-subtitle">9. Protection des données</h2>
+    <p class="cgv-text">Les informations collectées via le formulaire sont utilisées uniquement pour fournir le service demandé et contacter le client. Elles ne sont pas partagées avec des tiers sans consentement explicite. Voir la <a href="./privacy.html">politique de confidentialité</a> pour plus de détails.</p>
+
+    <h2 class="cgv-subtitle">10. Loi applicable</h2>
+    <p class="cgv-text">Les présentes CGV sont régies par la loi française. Tout litige relatif à l’interprétation ou l’exécution des présentes CGV sera soumis aux tribunaux compétents de France.</p>
+
+    <p class="cgv-muted">En validant le formulaire sur le site, le client accepte expressément les présentes CGV.</p>
+  </section>
+</main>
+
+
+    <!-- FOOTER -->
+     <footer class="footer" role="contentinfo">
+      <div><a href="./CGV.html" class="small muted">CGV</a> · <a href="./privacy.html" class="small muted">Politique</a> · <a href="./mentions.legales.html" class="small muted">Mentions</a></div>
+      <div class="small muted" style="margin-top:10px">© <span id="year"></span> WelcomeStras</div>
+    </footer>
+
+   
+
+
+  <!-- MODAL lead form -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-inner" role="document">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <h3>Demandez votre livret — Test 24h</h3>
+        <button id="modal-close" aria-label="Fermer">✕</button>
+      </div>
+
+      <form id="lead-form" class="form" action="https://formspree.io/f/xdkdvdgz" method="POST" style="margin-top:12px">
+        <input type="hidden" name="_subject" value="Nouvelle demande — WelcomeStras">
+        <div class="form-row">
+          <input id="name" name="name" placeholder="Nom & prénom *" required class="focus-ring">
+          <input id="email" name="email" type="email" placeholder="Email *" required class="focus-ring">
+        </div>
+        <div class="form-row" style="margin-top:10px">
+          <input id="phone" name="phone" placeholder="WhatsApp / Tel" class="focus-ring">
+          <input id="listing" name="listing" type="url" placeholder="Lien annonce (Airbnb) *" required class="focus-ring">
+        </div>
+        <div style="margin-top:10px">
+          <label for="pack" class="small muted">Pack souhaité</label>
+          <select id="pack" name="pack" style="margin-top:6px;padding:10px;border-radius:8px;border:1px solid rgba(7,18,34,0.06)" class="focus-ring">
+            <option>Starter — 49 €</option>
+            <option>Pro — 89 €</option>
+            <option>Care — 14 €/mois</option>
+          </select>
+        </div>
+
+        <div style="margin-top:12px;display:flex;gap:10px;align-items:center">
+          <button type="submit" class="btn-primary">Envoyer & lancer</button>
+          <a id="mailto-fallback" class="small muted" href="#">Envoyer par email</a>
+        </div>
+
+        <div id="form-msg" class="small muted" style="margin-top:10px" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+
+
+
+
+
+
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav" aria-label="Navigation principale mobile">
+  <a class="item" href="index.html#offres" data-scroll-to="#offres" title="Offres">
+    <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-offer"></use></svg>
+    <span>Offres</span>
+  </a>
+
+  <a class="item" href="index.html#paid-services" data-scroll-to="#paid-services" title="Services complémentaires">
+    <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-services"></use></svg>
+    <span>Services</span>
+  </a>
+
+  <a class="item" id="hero-demo"  href="./demo.html" title="Voir la démo"class="btn-demo">
+    <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-demo"></use></svg>
+    <span>Démo</span>
+  </a>
+
+<button class="item cta cta-test" id="bottom-test" type="button" title="Demander un essai" aria-label="Demander un essai">
+
+    <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-check"></use></svg>
+    <span>Tester</span>
+  </button>
+
+  <button class="item menu-toggle" id="open-menu" aria-controls="side-menu" aria-expanded="false" aria-label="Ouvrir le menu" type="button" title="Menu">
+    <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-menu"></use></svg>
+    <span>Menu</span>
+  </button>
+</nav>
+
+
+<!-- BACKDROP + DRAWER -->
+<div id="menu-backdrop" class="menu-backdrop" hidden aria-hidden="true"></div>
+
+<aside id="side-menu" class="side-menu" role="dialog" aria-modal="true" aria-labelledby="side-menu-title" hidden>
+  <header class="side-head">
+    <h2 id="side-menu-title" class="side-title">Menu</h2>
+    <button class="side-close" id="close-menu" aria-label="Fermer le menu" type="button">
+      <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-close"></use></svg>
+    </button>
   </header>
 
-  <main class="site-content">
-    <section class="cgv-section">
-      <h1>Conditions Générales de Vente — WelcomeQR</h1>
-      <p class="muted-sm">Dernière mise à jour : 17 août 2025</p>
-
-      <h2>1. Objet</h2>
-      <p>Les présentes Conditions Générales de Vente (CGV) régissent l’utilisation des services WelcomeQR, consistant en la création de livrets d’accueil personnalisés pour locations courte durée, ainsi que tout pack ou abonnement proposé sur le site.</p>
-
-      <h2>2. Services proposés</h2>
-      <ul>
-        <li><strong>Pack Starter :</strong> Livret d’accueil basique — 49 €</li>
-        <li><strong>Pack Pro :</strong> Livret avancé avec QR codes dynamiques — 89 €</li>
-        <li><strong>Pack Care :</strong> Abonnement mensuel pour mise à jour et support continu — 14 €/mois</li>
+  <div class="side-content" id="side-menu-content">
+    <!-- Navigation -->
+    <section class="side-section" aria-labelledby="nav-principale">
+      <h3 id="nav-principale">Navigation</h3>
+      <ul class="side-list">
+        <li>
+          <a  href="index.html#offres" data-scroll-to="#offres" title="Offres">
+            <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-offer"></use></svg>
+            <span>Offres</span>
+            <small>Formules & tarifs</small>
+          </a>
+        </li>
+        <li>
+          <a href="index.html#paid-services" data-scroll-to="#paid-services" title="Services complémentaires">
+            <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-euro"></use></svg>
+            <span>Services complémentaires</span>
+            <small>Options payantes</small>
+          </a>
+        </li>
+        <li>
+          <a href="./b2b.html">
+            <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-conciergerie"></use></svg>
+            <span>Conciergerie</span>
+            <small>Page dédiée</small>
+          </a>
+        </li>
+        <li>
+          <a href="./faq.html">
+            <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-faq"></use></svg>
+            <span>FAQ</span>
+            <small>Questions fréquentes</small>
+          </a>
+        </li>
+        <li>
+          <a href="https://wa.me/" target="_blank" rel="noopener">
+            <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-contact"></use></svg>
+            <span>Contact</span>
+            <small>WhatsApp</small>
+          </a>
+        </li>
       </ul>
-
-      <h2>3. Processus de commande et paiement</h2>
-      <p>Les commandes se font via le formulaire sur le site. Après soumission :</p>
-      <ol>
-        <li>Le client est contacté par email ou WhatsApp pour confirmer sa demande.</li>
-        <li>Un lien de paiement sécurisé (Stripe) est envoyé pour finaliser le règlement.</li>
-      </ol>
-      <p>Le paiement est obligatoire pour toute création ou mise à disposition des livrets. Les paiements sont sécurisés via Stripe et les informations bancaires ne transitent pas par le site WelcomeQR.</p>
-
-      <h2>4. Abonnement Care</h2>
-      <p>L’abonnement Care est mensuel, renouvelable automatiquement. Le client peut résilier à tout moment en contactant WelcomeQR par email ou WhatsApp. Le renouvellement est facturé automatiquement via le lien de paiement Stripe.</p>
-
-      <h2>5. Livraison des services</h2>
-      <p>Les livrets d’accueil sont livrés au format numérique après confirmation de paiement. Les délais dépendent de la charge de travail mais sont généralement de 24 à 48h pour le pack Starter et Pro.</p>
-
-      <h2>6. Droit de rétractation</h2>
-      <p>Conformément à la législation française, les services numériques personnalisés (livrets d’accueil) ne sont pas soumis à droit de rétractation une fois la commande confirmée et le service commencé, sauf cas exceptionnel à la discrétion de WelcomeQR.</p>
-
-      <h2>7. Responsabilités</h2>
-      <ul>
-        <li>WelcomeQR ne peut être tenu responsable des erreurs ou omissions dans les informations fournies par le client.</li>
-        <li>Le client est responsable du contenu qu’il transmet pour le livret d’accueil (texte, photos, liens, etc.).</li>
-      </ul>
-
-      <h2>8. Propriété intellectuelle</h2>
-      <p>Le contenu des livrets d’accueil est protégé par le droit d’auteur. Toute reproduction ou diffusion non autorisée est interdite.</p>
-
-      <h2>9. Protection des données</h2>
-      <p>Les informations collectées via le formulaire sont utilisées uniquement pour fournir le service demandé et contacter le client. Elles ne sont pas partagées avec des tiers sans consentement explicite. Voir la <a href="./privacy.html">politique de confidentialité</a> pour plus de détails.</p>
-
-      <h2>10. Loi applicable</h2>
-      <p>Les présentes CGV sont régies par la loi française. Tout litige relatif à l’interprétation ou l’exécution des présentes CGV sera soumis aux tribunaux compétents de France.</p>
-
-      <p class="muted-sm">En validant le formulaire sur le site, le client accepte expressément les présentes CGV.</p>
     </section>
-  </main>
+      <section class="side-section" aria-labelledby="nav-actions">
+            <h3 id="nav-actions">Actions</h3>
+            <ul class="side-list">
+              <li>
+                <a href="./demo.html" data-scroll-to="#demo">
+                  <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-demo"></use></svg>
+                  <span>Voir la démo</span>
+                  <small>Exemple en direct</small>
+                </a>
+              </li>
+              <li>
+                <button class="item cta cta-test" id="bottom-test" type="button" title="Demander un essai" aria-label="Demander un essai">
+                  <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-check"></use></svg>
+                  <span>Essai gratuit</span>
+                  <small class="chip">24 h</small>
+                </a>
+              </li>
+            </ul>
+          </section>
+        </div>
+ 
 
-  <footer class="site-footer">
-    <div class="muted-sm">© <span id="year"></span> WelcomeQR — Tous droits réservés</div>
+  <footer class="side-footer">
+    <ul class="legal-links">
+      <li><a href="./mentions.legales.html"><svg class="nav-icon" width="18" height="18" aria-hidden="true"><use href="#icon-legal"></use></svg> CGV</a></li>
+      <li><a href="./privacy.html"><svg class="nav-icon" width="18" height="18" aria-hidden="true"><use href="#icon-legal"></use></svg> Politique</a></li>
+      <li><a href="./mentions.legales.html"><svg class="nav-icon" width="18" height="18" aria-hidden="true"><use href="#icon-legal"></use></svg> Mentions</a></li>
+    </ul>
+
+    <small>© WelcomeStras</small>
   </footer>
+</aside>
+
+
+<script src="js/script.js"></script>
+
 
   <script>
     const yearEl = document.getElementById('year'); 

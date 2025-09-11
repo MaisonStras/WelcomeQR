@@ -12,7 +12,9 @@
 
  
 </head>
-<body>
+
+<body class="faq">
+
   <!-- SPRITE D’ICÔNES (bibliothèque SVG locale) -->
   <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
     <symbol id="i-chevron" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
@@ -34,6 +36,33 @@
     
   </svg>
 
+  
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden">
+  <defs>
+    <symbol id="icon-menu" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></symbol>
+    <symbol id="icon-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6l-12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></symbol>
+    <symbol id="icon-service" viewBox="0 0 24 24"><path d="M12 3a9 9 0 100 18 9 9 0 000-18zm0 4a5 5 0 015 5h-5V7z" fill="currentColor"/></symbol>
+    <symbol id="icon-euro" viewBox="0 0 24 24"><path d="M19 7h-6.5a5.5 5.5 0 000 10H19M5 12h11" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></symbol>
+    <symbol id="icon-demo" viewBox="0 0 24 24"><path d="M4 5h16v10H4z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 21l4-6H6l4 6z" fill="currentColor"/></symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></symbol>
+    <symbol id="icon-faq" viewBox="0 0 24 24"><path d="M12 3a9 9 0 100 18h5l4 3-1-5A9 9 0 0012 3zm0 11v2m0-9a3.5 3.5 0 013.5 3.2c0 2-2.2 2.4-2.9 3.6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></symbol>
+    <symbol id="icon-contact" viewBox="0 0 24 24"><path d="M3 5h18v12H3z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 5l9 7 9-7" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="icon-conciergerie" viewBox="0 0 24 24"><path d="M4 20h16M6 18V8a6 6 0 1112 0v10" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></symbol>
+    <symbol id="icon-legal" viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9 7h6M9 11h6M9 15h6" stroke="currentColor" stroke-width="2"/></symbol>
+  <symbol id="icon-offer" viewBox="0 0 24 24" >
+  <path d="M21.7 10.3l-8-8a1 1 0 0 0-.7-.3H5a2 2 0 0 0-2 2v7a1 1 0 0 0 .3.7l8 8a2 2 0 0 0 2.8 0l7.6-7.6a1 1 0 0 0 0-1.4zM7.5 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" fill="currentColor"/>
+</symbol>
+
+<!-- icône "services" / tools (simple) -->
+<symbol id="icon-services" viewBox="0 0 24 24">
+  <path d="M21 13v6a1 1 0 0 1-1 1H13a1 1 0 0 1-1-1v-6h9zM11 11V3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v8H11zM3 13h6v8H4a1 1 0 0 1-1-1v-7z" fill="currentColor"/>
+</symbol>
+  
+  </defs>
+</svg>
+
+
+
    <div class="wrap" id="wrap">
     <!-- HEADER -->
     <header>
@@ -50,7 +79,7 @@
   <div class="header-main">
     <div class="brand" aria-label="WelcomeStras">
       <div class="logo-mark" aria-hidden="true">
-        <img src="image/logo1.webp" alt="Logo WelcomeStras">
+     <a href="index.html">  <img src="image/logo1.webp" alt="Logo WelcomeStras"></a> 
       </div>
       <div class="brand-title">
         <p class="tagline headline" id="site-tagline">Accueil parfait, hôtes sereins.</p>
@@ -60,9 +89,9 @@
     <nav class="nav" aria-label="Navigation principale">
       <a href="index.html#offres">Offres</a>
       <a href="index.html#paid-services">Services</a>
-      <a href="b2b.html">Conciergerie</a>
-      <a href="faq.html">FAQ</a>
-      <a href="#demo" class="btn-demo">
+      <a href="./b2b.html">Conciergerie</a>
+      <a href="./faq.html">FAQ</a>
+      <a id="hero-demo"  href="./demo.html" title="Voir la démo"class="btn-demo">
         <svg width="16" height="16" aria-hidden="true"><use xlink:href="#icon-demo"></use></svg>
         Démo
       </a>
@@ -440,6 +469,186 @@
     </footer>
   </div>
  
+
+
+  <!-- MODAL lead form -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-inner" role="document">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <h3>Demandez votre livret — Test 24h</h3>
+        <button id="modal-close" aria-label="Fermer">✕</button>
+      </div>
+
+      <form id="lead-form" class="form" action="https://formspree.io/f/xdkdvdgz" method="POST" style="margin-top:12px">
+        <input type="hidden" name="_subject" value="Nouvelle demande — WelcomeStras">
+        <div class="form-row">
+          <input id="name" name="name" placeholder="Nom & prénom *" required class="focus-ring">
+          <input id="email" name="email" type="email" placeholder="Email *" required class="focus-ring">
+        </div>
+        <div class="form-row" style="margin-top:10px">
+          <input id="phone" name="phone" placeholder="WhatsApp / Tel" class="focus-ring">
+          <input id="listing" name="listing" type="url" placeholder="Lien annonce (Airbnb) *" required class="focus-ring">
+        </div>
+        <div style="margin-top:10px">
+          <label for="pack" class="small muted">Pack souhaité</label>
+          <select id="pack" name="pack" style="margin-top:6px;padding:10px;border-radius:8px;border:1px solid rgba(7,18,34,0.06)" class="focus-ring">
+            <option>Starter — 49 €</option>
+            <option>Pro — 89 €</option>
+            <option>Care — 14 €/mois</option>
+          </select>
+        </div>
+
+        <div style="margin-top:12px;display:flex;gap:10px;align-items:center">
+          <button type="submit" class="btn-primary">Envoyer & lancer</button>
+          <a id="mailto-fallback" class="small muted" href="#">Envoyer par email</a>
+        </div>
+
+        <div id="form-msg" class="small muted" style="margin-top:10px" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+
+
+
+
+
+
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav" aria-label="Navigation principale mobile">
+  <a class="item" href="index.html#offres" data-scroll-to="#offres" title="Offres">
+    <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-offer"></use></svg>
+    <span>Offres</span>
+  </a>
+
+  <a class="item" href="index.html#paid-services" data-scroll-to="#paid-services" title="Services complémentaires">
+    <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-services"></use></svg>
+    <span>Services</span>
+  </a>
+
+  <a class="item" id="hero-demo"  href="./demo.html" title="Voir la démo"class="btn-demo">
+    <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-demo"></use></svg>
+    <span>Démo</span>
+  </a>
+
+<button class="item cta cta-test" id="bottom-test" type="button" title="Demander un essai" aria-label="Demander un essai">
+
+    <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-check"></use></svg>
+    <span>Tester</span>
+  </button>
+
+  <button class="item menu-toggle" id="open-menu" aria-controls="side-menu" aria-expanded="false" aria-label="Ouvrir le menu" type="button" title="Menu">
+    <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-menu"></use></svg>
+    <span>Menu</span>
+  </button>
+</nav>
+
+
+<!-- BACKDROP + DRAWER -->
+<div id="menu-backdrop" class="menu-backdrop" hidden aria-hidden="true"></div>
+
+<aside id="side-menu" class="side-menu" role="dialog" aria-modal="true" aria-labelledby="side-menu-title" hidden>
+  <header class="side-head">
+    <h2 id="side-menu-title" class="side-title">Menu</h2>
+    <button class="side-close" id="close-menu" aria-label="Fermer le menu" type="button">
+      <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-close"></use></svg>
+    </button>
+  </header>
+
+  <div class="side-content" id="side-menu-content">
+    <!-- Navigation -->
+    <section class="side-section" aria-labelledby="nav-principale">
+      <h3 id="nav-principale">Navigation</h3>
+      <ul class="side-list">
+        <li>
+          <a  href="index.html#offres" data-scroll-to="#offres" title="Offres">
+            <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-offer"></use></svg>
+            <span>Offres</span>
+            <small>Formules & tarifs</small>
+          </a>
+        </li>
+        <li>
+          <a href="index.html#paid-services" data-scroll-to="#paid-services" title="Services complémentaires">
+            <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-euro"></use></svg>
+            <span>Services complémentaires</span>
+            <small>Options payantes</small>
+          </a>
+        </li>
+        <li>
+          <a href="./b2b.html">
+            <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-conciergerie"></use></svg>
+            <span>Conciergerie</span>
+            <small>Page dédiée</small>
+          </a>
+        </li>
+        <li>
+          <a href="./faq.html">
+            <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-faq"></use></svg>
+            <span>FAQ</span>
+            <small>Questions fréquentes</small>
+          </a>
+        </li>
+        <li>
+          <a href="https://wa.me/" target="_blank" rel="noopener">
+            <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-contact"></use></svg>
+            <span>Contact</span>
+            <small>WhatsApp</small>
+          </a>
+        </li>
+      </ul>
+    </section>
+      <section class="side-section" aria-labelledby="nav-actions">
+            <h3 id="nav-actions">Actions</h3>
+            <ul class="side-list">
+              <li>
+                <a href="./demo.html" data-scroll-to="#demo">
+                  <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-demo"></use></svg>
+                  <span>Voir la démo</span>
+                  <small>Exemple en direct</small>
+                </a>
+              </li>
+              <li>
+                <button class="item cta cta-test" id="bottom-test" type="button" title="Demander un essai" aria-label="Demander un essai">
+                  <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-check"></use></svg>
+                  <span>Essai gratuit</span>
+                  <small class="chip">24 h</small>
+                </a>
+              </li>
+            </ul>
+          </section>
+        </div>
+ 
+
+  <footer class="side-footer">
+    <ul class="legal-links">
+      <li><a href="./mentions.legales.html"><svg class="nav-icon" width="18" height="18" aria-hidden="true"><use href="#icon-legal"></use></svg> CGV</a></li>
+      <li><a href="./privacy.html"><svg class="nav-icon" width="18" height="18" aria-hidden="true"><use href="#icon-legal"></use></svg> Politique</a></li>
+      <li><a href="./mentions.legales.html"><svg class="nav-icon" width="18" height="18" aria-hidden="true"><use href="#icon-legal"></use></svg> Mentions</a></li>
+    </ul>
+
+    <small>© WelcomeStras</small>
+  </footer>
+</aside>
+
+
+<script src="js/script.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   <!-- Données structurées pour SEO quand l’indexation sera activée -->
   <script type="application/ld+json" id="faqJson"></script>

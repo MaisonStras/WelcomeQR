@@ -1,75 +1,381 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Politique de confidentialité — WelcomeQR</title>
-  <link rel="stylesheet" href="style.css"> <!-- ton CSS principal -->
- 
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>WelcomeStras — Livret d'accueil professionnel</title>
+  <meta name="description" content="Livret d'accueil professionnel — moins d'appels, meilleure expérience. Satisfait ou remboursé 14 jours.">
+  <meta name="theme-color" content="#2563eb" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
 </head>
+<style>
+/* Politique de confidentialité responsive */
+.privacy-section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  line-height: 1.6;
+  color: #333;
+  font-family: 'Inter', sans-serif;
+}
+
+.privacy-title {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+.privacy-subtitle {
+  font-size: 1.5rem;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+.privacy-text, .privacy-list {
+  font-size: 1rem;
+  margin-bottom: 1em;
+}
+
+.privacy-list {
+  padding-left: 1.5em;
+}
+
+.privacy-text a {
+  color: #007BFF;
+  text-decoration: underline;
+}
+
+/* Tablette */
+@media screen and (max-width: 1024px) {
+  .privacy-section {
+    padding: 30px 15px;
+  }
+  .privacy-title {
+    font-size: 1.8rem;
+  }
+  .privacy-subtitle {
+    font-size: 1.3rem;
+  }
+  .privacy-text, .privacy-list {
+    font-size: 0.95rem;
+  }
+}
+
+/* Mobile */
+@media screen and (max-width: 600px) {
+  .privacy-section {
+    padding: 20px 10px;
+  }
+  .privacy-title {
+    font-size: 1.6rem;
+  }
+  .privacy-subtitle {
+    font-size: 1.1rem;
+  }
+  .privacy-text, .privacy-list {
+    font-size: 0.9rem;
+  }
+}
+</style>
+
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden">
+  <defs>
+    <symbol id="icon-menu" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></symbol>
+    <symbol id="icon-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6l-12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></symbol>
+    <symbol id="icon-service" viewBox="0 0 24 24"><path d="M12 3a9 9 0 100 18 9 9 0 000-18zm0 4a5 5 0 015 5h-5V7z" fill="currentColor"/></symbol>
+    <symbol id="icon-euro" viewBox="0 0 24 24"><path d="M19 7h-6.5a5.5 5.5 0 000 10H19M5 12h11" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></symbol>
+    <symbol id="icon-demo" viewBox="0 0 24 24"><path d="M4 5h16v10H4z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 21l4-6H6l4 6z" fill="currentColor"/></symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></symbol>
+    <symbol id="icon-faq" viewBox="0 0 24 24"><path d="M12 3a9 9 0 100 18h5l4 3-1-5A9 9 0 0012 3zm0 11v2m0-9a3.5 3.5 0 013.5 3.2c0 2-2.2 2.4-2.9 3.6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></symbol>
+    <symbol id="icon-contact" viewBox="0 0 24 24"><path d="M3 5h18v12H3z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 5l9 7 9-7" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="icon-conciergerie" viewBox="0 0 24 24"><path d="M4 20h16M6 18V8a6 6 0 1112 0v10" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></symbol>
+    <symbol id="icon-legal" viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9 7h6M9 11h6M9 15h6" stroke="currentColor" stroke-width="2"/></symbol>
+  <symbol id="icon-offer" viewBox="0 0 24 24" >
+  <path d="M21.7 10.3l-8-8a1 1 0 0 0-.7-.3H5a2 2 0 0 0-2 2v7a1 1 0 0 0 .3.7l8 8a2 2 0 0 0 2.8 0l7.6-7.6a1 1 0 0 0 0-1.4zM7.5 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" fill="currentColor"/>
+</symbol>
+
+<!-- icône "services" / tools (simple) -->
+<symbol id="icon-services" viewBox="0 0 24 24">
+  <path d="M21 13v6a1 1 0 0 1-1 1H13a1 1 0 0 1-1-1v-6h9zM11 11V3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v8H11zM3 13h6v8H4a1 1 0 0 1-1-1v-7z" fill="currentColor"/>
+</symbol>
+  
+  </defs>
+</svg>
 <body>
+
+   <header>
+  <!-- Topbar (desktop uniquement) -->
+  <div class="topbar" role="region" aria-label="Offre et contact rapide">
+    <div class="satisfait">Satisfait ou remboursé — 14 jours</div>
+    <!-- <div class="contact-quick">
+      <a href="https://wa.me/..." aria-label="WhatsApp">WhatsApp</a>
+      <a href="mailto:contact@..." aria-label="Email">Contact</a>
+    </div> -->
+  </div>
+
+  <!-- Header principal -->
+  <div class="header-main">
+    <div class="brand" aria-label="WelcomeStras">
+      <div class="logo-mark" aria-hidden="true">
+             <a href="index.html">  <img src="image/logo1.webp" alt="Logo WelcomeStras"></a> 
+
+      </div>
+      <div class="brand-title">
+        <p class="tagline headline" id="site-tagline">Accueil parfait, hôtes sereins.</p>
+      </div>
+    </div>
+
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="index.html#offres">Offres</a>
+      <a href="index.html#paid-services">Services</a>
+      <a href="./b2b.html">Conciergerie</a>
+      <a href="./faq.html">FAQ</a>
+      <a id="hero-demo"  href="./demo.html" title="Voir la démo"class="btn-demo">
+        <svg width="16" height="16" aria-hidden="true"><use xlink:href="#icon-demo"></use></svg>
+        Démo
+      </a>
+    </nav>
+  </div>
+</header>
+
+    <div class="wrap" id="wrap">
   <!-- Header simplifié -->
-  <header>
-    <h1 style="text-align:center; margin-top:30px;">Politique de confidentialité — WelcomeQR</h1>
+
+<h1 class="privacy-title">Politique de confidentialité — WelcomeQR</h1>
+
+<main class="privacy-section">
+  <p class="privacy-text">Votre vie privée est importante pour nous. Cette politique de confidentialité explique quelles informations nous collectons, comment nous les utilisons, et quels droits vous avez concernant vos données personnelles sur WelcomeQR.</p>
+
+  <h2 class="privacy-subtitle">1. Collecte d'informations</h2>
+  <p class="privacy-text">Nous pouvons collecter les informations suivantes :</p>
+  <ul class="privacy-list">
+    <li>Nom et prénom</li>
+    <li>Adresse email</li>
+    <li>Numéro de téléphone</li>
+    <li>URL de votre annonce (Airbnb, Booking, site)</li>
+    <li>Informations fournies volontairement via formulaires</li>
+  </ul>
+
+  <h2 class="privacy-subtitle">2. Utilisation des informations</h2>
+  <p class="privacy-text">Les informations collectées sont utilisées pour :</p>
+  <ul class="privacy-list">
+    <li>Répondre à vos demandes et questions</li>
+    <li>Vous envoyer des informations sur nos services</li>
+    <li>Améliorer notre site et nos services</li>
+    <li>Gérer les abonnements et offres (si applicable)</li>
+  </ul>
+
+  <h2 class="privacy-subtitle">3. Partage des informations</h2>
+  <p class="privacy-text">Nous ne vendons ni ne louons vos informations personnelles à des tiers. Vos données peuvent être partagées uniquement avec :</p>
+  <ul class="privacy-list">
+    <li>Nos prestataires de services (ex : Formspree pour la collecte de formulaires)</li>
+    <li>Autorités légales si la loi l'exige</li>
+  </ul>
+
+  <h2 class="privacy-subtitle">4. Sécurité des données</h2>
+  <p class="privacy-text">Nous mettons en place des mesures de sécurité techniques et organisationnelles pour protéger vos informations personnelles contre la perte, l'accès non autorisé ou la divulgation.</p>
+
+  <h2 class="privacy-subtitle">5. Durée de conservation</h2>
+  <p class="privacy-text">Nous conservons vos données personnelles uniquement le temps nécessaire pour répondre à vos demandes ou pour se conformer aux obligations légales.</p>
+
+  <h2 class="privacy-subtitle">6. Vos droits</h2>
+  <p class="privacy-text">Conformément au RGPD, vous disposez des droits suivants :</p>
+  <ul class="privacy-list">
+    <li>Accéder à vos données personnelles</li>
+    <li>Rectifier ou mettre à jour vos données</li>
+    <li>Demander la suppression de vos données</li>
+    <li>Vous opposer à l’utilisation de vos données pour prospection commerciale</li>
+    <li>Retirer votre consentement à tout moment</li>
+  </ul>
+  <p class="privacy-text">Pour exercer vos droits, contactez-nous à <a href="mailto:contact@maisonstras.github.io">contact@maisonstras.github.io</a>.</p>
+
+  <h2 class="privacy-subtitle">7. Modifications de la politique</h2>
+  <p class="privacy-text">Nous pouvons mettre à jour cette politique de confidentialité à tout moment. Les modifications seront publiées sur cette page avec la date de mise à jour.</p>
+
+  <h2 class="privacy-subtitle">8. Contact</h2>
+  <p class="privacy-text">Pour toute question concernant cette politique de confidentialité, vous pouvez nous contacter à :</p>
+  <p class="privacy-text">Email : <a href="mailto:contact@maisonstras.github.io">contact@maisonstras.github.io</a></p>
+</main>
+
+
+
+    <footer class="footer" role="contentinfo">
+      <div><a href="./CGV.html" class="small muted">CGV</a> · <a href="./privacy.html" class="small muted">Politique</a> · <a href="./mentions.legales.html" class="small muted">Mentions</a></div>
+      <div class="small muted" style="margin-top:10px">© <span id="year"></span> WelcomeStras</div>
+    </footer>
+  </div>
+
+  
+
+
+  <!-- MODAL lead form -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-inner" role="document">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <h3>Demandez votre livret — Test 24h</h3>
+        <button id="modal-close" aria-label="Fermer">✕</button>
+      </div>
+
+      <form id="lead-form" class="form" action="https://formspree.io/f/xdkdvdgz" method="POST" style="margin-top:12px">
+        <input type="hidden" name="_subject" value="Nouvelle demande — WelcomeStras">
+        <div class="form-row">
+          <input id="name" name="name" placeholder="Nom & prénom *" required class="focus-ring">
+          <input id="email" name="email" type="email" placeholder="Email *" required class="focus-ring">
+        </div>
+        <div class="form-row" style="margin-top:10px">
+          <input id="phone" name="phone" placeholder="WhatsApp / Tel" class="focus-ring">
+          <input id="listing" name="listing" type="url" placeholder="Lien annonce (Airbnb) *" required class="focus-ring">
+        </div>
+        <div style="margin-top:10px">
+          <label for="pack" class="small muted">Pack souhaité</label>
+          <select id="pack" name="pack" style="margin-top:6px;padding:10px;border-radius:8px;border:1px solid rgba(7,18,34,0.06)" class="focus-ring">
+            <option>Starter — 49 €</option>
+            <option>Pro — 89 €</option>
+            <option>Care — 14 €/mois</option>
+          </select>
+        </div>
+
+        <div style="margin-top:12px;display:flex;gap:10px;align-items:center">
+          <button type="submit" class="btn-primary">Envoyer & lancer</button>
+          <a id="mailto-fallback" class="small muted" href="#">Envoyer par email</a>
+        </div>
+
+        <div id="form-msg" class="small muted" style="margin-top:10px" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+
+
+
+
+
+
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav" aria-label="Navigation principale mobile">
+  <a class="item" href="index.html#offres" data-scroll-to="#offres" title="Offres">
+    <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-offer"></use></svg>
+    <span>Offres</span>
+  </a>
+
+  <a class="item" href="index.html#paid-services" data-scroll-to="#paid-services" title="Services complémentaires">
+    <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-services"></use></svg>
+    <span>Services</span>
+  </a>
+
+  <a class="item" id="hero-demo"  href="./demo.html" title="Voir la démo"class="btn-demo">
+    <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-demo"></use></svg>
+    <span>Démo</span>
+  </a>
+
+<button class="item cta cta-test" id="bottom-test" type="button" title="Demander un essai" aria-label="Demander un essai">
+
+    <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-check"></use></svg>
+    <span>Tester</span>
+  </button>
+
+  <button class="item menu-toggle" id="open-menu" aria-controls="side-menu" aria-expanded="false" aria-label="Ouvrir le menu" type="button" title="Menu">
+    <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-menu"></use></svg>
+    <span>Menu</span>
+  </button>
+</nav>
+
+
+<!-- BACKDROP + DRAWER -->
+<div id="menu-backdrop" class="menu-backdrop" hidden aria-hidden="true"></div>
+
+<aside id="side-menu" class="side-menu" role="dialog" aria-modal="true" aria-labelledby="side-menu-title" hidden>
+  <header class="side-head">
+    <h2 id="side-menu-title" class="side-title">Menu</h2>
+    <button class="side-close" id="close-menu" aria-label="Fermer le menu" type="button">
+      <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-close"></use></svg>
+    </button>
   </header>
 
-  <main class="privacy-section">
-    <p>Votre vie privée est importante pour nous. Cette politique de confidentialité explique quelles informations nous collectons, comment nous les utilisons, et quels droits vous avez concernant vos données personnelles sur WelcomeSTRAS.</p>
+  <div class="side-content" id="side-menu-content">
+    <!-- Navigation -->
+    <section class="side-section" aria-labelledby="nav-principale">
+      <h3 id="nav-principale">Navigation</h3>
+      <ul class="side-list">
+        <li>
+          <a  href="index.html#offres" data-scroll-to="#offres" title="Offres">
+            <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-offer"></use></svg>
+            <span>Offres</span>
+            <small>Formules & tarifs</small>
+          </a>
+        </li>
+        <li>
+          <a href="index.html#paid-services" data-scroll-to="#paid-services" title="Services complémentaires">
+            <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-euro"></use></svg>
+            <span>Services complémentaires</span>
+            <small>Options payantes</small>
+          </a>
+        </li>
+        <li>
+          <a href="./b2b.html">
+            <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-conciergerie"></use></svg>
+            <span>Conciergerie</span>
+            <small>Page dédiée</small>
+          </a>
+        </li>
+        <li>
+          <a href="./faq.html">
+            <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-faq"></use></svg>
+            <span>FAQ</span>
+            <small>Questions fréquentes</small>
+          </a>
+        </li>
+        <li>
+          <a href="https://wa.me/" target="_blank" rel="noopener">
+            <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-contact"></use></svg>
+            <span>Contact</span>
+            <small>WhatsApp</small>
+          </a>
+        </li>
+      </ul>
+    </section>
+      <section class="side-section" aria-labelledby="nav-actions">
+            <h3 id="nav-actions">Actions</h3>
+            <ul class="side-list">
+              <li>
+                <a href="./demo.html" data-scroll-to="#demo">
+                  <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-demo"></use></svg>
+                  <span>Voir la démo</span>
+                  <small>Exemple en direct</small>
+                </a>
+              </li>
+              <li>
+                <button class="item cta cta-test" id="bottom-test" type="button" title="Demander un essai" aria-label="Demander un essai">
+                  <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-check"></use></svg>
+                  <span>Essai gratuit</span>
+                  <small class="chip">24 h</small>
+                </a>
+              </li>
+            </ul>
+          </section>
+        </div>
+ 
 
-    <h2>1. Collecte d'informations</h2>
-    <p>Nous pouvons collecter les informations suivantes :</p>
-    <ul>
-      <li>Nom et prénom</li>
-      <li>Adresse email</li>
-      <li>Numéro de téléphone</li>
-      <li>URL de votre annonce (Airbnb, Booking, site)</li>
-      <li>Informations fournies volontairement via formulaires</li>
+  <footer class="side-footer">
+    <ul class="legal-links">
+      <li><a href="./mentions.legales.html"><svg class="nav-icon" width="18" height="18" aria-hidden="true"><use href="#icon-legal"></use></svg> CGV</a></li>
+      <li><a href="./privacy.html"><svg class="nav-icon" width="18" height="18" aria-hidden="true"><use href="#icon-legal"></use></svg> Politique</a></li>
+      <li><a href="./mentions.legales.html"><svg class="nav-icon" width="18" height="18" aria-hidden="true"><use href="#icon-legal"></use></svg> Mentions</a></li>
     </ul>
 
-    <h2>2. Utilisation des informations</h2>
-    <p>Les informations collectées sont utilisées pour :</p>
-    <ul>
-      <li>Répondre à vos demandes et questions</li>
-      <li>Vous envoyer des informations sur nos services</li>
-      <li>Améliorer notre site et nos services</li>
-      <li>Gérer les abonnements et offres (si applicable)</li>
-    </ul>
-
-    <h2>3. Partage des informations</h2>
-    <p>Nous ne vendons ni ne louons vos informations personnelles à des tiers. Vos données peuvent être partagées uniquement avec :</p>
-    <ul>
-      <li>Nos prestataires de services (ex : Formspree pour la collecte de formulaires)</li>
-      <li>Autorités légales si la loi l'exige</li>
-    </ul>
-
-    <h2>4. Sécurité des données</h2>
-    <p>Nous mettons en place des mesures de sécurité techniques et organisationnelles pour protéger vos informations personnelles contre la perte, l'accès non autorisé ou la divulgation.</p>
-
-    <h2>5. Durée de conservation</h2>
-    <p>Nous conservons vos données personnelles uniquement le temps nécessaire pour répondre à vos demandes ou pour se conformer aux obligations légales.</p>
-
-    <h2>6. Vos droits</h2>
-    <p>Conformément au RGPD, vous disposez des droits suivants :</p>
-    <ul>
-      <li>Accéder à vos données personnelles</li>
-      <li>Rectifier ou mettre à jour vos données</li>
-      <li>Demander la suppression de vos données</li>
-      <li>Vous opposer à l’utilisation de vos données pour prospection commerciale</li>
-      <li>Retirer votre consentement à tout moment</li>
-    </ul>
-    <p>Pour exercer vos droits, contactez-nous à <a href="mailto:contact@maisonstras.github.io">contact@maisonstras.github.io</a>.</p>
-
-    <h2>7. Modifications de la politique</h2>
-    <p>Nous pouvons mettre à jour cette politique de confidentialité à tout moment. Les modifications seront publiées sur cette page avec la date de mise à jour.</p>
-
-    <h2>8. Contact</h2>
-    <p>Pour toute question concernant cette politique de confidentialité, vous pouvez nous contacter à :</p>
-    <p>Email : <a href="mailto:contact@maisonstras.github.io">contact@maisonstras.github.io</a></p>
-  </main>
-
-  <footer class="site-footer" style="text-align:center; padding:20px 0; color:#666;">
-    © <span id="year"></span> WelcomeSTRAS — Tous droits réservés
+    <small>© WelcomeStras</small>
   </footer>
+</aside>
+
+
+<script src="js/script.js"></script>
+
+
+
+
+
 
   <script>
     const yearEl = document.getElementById('year');
@@ -77,3 +383,8 @@
   </script>
 </body>
 </html>
+
+
+
+
+

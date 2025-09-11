@@ -35,7 +35,7 @@ a{color:inherit;text-decoration:none}
   /* padding général */
   padding: clamp(10px, 3vw, 24px);
   /* padding-top placé APRÈS la shorthand pour ne pas être écrasé */
-  padding-top: calc(var(--header-h, 20px) + 8px);
+  padding-top: calc(var(--header-h, 50px) + 100px);
   padding-bottom: calc(clamp(16px, 4vw, 32px) + var(--nav-h));
 }
 
@@ -47,15 +47,36 @@ a{color:inherit;text-decoration:none}
 }
 
 
+body.b2b .wrap {
+    --header-h: 95px; /* ou la hauteur réelle de ton header B2B */
+    padding-top: calc(var(--header-h) + 55px);
+  }
+
+@media (max-width: 768px) {
+  body.b2b .wrap {
+    padding-top: calc(var(--header-h) -50px); /* espace réduit pour mobile */
+  }
+}
+
+
+
+
+body.faq .wrap {
+    --header-h: 50px; /* ou la hauteur réelle de ton header B2B */
+    padding-top: calc(var(--header-h) + 55px);
+  }
+
+@media (max-width: 768px) {
+  body.faq .wrap {
+    padding-top: calc(var(--header-h) -50px); /* espace réduit pour mobile */
+  }
+}
+
+
 /* Visually hidden (accessibilité) */
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 
-/* ==========================
-   NAV — Bottom nav (mobile)
-   ========================== */
 
-/* ==========================
-   NAV — Bottom nav (mobile)
 
 /* ==========================
    NAV — Bottom nav (mobile)
@@ -210,7 +231,7 @@ body { padding-bottom: calc(var(--bottom-nav-h) + env(safe-area-inset-bottom) + 
 }
 .side-list a span {
   display:block;
-  font-size:14px;
+  font-size:15px;
   font-weight:600;
   line-height:1.2;
 }
@@ -236,6 +257,7 @@ body { padding-bottom: calc(var(--bottom-nav-h) + env(safe-area-inset-bottom) + 
   color:var(--muted);
   display:flex;
   flex-direction:column;
+  align-items:center;
   gap:8px;
 }
 .legal-links { list-style:none; margin:0; padding:0; display:flex; gap:8px; flex-wrap:wrap; }
@@ -280,8 +302,8 @@ svg { max-width:none !important; }
   justify-content: space-between;
   align-items: center;
   font-size: 12px;
-  padding: 4px 0;
-  border-bottom: 1px solid rgba(0,0,0,0.05);
+  padding: 4px 30px;
+  /* border-bottom: 1px solid rgba(0,0,0,0.05); */
 }
 @media (max-width: 600px) {
   .topbar {
@@ -316,7 +338,7 @@ svg { max-width:none !important; }
   justify-content: space-between;
   align-items: center;
   gap: 16px;
-  padding: 12px 20px;
+  padding: 12px 40px;
 }
 
 /* mobile : empile logo et nav */
@@ -577,7 +599,7 @@ svg { max-width:none !important; }
 
 /* Bouton Démo dans la nav */
 .nav .btn-demo {
-  background: var(--primary);
+  background: #2483f7;
   color: #fff;
   font-weight: 700;
   padding: 8px 14px;
@@ -1267,7 +1289,12 @@ svg { max-width:none !important; }
   color: var(--muted, #555);
 }
 
-
+.note {
+  font-size: 0.9rem;
+  color: var(--muted, #666);
+  margin-top: 12px;
+  line-height: 1.4;
+}
 
 /* CTA */
 .btn-full {
@@ -1470,6 +1497,15 @@ svg { max-width:none !important; }
 @media (min-width: 1000px) {
   .review-card p { font-size: 17px; }
 }
+
+
+
+
+
+
+
+
+
 
 
 

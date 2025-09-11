@@ -100,6 +100,7 @@
 </svg>
 <!-- === fin sprite === -->
 
+  <div class="wrap" id="wrap">
 
 
 <header>
@@ -116,7 +117,7 @@
   <div class="header-main">
     <div class="brand" aria-label="WelcomeStras">
       <div class="logo-mark" aria-hidden="true">
-        <img src="image/logo1.webp" alt="Logo WelcomeStras">
+       <a href="./index.html"><img src="image/logo1.webp" alt="Logo WelcomeStras"></a> 
       </div>
       <div class="brand-title">
         <p class="tagline headline" id="site-tagline">Accueil parfait, hôtes sereins.</p>
@@ -127,8 +128,8 @@
       <a href="#offres">Offres</a>
       <a href="#paid-services">Services</a>
       <a href="#b2b">Conciergerie</a>
-      <a href="#faq-section">FAQ</a>
-      <a href="#demo" class="btn-demo">
+      <a href="#faq">FAQ</a>
+      <a id="hero-demo"  href="./demo.html" title="Voir la démo"class="btn-demo">
         <svg width="16" height="16" aria-hidden="true"><use xlink:href="#icon-demo"></use></svg>
         Démo
       </a>
@@ -138,7 +139,6 @@
 
 
 
-  <div class="wrap" id="wrap">
 
 
     <!-- HEADER -->
@@ -181,7 +181,7 @@
     </div>
 
     <div class="cta-stack">
-      <a id="hero-demo" class="cta-demo" href="#" title="Voir la démo">Voir la démo — en 1 clic</a>
+      <a id="hero-demo" class="cta-demo" href="./demo.html" title="Voir la démo">Voir la démo — en 1 clic</a>
       <button id="hero-test" class="cta-test" title="Tester 24h gratuitement">Essai gratuit</button>
     </div>
 
@@ -211,7 +211,6 @@
 
 </section>
 
-<!-- ===== OFFRES (abonnements mis en avant) ===== -->
 <!-- ===== OFFRES (abonnements) ===== -->
 <section id="offres" class="offers">
   <h3>Nos offres</h3>
@@ -382,7 +381,7 @@
 
 
     <!-- FAQ -->
-    <section class="faq-section">
+    <section id="faq" class="faq-section">
   <h3 class="faq-title">FAQ — Questions rapides</h3>
 
   <div class="faq-grid">
@@ -408,8 +407,9 @@
 </section>
 
     <!-- TESTIMONIALS -->
+
 <section class="testimonials" aria-labelledby="testimonials-title">
-  <h3 id="testimonials-title">Ils nous font confiance</h3>
+  <h3 id="testimonials-title">Ce qu’en disent nos premiers utilisateurs</h3>
 
   <div class="review-summary">
     <div class="stars" aria-hidden="true">
@@ -419,10 +419,11 @@
       <svg><use xlink:href="#star"/></svg>
       <svg><use xlink:href="#star"/></svg>
     </div>
-    <span><strong>4,9</strong> · 124 avis clients</span>
+    <span><strong>4,8</strong> · Retours de nos premiers utilisateurs</span>
+
   </div>
 
-  <div class="review-slider" id="review-slider">
+  <div class="review-slider" id="review-slider" role="list" aria-live="polite" tabindex="0">
     <!-- Les avis seront injectés ici -->
   </div>
 </section>
@@ -488,17 +489,18 @@
     <span>Offres</span>
   </a>
 
-  <a class="item" href="#paid-services" data-scroll-to="#services-payants" title="Services complémentaires">
+  <a class="item" href="#paid-services" data-scroll-to="#paid-services" title="Services complémentaires">
     <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-services"></use></svg>
     <span>Services</span>
   </a>
 
-  <a class="item" href="#demo" data-scroll-to="#demo" title="Voir la démo">
+  <a class="item" id="hero-demo"  href="./demo.html" title="Voir la démo"class="btn-demo">
     <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-demo"></use></svg>
     <span>Démo</span>
   </a>
 
-  <button class="item cta" id="bottom-test" type="button" title="Demander un essai" aria-label="Demander un essai">
+<button class="item cta cta-test" id="bottom-test" type="button" title="Demander un essai" aria-label="Demander un essai">
+
     <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-check"></use></svg>
     <span>Tester</span>
   </button>
@@ -508,6 +510,7 @@
     <span>Menu</span>
   </button>
 </nav>
+
 
 <!-- BACKDROP + DRAWER -->
 <div id="menu-backdrop" class="menu-backdrop" hidden aria-hidden="true"></div>
@@ -526,28 +529,28 @@
       <h3 id="nav-principale">Navigation</h3>
       <ul class="side-list">
         <li>
-          <a href="#offres" data-scroll-to="#offres">
+          <a  href="#offres" data-scroll-to="#offres" title="Offres">
             <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-offer"></use></svg>
             <span>Offres</span>
             <small>Formules & tarifs</small>
           </a>
         </li>
         <li>
-          <a href="#services-payants" data-scroll-to="#services-payants">
+          <a href="#paid-services" data-scroll-to="#paid-services" title="Services complémentaires">
             <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-euro"></use></svg>
             <span>Services complémentaires</span>
             <small>Options payantes</small>
           </a>
         </li>
         <li>
-          <a href="/welcomestras/b2b.html">
+          <a href="./b2b.html">
             <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-conciergerie"></use></svg>
             <span>Conciergerie</span>
             <small>Page dédiée</small>
           </a>
         </li>
         <li>
-          <a href="/welcomestras/faq.html">
+          <a href="./faq.html">
             <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-faq"></use></svg>
             <span>FAQ</span>
             <small>Questions fréquentes</small>
@@ -562,34 +565,33 @@
         </li>
       </ul>
     </section>
-
-    <!-- Actions -->
-    <section class="side-section" aria-labelledby="nav-actions">
-      <h3 id="nav-actions">Actions</h3>
-      <ul class="side-list">
-        <li>
-          <a href="#demo" data-scroll-to="#demo">
-            <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-demo"></use></svg>
-            <span>Voir la démo</span>
-            <small>Exemple en direct</small>
-          </a>
-        </li>
-        <li>
-          <a href="#test" data-scroll-to="#test">
-            <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-check"></use></svg>
-            <span>Essai gratuit</span>
-            <small class="chip">24 h</small>
-          </a>
-        </li>
-      </ul>
-    </section>
-  </div>
+      <section class="side-section" aria-labelledby="nav-actions">
+            <h3 id="nav-actions">Actions</h3>
+            <ul class="side-list">
+              <li>
+                <a href="./demo.html" data-scroll-to="#demo">
+                  <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-demo"></use></svg>
+                  <span>Voir la démo</span>
+                  <small>Exemple en direct</small>
+                </a>
+              </li>
+              <li>
+                <button class="item cta cta-test" id="bottom-test" type="button" title="Demander un essai" aria-label="Demander un essai">
+                  <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-check"></use></svg>
+                  <span>Essai gratuit</span>
+                  <small class="chip">24 h</small>
+                </a>
+              </li>
+            </ul>
+          </section>
+        </div>
+ 
 
   <footer class="side-footer">
     <ul class="legal-links">
-      <li><a href="/welcomestras/CGV.html"><svg class="nav-icon" width="18" height="18" aria-hidden="true"><use href="#icon-legal"></use></svg> CGV</a></li>
-      <li><a href="/welcomestras/privacy.html"><svg class="nav-icon" width="18" height="18" aria-hidden="true"><use href="#icon-legal"></use></svg> Politique</a></li>
-      <li><a href="/welcomestras/mentions.legales.html"><svg class="nav-icon" width="18" height="18" aria-hidden="true"><use href="#icon-legal"></use></svg> Mentions</a></li>
+      <li><a href="./mentions.legales.html"><svg class="nav-icon" width="18" height="18" aria-hidden="true"><use href="#icon-legal"></use></svg> CGV</a></li>
+      <li><a href="./privacy.html"><svg class="nav-icon" width="18" height="18" aria-hidden="true"><use href="#icon-legal"></use></svg> Politique</a></li>
+      <li><a href="./mentions.legales.html"><svg class="nav-icon" width="18" height="18" aria-hidden="true"><use href="#icon-legal"></use></svg> Mentions</a></li>
     </ul>
 
     <small>© WelcomeStras</small>
@@ -597,320 +599,7 @@
 </aside>
 
 
-
-
-
-
-
-
-<script>
-(function(){
-  // ------------- CONFIG (remplace par tes valeurs) -------------
-  const DEMO_URL = './demo.html';
-  const CONTACT_EMAIL = 'contact@votreemail.com';
-  const WA_NUMBER = '33600000000'; // format international sans + (ex: 33612345678)
-  // ------------------------------------------------------------
-
-  const $ = (s,ctx=document)=>ctx.querySelector(s);
-  const $$ = (s,ctx=document)=>Array.from((ctx||document).querySelectorAll(s));
-
-  // set year
-  $('#year').textContent = new Date().getFullYear();
-
-  // wire demo links (open in new tab)
-  [$('#hero-demo'), $('#bottom-demo')].forEach(el=>{
-    if(!el) return;
-    el.setAttribute('href', DEMO_URL);
-    el.setAttribute('target','_blank');
-    el.setAttribute('rel','noopener noreferrer');
-  });
-
-  // Quick contact links: mail & whatsapp
-  const waLink = $('#quick-wa'), mailLink = $('#quick-mail');
-  if(waLink) waLink.href = `https://wa.me/${WA_NUMBER}`;
-  if(mailLink) mailLink.href = `mailto:${CONTACT_EMAIL}`;
-
-  // bottom demo / bottom test
-  $('#bottom-test')?.addEventListener('click', ()=> openModal('Starter'));
-  $('#hero-test')?.addEventListener('click', ()=> openModal('Starter'));
-
-  // mini QR small and optional
-  const miniQr = $('#mini-qr');
-  if(miniQr) miniQr.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(DEMO_URL)}`;
-
-  // modal handling
-  const modal = $('#modal'), modalClose = $('#modal-close');
-  function openModal(pack){
-    modal.classList.add('active'); modal.setAttribute('aria-hidden','false');
-    setTimeout(()=>{ $('#name')?.focus(); },60);
-    if(pack){
-      const sel = $('#pack'); 
-      if(sel) Array.from(sel.options).forEach(o=>{
-        if(o.textContent.toLowerCase().startsWith(pack.toLowerCase())) sel.value = o.textContent;
-      });
-    }
-  }
-  function closeModal(){ 
-    modal.classList.remove('active'); 
-    modal.setAttribute('aria-hidden','true'); 
-  }
-  $$('.open-modal').forEach(b=>b.addEventListener('click', e=>{ 
-    e.preventDefault(); openModal(b.dataset.pack||''); 
-  }));
-  modalClose?.addEventListener('click', closeModal);
-  window.addEventListener('keydown', e=>{ if(e.key === 'Escape') closeModal(); });
-  modal.addEventListener('click', e=>{ if(e.target === modal) closeModal(); });
-
-  // mailto fallback building
-  function updateMailto(){
-    const name = ($('#name')?.value||'').trim();
-    const email = ($('#email')?.value||'').trim();
-    const phone = ($('#phone')?.value||'').trim();
-    const listing = ($('#listing')?.value||'').trim();
-    const pack = ($('#pack')?.value||'').trim();
-    const sub = encodeURIComponent('Demande — WelcomeStras');
-    const body = encodeURIComponent(`Nom: ${name}\nEmail: ${email}\nTel: ${phone}\nAnnonce: ${listing}\nPack: ${pack}`);
-    $('#mailto-fallback').href = `mailto:${CONTACT_EMAIL}?subject=${sub}&body=${body}`;
-  }
-  ['#name','#email','#phone','#listing','#pack'].forEach(s=>{ 
-    const el=$(s); if(el) el.addEventListener('input', updateMailto); 
-  });
-  updateMailto();
-
-  // form UX
-  const form = $('#lead-form'), formMsg = $('#form-msg');
-  if(form){
-    form.addEventListener('submit', ()=>{ 
-      formMsg.textContent = 'Envoi en cours…'; 
-      setTimeout(()=>{ formMsg.textContent = 'Envoi effectué — nous vous contactons sous 24h.'; }, 900); 
-    });
-  }
-
-  // testimonials carousel
-  (function(){
-    const reviews = [
-      {text:"Nous avons réduit les appels et gagné en tranquillité. Service très pro.", author:"Julie P., Strasbourg", date:"Avr 2025"},
-      {text:"Livraison rapide, retouches efficaces — nos voyageurs sont ravis.", author:"Karim L., Lyon", date:"Mai 2025"},
-      {text:"Care est parfait pour gérer plusieurs logements facilement.", author:"Sophie M., Paris", date:"Mar 2025"},
-      {text:"Support hyper réactif, ça change la vie. Merci !", author:"Marc D., Toulouse", date:"Fév 2025"},
-      {text:"La mise en ligne a été super simple, mes clients trouvent tout facilement.", author:"Nathalie R., Lille", date:"Jan 2025"}
-    ];
-
-    const slider = document.getElementById('review-slider');
-    let i = 0, timer = null;
-
-    function render(){
-      slider.innerHTML = reviews.map((r, idx) => `
-        <div class="review-card ${idx===i?'active':''}">
-          <p>“${r.text}”</p>
-          <div class="review-meta">— ${r.author} · ${r.date}</div>
-        </div>
-      `).join('');
-    }
-
-    function next(){
-      i = (i + 1) % reviews.length;
-      render();
-    }
-
-    function start(){ stop(); timer=setInterval(next, 5000); }
-    function stop(){ if(timer){ clearInterval(timer); timer=null; } }
-
-    render();
-    start();
-  })();
-
-  // focus trap simple
-  document.addEventListener('focus', function(e){
-    if(!modal.classList.contains('active')) return;
-    if(!modal.contains(e.target)){ 
-      e.stopPropagation(); 
-      modal.querySelector('input,button,select,textarea')?.focus(); 
-    }
-  }, true);
-
-  // highlight bottom nav on click
-  $$('.bottom-nav .item').forEach(it => {
-    it.addEventListener('click', () => {
-      $$('.bottom-nav .item').forEach(a => a.classList.remove('active'));
-      it.classList.add('active');
-    });
-  });
-
-  // small console events (replace by analytics)
-  $('#hero-demo')?.addEventListener('click', ()=> console.log('event:hero_demo'));
-  $('#bottom-demo')?.addEventListener('click', ()=> console.log('event:bottom_demo'));
-
-  /* nav.js — gère drawer, focus trap, scroll lisse, état actif */
-  (function () {
-    const openBtn = document.getElementById('open-menu');
-    const closeBtn = document.getElementById('close-menu');
-    const sideMenu = document.getElementById('side-menu');
-    const backdrop = document.getElementById('menu-backdrop');
-    const sideContent = document.getElementById('side-menu-content');
-    const testBtn = document.getElementById('bottom-test');
-
-    if (!sideMenu || !openBtn) return;
-
-    const setOpenState = (isOpen) => {
-      if (isOpen) {
-        sideMenu.hidden = false;
-        backdrop.hidden = false;
-        requestAnimationFrame(() => {
-          sideMenu.classList.add('is-open');
-          backdrop.classList.add('is-open');
-        });
-        openBtn.setAttribute('aria-expanded', 'true');
-        document.body.style.overflow = 'hidden';
-        trapFocus(sideMenu);
-      } else {
-        sideMenu.classList.remove('is-open');
-        backdrop.classList.remove('is-open');
-        openBtn.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
-        setTimeout(() => {
-          sideMenu.hidden = true;
-          backdrop.hidden = true;
-        }, 240);
-        releaseFocus();
-        openBtn.focus({ preventScroll: true });
-      }
-    };
-
-    function openMenu() { setOpenState(true); }
-    function closeMenu() { setOpenState(false); }
-
-    openBtn.addEventListener('click', openMenu);
-    closeBtn && closeBtn.addEventListener('click', closeMenu);
-    backdrop && backdrop.addEventListener('click', closeMenu);
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && !sideMenu.hidden) closeMenu();
-    });
-
-    // focus trap
-    let lastFocus = null;
-    let focusables = [];
-    function trapFocus(container) {
-      lastFocus = document.activeElement;
-      focusables = Array.from(container.querySelectorAll('a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])'))
-        .filter(el => !el.hasAttribute('disabled') && !el.getAttribute('aria-hidden'));
-      (focusables[0] || container).focus({ preventScroll: true });
-      container.addEventListener('keydown', handleTab);
-    }
-    function releaseFocus() {
-      try { sideMenu && sideMenu.removeEventListener('keydown', handleTab); } catch(e){}
-      if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true });
-    }
-    function handleTab(e) {
-      if (e.key !== 'Tab' || !focusables.length) return;
-      const first = focusables[0];
-      const last = focusables[focusables.length - 1];
-      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-    }
-
-    // scroll doux
-    function normalize(s){ return (s||'').toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
-    function findSection(selector) {
-      if (!selector) return null;
-      try {
-        const el = document.querySelector(selector);
-        if (el) return el;
-      } catch(e){}
-      const key = normalize(selector.replace('#',''));
-      const candidates = Array.from(document.querySelectorAll('section[id], [id], h1, h2, h3, main'));
-      return candidates.find(n => normalize(n.id || n.textContent || '').includes(key.slice(0, Math.max(4, key.length)))) || null;
-    }
-
-    function smoothScrollTo(selector) {
-      const target = findSection(selector);
-      if (!target) return false;
-      let headerHeight = 0;
-      try {
-        const fromVar = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h')) || 0;
-        headerHeight = fromVar;
-      } catch(e){ headerHeight = 0; }
-      if (!headerHeight) {
-        const hEl = document.querySelector('header');
-        if (hEl) headerHeight = hEl.offsetHeight || 0;
-      }
-      const extra = 8;
-      const rect = target.getBoundingClientRect();
-      const targetY = window.scrollY + rect.top - headerHeight - extra;
-      window.scrollTo({ top: Math.max(0, targetY), behavior: 'smooth' });
-      try {
-        target.setAttribute('tabindex', '-1');
-        target.focus({ preventScroll: true });
-      } catch (e) {}
-      return true;
-    }
-
-    // lier liens
-    document.querySelectorAll('a[href^="#"], [data-scroll-to]').forEach(link => {
-      link.addEventListener('click', (e) => {
-        const sel = link.getAttribute('data-scroll-to') || link.getAttribute('href');
-        if (sel && sel.startsWith('#')) {
-          const ok = smoothScrollTo(sel);
-          if (ok) e.preventDefault();
-          if (sideMenu && !sideMenu.hidden) closeMenu();
-        }
-      });
-    });
-
-    // update header var
-    function updateHeaderVar() {
-      const h = (document.querySelector('header') || { offsetHeight: 0 }).offsetHeight || 0;
-      document.documentElement.style.setProperty('--header-h', h + 'px');
-    }
-    window.addEventListener('load', updateHeaderVar);
-    window.addEventListener('resize', updateHeaderVar);
-
-    // bouton tester
-    testBtn && testBtn.addEventListener('click', () => {
-      const done = smoothScrollTo('#test') || smoothScrollTo('#tester') || smoothScrollTo('#contact') || smoothScrollTo('#demo');
-      if (!done) location.hash = '#test';
-    });
-
-    // observer état actif
-    try {
-      const navItems = Array.from(document.querySelectorAll('.bottom-nav .item[href], .bottom-nav .item[data-scroll-to]'));
-      const map = new Map();
-      navItems.forEach(a => {
-        const sel = a.getAttribute('data-scroll-to') || a.getAttribute('href');
-        if (sel && sel.startsWith('#')) map.set(a, sel);
-      });
-
-      if ('IntersectionObserver' in window && map.size) {
-        const sections = [];
-        map.forEach((sel) => {
-          const node = findSection(sel);
-          if (node) sections.push({ sel, node });
-        });
-
-        const observer = new IntersectionObserver(entries => {
-          let best = null, bestRatio = 0;
-          entries.forEach(ent => {
-            if (ent.intersectionRatio > bestRatio) { best = ent; bestRatio = ent.intersectionRatio; }
-          });
-          if (!best) return;
-          const id = best.target.id ? '#' + best.target.id : null;
-          map.forEach((sel, a) => {
-            a.toggleAttribute('aria-current', sel === id);
-          });
-        }, { root: null, threshold: [0.25, 0.5, 0.75], rootMargin: '-20% 0% -40% 0%' });
-
-        sections.forEach(s => observer.observe(s.node));
-      }
-    } catch (e) {
-      console.warn('nav: observer failed', e);
-    }
-
-  })();
-
-})();
-</script>
-
-
+<script src="js/script.js"></script>
 
 
 
