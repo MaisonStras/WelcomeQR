@@ -1,4 +1,5 @@
 :root {
+    --surface:#ffffff;
   --page-bg: #FFF8F1;
   --card: #ffffff;
   --ink: #0B1D2A;
@@ -233,7 +234,7 @@ h1 {
 
 .hero-sub {
   margin: 0 0 14px;
-  font-size: 16px;
+  font-size: 14px;
   color: #e6f2ff;
   max-width: 70ch;
 }
@@ -306,6 +307,10 @@ h1 {
 .dropdown:hover .dropdown-content {
   display: block;
 }
+
+
+
+
 
 .welcome-grid {
   display: grid;
@@ -698,9 +703,6 @@ a.pill {
   flex-direction: column;
   background: white;
   color: var(--accent);
-  border: 1px solid var(--accent);
-  border-radius: 14px;
-  font-weight: 700;
   box-shadow: 0 8px 1Opx rgba(37, 99, 235, 0.12);
   transition: all .2s ease;
 }
@@ -797,7 +799,7 @@ a.pill {
   width: 20px;
   height: 20px;
   margin-right: 10px;
-  color: #0078ff;
+  color: var(--accent);
   flex-shrink: 0;
 }
 
@@ -818,13 +820,21 @@ a.pill {
   transition: all 0.2s ease;
 }
 
-.custo-btn-primary {
-  background: #0078ff;
-  color: #fff;
+a#bottom-test.item.cta.cta-test {
+  cursor: pointer;
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  border: solid 1px var(--accent);
+  color: black
 }
 
-.custo-btn-primary:hover {
-  background: #005fcc;
+a#bottom-test.item.cta.cta-test:hover {
+  background: var(--accent);
 }
 
 .custo-btn-secondary {
@@ -871,13 +881,12 @@ a.pill {
     color: var(--ink);
   }
   .hero-sub {
-    font-size: 14px;
+    font-size: 18px;
     color: var(--muted);
   }
   .chip {
-    background: rgba(255,255,255,.16);
-    border: 1px solid rgba(255,255,255,.28);
-    color: #fff;
+    border: 1px solid rgba(39, 39, 39, 0.875);
+    color: black;
   }
   .btn.ghost {
     border: 1px solid rgba(0,0,0,0.15);
@@ -978,7 +987,7 @@ a.pill {
   .bottom-nav a {
     color: var(--ink);
     text-decoration: none;
-    font-size: 20px;
+    font-size: 18px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -986,6 +995,7 @@ a.pill {
   }
 
 
+  
 
   .bottom-nav span {
     font-size: 11px;
@@ -1022,3 +1032,17 @@ span.test { font-size: 13px; color:var(--accent);
 @media(min-width: 420px){
   body.mockup-mode .wrap { width: 390px; }
 }
+
+
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(7,18,34,0.45);z-index:190;padding:18px}
+    .modal.active{display:flex}
+    .modal-inner{width:100%;max-width:760px;background:var(--surface);border-radius:12px;padding:18px}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    @media(max-width:520px){.form-row{grid-template-columns:1fr}}
+    input,select,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(7,18,34,0.06)}
+    .small{font-size:13px;color:var(--muted); padding-bottom: 10px;}
+
+    /* focus */
+    .focus-ring:focus{outline:none;box-shadow:var(--focus);border-radius:8px}
+
+

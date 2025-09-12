@@ -78,34 +78,42 @@
 <!-- Navigation Desktop avec "Plus" -->
 <nav class="top-nav">
   <div class="top-inner">
-<div class="brand">
-  <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-    <path fill="currentColor" d="M12 3l9 8h-3v8h-4v-5H10v5H6v-8H3z"></path>
-  </svg>
-  <strong style="margin-left:8px">Studio Cosy</strong>
-</div>
+    <div class="brand">
+      <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path fill="currentColor" d="M12 3l9 8h-3v8h-4v-5H10v5H6v-8H3z"></path>
+      </svg>
+      <strong style="margin-left:8px"
+              data-fr="Studio Cosy"
+              data-en="Cozy Studio">Studio Cosy</strong>
+    </div>
+
     <div class="links">
-      <a href="#s-welcome">Accueil</a>
-      <a href="#s-arrival">Arrivée</a>
-      <a href="#s-wifi">Wi-Fi</a>
-      <a href="#s-highlights">Incontournables</a>
-      <a href="#s-tips">Bons plans</a>
+      <a href="#s-welcome" data-fr="Accueil" data-en="Home">Accueil</a>
+      <a href="#s-arrival" data-fr="Arrivée" data-en="Arrival">Arrivée</a>
+      <a href="#s-wifi" data-fr="Wi-Fi" data-en="Wi-Fi">Wi-Fi</a>
+      <a href="#s-highlights" data-fr="Incontournables" data-en="Highlights">Incontournables</a>
+      <a href="#s-tips" data-fr="Bons plans" data-en="Tips">Bons plans</a>
 
       <!-- menu déroulant -->
       <div class="dropdown">
-        <button class="dropbtn">… Plus</button>
+        <button class="dropbtn"
+                data-fr="… Plus"
+                data-en="… More">… Plus</button>
         <div class="dropdown-content">
-          <a href="#s-access">Accès</a>
-          <a href="#s-where">Où</a>
-          <a href="#s-appliances">Appareils</a>
-          <a href="#s-rules">Règlement</a>
-          <a href="#s-checkout">Check-out</a>
-          <a href="#s-emergency">Urgences</a>
+          <a href="#s-access" data-fr="Accès" data-en="Access">Accès</a>
+          <a href="#s-where" data-fr="Où" data-en="Where">Où</a>
+          <a href="#s-appliances" data-fr="Appareils" data-en="Appliances">Appareils</a>
+          <a href="#s-rules" data-fr="Règlement" data-en="Rules">Règlement</a>
+          <a href="#s-checkout" data-fr="Check-out" data-en="Check-out">Check-out</a>
+          <a href="#s-emergency" data-fr="Urgences" data-en="Emergency">Urgences</a>
+          <a href="#s-test" data-fr="Tester" data-en="Test" style="display:none;">Tester</a>
+
         </div>
       </div>
     </div>
   </div>
 </nav>
+
 
 
 <!-- HERO -->
@@ -189,11 +197,15 @@
     <svg class="nav-icon"><use href="#icon-star"/></svg>
     <span>Bons Plans</span>
   </a>
+  <a href="#s-test" aria-label="Tester" class="item cta cta-test" >
+    <svg class="nav-icon"><use href="#icon-check"/></svg>
+    <span>Tester</span>
+  </a>
   <!-- Aide -->
- <button class="item cta cta-test" id="bottom-test" type="button" title="Demander un essai" aria-label="Demander un essai">
+ <!-- <class="item cta cta-test" id="#s-test" type="button" title="Demander un essai" aria-label="Demander un essai">
    <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-check"></use></svg>
    <span class="test">Tester</span>
- </button>
+ </button> -->
 
 <button class="item more" id="mobile-plus-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="mobile-plus-panel" title="Plus">
   <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-dots"></use></svg>
@@ -382,6 +394,94 @@
 </section>
 
 
+
+<!-- Rules -->
+<section id="s-rules" class="card appear">
+  <h3 class="section-title" 
+      data-fr="Règlement intérieur" 
+      data-en="House rules">
+    Règlement intérieur
+  </h3>
+
+  <p class="section-sub" 
+     data-fr="Merci de respecter ces quelques règles pour un séjour agréable." 
+     data-en="Please respect these few rules for a pleasant stay.">
+    Merci de respecter ces quelques règles pour un séjour agréable.
+  </p>
+
+  <div class="two-col">
+    <div>
+      <ul class="rules-list">
+        <li>
+          <!-- Silence -->
+          <svg class="icon" xmlns="http://www.w3.org/2000/svg" 
+               viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M9 9v6h4l5 5V4l-5 5H9z" stroke-width="2"/>
+          </svg>
+          <span data-fr="Silence après 22h — respectez le voisinage." 
+                data-en="Silence after 10 PM — respect the neighbors.">
+            Silence après 22h — respectez le voisinage.
+          </span>
+        </li>
+
+        <li>
+          <!-- No smoking -->
+          <svg class="icon" xmlns="http://www.w3.org/2000/svg" 
+               viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M3 13h18M20 7v6M16 7v6M5 7v6" stroke-width="2"/>
+            <line x1="2" y1="2" x2="22" y2="22" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span data-fr="Interdit de fumer à l'intérieur." 
+                data-en="No smoking inside.">
+            Interdit de fumer à l'intérieur.
+          </span>
+        </li>
+
+        <li>
+          <!-- Pets -->
+          <svg class="icon" xmlns="http://www.w3.org/2000/svg" 
+               viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="5" cy="8" r="2" stroke-width="2"/>
+            <circle cx="12" cy="5" r="2" stroke-width="2"/>
+            <circle cx="19" cy="8" r="2" stroke-width="2"/>
+            <path d="M5 20c1-4 13-4 14 0" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span data-fr="Animaux acceptés uniquement sur demande." 
+                data-en="Pets allowed only on request.">
+            Animaux acceptés uniquement sur demande.
+          </span>
+        </li>
+
+        <li>
+          <!-- Recycling -->
+          <svg class="icon" xmlns="http://www.w3.org/2000/svg" 
+               viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z" stroke-width="2"/>
+          </svg>
+          <span data-fr="Merci de trier vos déchets (bio / recyclables / ordures)." 
+                data-en="Please sort your waste (bio / recyclables / trash).">
+            Merci de trier vos déchets (bio / recyclables / ordures).
+          </span>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="hint" 
+           data-fr="Astuce : laissez un résumé visuel (pictos) affiché dans le logement pour rappeler les règles." 
+           data-en="Tip: leave a visual summary (icons) displayed in the apartment to remind guests.">
+        Astuce : laissez un résumé visuel (pictos) affiché dans le logement pour rappeler les règles.
+      </div>
+    </div>
+  </div>
+
+  <div class="small" style="margin-top:10px" 
+       data-fr="Un règlement complet peut être fourni sur demande (ex. PDF ou lien Airbnb)." 
+       data-en="A full house manual can be provided on request (e.g. PDF or Airbnb link).">
+    Un règlement complet peut être fourni sur demande (ex. PDF ou lien Airbnb).
+  </div>
+</section>
+
         <!-- Where -->
                 <!-- Where -->
       <section id="s-where" class="card appear">
@@ -451,6 +551,97 @@
 
 
 
+        <!-- Appliances -->
+
+ <section id="s-appliances" class="card appear">
+  <h3 class="section-title" 
+      data-fr="Appareils — mode d'emploi" 
+      data-en="Appliances — how to use">
+    Appareils — mode d'emploi
+  </h3>
+  <p class="section-sub" 
+     data-fr="Guide visuel simple pour les équipements essentiels." 
+     data-en="Visual quick guide for the main appliances.">
+    Guide visuel simple pour les équipements essentiels.
+  </p>
+
+  <div class="two-col appliances">
+    <div>
+      <strong>
+        <!-- Thermostat -->
+        <svg class="icon" xmlns="http://www.w3.org/2000/svg" 
+             viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <circle cx="12" cy="12" r="9" stroke-width="2"/>
+          <path d="M12 7v5l3 3" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span data-fr="Thermostat" data-en="Thermostat">Thermostat</span>
+      </strong>
+      <ul>
+        <li data-fr="MODE → +/−" data-en="MODE → +/−">MODE → +/−</li>
+        <li data-fr="+2°C = chauffe rapide (15–20 min)" 
+            data-en="+2°C = quick heating (15–20 min)">
+          +2°C = chauffe rapide (15–20 min)
+        </li>
+      </ul>
+
+      <strong>
+        <!-- Machine à laver -->
+        <svg class="icon" xmlns="http://www.w3.org/2000/svg" 
+             viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <rect x="3" y="4" width="18" height="16" rx="2" stroke-width="2"/>
+          <circle cx="12" cy="12" r="4" stroke-width="2"/>
+        </svg>
+        <span data-fr="Machine à laver" data-en="Washing machine">Machine à laver</span>
+      </strong>
+      <ul>
+        <li data-fr="Programme conseillé : Eco 40°" 
+            data-en="Recommended program: Eco 40°">Programme conseillé : Eco 40°</li>
+        <li data-fr="Lessive → tiroir A" 
+            data-en="Detergent → drawer A">Lessive → tiroir A</li>
+        <li data-fr="Ne pas surcharger" 
+            data-en="Do not overload">Ne pas surcharger</li>
+      </ul>
+    </div>
+
+    <div>
+      <strong>
+        <!-- Four -->
+        <svg class="icon" xmlns="http://www.w3.org/2000/svg" 
+             viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <rect x="3" y="6" width="18" height="14" rx="2" stroke-width="2"/>
+          <path d="M7 10h.01M12 10h.01M17 10h.01" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span data-fr="Four" data-en="Oven">Four</span>
+      </strong>
+      <ul>
+        <li data-fr="180°C → préchauffage 5 min" 
+            data-en="180°C → preheating 5 min">180°C → préchauffage 5 min</li>
+        <li data-fr="Toujours utiliser des gants" 
+            data-en="Always use oven gloves">Toujours utiliser des gants</li>
+      </ul>
+
+      <strong>
+        <!-- Plaques -->
+        <svg class="icon" xmlns="http://www.w3.org/2000/svg" 
+             viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <circle cx="7" cy="12" r="3" stroke-width="2"/>
+          <circle cx="17" cy="12" r="3" stroke-width="2"/>
+        </svg>
+        <span data-fr="Plaques" data-en="Hob">Plaques</span>
+      </strong>
+      <ul>
+        <li data-fr="Appuyer 3s → déverrouiller" 
+            data-en="Press 3s → unlock">Appuyer 3s → déverrouiller</li>
+        <li data-fr="+/− pour régler la chaleur" 
+            data-en="+/− to set the heat">+/− pour régler la chaleur</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+    
+
+
         <!-- Highlights / Incontournables Strasbourg -->
 <section id="s-highlights" class="card appear">
   <h3 class="section-title" data-fr="Incontournables — Strasbourg" data-en="Highlights — Strasbourg">
@@ -465,7 +656,7 @@
   <div class="spots">
     <!-- Spot 1 -->
     <article class="spot">
-      <img src="assets/strasbourg/cathedrale.jpg" alt="Cathédrale de Strasbourg" loading="lazy"/>
+      <img src="image/cathedrale.jpg" alt="Cathédrale de Strasbourg" loading="lazy"/>
       <div class="info">
         <h4 data-fr="Cathédrale de Strasbourg" data-en="Strasbourg Cathedral">Cathédrale de Strasbourg</h4>
         <div class="meta" data-fr="⏱️ 3 min • vue incroyable depuis la plateforme" data-en="⏱️ 3 min • amazing view from the tower">
@@ -476,7 +667,7 @@
 
     <!-- Spot 2 -->
     <article class="spot">
-      <img src="assets/strasbourg/petite-france.jpg" alt="La Petite France" loading="lazy"/>
+      <img src="image/petite-france.jpeg" alt="La Petite France" loading="lazy"/>
       <div class="info">
         <h4 data-fr="La Petite France" data-en="La Petite France">La Petite France</h4>
         <div class="meta" data-fr="⏱️ 10 min • quartier pittoresque au bord de l’eau" data-en="⏱️ 10 min • quaint riverside district">
@@ -487,7 +678,7 @@
 
     <!-- Spot 3 -->
     <article class="spot">
-      <img src="assets/strasbourg/orangerie.jpg" alt="Parc de l'Orangerie" loading="lazy"/>
+      <img src="image/parc-orangerie.jpg" alt="Parc de l'Orangerie" loading="lazy"/>
       <div class="info">
         <h4 data-fr="Parc de l’Orangerie" data-en="Parc de l’Orangerie">Parc de l’Orangerie</h4>
         <div class="meta" data-fr="⏱️ 20 min • balade relax & cigognes" data-en="⏱️ 20 min • relaxing stroll & storks">
@@ -505,154 +696,6 @@
   </div>
 </section>
 
-
-        <!-- Appliances -->
-
-        <section id="s-appliances" class="card appear">
-  <h3 class="section-title" 
-      data-fr="Appareils — mode d'emploi" 
-      data-en="Appliances — how to use">
-    Appareils — mode d'emploi
-  </h3>
-  <p class="section-sub" 
-     data-fr="Guide visuel simple pour les équipements essentiels." 
-     data-en="Visual quick guide for the main appliances.">
-  </p>
-
-  <div class="two-col appliances">
-    <div>
-      <strong>
-        <!-- Thermostat -->
-        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <circle cx="12" cy="12" r="9" stroke-width="2"/>
-          <path d="M12 7v5l3 3" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-        <span data-fr="Thermostat" data-en="Thermostat">Thermostat</span>
-      </strong>
-      <ul>
-        <li>MODE → +/−</li>
-        <li>+2°C = chauffe rapide (15–20 min)</li>
-      </ul>
-
-      <strong>
-        <!-- Machine à laver -->
-        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <rect x="3" y="4" width="18" height="16" rx="2" stroke-width="2"/>
-          <circle cx="12" cy="12" r="4" stroke-width="2"/>
-        </svg>
-        <span data-fr="Machine à laver" data-en="Washing machine">Machine à laver</span>
-      </strong>
-      <ul>
-        <li>Programme conseillé : Eco 40°</li>
-        <li>Lessive → tiroir A</li>
-        <li>Ne pas surcharger</li>
-      </ul>
-    </div>
-
-    <div>
-      <strong>
-        <!-- Four -->
-        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <rect x="3" y="6" width="18" height="14" rx="2" stroke-width="2"/>
-          <path d="M7 10h.01M12 10h.01M17 10h.01" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-        <span data-fr="Four" data-en="Oven">Four</span>
-      </strong>
-      <ul>
-        <li>180°C → préchauffage 5 min</li>
-        <li>Toujours utiliser des gants</li>
-      </ul>
-
-      <strong>
-        <!-- Plaques -->
-        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <circle cx="7" cy="12" r="3" stroke-width="2"/>
-          <circle cx="17" cy="12" r="3" stroke-width="2"/>
-        </svg>
-        <span data-fr="Plaques" data-en="Hob">Plaques</span>
-      </strong>
-      <ul>
-        <li>Appuyer 3s → déverrouiller</li>
-        <li>+/− pour régler la chaleur</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-
-
-
-
-        <!-- Rules -->
-       <!-- Rules -->
-<section id="s-rules" class="card appear">
-  <h3 class="section-title" data-fr="Règlement intérieur" data-en="House rules">Règlement intérieur</h3>
-  <p class="section-sub" data-fr="Merci de respecter ces quelques règles pour un séjour agréable." data-en="Please respect these few rules for a pleasant stay."></p>
-
-  <div class="two-col">
-    <div>
-      <ul class="rules-list">
-        <li>
-          <!-- Silence -->
-          <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <path d="M9 9v6h4l5 5V4l-5 5H9z" stroke-width="2"/>
-          </svg>
-          <span>Silence après 22h — respectez le voisinage.</span>
-        </li>
-
-        <li>
-          <!-- No smoking -->
-          <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <path d="M3 13h18M20 7v6M16 7v6M5 7v6" stroke-width="2"/>
-            <line x1="2" y1="2" x2="22" y2="22" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-          <span>Interdit de fumer à l'intérieur.</span>
-        </li>
-
-        <li>
-          <!-- Pets -->
-          <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <circle cx="5" cy="8" r="2" stroke-width="2"/>
-            <circle cx="12" cy="5" r="2" stroke-width="2"/>
-            <circle cx="19" cy="8" r="2" stroke-width="2"/>
-            <path d="M5 20c1-4 13-4 14 0" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-          <span>Animaux acceptés uniquement sur demande.</span>
-        </li>
-
-        <li>
-          <!-- Recyclage -->
-          <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z" stroke-width="2"/>
-          </svg>
-          <span>Merci de trier vos déchets (bio / recyclables / ordures).</span>
-        </li>
-      </ul>
-    </div>
-
-    <div>
-      <div class="hint" data-fr="Astuce : laissez un résumé visuel (pictos) affiché dans le logement pour rappeler les règles." data-en="Tip: leave a visual summary (icons) displayed in the apartment to remind guests."></div>
-    </div>
-  </div>
-
-  <div class="small" style="margin-top:10px" data-fr="Un règlement complet peut être fourni sur demande (ex. PDF ou lien Airbnb)." data-en="A full house manual can be provided on request (e.g. PDF or Airbnb link)."></div>
-</section>
-
-
-
-        <!-- Check-out -->
-        <section id="s-checkout" class="card appear">
-          <h3 class="section-title" data-fr="Check-out — checklist rapide" data-en="Check-out — quick checklist">Check-out — checklist rapide</h3>
-          <ol style="margin:0;padding-left:18px">
-            <li data-fr="Éteindre toutes les lumières et baisser le chauffage." data-en="Switch off all lights and lower the heating."></li>
-            <li data-fr="Vider la petite poubelle cuisine et déposer les sacs." data-en="Empty the small kitchen bin and dispose of bags."></li>
-            <li data-fr="Remettre les clés dans la boîte aimantée / à l'endroit indiqué." data-en="Return keys to the magnetic box / indicated place."></li>
-            <li data-fr="Fermer les fenêtres." data-en="Close the windows."></li>
-          </ol>
-          <div class="small" style="margin-top:8px" data-fr="Astuce : laisser une note si vous cassez ou signalez un incident." data-en="Tip: leave a note if you break or report an incident."></div>
-        </section>
-
-        <!-- Top picks - reworked -->
 
 
         <!-- Top picks / Bons plans -->
@@ -763,12 +806,25 @@
     Incident technique (chauffage, fuite) : signalez immédiatement au propriétaire pour intervention rapide.
   </div>
 </section>
+    <!-- Check-out -->
+        <section id="s-checkout" class="card appear">
+          <h3 class="section-title" data-fr="Check-out — checklist rapide" data-en="Check-out — quick checklist">Check-out — checklist rapide</h3>
+          <ol style="margin:0;padding-left:18px">
+            <li data-fr="Éteindre toutes les lumières et baisser le chauffage." data-en="Switch off all lights and lower the heating."></li>
+            <li data-fr="Vider la petite poubelle cuisine et déposer les sacs." data-en="Empty the small kitchen bin and dispose of bags."></li>
+            <li data-fr="Remettre les clés dans la boîte aimantée / à l'endroit indiqué." data-en="Return keys to the magnetic box / indicated place."></li>
+            <li data-fr="Fermer les fenêtres." data-en="Close the windows."></li>
+          </ol>
+          <div class="small" style="margin-top:8px" data-fr="Astuce : laisser une note si vous cassez ou signalez un incident." data-en="Tip: leave a note if you break or report an incident."></div>
+        </section>
+
+        <!-- Top picks - reworked -->
 
 
       </main>
 
       <!-- ASIDE -->
-     <section class="panel appear" aria-label="Personnalisation et contact">
+     <section id="s-test" class="card appear"aria-label="Personnalisation et contact">
   <div class="card custo-block">
     
     <h2 class="custo-title">Options de personnalisation</h2>
@@ -806,7 +862,7 @@
     </ul>
 
     <div class="custo-actions">
-      <a href="demo.html" class="custo-btn custo-btn-primary">Tester la démo</a>
+      <a class="item cta cta-test" id="bottom-test" type="button" title="Demander un essai" aria-label="Demander un essai">Tester la démo</a>
       <a href="mailto:tonemail@domaine.com" class="custo-btn custo-btn-secondary">Nous contacter</a>
     </div>
 
@@ -822,6 +878,47 @@
     <footer class="appear">
       <div class="muted center">Page démo fournie par WelcomeQR — texte & structure entièrement modifiables.</div>
     </footer>
+
+
+
+      <!-- MODAL lead form -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-inner" role="document">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <h3>Demandez votre livret — Test 24h</h3>
+        <button id="modal-close" aria-label="Fermer">✕</button>
+      </div>
+
+      <form id="lead-form" class="form" action="https://formspree.io/f/xdkdvdgz" method="POST" style="margin-top:12px">
+        <input type="hidden" name="_subject" value="Nouvelle demande — WelcomeStras">
+        <div class="form-row">
+          <input id="name" name="name" placeholder="Nom & prénom *" required class="focus-ring">
+          <input id="email" name="email" type="email" placeholder="Email *" required class="focus-ring">
+        </div>
+        <div class="form-row" style="margin-top:10px">
+          <input id="phone" name="phone" placeholder="WhatsApp / Tel" class="focus-ring">
+          <input id="listing" name="listing" type="url" placeholder="Lien annonce (Airbnb) *" required class="focus-ring">
+        </div>
+        <div style="margin-top:10px">
+          <label for="pack" class="small muted">Pack souhaité</label>
+          <select id="pack" name="pack" style="margin-top:6px;padding:10px;border-radius:8px;border:1px solid rgba(7,18,34,0.06)" class="focus-ring">
+            <option>Starter — 49 €</option>
+            <option>Pro — 89 €</option>
+            <option>Care — 14 €/mois</option>
+          </select>
+        </div>
+
+        <div style="margin-top:12px;display:flex;gap:10px;align-items:center">
+          <button type="submit" class="btn-primary">Envoyer & lancer</button>
+          <a id="mailto-fallback" class="small muted" href="#">Envoyer par email</a>
+        </div>
+
+        <div id="form-msg" class="small muted" style="margin-top:10px" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+
+
   </div>
 
 <script>
@@ -960,6 +1057,8 @@ document.addEventListener('DOMContentLoaded', function () {
         <a href="#s-rules">Règlement</a>
         <a href="#s-checkout">Check-out</a>
         <a href="#s-emergency">Urgences</a>
+        <a href="#s-test">Tester</a>
+
       `;
     }
 
@@ -1032,6 +1131,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
 }); // end DOMContentLoaded
 </script>
+
+
+
+<script src="js/script.js"></script>
 
 </body>
 </html>
