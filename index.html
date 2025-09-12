@@ -117,7 +117,7 @@
   <div class="header-main">
     <div class="brand" aria-label="WelcomeStras">
       <div class="logo-mark" aria-hidden="true">
-       <a href="./index.html"><img src="image/logo1.webp" alt="Logo WelcomeStras"></a> 
+       <a href="./index.html"></a> <img src="image/logo1.webp" alt="Logo WelcomeStras">
       </div>
       <div class="brand-title">
         <p class="tagline headline" id="site-tagline">Accueil parfait, hôtes sereins.</p>
@@ -129,7 +129,7 @@
       <a href="#paid-services">Services</a>
       <a href="#b2b">Conciergerie</a>
       <a href="#faq">FAQ</a>
-      <a id="hero-demo"  href="./demo.html" title="Voir la démo"class="btn-demo">
+      <a id="hero-demo"  href="#" title="Voir la démo"class="btn-demo">
         <svg width="16" height="16" aria-hidden="true"><use xlink:href="#icon-demo"></use></svg>
         Démo
       </a>
@@ -483,57 +483,33 @@
 
 
 <!-- BOTTOM NAV -->
-<nav class="bottom-nav" aria-label="Navigation principale">
-
-  <!-- Arrivée -->
-  <a href="#s-arrival" aria-label="Arrivée"
-     data-fr="Arrivée" data-en="Arrival">
-    <svg class="nav-icon"><use href="#icon-home"/></svg>
-    <span data-fr="Arrivée" data-en="Arrival">Arrivée</span>
+<nav class="bottom-nav" aria-label="Navigation principale mobile">
+  <a class="item" href="#offres" data-scroll-to="#offres" title="Offres">
+    <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-offer"></use></svg>
+    <span>Offres</span>
   </a>
 
-  <!-- Wi-Fi -->
-  <a href="#s-wifi" aria-label="Wi-Fi"
-     data-fr="Wi-Fi" data-en="Wi-Fi">
-    <svg class="nav-icon"><use href="#icon-wifi"/></svg>
-    <span data-fr="Wi-Fi" data-en="Wi-Fi">Wi-Fi</span>
+  <a class="item" href="#paid-services" data-scroll-to="#paid-services" title="Services complémentaires">
+    <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-services"></use></svg>
+    <span>Services</span>
   </a>
 
-  <!-- Spots -->
-  <a href="#s-highlights" aria-label="Spots"
-     data-fr="Spots" data-en="Highlights">
-    <svg class="nav-icon"><use href="#icon-map"/></svg>
-    <span data-fr="Spots" data-en="Highlights">Spots</span>
+  <a class="item" id="hero-demo"  href="./demo.html" title="Voir la démo"class="btn-demo">
+    <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-demo"></use></svg>
+    <span>Démo</span>
   </a>
 
-  <!-- Bons plans -->
-  <a href="#s-tips" aria-label="Bons plans"
-     data-fr="Bons Plans" data-en="Tips">
-    <svg class="nav-icon"><use href="#icon-star"/></svg>
-    <span data-fr="Bons Plans" data-en="Tips">Bons Plans</span>
-  </a>
+<button class="item cta cta-test" id="bottom-test" type="button" title="Demander un essai" aria-label="Demander un essai">
 
-  <!-- Tester -->
-  <a href="#s-test" aria-label="Tester" class="item cta cta-test"
-     data-fr="Tester" data-en="Test">
-    <svg class="nav-icon"><use href="#icon-check"/></svg>
-    <span data-fr="Tester" data-en="Test">Tester</span>
-  </a>
+    <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-check"></use></svg>
+    <span>Tester</span>
+  </button>
 
-  <!-- Bouton Plus -->
-  <button class="item more" id="mobile-plus-btn"
-          type="button" aria-haspopup="true"
-          aria-expanded="false" aria-controls="mobile-plus-panel"
-          title="Plus"
-          data-fr="Plus" data-en="More">
-    <svg class="nav-icon" aria-hidden="true"><use href="#icon-dots"/></svg>
-    <span data-fr="Plus" data-en="More">Plus</span>
+  <button class="item menu-toggle" id="open-menu" aria-controls="side-menu" aria-expanded="false" aria-label="Ouvrir le menu" type="button" title="Menu">
+    <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-menu"></use></svg>
+    <span>Menu</span>
   </button>
 </nav>
-
-<div id="mobile-plus-panel" class="mobile-dropdown-panel"
-     role="menu" aria-hidden="true"></div>
-
 
 
 <!-- BACKDROP + DRAWER -->
@@ -600,7 +576,7 @@
                 </a>
               </li>
               <li>
-                <button class="item cta cta-test" id="bottom-test" type="button" title="Demander un essai" aria-label="Demander un essai">
+                <a id="bottom-test" data-scroll-to="#test">
                   <svg class="nav-icon" width="20" height="20" aria-hidden="true"><use href="#icon-check"></use></svg>
                   <span>Essai gratuit</span>
                   <small class="chip">24 h</small>
