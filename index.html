@@ -440,41 +440,175 @@
 
 
   <!-- MODAL lead form -->
-  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
-    <div class="modal-inner" role="document">
-      <div style="display:flex;justify-content:space-between;align-items:center">
-        <h3>Demandez votre livret — Test 24h</h3>
-        <button id="modal-close" aria-label="Fermer">✕</button>
-      </div>
+<!-- ===== MODAL OPTIMISÉ WelcomeQR (REMPACE L'ANCIEN BLOCC) ===== -->
+<div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="modal-backdrop" data-close></div>
 
-      <form id="lead-form" class="form" action="https://formspree.io/f/xdkdvdgz" method="POST" style="margin-top:12px">
-        <input type="hidden" name="_subject" value="Nouvelle demande — WelcomeStras">
-        <div class="form-row">
-          <input id="name" name="name" placeholder="Nom & prénom *" required class="focus-ring">
-          <input id="email" name="email" type="email" placeholder="Email *" required class="focus-ring">
-        </div>
-        <div class="form-row" style="margin-top:10px">
-          <input id="phone" name="phone" placeholder="WhatsApp / Tel" class="focus-ring">
-          <input id="listing" name="listing" type="url" placeholder="Lien annonce (Airbnb) *" required class="focus-ring">
-        </div>
-        <div style="margin-top:10px">
-          <label for="pack" class="small muted">Pack souhaité</label>
-          <select id="pack" name="pack" style="margin-top:6px;padding:10px;border-radius:8px;border:1px solid rgba(7,18,34,0.06)" class="focus-ring">
-            <option>Starter — 49 €</option>
-            <option>Pro — 89 €</option>
-            <option>Care — 14 €/mois</option>
-          </select>
-        </div>
+  <div class="modal-card" role="document" aria-labelledby="modal-title">
+    <button id="modal-close" class="modal-close" aria-label="Fermer">✕</button>
 
-        <div style="margin-top:12px;display:flex;gap:10px;align-items:center">
-          <button type="submit" class="btn-primary">Envoyer & lancer</button>
-          <a id="mailto-fallback" class="small muted" href="#">Envoyer par email</a>
-        </div>
+    <header class="modal-header" aria-hidden="false">
+  <div style="display:flex;gap:12px;align-items:flex-start;justify-content:space-between;">
+    <div style="flex:1 1 auto;min-width:0">
+      <h2 id="modal-title">Essai gratuit — Démo 24h personnalisée</h2>
+      <p class="muted">Obtenez un aperçu concret de votre livret d’accueil. Version limitée : 24 heures, 3 sections incluses.</p>
+          <p class="muted">Pour un rendu complet (logo, QR hébergé, mises à jour), découvrez Starter • Pro • Care.</p>
 
-        <div id="form-msg" class="small muted" style="margin-top:10px" aria-live="polite"></div>
-      </form>
     </div>
   </div>
+</header>
+
+    <!-- POINTS RAPIDES: compact sur mobile; full sur desktop -->
+<!-- ===== modal-info (remplacer l'ancien bloc modal-info) ===== -->
+<section class="modal-info" aria-hidden="false">
+  <div class="info-item">
+    <svg aria-hidden="true" viewBox="0 0 24 24"><path fill="currentColor" d="M12 1a11 11 0 1 0 11 11A11 11 0 0 0 12 1Zm1 12.59L8.71 9.3a1 1 0 0 1 1.42-1.4L13 11.18V13.6a1 1 0 0 1-2 0V12.59Z"/></svg>
+    <div class="info-txt">
+      <strong>Durée limitée</strong>
+      <div class="info-short">Accès 24h</div>
+      <div class="muted info-detail">La démo est accessible pendant 24 heures.</div>
+    </div>
+  </div>
+
+  <div class="info-item">
+    <svg aria-hidden="true" viewBox="0 0 24 24"><path fill="currentColor" d="M6 2h7l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/></svg>
+    <div class="info-txt">
+      <strong>Aperçu partiel</strong>
+      <div class="info-short">3 sections incluses</div>
+      <div class="muted info-detail">J’inclus jusqu’à 3 sections pour la démo (ex: accueil, infos pratiques, bons plans).</div>
+    </div>
+  </div>
+
+  <div class="info-item">
+    <svg aria-hidden="true" viewBox="0 0 24 24"><path fill="currentColor" d="M21 19V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14h18Zm-11-7 2.5 3L17 11l4 6H5l5-7Z"/></svg>
+    <div class="info-txt">
+      <strong>Images provisoires</strong>
+      <div class="info-short">Photos par défaut si besoin</div>
+      <div class="muted info-detail">Pas de photos ? J’ajoute des images de substitution pour une meilleure présentation.</div>
+    </div>
+  </div>
+
+  <div class="info-item">
+    <svg aria-hidden="true" viewBox="0 0 24 24"><path fill="currentColor" d="M17 8V7a5 5 0 0 0-10 0v1H5v13h14V8h-2ZM9 7a3 3 0 0 1 6 0v1H9V7Z"/></svg>
+    <div class="info-txt">
+      <strong>Sécurité</strong>
+      <div class="info-short">Ne partagez pas de codes</div>
+      <div class="muted info-detail">Ne transmettez pas ici vos codes sensibles (Wi-Fi, serrures). Ces informations seront partagées après validation via un canal sécurisé.</div>
+    </div>
+  </div>
+</section>
+<!-- ===== fin modal-info ===== -->
+
+
+
+    <form id="lead-form" class="modal-form" action="https://formspree.io/f/xdkdvdgz" method="POST" novalidate>
+      <input type="hidden" name="_subject" value="Nouvelle demande — WelcomeQR">
+      <input type="text" name="_honeypot" tabindex="-1" autocomplete="off" style="display:none">
+
+      <!-- CONTACT -->
+      <div class="row">
+        <label class="field"><span class="label">Nom & prénom *</span><input id="name" name="name" required placeholder="Marie Dupont"></label>
+        <label class="field"><span class="label">Email *</span><input id="email" name="email" type="email" required placeholder="ton@email.com"></label>
+      </div>
+
+      <div class="row">
+        <label class="field"><span class="label">WhatsApp / Tél (opt.)</span><input id="phone" name="phone" placeholder="+33 6 12 34 56 78"></label>
+        <label class="field"><span class="label">Annonce / URL (opt.)</span><input id="listing" name="listing" type="url" placeholder="https://..."></label>
+      </div>
+
+      <!-- LOGEMENT -->
+      <div class="row">
+        <label class="field full"><span class="label">Titre du logement *</span><input id="prop-title" name="property_title" required placeholder="Ex : Studio cosy centre-ville"></label>
+      </div>
+
+      <div class="row">
+        <label class="field"><span class="label">Pack souhait</span>
+          <select id="pack" name="pack"><option value="">Aucun (démo)</option><option>Starter — 79 €</option><option>Pro — 149 €</option><option>Care — 29€/mois</option></select>
+        </label>
+
+        <label class="field"><span class="label">Type de logement *</span>
+          <select id="property_type" name="property_type" required><option value="">Sélectionnez</option><option>Appartement</option><option>Maison</option><option>Studio</option><option>Gîte</option><option>Chambre d'hôte</option><option>Autre</option></select>
+        </label>
+      </div>
+
+      <!-- LANGUES -->
+      <div class="row">
+        <label class="field full"><span class="label">Langues suplementaires (FR & EN inclus) *</span>
+          <div class="checkbox-row" role="group" aria-label="Langues">
+            <label class="inline-checkbox"><input type="checkbox" name="lang" value="DE"> <span>DE</span></label>
+            <label class="inline-checkbox"><input type="checkbox" name="lang" value="OTHER"> <span>Autre</span></label>
+          </div>
+        </label>
+      </div>
+
+      <!-- SECTIONS -->
+      <fieldset class="sections">
+        <legend class="label">Sections à inclure (cochez ≥1) *</legend>
+        <div class="checkbox-grid" role="group" aria-label="Sections">
+          <label class="checkbox-item"><input type="checkbox" name="sections" value="Accueil"><span>Accueil & présentation</span></label>
+          <label class="checkbox-item"><input type="checkbox" name="sections" value="Infos pratiques"><span>Infos pratiques</span></label>
+          <label class="checkbox-item"><input type="checkbox" name="sections" value="Règles"><span>Règles de la maison</span></label>
+          <label class="checkbox-item"><input type="checkbox" name="sections" value="Bons plans"><span>Bons plans</span></label>
+          <label class="checkbox-item"><input type="checkbox" name="sections" value="Accès"><span>Accès & arrivée</span></label>
+          <label class="checkbox-item"><input type="checkbox" name="sections" value="Appareils"><span>Notices appareils</span></label>
+        </div>
+      </fieldset>
+
+      <!-- OPTIONS (repliable, visible) -->
+      <details class="advanced" open>
+        <summary aria-expanded="true" role="button">Options & fichiers (facultatif)  </summary>
+
+        <div class="row">
+          <label class="field"><span class="label">Palette (opt.)</span>
+            <select name="palette"><option value="">Par défaut</option><option value="#2563EB">Bleu</option><option value="#EA580C">Orange</option><option value="#0F766E">Vert</option><option value="#374151">Sobre</option></select>
+          </label>
+
+          <label class="field"><span class="label">Délai souhaité</span>
+            <select name="deadline"><option>24–48h</option><option>3–5 jours</option><option>Flexible</option></select>
+          </label>
+        </div>
+
+        <label class="field full">
+          <span class="label">Joindre des photos (optionnel, petits fichiers)</span>
+          <input id="photos_file" name="photos_file" type="file" accept=".jpg,.jpeg,.png" multiple>
+          <div class="muted small file-list" aria-live="polite"></div>
+          <div class="muted small">Si vos fichiers sont volumineux/sensibles : envoyez-les par email à <strong id="email-display">contact@maisonstras.github.io</strong> ou via WhatsApp en précisant <strong>nom du logement + adresse</strong>.</div>
+        </label>
+
+        <label class="field full"><span class="label">OU URLs des photos (optionnel)</span><input id="photos_urls" name="photos_urls" placeholder="https://... , https://..."></label>
+
+        <label class="field full"><span class="label">Un bon plan (optionnel)</span><input id="tip" name="tip" placeholder="Ex : Café X — -10% pour nos hôtes"></label>
+
+        <label class="field full"><span class="label">Remarques supplémentaires</span>
+          <textarea id="remarks" name="remarks" rows="3" placeholder="Si vous n’avez pas d’idée, écrivez simplement : je vous fais confiance — j’ajouterai des suggestions locales par défaut."></textarea>
+        </label>
+      </details>
+
+      <div class="consent">
+        <label><input type="checkbox" id="agree" required> J’accepte les conditions de l’essai (1 démo par logement • valable 24h • 1 révision incluse)</label>
+      </div>
+
+      <div class="commercial">
+        <div>
+          <strong style="white-space:nowrap;">Pour un rendu complet & pro </strong>
+          <p class="muted" style="margin:4px 0 0 0">Logo, sections illimitées, QR hébergé, mises à jour et support. Idéal si vous voulez un livret clef en main.</p>
+        </div>
+        <a href="#pricing" data-scroll-to="#pricing" class="btn-offers">Voir les offres</a>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn-primary">Demander ma démo 24h</button>
+        <div class="contact-alternatives">
+          <a id="mailto-fallback" class="btn-link" href="#">Envoyer par email</a>
+          <a id="wa-fallback" class="btn-link" href="#" target="_blank" rel="noopener noreferrer">Écrire sur WhatsApp</a>
+        </div>
+      </div>
+
+      <div id="form-msg" class="form-msg" aria-live="polite"></div>
+    </form>
+  </div>
+</div>
+<!-- ===== END MODAL ===== -->
 
 
 
@@ -602,6 +736,98 @@
 <script src="js/script.js"></script>
 
 
+<script>
+(function(){
+  // safe selectors
+  const modal = document.getElementById('modal');
+  const photosInput = document.getElementById('photos_file');
+  const fileListEl = document.querySelector('.file-list');
+  const mailtoBtn = document.getElementById('mailto-fallback');
+  const waBtn = document.getElementById('wa-fallback');
+  const infoToggle = document.getElementById('info-toggle');
+  const infoDetails = document.querySelectorAll('.info-detail');
+
+  // update visible email display if CONTACT_EMAIL present
+  if(typeof CONTACT_EMAIL !== 'undefined'){
+    const ed = document.getElementById('email-display');
+    if(ed) ed.textContent = CONTACT_EMAIL;
+  }
+
+  // show file names and limit to 3 visually
+  if(photosInput && fileListEl){
+    photosInput.addEventListener('change', function(){
+      const files = Array.from(this.files || []);
+      if(files.length === 0){
+        fileListEl.textContent = '';
+        return;
+      }
+      if(files.length > 3){
+        fileListEl.innerHTML = '<strong style="color:#9b1c1c">Vous pouvez joindre jusqu’à 3 fichiers. Merci de réduire votre sélection.</strong>';
+        // keep them selected but warn — UI enforcement only
+      } else {
+        fileListEl.textContent = files.map(f => `${f.name} (${Math.round(f.size/1024)} KB)`).join(' — ');
+      }
+    });
+  }
+
+  // Info toggle: on mobile hide/show detailed text
+  if(infoToggle){
+    infoToggle.addEventListener('click', function(){
+      const expanded = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', String(!expanded));
+      // toggle muted/details display
+      infoDetails.forEach(n => {
+        n.style.display = (!expanded) ? 'block' : 'none';
+      });
+      // accessible label change
+      this.title = (!expanded) ? 'Masquer les détails' : 'Plus d\'info';
+    });
+    // initialize: if mobile hide details
+    function setInfoInitial(){
+      const small = window.innerWidth <= 560;
+      infoDetails.forEach(n => n.style.display = small ? 'none' : 'block');
+      if(infoToggle) infoToggle.setAttribute('aria-expanded', String(!small));
+    }
+    setInfoInitial();
+    window.addEventListener('resize', setInfoInitial);
+  }
+
+  // update mailto / whatsapp fallback links when user types
+  function updateFallbackLinks(){
+    const name = (document.getElementById('name')?.value || '').trim();
+    const email = (document.getElementById('email')?.value || '').trim();
+    const title = (document.getElementById('prop-title')?.value || '').trim();
+    const pack = (document.getElementById('pack')?.value || '').trim();
+    const subject = encodeURIComponent(`Demande livret - ${title || 'nouvelle demande'}`);
+    const bodyLines = [
+      `Nom: ${name}`,
+      `Email: ${email}`,
+      `Logement: ${title}`,
+      `Pack souhaité: ${pack}`,
+      '',
+      'Merci.'
+    ];
+    const body = encodeURIComponent(bodyLines.join('\n'));
+    const contactEmail = (typeof CONTACT_EMAIL !== 'undefined') ? CONTACT_EMAIL : (document.getElementById('email-display')?.textContent || 'contact@maisonstras.github.io');
+    if(mailtoBtn) mailtoBtn.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`;
+    // WhatsApp
+    const waNum = (typeof WA_NUMBER !== 'undefined' && WA_NUMBER) ? WA_NUMBER : '';
+    const waText = encodeURIComponent(`Bonjour, je souhaite une démo pour "${title}". Nom: ${name}, Email: ${email}.`);
+    if(waBtn){
+      waBtn.href = waNum ? `https://wa.me/${waNum.replace(/\D/g,'')}?text=${waText}` : `https://wa.me/?text=${waText}`;
+    }
+  }
+
+  ['name','email','prop-title','pack'].forEach(id => {
+    const el = document.getElementById(id);
+    el && el.addEventListener('input', updateFallbackLinks);
+  });
+  // init
+  updateFallbackLinks();
+
+  // a11y: trap focus when modal open? (your existing script handles open/close, so we keep it minimal)
+})();
+</script>
 
 
 
