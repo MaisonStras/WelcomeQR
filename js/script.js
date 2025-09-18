@@ -102,12 +102,12 @@
         return;
       }
 
-      const langs = Array.from(form.querySelectorAll('input[name="lang"]:checked')).map(c=>c.value);
-      if(langs.length === 0){
-        formMsg.textContent = 'Merci de sélectionner au moins une langue.';
-        formMsg.style.color = '#9b1c1c';
-        return;
-      }
+      // const langs = Array.from(form.querySelectorAll('input[name="lang"]:checked')).map(c=>c.value);
+      // if(langs.length === 0){
+      //   formMsg.textContent = 'Merci de sélectionner au moins une langue.';
+      //   formMsg.style.color = '#9b1c1c';
+      //   return;
+      // }
 
       const fileInput = document.getElementById('photos_file');
       const files = fileInput ? Array.from(fileInput.files) : [];
@@ -125,7 +125,6 @@
 
       const fd = new FormData(form);
       fd.set('sections_selected', checkedSections.join(' | '));
-      fd.set('languages_selected', langs.join(' | '));
       fd.set('files_names', files.map(f=>f.name).join(', ') || '');
       const payload = Object.fromEntries(fd.entries());
 
